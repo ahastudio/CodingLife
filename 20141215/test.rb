@@ -2,7 +2,6 @@ require 'matrix'
 
 UNIT_PRICE = 8
 DISCOUNT = [0, 0, 0.05, 0.10, 0.20, 0.25]
-PACKAGES = {}
 PRICES = {}
 
 class Array
@@ -32,10 +31,14 @@ def packages(numbers)
 end
 
 def price(*numbers)
-  PRICES[numbers] ||= packages(numbers).map { |package|
-    remain = Vector[*numbers] - Vector[*package]
-    min_price(*package) + min_price(*remain.to_a)
-  }.min
+  if numbers.all? { |i| i == 0 }
+    0
+  else
+    PRICES[numbers] ||= packages(numbers).map { |package|
+      remain = Vector[*numbers] - Vector[*package]
+      min_price(*package) + min_price(*remain.to_a)
+    }.min
+  end
 end
 
 puts "---------------------------------"
@@ -51,6 +54,7 @@ describe "Harry Potter" do
     expect(price(1, 1, 1, 1, 1)).to eq(30.00)
     expect(price(2, 0, 0, 0, 0)).to eq(16.00)
     expect(price(2, 1, 0, 0, 0)).to eq(23.20)
+    expect(price(0, 0, 0, 0, 0)).to eq(0.00)
   end
 
   it "returns packages" do
