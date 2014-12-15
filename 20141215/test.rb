@@ -58,15 +58,15 @@ describe "Harry Potter" do
   end
 
   it "returns packages" do
-    expect(packages([1, 1])).to eq([[1, 0], [0, 1], [1, 1]])
+    expect(packages([1, 1]).sort).to eq([[0, 1], [1, 0], [1, 1]])
   end
 end
 
 describe Array do
   context "#combinations" do
     it "returns combination arrays" do
-      expect([1, 2, 3].combinations)
-        .to eq([[1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]])
+      expect([1, 2, 3].combinations.sort)
+        .to eq([[1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]].sort)
     end
   end
 end
