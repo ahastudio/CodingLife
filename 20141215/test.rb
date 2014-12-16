@@ -14,19 +14,19 @@ class Array
   end
 end
 
+def packages(numbers)
+  indices = numbers.map.with_index { |x, i| x >= 1 ? i : nil }.compact
+  indices.combinations.map do |i|
+    i.reduce([0] * numbers.size) { |a, b| a[b] = 1; a }
+  end
+end
+
 def min_price(*numbers)
   books = numbers.select { |i| i > 0 }
   if books.all? { |i| i == 1 }
     UNIT_PRICE * books.size * (1 - DISCOUNT[books.size])
   else
     price(*numbers)
-  end
-end
-
-def packages(numbers)
-  indices = numbers.map.with_index { |x, i| x >= 1 ? i : nil }.compact
-  indices.combinations.map do |i|
-    i.reduce([0] * numbers.size) { |a, b| a[b] = 1; a }
   end
 end
 
