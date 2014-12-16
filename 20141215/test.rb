@@ -31,12 +31,13 @@ def min_price(*numbers)
 end
 
 def price(*numbers)
-  if numbers.all? { |i| i == 0 }
+  numbers.sort!
+  if numbers.last == 0
     0
   else
     PRICES[numbers] ||= packages(numbers).map { |package|
       remain = Vector[*numbers] - Vector[*package]
-      min_price(*package) + min_price(*remain.to_a)
+      min_price(*package) + price(*remain.to_a)
     }.min
   end
 end
@@ -55,6 +56,7 @@ describe "Harry Potter" do
     expect(price(2, 0, 0, 0, 0)).to eq(16.00)
     expect(price(2, 1, 0, 0, 0)).to eq(23.20)
     expect(price(0, 0, 0, 0, 0)).to eq(0.00)
+    expect(price(5, 5, 5, 5, 5)).to eq(150.00)
   end
 
   it "returns packages" do
