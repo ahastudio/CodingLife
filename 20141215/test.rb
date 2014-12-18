@@ -57,6 +57,7 @@ describe "Harry Potter" do
     expect(price(2, 1, 0, 0, 0)).to eq(23.20)
     expect(price(0, 0, 0, 0, 0)).to eq(0.00)
     expect(price(5, 5, 5, 5, 5)).to eq(150.00)
+    expect(price(5, 5, 5, 3, 3)).to eq(132.40)
   end
 
   it "returns packages" do
