@@ -2,13 +2,13 @@ import unittest
 
 class CycleLength:
 	def getLength(self, n):
-		if n == 1:			return 1
+		if n == 1:					return 1
 		if self.isEvenNumber(n):	return self.getLength(n / 2) + 1
-		else:				return self.getLength(n * 3 + 1) + 1
+		else:						return self.getLength(n * 3 + 1) + 1
 
 	def isEvenNumber(self, n):
 		if n % 2 == 0:	return True
-		else:		return False
+		else:			return False
 
 class CycleLengthTest(unittest.TestCase):
 	def test(self):
