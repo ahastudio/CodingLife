@@ -28,6 +28,8 @@ class TestThreeNplusOne(unittest.TestCase):
     self.assertEqual(89, max_length(201, 210))
     self.assertEqual(174, max_length(900, 1000))
     self.assertEqual(351, max_length(1, 100000))
+    self.assertEqual(383, max_length(1, 200000))
+    self.assertEqual(525, max_length(1, 1000000))
 
 
 if __name__ == '__main__':

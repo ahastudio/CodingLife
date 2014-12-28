@@ -1,12 +1,20 @@
+import scala.annotation.tailrec
 import org.scalatest._
 
 object Solve {
-  def isOdd(n: Int) = (n % 2 == 1)
+  def isOdd(n: BigInt) = (n % 2 == 1)
+
+  def nextNumber(n: BigInt): BigInt = {
+    if (isOdd(n)) (3 * n + 1)
+    else (n / 2)
+  }
 
   def getLength(n: Int): Int = {
-    if (n == 1) 1
-    else if (isOdd(n)) getLength(3 * n + 1) + 1
-    else getLength(n / 2) + 1
+    @tailrec def getLengthRec(length: Int, n: BigInt): Int = {
+      if (n == 1) length + 1
+      else getLengthRec(length + 1, nextNumber(n))
+    }
+    getLengthRec(0, n)
   }
 
   def getMaxLength(begin: Int, end: Int) = {
@@ -28,5 +36,7 @@ class ProblemSolveSpec extends FlatSpec with Matchers {
     Solve.getMaxLength(201, 210) should be (89)
     Solve.getMaxLength(900, 1000) should be (174)
     Solve.getMaxLength(1, 100000) should be (351)
+    Solve.getMaxLength(1, 200000) should be (383)
+    Solve.getMaxLength(1, 1000000) should be (525)
   }
 }
