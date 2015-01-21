@@ -1,0 +1,1 @@
+../ThinkBayes/thinkbayes.py
