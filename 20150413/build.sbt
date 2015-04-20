@@ -1,4 +1,4 @@
-name := "Longest Substring Without Repeating Characters"
+name := "FP in Scala"
 
 scalaVersion := "2.11.4"
 
