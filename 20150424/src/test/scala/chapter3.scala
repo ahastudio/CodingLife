@@ -68,8 +68,12 @@ object List {
       case (_, Nil) => true
       case (Nil, _) => false
       case (Cons(a, b), Cons(c, d)) =>
-        if (a == c) hasSubsequence(b, d)
-        else hasSubsequence(b, sub)
+        def check[A](sup: List[A], sub: List[A]): Boolean = (sup, sub) match {
+          case (_, Nil) => true
+          case (Nil, _) => false
+          case (Cons(a, b), Cons(c, d)) => (a == c) && check(b, d)
+        }
+        (a == c) && check(b, d) || hasSubsequence(b, sub)
     }
 }
 
@@ -138,5 +142,6 @@ class TestChapter3 extends FlatSpec with Matchers {
     List.hasSubsequence(List(1, 2, 3, 4), List(5)) should be (false)
     List.hasSubsequence(List(1, 2, 3, 4), List(4, 5)) should be (false)
     List.hasSubsequence(List(1, 2, 3, 4), List(2, 1)) should be (false)
+    List.hasSubsequence(List(1, 2, 3, 4), List(1, 3)) should be (false)
   }
 }
