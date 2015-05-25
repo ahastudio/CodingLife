@@ -26,6 +26,12 @@ def combine(a, b)
   a.zip(b).flatten
 end
 
+def fib(n)
+  [*0...n].reduce([]) do |list, i|
+    list + [(i < 2) ? i : list[-2] + list[-1]]
+  end
+end
+
 puts '---------------------------------------'
 
 describe "Five programming problems" do
@@ -40,6 +46,13 @@ describe "Five programming problems" do
   describe "Combine two lists" do
     it "combines two lists by alternatingly taking elements" do
       expect(combine([:a, :b, :c], [1, 2, 3])).to eq([:a, 1, :b, 2, :c, 3])
+    end
+  end
+
+  describe "Fibonacci numbers" do
+    it "computes the list of fibonacci numbers" do
+      expect(fib(10)).to eq([0, 1, 1, 2, 3, 5, 8, 13, 21, 34])
+      expect(fib(100).last).to eq(218922995834555169026)
     end
   end
 end
