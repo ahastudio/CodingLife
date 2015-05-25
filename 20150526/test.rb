@@ -32,6 +32,10 @@ def fib(n)
   end
 end
 
+def largest_formed(numbers)
+  numbers.map { |i| "#{i}a" }.sort.reverse.join.gsub('a', '').to_i
+end
+
 puts '---------------------------------------'
 
 describe "Five programming problems" do
@@ -53,6 +57,13 @@ describe "Five programming problems" do
     it "computes the list of fibonacci numbers" do
       expect(fib(10)).to eq([0, 1, 1, 2, 3, 5, 8, 13, 21, 34])
       expect(fib(100).last).to eq(218922995834555169026)
+    end
+  end
+
+  describe "Largest formed number" do
+    it "finds largest formed number" do
+      expect(largest_formed([50, 2, 1, 9])).to eq(95021)
+      expect(largest_formed([200, 2, 1, 9])).to eq(922001)
     end
   end
 end
