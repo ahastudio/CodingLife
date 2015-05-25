@@ -36,6 +36,20 @@ def largest_formed(numbers)
   numbers.map { |i| "#{i}a" }.sort.reverse.join.gsub('a', '').to_i
 end
 
+def possibilities(n)
+  def recur(expressions, i)
+    if i > 9
+      expressions
+    else
+      ['', ' + ', ' - '].flat_map do |x|
+        expressions.flat_map { |e| recur([e + "#{x}#{i}"], i + 1) }
+      end
+    end
+  end
+
+  recur(['1'], 2).select { |e| eval(e) == n }
+end
+
 puts '---------------------------------------'
 
 describe "Five programming problems" do
@@ -64,6 +78,13 @@ describe "Five programming problems" do
     it "finds largest formed number" do
       expect(largest_formed([50, 2, 1, 9])).to eq(95021)
       expect(largest_formed([200, 2, 1, 9])).to eq(922001)
+    end
+  end
+
+  describe "100" do
+    it "finds all possibilities" do
+      expect(possibilities(100)).to include('1 + 2 + 34 - 5 + 67 - 8 + 9')
+      expect(possibilities(100).size).to eq(11)
     end
   end
 end
