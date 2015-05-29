@@ -1,5 +1,7 @@
 import unittest
 
+from itertools import permutations
+
 
 def sum1(numbers):
     sum = 0
@@ -37,6 +39,10 @@ def fib(n):
         return []
     return fib(n - 1) + [f(n)]
 
+def largest_possible_number(numbers):
+    return max(int(''.join(str(i) for i in seq))
+               for seq in permutations(numbers))
+
 
 class FiveProblems(unittest.TestCase):
     def test_sum(self):
@@ -55,6 +61,11 @@ class FiveProblems(unittest.TestCase):
     def test_fibonacci_numbers(self):
         self.assertEqual([0, 1, 1, 2, 3, 5, 8, 13, 21, 34], fib(10))
         self.assertEqual(218922995834555169026L, fib(100)[-1])
+
+    def test_arranges_form_the_largest_possible_number(self):
+        self.assertEqual(95021, largest_possible_number([50, 2, 1, 9]))
+        self.assertEqual(922001, largest_possible_number([200, 2, 1, 9]))
+        self.assertEqual(932321, largest_possible_number([23, 2, 3, 1, 9]))
 
 
 if __name__ == '__main__':
