@@ -1,3 +1,9 @@
+class Array
+  def with_index
+    zip([*0...size])
+  end
+end
+
 def sum_using_for(list)
   sum = 0
   for i in list
@@ -33,7 +39,14 @@ def fib(n)
 end
 
 def largest_formed(numbers)
-  numbers.map { |i| "#{i}a" }.sort.reverse.join.gsub('a', '').to_i
+  if numbers.empty?
+    0
+  else
+    numbers.with_index.map { |n, i|
+      remain = numbers[0, i] + numbers[i + 1..-1]
+      "#{largest_formed(remain)}#{n}".to_i
+    }.max
+  end
 end
 
 def possibilities(n)
@@ -78,6 +91,7 @@ describe "Five programming problems" do
     it "finds largest formed number" do
       expect(largest_formed([50, 2, 1, 9])).to eq(95021)
       expect(largest_formed([200, 2, 1, 9])).to eq(922001)
+      expect(largest_formed([23, 2, 3, 1, 9])).to eq(932321)
     end
   end
 
