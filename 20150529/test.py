@@ -26,6 +26,17 @@ def combine(a, b):
         a, b = b, a
     return [a[0]] + combine(b, a[1:])
 
+CACHE = { 1: 0, 2: 1 }
+
+def fib(n):
+    def f(n):
+        if n not in CACHE:
+            CACHE[n] = f(n - 1) + f(n - 2)
+        return CACHE[n]
+    if n <= 0:
+        return []
+    return fib(n - 1) + [f(n)]
+
 
 class FiveProblems(unittest.TestCase):
     def test_sum(self):
@@ -40,6 +51,10 @@ class FiveProblems(unittest.TestCase):
                          combine(['a', 'b', 'c'], [1]))
         self.assertEqual(['a', 1, 2, 3],
                          combine(['a'], [1, 2, 3]))
+
+    def test_fibonacci_numbers(self):
+        self.assertEqual([0, 1, 1, 2, 3, 5, 8, 13, 21, 34], fib(10))
+        self.assertEqual(218922995834555169026L, fib(100)[-1])
 
 
 if __name__ == '__main__':
