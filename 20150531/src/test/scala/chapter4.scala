@@ -25,6 +25,23 @@ sealed trait Either[+E, +A] {
 case class Left[+E](value: E) extends Either[E, Nothing]
 case class Right[+A](value: A) extends Either[Nothing, A]
 
+object Either {
+  def sequence[E, A](es: List[Either[E, A]]): Either[E, List[A]] = es match {
+    case Nil => Right(Nil)
+    case head :: tail =>
+      // for (h <- head; t <- sequence(tail)) yield h :: t
+      head.flatMap(h => sequence(tail).map(t => h :: t))
+  }
+
+  def traverse[E, A, B](as: List[A])
+                       (f: A => Either[E, B]): Either[E, List[B]] = as match {
+    case Nil => Right(Nil)
+    case head :: tail =>
+      // for (h <- f(head); t <- traverse(tail)(f)) yield h :: t
+      f(head).flatMap(h => traverse(tail)(f).map(t => h :: t))
+  }
+}
+
 class TestChapter4 extends FlatSpec with Matchers {
   def mean(xs: IndexedSeq[Double]): Either[String, Double] =
     if (xs.isEmpty)
@@ -49,5 +66,21 @@ class TestChapter4 extends FlatSpec with Matchers {
     Right(1).map2(Left("wtf 2"))(add) should be (Left("wtf 2"))
     Left("wtf 1").map2(Right(2))(add) should be (Left("wtf 1"))
     Left("wtf 1").map2(Left("wtf 2"))(add) should be (Left("wtf 1"))
+  }
+
+  // 연습문제 4.7
+  it should "sequence and traverse a list" in {
+    Either.sequence(List(Right(1), Right(2))) should be (Right(List(1, 2)))
+    Either.sequence(List(Left("error1"), Right(2))) should be (Left("error1"))
+    Either.sequence(List(Right(1), Left("error2"))) should be (Left("error2"))
+    Either.sequence(List(Left("error1"), Left("error2"))) should
+      be (Left("error1"))
+
+    def double(a: Int) = if (a < 0) Left("negative: " + a) else Right(a * 2)
+
+    Either.traverse(List(1, 2))(double) should be (Right(List(2, 4)))
+    Either.traverse(List(-1, 2))(double) should be (Left("negative: -1"))
+    Either.traverse(List(1, -2))(double) should be (Left("negative: -2"))
+    Either.traverse(List(-1, -2))(double) should be (Left("negative: -1"))
   }
 }
