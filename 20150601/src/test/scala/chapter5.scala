@@ -10,6 +10,16 @@ sealed trait Stream[+A] {
     case Empty => Nil
     case Cons(h, t) => h() :: t().toList
   }
+
+  def take(n: Int): Stream[A] = this match {
+    case Cons(h, t) if (n > 0) => Cons(h, () => t().take(n - 1))
+    case _ => Empty
+  }
+
+  def drop(n: Int): Stream[A] = this match {
+    case Cons(h, t) if (n > 0) => t().drop(n - 1)
+    case _ => this
+  }
 }
 
 case object Empty extends Stream[Nothing]
@@ -30,7 +40,7 @@ object Stream {
 }
 
 class TestChapter5 extends FlatSpec with Matchers {
-  it should "returns head as option" in {
+  it should "return the head as option" in {
     Stream.apply(1, 2, 3).headOption should be (Some(1))
     Stream.cons(1, Empty).headOption should be (Some(1))
     Stream.apply().headOption should be (None)
@@ -43,5 +53,19 @@ class TestChapter5 extends FlatSpec with Matchers {
     Stream.cons(1, Empty).toList should be (List(1))
     Stream.apply().toList should be (List())
     Stream.empty.toList should be (List())
+  }
+
+  // 연습문제 5.2
+  it should "take and drop" in {
+    Stream.apply(1, 2, 3).take(2).toList should be (List(1, 2))
+    Stream.apply(1, 2, 3).take(5).toList should be (List(1, 2, 3))
+    Stream.apply(1, 2, 3).take(-1).toList should be (List())
+
+    Stream.apply(1, 2, 3).drop(1).toList should be (List(2, 3))
+    Stream.apply(1, 2, 3).drop(2).toList should be (List(3))
+    Stream.apply(1, 2, 3).drop(5).toList should be (List())
+    Stream.apply(1, 2, 3).drop(-1).toList should be (List(1, 2, 3))
+
+    Stream.apply(1, 2, 3).drop(1).take(1).toList should be (List(2))
   }
 }
