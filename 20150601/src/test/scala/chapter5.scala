@@ -36,9 +36,9 @@ sealed trait Stream[+A] {
   def forAll(p: A => Boolean): Boolean = foldRight(true)((a, b) => p(a) && b)
 
   def takeWhile2(p: A => Boolean): Stream[A] =
-    foldRight(Stream.empty[A]) { (a, b) =>
+    foldRight[Stream[A]](Empty) { (a, b) =>
       if (p(a)) Cons(() => a, () => b)
-      else b
+      else Empty
     }
 
   def headOption2: Option[A] = foldRight[Option[A]](None)((a, b) => Some(a))
@@ -114,6 +114,7 @@ class TestChapter5 extends FlatSpec with Matchers {
   // 연습문제 5.5
   it should "take while using foldRight" in {
     Stream.apply(1, 2, 3).takeWhile2(_ < 3).toList should be (List(1, 2))
+    Stream.apply(1, 2, 3, 1).takeWhile2(_ < 3).toList should be (List(1, 2))
   }
 
   // 연습문제 5.6
