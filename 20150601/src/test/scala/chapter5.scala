@@ -34,6 +34,12 @@ sealed trait Stream[+A] {
   def exists(p: A => Boolean): Boolean = foldRight(false)((a, b) => p(a) || b)
 
   def forAll(p: A => Boolean): Boolean = foldRight(true)((a, b) => p(a) && b)
+
+  def takeWhile2(p: A => Boolean): Stream[A] =
+    foldRight(Stream.empty[A]) { (a, b) =>
+      if (p(a)) Cons(() => a, () => b)
+      else b
+    }
 }
 
 case object Empty extends Stream[Nothing]
@@ -101,5 +107,10 @@ class TestChapter5 extends FlatSpec with Matchers {
   it should "check all" in {
     Stream.apply(1, 2, 3).forAll(_ < 10) should be (true)
     Stream.apply(1, 2, 3).forAll(_ > 10) should be (false)
+  }
+
+  // 연습문제 5.5
+  it should "take while using foldRight" in {
+    Stream.apply(1, 2, 3).takeWhile2(_ < 3).toList should be (List(1, 2))
   }
 }
