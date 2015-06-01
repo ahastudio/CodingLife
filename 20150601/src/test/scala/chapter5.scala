@@ -20,6 +20,11 @@ sealed trait Stream[+A] {
     case Cons(h, t) if (n > 0) => t().drop(n - 1)
     case _ => this
   }
+
+  def takeWhile(p: A => Boolean): Stream[A] = this match {
+    case Cons(h, t) if (p(h())) => Cons(h, () => t().takeWhile(p))
+    case _ => Empty
+  }
 }
 
 case object Empty extends Stream[Nothing]
@@ -67,5 +72,13 @@ class TestChapter5 extends FlatSpec with Matchers {
     Stream.apply(1, 2, 3).drop(-1).toList should be (List(1, 2, 3))
 
     Stream.apply(1, 2, 3).drop(1).take(1).toList should be (List(2))
+  }
+
+  // 연습문제 5.3
+  it should "take while" in {
+    Stream.apply(1, 2, 3).takeWhile(_ < 1).toList should be (List())
+    Stream.apply(1, 2, 3).takeWhile(_ < 2).toList should be (List(1))
+    Stream.apply(1, 2, 3).takeWhile(_ < 3).toList should be (List(1, 2))
+    Stream.apply(1, 2, 3).takeWhile(_ < 4).toList should be (List(1, 2, 3))
   }
 }
