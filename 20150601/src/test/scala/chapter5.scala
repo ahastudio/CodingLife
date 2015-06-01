@@ -42,6 +42,21 @@ sealed trait Stream[+A] {
     }
 
   def headOption2: Option[A] = foldRight[Option[A]](None)((a, b) => Some(a))
+
+  def map[B](p: A => B): Stream[B] =
+    foldRight[Stream[B]](Empty)((a, b) => Cons(() => p(a), () => b))
+
+  def filter(p: A => Boolean): Stream[A] =
+    foldRight[Stream[A]](Empty) { (a, b) =>
+      if (p(a)) Cons(() => a, () => b)
+      else b
+    }
+
+  def append[B >: A](other: Stream[B]): Stream[B] =
+    foldRight(other)((a, b) => Cons(() => a, () => b))
+
+  def flatMap[B](p: A => Stream[B]): Stream[B] =
+    foldRight[Stream[B]](Empty)((a, b) => p(a).append(b))
 }
 
 case object Empty extends Stream[Nothing]
@@ -121,5 +136,41 @@ class TestChapter5 extends FlatSpec with Matchers {
   it should "get head using foldRight" in {
     Stream.apply(1, 2, 3).headOption2 should be (Some(1))
     Stream.apply().headOption2 should be (None)
+  }
+
+  // 연습문제 5.7
+  it should "do map, filter, append, flatMap" in {
+    // map
+
+    def double(x: Int) = x * 2
+
+    Stream.apply(1, 2, 3).map(double).toList should be (List(2, 4, 6))
+    Stream.apply().map(double).toList should be (List())
+
+    // filter
+
+    def isEven(x: Int) = x % 2 == 0
+
+    Stream.apply(1, 2, 3, 4).filter(isEven).toList should be (List(2, 4))
+    Stream.apply().filter(isEven).toList should be (List())
+
+    Stream.apply(1, 2, 3, 1).filter(_ < 3).toList should be (List(1, 2, 1))
+
+    // append
+
+    Stream.apply(1, 2).append(Stream.apply(3, 4)).toList should
+      be (List(1, 2, 3, 4))
+    Stream.apply(1, 2).append(Empty).toList should be (List(1, 2))
+    Empty.append(Stream.apply(3, 4)).toList should be (List(3, 4))
+    Empty.append(Empty) should be (Empty)
+
+    // flatMap
+
+    Stream.apply(1, 2, 3).flatMap(a => Stream.apply(double(a))).toList should
+      be (List(2, 4, 6))
+
+    def evenStreamOrEmpty(x: Int) = if (isEven(x)) Stream(x) else Empty
+
+    Stream.apply(1, 2, 3).flatMap(evenStreamOrEmpty).toList should be (List(2))
   }
 }
