@@ -40,6 +40,8 @@ sealed trait Stream[+A] {
       if (p(a)) Cons(() => a, () => b)
       else b
     }
+
+  def headOption2: Option[A] = foldRight[Option[A]](None)((a, b) => Some(a))
 }
 
 case object Empty extends Stream[Nothing]
@@ -112,5 +114,11 @@ class TestChapter5 extends FlatSpec with Matchers {
   // 연습문제 5.5
   it should "take while using foldRight" in {
     Stream.apply(1, 2, 3).takeWhile2(_ < 3).toList should be (List(1, 2))
+  }
+
+  // 연습문제 5.6
+  it should "get head using foldRight" in {
+    Stream.apply(1, 2, 3).headOption2 should be (Some(1))
+    Stream.apply().headOption2 should be (None)
   }
 }
