@@ -32,7 +32,7 @@ object Par {
 
   def sequence[A](ps: List[Par[A]]): Par[List[A]] = ps match {
     case Nil => unit(Nil)
-    case h :: t => map2(h, sequence(t))((a, b) => a :: b)
+    case h :: t => map2(h, fork(sequence(t)))((a, b) => a :: b)
   }
 
   def sequence2[A](ps: List[Par[A]]): Par[List[A]] =
