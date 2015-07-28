@@ -72,7 +72,7 @@ class TestChapter7 extends FlatSpec with Matchers {
     Par.sequence2(List(Par.unit(1), Par.unit(2)))(es).get should be (List(1, 2))
   }
 
-  // 연습문제 7.5
+  // 연습문제 7.6
   it should "filter the list" in {
     val es: ExecutorService = Executors.newCachedThreadPool
     Par.parFilter(List(1, 2, 3, 4))(_ % 2 == 0)(es).get should be (List(2, 4))
