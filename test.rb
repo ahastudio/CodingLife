@@ -1,3 +1,18 @@
+class List
+  attr_reader :size
+  attr_reader :data
+
+  def initialize
+    @size = 0
+    @data = []
+  end
+
+  def append(element)
+    @data[@size] = element
+    @size += 1
+  end
+end
+
 puts '--------------------------'
 
 describe Array do
@@ -71,5 +86,14 @@ describe Array do
     samenums = Array.new(nums)
     nums[0] = 400
     expect(samenums[0]).to eq(1)
+  end
+end
+
+describe List do
+  it 'appends an element' do
+    list = List.new
+    list.append(3)
+    expect(list.size).to match(1)
+    expect(list.data).to match([3])
   end
 end
