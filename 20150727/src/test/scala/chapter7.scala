@@ -53,28 +53,26 @@ object Par {
 }
 
 class TestChapter7 extends FlatSpec with Matchers {
+  val es: ExecutorService = Executors.newCachedThreadPool
+
   // 연습문제 7.1
   it should "map Pars" in {
-    val es: ExecutorService = Executors.newCachedThreadPool
     Par.map2(Par.unit(1), Par.unit(2))(_ + _)(es).get should be (3)
   }
 
   // 연습문제 7.4
   it should "evaluate its result asynchoronously" in {
-    val es: ExecutorService = Executors.newCachedThreadPool
     Par.asyncF[Int, Int](a => a * 2)(3)(es).get should be (6)
   }
 
   // 연습문제 7.5
   it should "change the Par list" in {
-    val es: ExecutorService = Executors.newCachedThreadPool
     Par.sequence(List(Par.unit(1), Par.unit(2)))(es).get should be (List(1, 2))
     Par.sequence2(List(Par.unit(1), Par.unit(2)))(es).get should be (List(1, 2))
   }
 
   // 연습문제 7.6
   it should "filter the list" in {
-    val es: ExecutorService = Executors.newCachedThreadPool
     Par.parFilter(List(1, 2, 3, 4))(_ % 2 == 0)(es).get should be (List(2, 4))
   }
 }
