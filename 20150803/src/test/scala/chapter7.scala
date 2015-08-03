@@ -12,19 +12,22 @@ sealed trait Future[A] {
 object Par {
   type Par[A] = ExecutorService => Future[A]
 
-  def run[A](es: ExecutorService)(p: Par[A]): A = {
-    val ref = new AtomicReference[A]
-    val latch = new CountDownLatch(1)
-    p(es) { a => ref.set(a); latch.countDown }
-    latch.await
-    ref.get
-  }
-
   def unit[A](a: A): Par[A] =
     (es: ExecutorService) => new Future[A] {
       def apply(cb: A => Unit): Unit =
         cb(a)
     }
+
+  def fork[A](a: => Par[A]): Par[A] =
+    es => new Future[A] {
+      def apply(cb : A => Unit): Unit =
+        eval(es)(a(es)(cb))
+    }
+
+  def eval(es: ExecutorService)(r: => Unit): Unit =
+    es.submit(new Callable[Unit] { def call = r })
+
+  def lazyUnit[A](a: => A): Par[A] = fork(unit(a))
 
   def map2[A, B, C](p: Par[A], p2: Par[B])(f: (A, B) => C): Par[C] =
     es => new Future[C] {
@@ -50,16 +53,13 @@ object Par {
       }
     }
 
-  def fork[A](a: => Par[A]): Par[A] =
-    es => new Future[A] {
-      def apply(cb : A => Unit): Unit =
-        eval(es)(a(es)(cb))
-    }
-
-  def eval(es: ExecutorService)(r: => Unit): Unit =
-    es.submit(new Callable[Unit] { def call = r })
-
-  def lazyUnit[A](a: => A): Par[A] = fork(unit(a))
+  def run[A](es: ExecutorService)(p: Par[A]): A = {
+    val ref = new AtomicReference[A]
+    val latch = new CountDownLatch(1)
+    p(es) { a => ref.set(a); latch.countDown }
+    latch.await
+    ref.get
+  }
 
   def equal[A](e: ExecutorService)(p: Par[A], p2: Par[A]): Boolean =
     run(e)(p) == run(e)(p2)
