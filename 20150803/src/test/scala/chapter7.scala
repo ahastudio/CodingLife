@@ -50,9 +50,6 @@ object Par {
       }
     }
 
-  def dealy[A](fa: => Par[A]): Par[A] =
-    es => fa(es)
-
   def fork[A](a: => Par[A]): Par[A] =
     es => new Future[A] {
       def apply(cb : A => Unit): Unit =
@@ -63,30 +60,6 @@ object Par {
     es.submit(new Callable[Unit] { def call = r })
 
   def lazyUnit[A](a: => A): Par[A] = fork(unit(a))
-
-  def asyncF[A, B](f: A => B): A => Par[B] =
-    (a: A) => lazyUnit(f(a))
-
-  def sequence[A](ps: List[Par[A]]): Par[List[A]] = ps match {
-    case Nil => unit(Nil)
-    case h :: t => map2(h, fork(sequence(t)))((a, b) => a :: b)
-  }
-
-  def sequence2[A](ps: List[Par[A]]): Par[List[A]] =
-    ps.foldRight(unit(List.empty[A]))((a, b) => map2(a, b)(_ :: _))
-
-  def parMap[A,B](ps: List[A])(f: A => B): Par[List[B]] = fork {
-    val fbs: List[Par[B]] = ps.map(asyncF(f))
-    sequence(fbs)
-  }
-
-  def parFilter[A](as: List[A])(f: A => Boolean): Par[List[A]] =
-    map2(parMap(as)(a => (a, f(a))), unit(())) { (as, _) =>
-      as.foldRight(List.empty[A]) {
-        case ((h, true), t) => h :: t
-        case ((h, false), t) => t
-      }
-    }
 
   def equal[A](e: ExecutorService)(p: Par[A], p2: Par[A]): Boolean =
     run(e)(p) == run(e)(p2)
