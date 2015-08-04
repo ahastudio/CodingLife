@@ -35,13 +35,17 @@ object Par {
         var ar: Option[A] = None
         var br: Option[B] = None
 
+        // my type for remove warning.
+        case class Left(a: A)
+        case class Right(b: B)
+
         val combiner = new Actor {
           def receive = {
-            case Left(a: A) => br match {
+            case Left(a) => br match {
               case None => ar = Some(a)
               case Some(b) => eval(es)(cb(f(a, b)))
             }
-            case Right(b: B) => ar match {
+            case Right(b) => ar match {
               case None => br = Some(b)
               case Some(a) => eval(es)(cb(f(a, b)))
             }
