@@ -1,31 +1,5 @@
 import org.scalatest._
 
-object Prop {
-  type SuccessCount = Int
-  type FailedCase = String
-}
-
-trait Prop {
-  def check: Either[(Prop.FailedCase, Prop.SuccessCount), Prop.SuccessCount]
-
-  def &&(p: Prop): Prop = (check, p.check) match {
-    case (Right(a), Right(b)) => RightProp(a + b)
-    case (Right(a), Left((m, b))) => LeftProp(m, a)
-    case (Left((m, a)), Right(b)) => LeftProp(m, b)
-    case (Left((m, a)), Left((_, b))) => LeftProp(m, 0)
-  }
-}
-
-case class RightProp(count: Int) extends Prop {
-  override def check = Right(count)
-}
-
-case class LeftProp(message: String, count: Int = 0) extends Prop {
-  override def check = Left((message, count))
-}
-
-//
-
 case class State[S, +A](run: S => (A, S))
 
 trait RNG {
