@@ -1,3 +1,5 @@
+fullResolvers := Resolver.jcenterRepo +: fullResolvers.value
+
 enablePlugins(ScalaJSPlugin)
 
 name := "Scala.js"
