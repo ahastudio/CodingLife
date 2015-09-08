@@ -60,4 +60,33 @@ class Test extends FlatSpec with Matchers {
   it should "get max value in array (#2)" in {
     max_arr2(List(1, 2, 3, 4, 5)) should be (5)
   }
+
+  // 0.2 두 변수의 값 바꾸기
+
+  // 코드 0-5
+  // wrong_swap 같은 구현을 Scala에선 원천봉쇄함.
+
+  // 코드 0-6
+
+  def swap(a: Int, b: Int) = (b, a)
+
+  it should "swap two variables, but it fail" in {
+    val (x, y) = swap(1, 2)
+    x should be (2)
+    y should be (1)
+  }
+
+  // 코드 0-7
+
+  def swap_arr(as: List[Int], i: Int, j: Int) = {
+    val a = min(i, j)
+    val b = max(i, j)
+    as.slice(0, a) ++
+      List(as(b)) ++ as.slice(a + 1, b) ++
+      List(as(a)) ++ as.drop(b + 1)
+  }
+
+  it should "swap elements in array" in {
+    swap_arr(List(1, 2, 3, 4, 5), 3, 1) should be (List(1, 4, 3, 2, 5))
+  }
 }
