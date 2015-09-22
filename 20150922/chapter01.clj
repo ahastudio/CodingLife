@@ -111,3 +111,137 @@
 
 (every? (fn [x] (<= (diff (fib x) (f x)) 0.5)) (range 50))
 (every? (fn [x] (<= (diff (fib x) (g x)) 0.001)) (range 50))
+
+; 황금비 (p.50)
+
+(format "%.10f" (- phi 1.6180))
+(- (Math/pow phi 2) (+ phi 1))
+
+; 1.2.3 프로세스가 자라나는 정도 / Orders of Growth (p.55)
+
+; 연습문제 1.15
+
+(defn abs [x] (Math/abs x))
+
+(defn cube [x] (* x x x))
+
+(defn p [x] (- (* 3 x) (* 4 (cube x))))
+
+(defn sine [angle]
+  (if (not (> (abs angle) 0.1))
+    angle
+    (p (sine (/ angle 3.0)))))
+
+(sine 12.15)
+
+(apply / (cons 12.15 (repeat 5 3)))
+; => p를 5번 부르게 됨.
+
+; 1.2.4 거듭제곱 / Exponentiation (p.57)
+
+(defn expt [b n]
+  (if (= n 0)
+    1
+    (* b (expt b (- n 1)))))
+
+(expt 10 5)
+
+(defn expt-iter [b counter product]
+  (if (= counter 0)
+    product
+    (expt-iter b
+               (- counter 1)
+               (* b product))))
+
+(defn expt [b n]
+  (expt-iter b n 1))
+
+(expt 10 5)
+
+(defn square [n] (* n n))
+
+(defn even? [n]
+  (= (mod n 2) 0))
+
+(defn fast-expt [b n]
+  (cond (= n 0) 1
+        (even? n) (square (fast-expt b (/ n 2)))
+        :else (* b (fast-expt b (- n 1)))))
+
+(expt 10 10)
+(expt 10 11)
+
+; 연습문제 1.16
+
+(defn fast-expt [b n]
+  (defn iter [a b n]
+    (cond (= n 0) a
+          (even? n) (iter a (square b) (/ n 2))
+          :else (iter (* a b) b (- n 1))))
+  (iter 1 b n))
+
+(expt 10 10)
+(expt 10 11)
+(expt 10 12)
+(expt 10 13)
+(expt 10 14)
+(expt 10 15)
+
+; 연습문제 1.17
+
+(* 3 4)
+(* 9 25)
+
+(defn * [a b]
+  (if (= b 0)
+    0
+    (+ a (* a (- b 1)))))
+
+(* 3 4)
+(* 9 25)
+
+(defn double [n] (* 2 n))
+
+(defn halve [n] (/ 2 n))
+
+(defn * [a b]
+  (cond (= b 0) 0
+        (even? b) (* (+ a a) (/ b 2))
+        :else (+ a (* a (- b 1)))))
+
+(* 3 4)
+(* 9 25)
+
+; 연습문제 1.18
+
+(defn * [a b]
+  (defn iter [sum a b]
+    (cond (= b 0) sum
+          (even? b) (iter sum (+ a a) (/ b 2))
+          :else (iter (+ sum a) a (- b 1))))
+  (iter 0 a b))
+
+(* 3 4)
+(* 9 25)
+
+; 연습문제 1.19
+
+(ns reload.core)
+
+(defn fib-iter [a b p q count]
+  (cond (= count 0) b
+        (even? count) (fib-iter a
+                                b
+                                (+ (* p p) (* q q))
+                                (+ (* 2 p q) (* q q))
+                                (/ count 2))
+        :else (fib-iter (+ (* b q) (* a q) (* a p))
+                        (+ (* b p) (* a q))
+                        p
+                        q
+                        (- count 1))))
+
+(defn fib [n]
+  (fib-iter 1 0 0 1 n))
+
+(map fib (range 11))
