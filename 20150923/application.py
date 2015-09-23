@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 
-from game import Board
+from game import Board, BLANK, BLACK, WHITE
 
 import json
 
@@ -15,6 +15,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    print(str(board))
     return render_template('index.html')
 
 @app.route('/enter')
@@ -48,9 +49,13 @@ def put():
     key = request.args.get('key', '')
     if key not in players:
         return ''
-    x = int(request.args.get('x', 0))
-    y = int(request.args.get('y', 0))
-    history.append(dict(player=players.index(key), x=x, y=y))
+    x = int(request.args.get('x', -1))
+    y = int(request.args.get('y', -1))
+    if board.get(x, y) is BLANK:
+        index = players.index(key)
+        stone = [BLACK, WHITE][index]
+        board.put(stone, x, y)
+        history.append(dict(player=index, x=x, y=y))
     return ''
 
 @app.route('/get')
