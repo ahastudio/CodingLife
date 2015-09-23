@@ -44,6 +44,13 @@ class TestBoard(unittest.TestCase):
     def test_put_and_get(self):
         self.board.put(BLACK, 2, 3)
         self.assertEqual(BLACK, self.board.get(2, 3))
+        self.assertEqual(BLANK, self.board.get(0, 0))
+
+    def test_get_initial_stone(self):
+        self.assertEqual(WHITE, self.board.get(3, 3))
+
+    def test_get_outside(self):
+        self.assertEqual(WALL, self.board.get(100, 3))
 
 
 if __name__ == '__main__':
