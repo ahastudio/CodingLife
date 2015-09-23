@@ -15,8 +15,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    print(str(board))
     return render_template('index.html')
+
+@app.route('/board')
+def do_get_board():
+    return str(board)
 
 @app.route('/enter')
 def enter():

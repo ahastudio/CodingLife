@@ -28,4 +28,25 @@ body {
   height: 50px;
   border-bottom: 1px solid #000;
   border-right: 1px solid #000;
+  background: #4C8;
+  text-align: center;
+}
+
+.stone-black,
+.stone-white {
+  display: inline-block;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  border: 1px solid #333;
+  text-indent: -10000px;
+  overflow: hidden;
+}
+
+.stone-black {
+  background: #000;
+}
+
+.stone-white {
+  background: #FFF;
 }
