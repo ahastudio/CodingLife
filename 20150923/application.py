@@ -5,11 +5,16 @@ from game import Board, BLANK, BLACK, WHITE
 import json
 
 
-board = Board()
-players = []
-ready = []
-playing = False
-history = []
+class Room:
+    def __init__(self):
+        self.board = Board()
+        self.players = []
+        self.ready = []
+        self.playing = False
+        self.turn = 0
+        self.history = []
+
+room = Room()
 
 app = Flask(__name__)
 
@@ -19,55 +24,58 @@ def index():
 
 @app.route('/board')
 def do_get_board():
-    return str(board)
+    return str(room.board)
 
 @app.route('/enter')
 def enter():
     key = request.args.get('key', '')
-    if len(players) < 2 and len(key) > 0 and key not in players:
-        players.append(key)
-    return '%d' % len(players)
+    if len(room.players) < 2 and len(key) > 0 and key not in room.players:
+        room.players.append(key)
+    return '%d' % len(room.players)
 
 @app.route('/leave')
 def leave():
     key = request.args.get('key', '')
-    if key in players:
-        players.remove(key)
-        ready.remove(key)
-    return '%d' % len(players)
+    if key in room.players:
+        room.players.remove(key)
+        room.ready.remove(key)
+    return '%d' % len(room.players)
 
 @app.route('/start')
 def start():
     key = request.args.get('key', '')
-    if key not in players:
+    if key not in room.players:
         return ''
-    if key not in ready:
-        ready.append(key)
-    playing = len(ready) is 2
-    history = []
-    return json.dumps(dict(start=playing))
+    if key not in room.ready:
+        room.ready.append(key)
+    room.playing = len(room.ready) is 2
+    room.history = []
+    return json.dumps(dict(start=room.playing))
 
 @app.route('/put')
 def put():
     key = request.args.get('key', '')
-    if key not in players:
+    if key not in room.players:
+        return ''
+    index = room.players.index(key)
+    if index is not room.turn:
         return ''
     x = int(request.args.get('x', -1))
     y = int(request.args.get('y', -1))
-    if board.get(x, y) is BLANK:
-        index = players.index(key)
+    if room.board.get(x, y) is BLANK:
         stone = [BLACK, WHITE][index]
-        board.put(stone, x, y)
-        history.append(dict(player=index, x=x, y=y))
+        room.board.put(stone, x, y)
+        room.history.append(dict(player=index, x=x, y=y))
+        room.turn = (room.turn + 1) % 2
     return ''
 
 @app.route('/get')
 def get():
     key = request.args.get('key', '')
-    if key not in players:
+    if key not in room.players:
         return ''
-    return json.dumps([[i['x'], i['y']] for i in history
-                       if i['player'] is not players.index(key)])
+    return json.dumps([[i['x'], i['y']] for i in room.history
+                       if i['player'] is not room.players.index(key)])
 
 if __name__ == '__main__':
     app.run(debug=True)
