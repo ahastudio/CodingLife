@@ -1,18 +1,9 @@
 from flask import Flask, request, render_template
 
-from game import Board, BLANK, BLACK, WHITE
+from othello import BLANK, BLACK, WHITE, Board, Room
 
 import json
 
-
-class Room:
-    def __init__(self):
-        self.board = Board()
-        self.players = []
-        self.ready = []
-        self.playing = False
-        self.turn = 0
-        self.history = []
 
 room = Room()
 

@@ -37,6 +37,16 @@ class Board:
                          for i in range(0, WIDTH * HEIGHT, WIDTH))
 
 
+class Room:
+    def __init__(self):
+        self.board = Board()
+        self.players = []
+        self.ready = []
+        self.playing = False
+        self.turn = 0
+        self.history = []
+
+
 class TestBoard(unittest.TestCase):
     def setUp(self):
         self.board = Board()
