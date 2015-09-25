@@ -5,6 +5,10 @@ import sys
 import time
 
 
+# HOST = 'http://localhost:5000'
+HOST = 'http://othello.ahastudio.com'
+
+
 class Game:
     def __init__(self):
         self.key = None
@@ -41,9 +45,6 @@ class Game:
         self.board.put(self.stone, x, y)
         print(str(self.board))
 
-
-HOST = 'http://localhost:5000'
-# HOST = 'http://othello.ahastudio.com'
 
 game = Game()
 
