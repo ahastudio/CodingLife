@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+from flask.ext.cors import CORS
 
 from othello import BLANK, BLACK, WHITE, Board, Room
 
@@ -8,6 +9,7 @@ import json
 room = Room()
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def index():
