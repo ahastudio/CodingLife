@@ -18,17 +18,19 @@ class Board:
 
     def reset(self):
         self.cells = [BLANK] * WIDTH * HEIGHT
-        self.put(BLACK, 3, 4)
-        self.put(BLACK, 4, 3)
-        self.put(WHITE, 3, 3)
-        self.put(WHITE, 4, 4)
+        self.set(BLACK, 3, 4)
+        self.set(BLACK, 4, 3)
+        self.set(WHITE, 3, 3)
+        self.set(WHITE, 4, 4)
+
+    def set(self, stone, x, y):
+        self.cells[y * HEIGHT + x] = stone
 
     def put(self, stone, x, y):
-        if self.valid(x, y):
-            self.cells[y * HEIGHT + x] = stone
-            for direction in DIRECTIONS:
-                for pos in self.get_flips(stone, x, y, direction):
-                    self.cells[pos[1] * HEIGHT + pos[0]] = stone
+        if self.valid(x, y) and [x, y] in self.find(stone):
+            self.set(stone, x, y)
+            for pos in self.get_all_flips(stone, x, y):
+                self.cells[pos[1] * HEIGHT + pos[0]] = stone
 
     def get(self, x, y):
         if not self.valid(x, y):
@@ -50,6 +52,16 @@ class Board:
                 return iter(x + dx, y + dy, positions)
             return []
         return iter(x + dx, y + dy, [])
+
+    def get_all_flips(self, stone, x, y):
+        positions = []
+        for direction in DIRECTIONS:
+            positions += self.get_flips(stone, x, y, direction)
+        return positions
+
+    def find(self, stone):
+        return [[x, y] for x in range(WIDTH) for y in range(HEIGHT)
+                if self.valid(x, y) and len(self.get_all_flips(stone, x, y))]
 
     def __str__(self):
         return '\n'.join(''.join(self.cells[i:i + WIDTH])
@@ -91,6 +103,10 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(WHITE, self.board.get(3, 3))
         self.board.put(BLACK, 2, 3)
         self.assertEqual(BLACK, self.board.get(3, 3))
+
+    def test_find(self):
+        self.assertEqual(sorted([[3, 2], [2, 3], [5, 4], [4, 5]]),
+                         sorted(self.board.find(BLACK)))
 
 
 if __name__ == '__main__':
