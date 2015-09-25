@@ -33,6 +33,6 @@ $(function() {
     });
   }
 
-  setInterval(update, 5000);
+  setInterval(update, 500);
   update();
 });
