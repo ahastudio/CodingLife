@@ -46,12 +46,16 @@ game = Game()
 
 
 def main():
-    r = requests.get(HOST + '/start', {'key': game.key})
-    print(r.content)
+    while True:
+        r = requests.get(HOST + '/start', {'key': game.key})
+        if r.content and json.loads(r.content)['start']:
+            break
+        time.sleep(1)
     other = dict(x=None, y=None)
     r = requests.get(HOST + '/board')
     game.init_board(r.content)
-    game.do_my_turn()
+    if game.stone is othello.BLACK:
+        game.do_my_turn()
     while True:
         r = requests.get(HOST + '/get', {'key': game.key})
         history = json.loads(r.content)
@@ -62,7 +66,7 @@ def main():
             continue
         game.board.put(game.other_stone, x, y)
         other = dict(x=x, y=y)
-        # time.sleep(2)
+        time.sleep(1)
         game.do_my_turn()
 
 

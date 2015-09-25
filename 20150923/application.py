@@ -19,6 +19,11 @@ def index():
 def do_get_board():
     return str(room.board)
 
+@app.route('/reset')
+def do_get_reset():
+    room.reset()
+    return ''
+
 @app.route('/enter')
 def enter():
     key = request.args.get('key', '')
@@ -46,7 +51,9 @@ def start():
     return json.dumps(dict(start=room.playing))
 
 @app.route('/put')
-def put():
+def do_get_put():
+    if not room.playing:
+        return ''
     key = request.args.get('key', '')
     if key not in room.players:
         return ''
@@ -60,7 +67,7 @@ def put():
         room.board.put(stone, x, y)
         room.history.append(dict(player=index, x=x, y=y))
         room.turn = (room.turn + 1) % 2
-    return ''
+    return json.dumps(dict(x=x, y=y))
 
 @app.route('/get')
 def get():

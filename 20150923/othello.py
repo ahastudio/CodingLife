@@ -80,6 +80,9 @@ class Board:
 
 class Room:
     def __init__(self):
+        self.reset()
+
+    def reset(self):
         self.board = Board()
         self.players = []
         self.ready = []
