@@ -9,7 +9,8 @@ WHITE = 'O'
 WALL = '#'
 WIDTH = 8
 HEIGHT = 8
-DIRECTIONS = [x for x in permutations([-1, 0, 1], 2) if x is not [0, 0]]
+DIRECTIONS = [[dx, dy] for dx in [-1, 0, 1] for dy in [-1, 0, 1]
+              if not (dx is 0 and dy is 0)]
 
 
 class Board:
@@ -29,8 +30,8 @@ class Board:
     def put(self, stone, x, y):
         if self.valid(x, y) and [x, y] in self.find(stone):
             self.set(stone, x, y)
-            for pos in self.get_all_flips(stone, x, y):
-                self.cells[pos[1] * HEIGHT + pos[0]] = stone
+            for x, y in self.get_all_flips(stone, x, y):
+                self.set(stone, x, y)
 
     def get(self, x, y):
         if not self.valid(x, y):
@@ -61,7 +62,16 @@ class Board:
 
     def find(self, stone):
         return [[x, y] for x in range(WIDTH) for y in range(HEIGHT)
-                if self.valid(x, y) and len(self.get_all_flips(stone, x, y))]
+                if self.valid(x, y) and self.get(x, y) is BLANK and
+                   len(self.get_all_flips(stone, x, y))]
+
+    def from_str(self, string):
+        rows = string.split('\n')
+        for y in range(HEIGHT):
+            for x in range(WIDTH):
+                cell = rows[y][x]
+                if cell in [BLACK, WHITE]:
+                    self.set(cell, x, y)
 
     def __str__(self):
         return '\n'.join(''.join(self.cells[i:i + WIDTH])
@@ -107,6 +117,19 @@ class TestBoard(unittest.TestCase):
     def test_find(self):
         self.assertEqual(sorted([[3, 2], [2, 3], [5, 4], [4, 5]]),
                          sorted(self.board.find(BLACK)))
+
+    def test_put_and_flips(self):
+        self.board.from_str('........\n'
+                            '........\n'
+                            '........\n'
+                            '........\n'
+                            '........\n'
+                            'O.......\n'
+                            'OX......\n'
+                            'OX......\n')
+        self.board.put(WHITE, 2, 7)
+        self.assertEqual(WHITE, self.board.get(1, 6))
+        self.assertEqual(WHITE, self.board.get(1, 7))
 
 
 if __name__ == '__main__':

@@ -5,6 +5,7 @@ import time
 
 
 HOST = 'http://localhost:5000'
+# HOST = 'http://othello.ahastudio.com'
 KEY = 'test'
 
 board = othello.Board()
@@ -12,20 +13,16 @@ stone = othello.BLACK
 other_stone = othello.WHITE
 
 def init_board(data):
-    rows = data.split('\n')
-    for y in range(othello.HEIGHT):
-        for x in range(othello.WIDTH):
-            cell = rows[y][x]
-            if cell is 'X':
-                board.set(othello.BLACK, x, y)
-            if cell is 'O':
-                board.set(othello.WHITE, x, y)
+    board.from_str(data)
+    print(str(board))
+    print('----')
 
 def do_my_turn():
     positions = board.find(stone)
     if len(positions) is 0:
         print('FAIL!!!')
         return
+    print(positions)
     x, y = positions[0]
     r = requests.get(HOST + '/put', dict(key=KEY, x=x, y=y))
     print(r.content)
@@ -51,8 +48,8 @@ def main():
             continue
         board.put(other_stone, x, y)
         other = dict(x=x, y=y)
+        time.sleep(3)
         do_my_turn()
-        time.sleep(5)
 
 
 if __name__ == '__main__':

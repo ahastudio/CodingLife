@@ -29,7 +29,7 @@ $(function() {
       var rows = data.split('\n');
       drawBoard(rows);
     }).error(function() {
-      alert('Error!');
+      // alert('Error!');
     });
   }
 
