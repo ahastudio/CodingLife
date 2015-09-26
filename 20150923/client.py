@@ -3,10 +3,10 @@ import othello
 import random
 import requests
 import time
+import sys
 
 
-# HOST = 'http://localhost:5000'
-HOST = 'http://othello.ahastudio.com'
+HOST = 'http://localhost:5000'
 
 
 class Game:
@@ -33,8 +33,18 @@ class Game:
         if len(positions) is 0:
             print('FAIL!!!')
             return
+        def bonus(x, y):
+            if x in [0, othello.WIDTH - 1] and y in [0, othello.HEIGHT - 1]:
+                return 10
+            if x in [0, othello.WIDTH - 1] and y in [1, othello.HEIGHT - 2]:
+                return -5
+            if x in [1, othello.WIDTH - 2] and y in [0, othello.HEIGHT - 1]:
+                return -5
+            if x in [0, othello.WIDTH - 1] or y in [0, othello.HEIGHT - 1]:
+                return 5
+            return 0
         def score(x, y):
-            return len(self.board.get_all_flips(self.stone, x, y))
+            return len(self.board.get_all_flips(self.stone, x, y)) + bonus(x, y)
         positions.sort(key=lambda i: score(i[0], i[1]))
         x, y = positions[-1]
         r = requests.get(HOST + '/put', dict(key=self.key, x=x, y=y))
@@ -71,6 +81,8 @@ def main():
 
 
 if __name__ == '__main__':
+    if len(sys.argv) >= 2:
+        HOST = sys.argv[1]
     game.key = str(random.randint(0, 10000))
     print('KEY: %s' % game.key)
     r = requests.get(HOST + '/enter', {'key': game.key})
