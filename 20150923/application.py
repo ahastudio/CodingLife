@@ -17,7 +17,12 @@ def index():
 
 @app.route('/board')
 def do_get_board():
-    return str(room.board)
+    return json.dumps(dict(
+        playing=room.playing,
+        turn=room.turn,
+        board=str(room.board),
+        count=[room.board.count(BLACK), room.board.count(WHITE)]
+    ))
 
 @app.route('/reset')
 def do_get_reset():

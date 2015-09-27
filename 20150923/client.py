@@ -11,20 +11,21 @@ HOST = 'http://localhost:5000'
 
 class Game:
     def __init__(self):
+        self.player = None
         self.stone = None
         self.other_stone = None
+        self.turn = None
         self.board = othello.Board()
 
     def init(self, player):
-        if player is 0:
-            self.stone = othello.BLACK
-            self.other_stone = othello.WHITE
-        else:
-            self.stone = othello.WHITE
-            self.other_stone = othello.BLACK
+        self.player = player
+        stones = [othello.BLACK, othello.WHITE]
+        self.stone = stones[player]
+        self.other_stone = stones[1 - player]
 
-    def init_board(self, data):
-        self.board.from_str(data)
+    def load_data(self, data):
+        self.turn = int(data['turn'])
+        self.board.from_str(str(data['board']))
         print(str(self.board))
         print('----')
 
@@ -63,10 +64,11 @@ def main():
         time.sleep(1)
     other = dict(x=None, y=None)
     r = requests.get(HOST + '/board')
-    game.init_board(r.content)
-    if game.stone is othello.BLACK:
+    game.load_data(json.loads(r.content))
+    if game.turn is game.player:
         game.do_my_turn()
     while True:
+        time.sleep(1)
         r = requests.get(HOST + '/get', {'key': game.key})
         history = json.loads(r.content)
         if len(history) is 0:
@@ -76,7 +78,6 @@ def main():
             continue
         game.board.put(game.other_stone, x, y)
         other = dict(x=x, y=y)
-        time.sleep(1)
         game.do_my_turn()
 
 

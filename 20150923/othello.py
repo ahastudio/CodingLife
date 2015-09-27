@@ -65,7 +65,11 @@ class Board:
                 if self.valid(x, y) and self.get(x, y) is BLANK and
                    len(self.get_all_flips(stone, x, y))]
 
+    def count(self, stone):
+        return self.cells.count(stone)
+
     def from_str(self, string):
+        self.cells = [BLANK] * WIDTH * HEIGHT
         rows = string.split('\n')
         for y in range(HEIGHT):
             for x in range(WIDTH):

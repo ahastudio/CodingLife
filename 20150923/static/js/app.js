@@ -23,13 +23,13 @@ $(function() {
   }
 
   function update() {
-    $.ajax('/board', {
-      data: []
-    }).done(function(data) {
-      var rows = data.split('\n');
+    $.getJSON('/board')
+    .done(function(data) {
+      var rows = data.board.split('\n');
       drawBoard(rows);
-    }).error(function() {
-      // alert('Error!');
+    })
+    .error(function() {
+      console.log('Error!');
     });
   }
 
