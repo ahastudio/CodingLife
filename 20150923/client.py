@@ -38,15 +38,25 @@ class Game:
             if x in [0, othello.WIDTH - 1] and y in [0, othello.HEIGHT - 1]:
                 return 10
             if x in [0, othello.WIDTH - 1] and y in [1, othello.HEIGHT - 2]:
-                return -5
+                return -1
             if x in [1, othello.WIDTH - 2] and y in [0, othello.HEIGHT - 1]:
-                return -5
+                return -1
             if x in [0, othello.WIDTH - 1] or y in [0, othello.HEIGHT - 1]:
-                return 5
+                return 3
             return 0
-        def score(x, y):
+        def other_score(x, y):
+            board = othello.Board()
+            board.from_str(str(self.board))
+            board.put(self.stone, x, y)
+            positions = self.board.find(self.other_stone)
+            scores = [score(self.other_stone, x, y) for x, y in positions]
+            if len(scores):
+                return max(scores)
+            return 0
+        def score(stone, x, y):
             return len(self.board.get_all_flips(self.stone, x, y)) + bonus(x, y)
-        positions.sort(key=lambda i: score(i[0], i[1]))
+        positions.sort(key=lambda i: score(self.stone, i[0], i[1]) -
+                                     other_score(i[0], i[1]))
         x, y = positions[-1]
         r = requests.get(HOST + '/put', dict(key=self.key, x=x, y=y))
         self.board.put(self.stone, x, y)
