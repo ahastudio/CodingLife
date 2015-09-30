@@ -72,6 +72,9 @@ def do_get_put():
         room.board.put(stone, x, y)
         room.history.append(dict(player=index, x=x, y=y))
         room.turn = (room.turn + 1) % 2
+        positions = room.board.find([BLACK, WHITE][room.turn])
+        if len(positions) is 0:
+            room.turn = (room.turn + 1) % 2
     return json.dumps(dict(x=x, y=y))
 
 @app.route('/get')
