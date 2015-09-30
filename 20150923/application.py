@@ -82,5 +82,11 @@ def get():
     return json.dumps([[i['x'], i['y']] for i in room.history
                        if i['player'] is not room.players.index(key)])
 
+@app.route('/skip_turn')
+def do_skip_turn():
+    if not room.playing:
+        return ''
+    room.turn = (room.turn + 1) % 2
+
 if __name__ == '__main__':
     app.run(debug=True)
