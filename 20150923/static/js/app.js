@@ -15,6 +15,19 @@ $(function() {
           var stone = $('<span>').addClass('stone-' + it).text(it);
           cell.append(stone);
         }
+        cell.data({
+          x: j,
+          y: i
+        });
+        cell.on('click', function() {
+          var x = $(this).data('x');
+          var y = $(this).data('y');
+          $.get('/put', {
+            key: 'test',
+            x: x,
+            y: y
+          });
+        });
         row.append(cell);
       }
       table.append(row);
