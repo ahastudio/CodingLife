@@ -79,16 +79,11 @@ def main():
         game.do_my_turn()
     while True:
         time.sleep(1)
-        r = requests.get(HOST + '/get', {'key': game.key})
-        history = json.loads(r.content)
-        if len(history) is 0:
-            continue
-        x, y = history[-1]
-        if x is other['x'] and y is other['y']:
-            continue
-        game.board.put(game.other_stone, x, y)
-        other = dict(x=x, y=y)
-        game.do_my_turn()
+        r = requests.get(HOST + '/board')
+        data = json.loads(r.content)
+        game.load_data(json.loads(r.content))
+        if game.turn is game.player:
+            game.do_my_turn()
 
 
 if __name__ == '__main__':
