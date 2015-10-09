@@ -23,14 +23,17 @@
 (= false (right-angle? 10 0))
 (= false (right-angle? 3 30))
 
-(defn product [a b & seq]
-  (if (empty? seq)
-    (reduce #(concat %1 (map (partial vector %2) b)) [] a)
-    (let [p (apply product (cons b seq))]
-      (reduce #(concat %1 (map (partial cons %2) p)) [] a))))
+(defn product
+  ([a] a)
+  ([a b] (reduce #(concat %1 (map (partial vector %2) b)) [] a))
+  ([a b & seq]
+   (let [p (apply product (cons b seq))]
+     (reduce #(concat %1 (map (partial cons %2) p)) [] a))))
 
+(product [1 2 3 4 5 6])
 (product [1 2 3] [4 5 6])
 (product [1 2] [3 4] [5 6])
+(product [1 2] [3 4] [5 6] [7 8])
 
 (filter #(apply right-angle? %)
         (product (range 24) (range 60)))
