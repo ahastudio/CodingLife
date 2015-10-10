@@ -39,3 +39,27 @@
         (product (range 24) (range 60)))
 
 ; 문제에 없는 조건을 추가했더니 제대로 된 결과가 나오지 않는 것 같다.
+
+; 임의로 정한 조건 제거
+
+; angle = h / 12 + m / (12 * 60) - m / 60
+; m = 60 * (h - 12 * angle) / 11
+(defn minute-for-angle [angle hour]
+  (/ (* 60 (- hour (* 12 angle)))
+     11))
+
+(def right-angles [(/ 1 4) (/ 3 4) (/ -1 4) (/ -3 4)])
+
+(map #(int (minute-for-angle % 0)) right-angles)
+(map #(int (minute-for-angle % 3)) right-angles)
+
+(defn minutes-for-right-angle [hour]
+  (filter #(and (<= 0 %) (< % 60))
+          (map #(minute-for-angle % hour) right-angles)))
+
+(map int (minutes-for-right-angle 3))
+(map int (minutes-for-right-angle 0))
+
+(mapcat #(map (partial vector %)
+              (map int (minutes-for-right-angle %)))
+        (range 24))
