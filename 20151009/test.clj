@@ -45,17 +45,18 @@
 ; angle = h / 12 + m / (12 * 60) - m / 60
 ; m = 60 * (h - 12 * angle) / 11
 (defn minute-for-angle [angle hour]
-  (/ (* 60 (- hour (* 12 angle)))
+  (/ (* 60 (- (mod hour 12) (* 12 angle)))
      11))
 
 (def right-angles [(/ 1 4) (/ 3 4) (/ -1 4) (/ -3 4)])
 
 (map #(int (minute-for-angle % 0)) right-angles)
 (map #(int (minute-for-angle % 3)) right-angles)
+(map #(int (minute-for-angle % 16)) right-angles)
 
 (defn minutes-for-right-angle [hour]
-  (filter #(and (<= 0 %) (< % 60))
-          (map #(minute-for-angle % hour) right-angles)))
+  (sort (filter #(and (<= 0 %) (< % 60))
+                (map #(minute-for-angle % hour) right-angles))))
 
 (map int (minutes-for-right-angle 3))
 (map int (minutes-for-right-angle 0))
