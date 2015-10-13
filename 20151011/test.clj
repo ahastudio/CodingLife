@@ -1,7 +1,9 @@
 ; 카드 역배치
 ; http://codingdojang.com/scode/486
 
-(ns reload.core)
+(ns test)
+(remove-ns 'test)
+(ns test)
 
 (defn flip-cards
   ([cards] cards)

@@ -1,4 +1,6 @@
-(ns reload.core)
+(ns test)
+(remove-ns 'test)
+(ns test)
 
 ; 1.2.2 여러 갈래로 되도는 프로세스 / Tree Recursion (p.48)
 
@@ -224,9 +226,13 @@
 (* 3 4)
 (* 9 25)
 
-; 연습문제 1.19
+; Clear Namespace...
 
-(ns reload.core)
+(ns test)
+(remove-ns 'test)
+(ns test)
+
+; 연습문제 1.19
 
 (defn fib-iter [a b p q count]
   (cond (= count 0) b

@@ -1,7 +1,9 @@
 ; CamelCase를 Pothole_case로 바꾸기!
 ; http://codingdojang.com/scode/484
 
-(ns reload.core)
+(ns test)
+(remove-ns 'test)
+(ns test)
 
 (defn characters [s]
   (seq s))

@@ -1,4 +1,6 @@
-(ns reload.core)
+(ns test)
+(remove-ns 'test)
+(ns test)
 
 ; 1.2.1 Linear Recursion and Iteration (p.42)
 

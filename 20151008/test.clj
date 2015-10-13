@@ -1,7 +1,9 @@
 ; Duplicate Numbers
 ; http://codingdojang.com/scode/488
 
-(ns reload.core)
+(ns test)
+(remove-ns 'test)
+(ns test)
 
 (defn digits [n] (map #(Integer. %) (re-seq #"\d" n)))
 

@@ -1,4 +1,6 @@
-(ns reload.core)
+(ns test)
+(remove-ns 'test)
+(ns test)
 
 ; 1.1.1 (p.8)
 

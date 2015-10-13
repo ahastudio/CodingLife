@@ -3,7 +3,9 @@
 
 ; 문제에 없는 조건을 추가: 분침은 정확히 그 시각의 “분”을 가르키고 있어야 한다.
 
-(ns reload.core)
+(ns test)
+(remove-ns 'test)
+(ns test)
 
 (defn abs [x]
   (if (< x 0) (- x) x))
