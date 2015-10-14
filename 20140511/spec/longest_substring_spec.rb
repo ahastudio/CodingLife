@@ -4,12 +4,7 @@ class String
   end
 
   def substring_without_repeating
-    substring = ''
-    letters.each do |c|
-      break if substring.include?(c)
-      substring << c
-    end
-    substring
+    letters.reduce('') { |s, c| return s if s.include?(c); s << c }
   end
 
   def longest_substring
