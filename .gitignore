@@ -3,3 +3,5 @@
 *.pyc
 project
 target
+npm-debug.log
+node_modules
