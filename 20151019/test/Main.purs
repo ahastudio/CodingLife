@@ -1,6 +1,16 @@
 module Test.Main where
 
-import Test.Assert (assert)
+import Prelude
 
-main = do
-  assert (2 == 1 + 1)
+import Test.Spec (describe, it)
+import Test.Spec.Runner (run)
+import Test.Spec.Assertions (shouldEqual)
+import Test.Spec.Reporter.Console (consoleReporter)
+
+import Some (add2)
+
+main = run [consoleReporter] do
+  describe "Simple" do
+    it "add" do
+      add2 1 1 `shouldEqual` 2
+      add2 2 3 `shouldEqual` 5
