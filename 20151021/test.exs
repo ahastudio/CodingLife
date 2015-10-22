@@ -1,3 +1,6 @@
+# ExUnit 단위테스트
+# $ elixir test.exs
+
 ExUnit.start
 
 defmodule MyTest do

@@ -1,3 +1,7 @@
+-- PureScript 단위테스트
+-- $ pulp dep install
+-- $ pulp test
+
 module Test.Main where
 
 import Prelude
