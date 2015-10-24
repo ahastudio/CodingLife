@@ -1,0 +1,15 @@
+{
+  "name": "test",
+  "version": "0.0.0",
+  "description": "",
+  "main": "elm.js",
+  "dependencies": {
+    "jsdom": "^7.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "elm-make --yes --output raw-test.js Test.elm && bash elm-io.sh raw-test.js test.js && node test.js"
+  },
+  "author": "",
+  "license": ""
+}

@@ -1,9 +1,18 @@
 .DS_Store
 .ipynb_checkpoints
 *.pyc
+
+# SBT (Scala)
 project
 target
+
+# Node.js
 npm-debug.log
 node_modules
+
+# Bower
 bower_components
 .browserify-cache.json
+
+# Elm
+elm-stuff
