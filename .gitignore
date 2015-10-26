@@ -6,9 +6,12 @@
 project
 target
 
-# Node.js
+# NPM (Node.js)
 npm-debug.log
 node_modules
+
+# JSPM
+jspm_packages
 
 # Bower
 bower_components
