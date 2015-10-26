@@ -1,4 +1,4 @@
-import '/css/style.scss!';
+import './css/style.scss!';
 import 'jquery';
 
 $(document).on('mouseleave', 'p', () => {
