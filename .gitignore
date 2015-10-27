@@ -6,6 +6,9 @@
 project
 target
 
+# Gradle (Java)
+.gradle
+
 # NPM (Node.js)
 npm-debug.log
 node_modules
