@@ -1,8 +1,9 @@
-class WelcomeControllerTest {
+class WelcomeControllerSpec extends Specification {
+    def "show the home page"() {
+        setup:
+        def controller = new WelcomeController()
 
-    @Test
-    void index() {
-        assertEquals("home", new WelcomeController().index())
+        expect:
+        controller.index() == "home"
     }
-
 }
