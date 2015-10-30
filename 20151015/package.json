@@ -1,6 +1,7 @@
 {
   "main": "test.ts",
   "scripts": {
-    "test": "tsc -m commonjs --removeComments test.ts && echo \"// Generated JavaScript file. DO NOT EDIT!\n\n$(cat test.js)\" > test.js && node test.js"
+    "compile": "tsc -m commonjs --removeComments test.ts && echo \"// Generated JavaScript file. DO NOT EDIT!\n\n$(cat test.js)\" > test.js",
+    "test": "ts-node test.ts"
   }
 }
