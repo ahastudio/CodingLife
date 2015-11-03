@@ -1,0 +1,10 @@
+{
+  "name": "http-server",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.ts",
+  "scripts": {
+    "start": "ts-node app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
