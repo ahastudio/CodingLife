@@ -1,7 +1,6 @@
 import org.scalatest._
 import org.scalacheck.Properties
-import org.scalacheck.Gen
-import org.scalacheck.Prop
+import org.scalacheck.{Gen, Prop}
 
 trait Monoid[A] {
   def op(a1: A, a2: A): A
