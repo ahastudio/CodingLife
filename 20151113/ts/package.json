@@ -1,0 +1,9 @@
+{
+  "name": "http-server",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.ts",
+  "scripts": {
+    "test": "ts-node test.ts"
+  }
+}
