@@ -15,23 +15,29 @@ trait Monoids {
   }
 
   def isSorted[A](v: IndexedSeq[A])(f: (A, A) => Boolean): Boolean = {
-    val m = new Monoid[IndexedSeq[A]] {
-      def op(a: IndexedSeq[A], b: IndexedSeq[A]) =
-        if (a.isEmpty) b
-        else if (b.isEmpty) a
-        else if (f(a.last, b.head)) a ++ b
-        else IndexedSeq()
-      def zero = IndexedSeq()
+    val m = new Monoid[Seq[A]] {
+      def op(a: Seq[A], b: Seq[A]) =
+        if (a == null || b == null) null
+        else if (a.isEmpty || b.isEmpty) a ++ b
+        else if (f(a.last, b.head)) Seq(a.head, b.last)
+        else null
+      def zero = Nil
     }
-    foldMapV(v, m)(IndexedSeq(_)).length == v.length
+    foldMapV(v, m)(Seq(_)) != null
+  }
+
+  def isSorted(v: IndexedSeq[Int]): Boolean = {
+    isSorted[Int](v)(_ <= _)
   }
 }
 
 class TestChapter10 extends FlatSpec with Matchers with Monoids {
+  // 연습문제 10.9
+
   it should "check sorted" in {
-    isSorted(IndexedSeq(1, 2, 3))(_ <= _) should be (true)
-    isSorted(IndexedSeq(1, 3, 2))(_ <= _) should be (false)
-    isSorted(IndexedSeq(2, 1, 3))(_ <= _) should be (false)
-    isSorted(IndexedSeq(3, 2, 1))(_ <= _) should be (false)
+    isSorted(IndexedSeq(1, 2, 3)) should be (true)
+    isSorted(IndexedSeq(1, 3, 2)) should be (false)
+    isSorted(IndexedSeq(2, 1, 3)) should be (false)
+    isSorted(IndexedSeq(3, 2, 1)) should be (false)
   }
 }
