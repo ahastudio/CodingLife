@@ -15,15 +15,17 @@ trait Monoids {
   }
 
   def isSorted[A](v: IndexedSeq[A])(f: (A, A) => Boolean): Boolean = {
-    val m = new Monoid[Seq[A]] {
-      def op(a: Seq[A], b: Seq[A]) =
-        if (a == null || b == null) null
-        else if (a.isEmpty || b.isEmpty) a ++ b
-        else if (f(a.last, b.head)) Seq(a.head, b.last)
-        else null
-      def zero = Nil
+    val m = new Monoid[Option[Seq[A]]] {
+      def op(a: Option[Seq[A]], b: Option[Seq[A]]) = (a, b) match {
+        case (Some(Nil), _) => b
+        case (_, Some(Nil)) => a
+        case (Some(a), Some(b)) if (f(a.last, b.head)) =>
+          Some(Seq(a.head, b.last))
+        case _ => None
+      }
+      def zero = Some(Nil)
     }
-    foldMapV(v, m)(Seq(_)) != null
+    foldMapV(v, m)(a => Some(Seq(a))) != None
   }
 
   def isSorted(v: IndexedSeq[Int]): Boolean = {
