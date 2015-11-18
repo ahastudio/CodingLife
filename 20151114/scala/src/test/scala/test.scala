@@ -14,21 +14,16 @@ class TestSort extends FlatSpec with Matchers {
     case Seq() => Seq()
     case Seq(a) => Seq(a)
     case _ => {
-      val half = as.length / 2
-      val left = msort(as.take(half))(f)
-      val right = msort(as.drop(half))(f)
-      def merge(result: Seq[A], left: Seq[A], right: Seq[A]): Seq[A] = {
-        if (left.isEmpty) {
-          result ++ right
-        } else if (right.isEmpty) {
-          result ++ left
-        } else if (f(left.head, right.head)) {
-          merge(result ++ Seq(left.head), left.drop(1), right)
-        } else {
-          merge(result ++ Seq(right.head), left, right.drop(1))
+      def merge(result: Seq[A], left: Seq[A], right: Seq[A]): Seq[A] =
+        (left, right) match {
+          case (Nil, _) => result ++ right
+          case (_, Nil) => result ++ left
+          case (lh::lt, rh::rt) =>
+            if (f(lh, rh)) merge(result ++ Seq(lh), lt, right)
+            else           merge(result ++ Seq(rh), left, rt)
         }
-      }
-      merge(Seq(), left, right)
+      val half = as.length / 2
+      merge(Seq(), msort(as.take(half))(f), msort(as.drop(half))(f))
     }
   }
 
