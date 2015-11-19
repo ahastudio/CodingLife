@@ -62,6 +62,8 @@ trait Monoids {
 }
 
 class TestChapter10 extends FlatSpec with Matchers with Monoids {
+  // 연습문제 10.10
+
   it should "know WordCound Monoid" in {
     val part1 = Part("ab", 1, "c")
     val part2 = Part("d", 2, "")
@@ -74,6 +76,8 @@ class TestChapter10 extends FlatSpec with Matchers with Monoids {
     wcMonoid.op(part1, wcMonoid.zero) should be (part1)
     wcMonoid.op(wcMonoid.zero, part1) should be (part1)
   }
+
+  // 연습문제 10.11
 
   it should "count words" in {
     countWords("All your base are belong to us") should be (7)
