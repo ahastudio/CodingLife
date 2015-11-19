@@ -251,6 +251,8 @@ circumference
 ; (wrong-sqrt-iter 1.0 9)
 ; => new-if가 프로시저라 인자 먼저 계산을 하기 때문에 else-clause 무한루프에 빠짐.
 
+; 연습문제 1.7
+
 (defn new-good-enough? [guess x old]
   (< (abs (- 1 (/ guess old)))
      0.001))
