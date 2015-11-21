@@ -98,4 +98,11 @@ describe Money do
     expect((Money.franc(10) + Money.dollar(5)).exchange(:CHF))
       .to eq(Money.franc(20))
   end
+
+  it 'addes, multiplies moneies' do
+    expect((Money.dollar(5) + Money.franc(10) + Money.dollar(5)).exchange(:USD))
+      .to eq(Money.dollar(15))
+    expect(((Money.dollar(5) + Money.franc(10)) * 3).exchange(:USD))
+      .to eq(Money.dollar(30))
+  end
 end
