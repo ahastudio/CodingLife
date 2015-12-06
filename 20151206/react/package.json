@@ -1,0 +1,29 @@
+{
+  "name": "react-demo",
+  "version": "1.0.0",
+  "description": "React on JSPM",
+  "main": "config.js",
+  "dependencies": {
+    "jspm": "^0.16.15"
+  },
+  "devDependencies": {
+    "jspm": "^0.16.15"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "jspm": {
+    "dependencies": {
+      "react": "npm:react@^0.14.3",
+      "react-dom": "npm:react-dom@^0.14.3"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
+    }
+  }
+}
