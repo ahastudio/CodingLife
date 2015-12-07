@@ -1,0 +1,38 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Hero Form</h1>
+    <form (ng-submit)="onSubmit()" #hf="form">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" required [(ng-model)]="model.name" ng-control="name" #name="form" >
+        <em [hidden]="name.valid">Name is required</em>
+      </div>
+      <div>
+        <label for="alterEgo">Alter Ego</label>
+        <input type="text" [(ng-model)]="model.alterEgo" ng-control="alterEgo">
+      </div>
+      <div>
+        <label for="power">Hero Power</label>
+        <select required [(ng-model)]="model.power" ng-control="power" #power="form">
+          <option *ng-for="#p of powers" [value]="p">{{p}}</option>
+        </select>
+        <div [hidden]="power.valid">Power is required</div>
+      </div>
+      <button type="submit" [disabled]="!hf.form.valid">Submit</button>
+    </form>
+  </div>
+  <div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div>
+      Name: {{model.name}}
+    </div>
+    <div class="row">
+      Alter Ego: {{model.alterEgo}}
+    </div>
+    <div class="row">
+      Powder: {{model.power}}
+    </div>
+    <br>
+    <button (click)="submitted=false">Edit</button>
+  </div>
+</div>
