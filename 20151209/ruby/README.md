@@ -1,1 +1,1 @@
-Printing OXs 문제: http://codingdojang.com/scode/492
+Printing OXs 문제: http://j.mp/1NWlhqd
