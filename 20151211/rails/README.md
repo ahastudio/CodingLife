@@ -138,10 +138,12 @@ $ vi app/controllers/api/posts_controller.rb
 ```
 
 ```ruby
-class Api::PostsController < ApplicationController
-  def index
-    @posts = Post.all
-    render json: @posts
+module Api
+  class PostsController < ApplicationController
+    def index
+      @posts = Post.all
+      render json: @posts
+    end
   end
 end
 ```
@@ -177,3 +179,84 @@ $ bin/guard init rubocop
 ```
 
 엄청난 고통!
+
+https://github.com/bbatsov/rubocop/wiki/Automatic-Corrections
+
+https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+
+https://github.com/bbatsov/rubocop/blob/master/config/enabled.yml
+
+빠져나갈 구멍 만들기.
+
+```
+$ vi .rubocop.yml
+```
+
+```yaml
+Documentation:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'Guardfile'
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'spec/**/*'
+```
+
+피할 수 없는 Refactoring!
+
+https://github.com/bbatsov/rubocop/issues/494
+
+https://github.com/plataformatec/responders
+
+```
+$ vi Gemfile
+
+G
+o
+
+gem 'responders', '~> 2.0'
+
+:wq
+
+$ bundle
+$ bin/rails generate responders:install
+$ vi app/controllers/application_controller.rb
+
+:%s/"/'/g
+:wq
+
+$ vi app/controllers/posts_controller.rb
+```
+
+```ruby
+  respond_to :html, :json
+```
+
+```ruby
+  # POST /posts
+  # POST /posts.json
+  def create
+    @post = Post.new(post_params)
+    @post.save
+    respond_with(@post)
+  end
+
+  # PATCH/PUT /posts/1
+  # PATCH/PUT /posts/1.json
+  def update
+    @post.update(post_params)
+    respond_with(@post)
+  end
+
+  # DELETE /posts/1
+  # DELETE /posts/1.json
+  def destroy
+    @post.destroy
+    respond_with(@post)
+  end
+```
