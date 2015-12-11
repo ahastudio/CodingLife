@@ -44,3 +44,20 @@ $ gem install powder --no-document
 $ powder link
 $ powder open
 ```
+
+https://github.com/guard/guard-rspec
+```
+$ vi Gemfile
+
+G
+o
+
+gem 'guard-rspec', require: false, group: :development
+
+:wq
+
+$ bundle
+$ bundle binstubs guard
+$ bin/guard init rspec
+$ bin/guard
+```
