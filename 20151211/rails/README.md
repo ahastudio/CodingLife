@@ -97,3 +97,55 @@ $ bin/rails console
 > post.save!
 > exit
 ```
+
+```
+$ bin/rails generate controller api/posts --no-helper --no-assets
+$ vi spec/controllers/api/posts_controller_spec.rb
+```
+
+```ruby
+require 'rails_helper'
+
+RSpec.describe Api::PostsController, type: :controller do
+  describe 'GET #index' do
+    before(:each) do
+      Post.create!(title: '제목', body: '조...조은 글이다')
+    end
+
+    it 'renders all posts' do
+      get :index, foramt: :json
+      expect(response).to be_success
+      expect(response.body).to match(/제목/)
+      expect(response.body).to be_include('"body":"조...조은 글이다"')
+    end
+  end
+end
+```
+
+```
+$ vi config/routes.rb
+```
+
+```ruby
+  namespace :api do
+    resources :posts, only: :index
+  end
+```
+
+```
+$ touch spec/controllers/api/posts_controller_spec.rb
+$ vi app/controllers/api/posts_controller.rb
+```
+
+```ruby
+class Api::PostsController < ApplicationController
+  def index
+    @posts = Post.all
+    render json: @posts
+  end
+end
+```
+
+```
+$ open http://api-demo.dev/api/posts.json
+```
