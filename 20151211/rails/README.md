@@ -16,6 +16,9 @@ https://github.com/rspec/rspec-rails
 $ rm -rf test
 $ vi Gemfile
 
+G
+o
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
@@ -28,4 +31,16 @@ $ bin/rails generate rspec:install
 $ bin/rspec
 ```
 
+https://github.com/basecamp/pow
 
+```
+$ curl get.pow.cx | sh
+```
+
+https://github.com/Rodreegez/powder
+
+```
+$ gem install powder --no-document
+$ powder link
+$ powder open
+```
