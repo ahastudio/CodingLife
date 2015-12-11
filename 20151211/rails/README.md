@@ -148,6 +148,14 @@ end
 
 ```
 $ open http://api-demo.dev/api/posts.json
+$ curl http://api-demo.dev/api/posts.json
+```
+
+https://github.com/jkbrzt/httpie
+
+```
+$ brew install httpie
+$ http GET api-demo.dev/api/posts.json
 ```
 
 https://github.com/dalzony/ruby-style-guide/blob/master/README-koKR.md
