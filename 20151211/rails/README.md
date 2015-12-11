@@ -71,3 +71,14 @@ $ bin/rake db:migrate RAILS_ENV=test
 $ bin/rake db:migrate
 $ open http://api-demo.dev/posts
 ```
+
+```
+$ vi app/models/post.rb
+```
+
+```ruby
+class Post < ActiveRecord::Base
+  validates :title, presence: true
+  validates :body, presence: true
+end
+```
