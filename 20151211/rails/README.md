@@ -149,3 +149,23 @@ end
 ```
 $ open http://api-demo.dev/api/posts.json
 ```
+
+https://github.com/dalzony/ruby-style-guide/blob/master/README-koKR.md
+
+https://github.com/yujinakayama/guard-rubocop
+
+```
+$ vi Gemfile
+
+G
+o
+
+gem 'guard-rubocop', group: :development
+
+:wq
+
+$ bundle
+$ bin/guard init rubocop
+```
+
+엄청난 고통!

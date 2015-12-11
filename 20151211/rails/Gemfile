@@ -50,3 +50,4 @@ group :development, :test do
 end
 
 gem 'guard-rspec', require: false, group: :development
+gem 'guard-rubocop', group: :development
