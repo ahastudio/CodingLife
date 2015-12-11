@@ -28,8 +28,8 @@ import static org.junit.Assert.assertThat;
 
 public class ApiControllerDocTesterTest extends NinjaDocTester {
 
-    String URL_INDEX = "/";
-    String URL_HELLO_WORLD_JSON = "/hello_world.json";
+    private String URL_INDEX = "/";
+    private String URL_HELLO_WORLD_JSON = "/hello_world.json";
 
     @Test
     public void testGetIndex() {

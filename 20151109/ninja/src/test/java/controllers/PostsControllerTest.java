@@ -22,14 +22,13 @@ import org.junit.Test;
 import ninja.NinjaDocTester;
 import org.doctester.testbrowser.Request;
 import org.doctester.testbrowser.Response;
-import org.hamcrest.CoreMatchers;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 
 public class PostsControllerTest extends NinjaDocTester {
 
-    String URL_INDEX = "/posts";
-    String URL_SHOW = "/posts/1";
+    private String URL_INDEX = "/posts";
+    private String URL_SHOW = "/posts/1";
 
     @Test
     public void testGetIndex() {
