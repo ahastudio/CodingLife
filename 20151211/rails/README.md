@@ -61,3 +61,13 @@ $ bundle binstubs guard
 $ bin/guard init rspec
 $ bin/guard
 ```
+
+```
+$ bin/rails generate scaffold post title:string body:text
+$ bin/rake db:migrate RAILS_ENV=test
+```
+
+```
+$ bin/rake db:migrate
+$ open http://api-demo.dev/posts
+```
