@@ -82,3 +82,18 @@ class Post < ActiveRecord::Base
   validates :body, presence: true
 end
 ```
+
+```
+$ bin/rails console
+
+> Post.all
+> Post.first
+> Post.last
+> post = _
+> post.title
+> post.title = '조...조은 글이다'
+> post.save!
+> post.title = ''
+> post.save!
+> exit
+```
