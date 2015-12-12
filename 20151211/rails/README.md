@@ -1,5 +1,7 @@
 # API Demo
 
+## Rails 프로젝트 만들기
+
 https://github.com/rails/rails
 
 ```
@@ -9,6 +11,8 @@ $ gem install rails --no-document
 $ rails new api-demo
 $ cd api-demo
 ```
+
+## RSpec 사용하기
 
 https://github.com/rspec/rspec-rails
 
@@ -31,6 +35,8 @@ $ bin/rails generate rspec:install
 $ bin/rspec
 ```
 
+## Pow 서버 사용하기
+
 https://github.com/basecamp/pow
 
 ```
@@ -44,6 +50,8 @@ $ gem install powder --no-document
 $ powder link
 $ powder open
 ```
+
+## Guard 사용하기
 
 https://github.com/guard/guard-rspec
 ```
@@ -62,6 +70,12 @@ $ bin/guard init rspec
 $ bin/guard
 ```
 
+## RESTful MVC 찍어내기
+
+https://en.wikipedia.org/wiki/Representational_state_transfer
+
+https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
+
 ```
 $ bin/rails generate scaffold post title:string body:text
 $ bin/rake db:migrate RAILS_ENV=test
@@ -71,6 +85,8 @@ $ bin/rake db:migrate RAILS_ENV=test
 $ bin/rake db:migrate
 $ open http://api-demo.dev/posts
 ```
+
+## Validation
 
 ```
 $ vi app/models/post.rb
@@ -82,6 +98,8 @@ class Post < ActiveRecord::Base
   validates :body, presence: true
 end
 ```
+
+## Console
 
 ```
 $ bin/rails console
@@ -98,10 +116,14 @@ $ bin/rails console
 > exit
 ```
 
+## API 만들기
+
 ```
 $ bin/rails generate controller api/posts --no-helper --no-assets
 $ vi spec/controllers/api/posts_controller_spec.rb
 ```
+
+### Test-first
 
 ```ruby
 require 'rails_helper'
@@ -121,6 +143,8 @@ RSpec.describe Api::PostsController, type: :controller do
   end
 end
 ```
+
+### Implements
 
 ```
 $ vi config/routes.rb
@@ -148,6 +172,8 @@ module Api
 end
 ```
 
+### HTTP 확인
+
 ```
 $ open http://api-demo.dev/api/posts.json
 $ curl http://api-demo.dev/api/posts.json
@@ -160,7 +186,13 @@ $ brew install httpie
 $ http GET api-demo.dev/api/posts.json
 ```
 
+## Coding Standard
+
+http://www.extremeprogramming.org/rules/standards.html
+
 https://github.com/dalzony/ruby-style-guide/blob/master/README-koKR.md
+
+### RuboCop
 
 https://github.com/yujinakayama/guard-rubocop
 
@@ -180,13 +212,13 @@ $ bin/guard init rubocop
 
 엄청난 고통!
 
+## 빠져나갈 구멍 만들기
+
 https://github.com/bbatsov/rubocop/wiki/Automatic-Corrections
 
 https://github.com/bbatsov/rubocop/blob/master/config/default.yml
 
 https://github.com/bbatsov/rubocop/blob/master/config/enabled.yml
-
-빠져나갈 구멍 만들기.
 
 ```
 $ vi .rubocop.yml
@@ -207,7 +239,9 @@ AllCops:
     - 'spec/**/*'
 ```
 
-피할 수 없는 Refactoring!
+### Refactoring
+
+http://refactoring.com/
 
 https://github.com/bbatsov/rubocop/issues/494
 
@@ -260,3 +294,31 @@ $ vi app/controllers/posts_controller.rb
     respond_with(@post)
   end
 ```
+
+## 정적 분석
+
+https://www.codacy.com/
+
+## 지속적인 통합
+
+https://shippable.com/
+
+```
+$ vi shippable.yml
+```
+
+## DevOps
+
+https://en.wikipedia.org/wiki/DevOps
+
+http://continuousdelivery.com/
+
+https://www.docker.com/
+
+## AND...
+
+https://twitter.com/ahastudio/status/674934955915390981
+
+## END...
+
+https://ahastudio.com/
