@@ -11,5 +11,10 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe PostsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#post_body_to_html' do
+    it 'convert raw text to HTML' do
+      expect(helper.post_body_to_html("A\nB\n\nC"))
+        .to eq("<p>A\n<br />B</p>\n\n<p>C</p>")
+    end
+  end
 end

@@ -49,7 +49,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
 
-gem 'guard-rspec', require: false, group: :development
-gem 'guard-rubocop', group: :development
+group :development do
+  gem 'guard-rspec', require: false
+  gem 'guard-rubocop'
+  gem 'rails_best_practices'
+end
 
 gem 'responders', '~> 2.0'

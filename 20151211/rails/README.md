@@ -295,7 +295,59 @@ $ vi app/controllers/posts_controller.rb
   end
 ```
 
-## 정적 분석
+## Quality
+### Best Practices
+
+http://rails-bestpractices.com/
+
+https://github.com/railsbp/rails_best_practices
+
+```
+$ vi Gemfile
+
+group :development do
+  gem 'guard-rspec', require: false
+  gem 'guard-rubocop'
+  gem 'rails_best_practices'
+end
+
+$ bundle
+$ bundle binstubs rails_best_practices
+$ bin/rails_best_practices
+```
+
+우리에게 이게 필요한가요?
+
+http://no-smok.net/nsmk/DoWeNeedThisPage
+
+http://c2.com/cgi/wiki?YouArentGonnaNeedIt
+
+http://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html#method-i-simple_format
+
+```
+$ vi spec/helpers/posts_helper_spec.rb
+$ vi app/helpers/posts_helper.rb
+```
+
+자나 깨나 Refactoring!
+
+http://c2.com/cgi/wiki?CategoryRefactoring
+
+http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/
+
+```
+$ vi app/views/posts/_form.html.erb
+
+:%s/@post/post/g
+
+$ vi app/views/posts/new.html.erb
+
+<%= render 'form', post: @post %>
+
+$ vi app/views/post/edit.html.erb
+```
+
+### 정적 분석
 
 https://www.codacy.com/
 
