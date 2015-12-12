@@ -212,7 +212,7 @@ $ bin/guard init rubocop
 
 엄청난 고통!
 
-## 빠져나갈 구멍 만들기
+### 빠져나갈 구멍 만들기
 
 https://github.com/bbatsov/rubocop/wiki/Automatic-Corrections
 
@@ -296,6 +296,7 @@ $ vi app/controllers/posts_controller.rb
 ```
 
 ## Quality
+
 ### Best Practices
 
 http://rails-bestpractices.com/
