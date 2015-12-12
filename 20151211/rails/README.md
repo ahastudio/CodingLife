@@ -135,7 +135,7 @@ RSpec.describe Api::PostsController, type: :controller do
     end
 
     it 'renders all posts' do
-      get :index, foramt: :json
+      get :index, format: :json
       expect(response).to be_success
       expect(response.body).to match(/제목/)
       expect(response.body).to be_include('"body":"조...조은 글이다"')
