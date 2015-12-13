@@ -1,5 +1,13 @@
 # API Demo
 
+## Homebrew 설치
+
+http://brew.sh/
+
+```
+$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
 ## Rails 프로젝트 만들기
 
 https://github.com/rails/rails
