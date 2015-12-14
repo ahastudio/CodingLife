@@ -31,6 +31,14 @@ $ rbenv global 2.2.3
 $ ruby -v
 ```
 
+## SQLite3 설치
+
+https://www.sqlite.org/
+
+```
+$ brew install sqlite3
+```
+
 ## Rails 프로젝트 만들기
 
 https://github.com/rails/rails
