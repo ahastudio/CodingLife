@@ -6,6 +6,29 @@ http://brew.sh/
 
 ```
 $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+$ brew update && brew upgrade
+```
+
+## Git 설치
+
+https://git-scm.com/
+
+```
+$ brew install git
+```
+
+## Ruby 설치
+
+저는 [RVM](http://rvm.io/)을 쓰지만... Homebrew로 설치할 수 없으니...
+
+https://github.com/rbenv/rbenv
+
+```
+$ brew install rbenv ruby-build
+$ rbenv install 2.2.3
+$ rbenv versions
+$ rbenv global 2.2.3
+$ ruby -v
 ```
 
 ## Rails 프로젝트 만들기
