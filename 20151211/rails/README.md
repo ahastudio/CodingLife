@@ -90,6 +90,14 @@ $ powder link
 $ powder open
 ```
 
+http://api-demo.dev/
+
+### xip.io
+
+http://xip.io/
+
+http://api-demo.127.0.0.1.xip.io/
+
 ## Guard 사용하기
 
 https://github.com/guard/guard-rspec
