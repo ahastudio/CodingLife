@@ -27,8 +27,8 @@ import static org.junit.Assert.assertThat;
 
 public class PostsControllerTest extends NinjaDocTester {
 
-    private String URL_INDEX = "/posts";
-    private String URL_SHOW = "/posts/1";
+    private static final String URL_INDEX = "/posts";
+    private static final String URL_SHOW = "/posts/1";
 
     @Test
     public void testGetIndex() {
