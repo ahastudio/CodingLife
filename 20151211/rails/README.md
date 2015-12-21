@@ -9,6 +9,24 @@ $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/maste
 $ brew update && brew upgrade
 ```
 
+혹시라도 MacPorts를 권하는 낡은 글을 발견한다면, “도망쳐”!
+
+# Homebrew Cask 설정
+
+http://caskroom.io/
+
+```
+$ brew tap caskroom/cask
+```
+
+# iTerm 2 설치
+
+https://www.iterm2.com/
+
+```
+$ brew cask install iterm2
+```
+
 ## Git 설치
 
 https://git-scm.com/
