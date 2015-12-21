@@ -39,6 +39,21 @@ https://www.sqlite.org/
 $ brew install sqlite3
 ```
 
+## MariaDB 설치
+
+https://mariadb.org/
+
+```
+$ brew install mariadb
+$ mysql.server start
+```
+
+```
+$ mysql -uroot -p mysql
+
+> quit;
+```
+
 ## Rails 프로젝트 만들기
 
 https://github.com/rails/rails
