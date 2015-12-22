@@ -29,12 +29,10 @@ class GroupComponent {
       </li>
     </ul>
     <p>
-      <button (click)="onLoad()">Load from testData</button>
-      <button (click)="onShow()">JSON to Console</button>
+      <button *ngIf="!data" (click)="onLoad()">Load from testData</button>
+      <input type="text" *ngIf="data" [(ngModel)]="data.groups[0].title">
+      <button (click)="onShow()">Show JSON</button>
     </p>
-    <p>1. 그냥 Load 버튼을 눌러보세요.</p>
-    <p>2. 콘솔을 열어 다음을 입력하고 Load 버튼을 눌러보세요.</p>
-    <pre>window.testData.groups[0].title = '그룹 #1'</pre>
   `,
   directives: [GroupComponent]
 })
@@ -46,7 +44,7 @@ class AppComponent {
   }
 
   onShow() {
-    console.log(JSON.stringify(this.data));
+    alert(JSON.stringify(this.data));
   }
 }
 
