@@ -8,7 +8,7 @@ import {Component} from 'angular2/core'
     <h2>{{group.title}}</h2>
     <ul>
       <li *ngFor="#item of group.items">
-        {{item.name}}
+        <input type="text" [(ngModel)]="item.name">
         {{item.price | number}}원
       </li>
     <ul>
