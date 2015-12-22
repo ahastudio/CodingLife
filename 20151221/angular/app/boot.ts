@@ -3,7 +3,7 @@ import {bootstrap} from 'angular2/platform/browser'
 import {Component} from 'angular2/core'
 
 @Component({
-  selector: 'my-app'
+  selector: 'my-app',
   template: `
     <form>
       <h1>Hello, {{name}}!</h1>
