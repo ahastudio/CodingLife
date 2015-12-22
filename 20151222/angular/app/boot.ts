@@ -3,29 +3,18 @@ import {bootstrap} from 'angular2/platform/browser'
 import {Component} from 'angular2/core'
 
 @Component({
-  selector: 'group-detail',
-  template: `
-    <h2>{{group.title}}</h2>
-    <ul>
-      <li *ngFor="#item of group.items">
-        <input type="text" [(ngModel)]="item.name">
-        {{item.price | number}}원
-      </li>
-    <ul>
-  `,
-  inputs: ['group']
-})
-class GroupComponent {
-  public group;
-}
-
-@Component({
   selector: 'my-app',
   template: `
     <h1>Menu</h1>
     <ul *ngIf="data && data.groups">
       <li *ngFor="#group of data.groups">
-        <group-detail [group]="group"></group-detail>
+        <h2>{{group.title}}</h2>
+        <ul>
+          <li *ngFor="#item of group.items">
+            <input type="text" [(ngModel)]="item.name">
+            {{item.price | number}}원
+          </li>
+        </ul>
       </li>
     </ul>
     <p>
@@ -33,8 +22,7 @@ class GroupComponent {
       <input type="text" *ngIf="data" [(ngModel)]="data.groups[0].title">
       <button (click)="onShow()">Show JSON</button>
     </p>
-  `,
-  directives: [GroupComponent]
+  `
 })
 class AppComponent {
   pubic data = {};
