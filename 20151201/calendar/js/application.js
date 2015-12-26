@@ -21,6 +21,7 @@ $(function() {
     });
 
     $('#calendar').fullCalendar({
+      defaultDate: '2015-12-25',
       events: events,
       eventClick: function(event) {
         if (event.url && event.url.match(/^http/)) {
