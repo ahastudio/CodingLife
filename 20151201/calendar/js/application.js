@@ -1,5 +1,5 @@
 var id = '1n1_O6XJUOCdzZ1NK2Lld3aTOATb3IsLmyHrz-eXKzJQ';
-var url = 'https://spreadsheets.google.com/feeds/list/' + id + '/od6/public/values?alt=json';
+var url = 'https://spreadsheets.google.com/feeds/list/' + id + '/od6/public/values?alt=json'
 
 $(function() {
   $.getJSON(url, function (json) {
