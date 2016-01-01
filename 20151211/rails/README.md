@@ -434,10 +434,10 @@ https://www.codacy.com/
 
 ## 지속적인 통합
 
-https://shippable.com/
+https://travis-ci.org/
 
 ```
-$ vi shippable.yml
+$ vi .travis.yml
 ```
 
 ## DevOps
