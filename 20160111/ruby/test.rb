@@ -60,21 +60,22 @@ class FlowTest < TestCase
   attr_reader :flow
 
   def setup
-    (@flow ||= '') << '-S'
+    @flow ||= []
+    @flow << 'S'
   end
 
   def teardown
-    @flow << '-E'
-  end
-
-  def test_simple1
-    @flow << '-1'
-    assert_equal 1, 1
+    @flow.last << '-E'
   end
 
   def test_simple2
-    @flow << '-2'
+    @flow.last << '-2'
     assert_equal 2, 2
+  end
+
+  def test_simple1
+    @flow.last << '-1'
+    assert_equal 1, 1
   end
 end
 
@@ -100,7 +101,7 @@ class TestCaseTest < TestCase
 
   def test_flow
     test = FlowTest.new.run
-    assert_equal '-S-1-E-S-2-E', test.flow
+    assert_equal ['S-1-E', 'S-2-E'], test.flow.sort
   end
 end
 
