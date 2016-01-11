@@ -43,9 +43,9 @@ class TestCase
       test.run
       teardown
     end
-    tests.select(&:failed?).map(&:error).each { |e| log("#{e}\n") }
-    log("#{tests.reject(&:failed?).size} passed," +
-        " #{tests.select(&:failed?).size} failed")
+    failures = tests.select(&:failed?)
+    failures.map(&:error).each { |e| log("#{e}\n") }
+    log("#{tests.size} tests, #{failures.size} failures")
     self
   end
 
@@ -95,7 +95,7 @@ end
 class TestCaseTest < TestCase
   def test_result
     test = MyTest.new.run
-    assert_equal '2 passed, 1 failed', test.messages.last
+    assert_equal '3 tests, 1 failures', test.messages.last
   end
 
   def test_flow
