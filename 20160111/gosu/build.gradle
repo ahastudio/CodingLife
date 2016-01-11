@@ -1,0 +1,16 @@
+plugins {
+    id 'org.gosu-lang.gosu' version '0.1.2-alpha'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.gosu-lang.gosu:gosu-core-api:1.9.1'
+    testCompile 'junit:junit:4.12'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.10'
+}

@@ -22,3 +22,9 @@ bower_components
 
 # Elm
 elm-stuff
+
+# IntelliJ IDEA
+.idea
+*.ipr
+*.iws
+*.iml
