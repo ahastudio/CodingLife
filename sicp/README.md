@@ -17,4 +17,5 @@ SICP
 - https://github.com/ahastudio/CodingLife/tree/master/20151202/sicp
 
 2.2
+- https://github.com/ahastudio/CodingLife/tree/master/20160211/sicp
 - https://github.com/ahastudio/CodingLife/tree/master/20160218/sicp
