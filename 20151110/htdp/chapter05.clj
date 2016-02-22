@@ -1,6 +1,6 @@
-(ns test)
-(remove-ns 'test)
-(ns test)
+(ns htdp)
+(remove-ns 'htdp)
+(ns htdp)
 
 (= 'Hello 'Hello)
 (= 'Hello 'Howdy)

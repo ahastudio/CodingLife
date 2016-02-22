@@ -1,6 +1,6 @@
-(ns test)
-(remove-ns 'test)
-(ns test)
+(ns htdp)
+(remove-ns 'htdp)
+(ns htdp)
 
 ; 6.1 구조체
 
