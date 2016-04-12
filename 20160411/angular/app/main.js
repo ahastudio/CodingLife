@@ -1,3 +1,4 @@
+/// <reference path="../node_modules/angular2/typings/browser.d.ts" />
 System.register(['angular2/platform/browser', 'angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
@@ -6,6 +7,9 @@ System.register(['angular2/platform/browser', 'angular2/core'], function(exports
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    var __metadata = (this && this.__metadata) || function (k, v) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var browser_1, core_1;
     var App;
@@ -33,7 +37,8 @@ System.register(['angular2/platform/browser', 'angular2/core'], function(exports
                     core_1.Component({
                         selector: 'my-app',
                         template: "\n    <h1>Hello, {{name}}!</h1>\n    <input [(ngModel)]=\"name\">\n    <ol *ngIf=\"items.length\">\n      <li *ngFor=\"#item of items\">{{item}}</li>\n    </ol>\n    "
-                    })
+                    }), 
+                    __metadata('design:paramtypes', [])
                 ], App);
                 return App;
             }());
