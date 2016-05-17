@@ -29,6 +29,12 @@ $ cat .env
 ## 서버 실행
 
 ```
+$ php artisan serve
+```
+
+또는
+
+```
 $ cd public
-$ php -S localhost:8080
+$ php -S localhost:8000
 ```
