@@ -5,6 +5,7 @@
 https://getcomposer.org/
 
 ```
+$ brew tap homebrew/php
 $ brew update && brew install composer
 ```
 
