@@ -1,0 +1,5 @@
+CREATE TABLE person (
+    id BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '기본 키',
+    name VARCHAR(100) NOT NULL COMMENT '이름',
+    PRIMARY KEY (id)
+);

@@ -1,0 +1,44 @@
+ext {
+  MYSQL_HOST = 'localhost'
+  MYSQL_PORT = 3306
+  MYSQL_DATABASE = 'database'
+  MYSQL_USERNAME = 'username'
+  MYSQL_PASSWORD = 'password'
+}
+
+buildscript {
+  ext {
+    springBootVersion = '1.3.5.RELEASE'
+    flywayVersion = '4.0.1'
+  }
+
+  repositories {
+    jcenter()
+    maven { url 'https://plugins.gradle.org/m2/' }
+  }
+
+  dependencies {
+    classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    classpath "gradle.plugin.com.boxfuse.client:flyway-release:${flywayVersion}"
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+apply plugin: 'org.flywaydb.flyway'
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+  runtime 'mysql:mysql-connector-java'
+  testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
+
+flyway {
+  url = "jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?useUnicode=true&characterEncoding=utf8"
+  user = MYSQL_USERNAME
+  password = MYSQL_PASSWORD
+}
