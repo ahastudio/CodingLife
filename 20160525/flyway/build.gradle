@@ -1,8 +1,8 @@
 ext {
-  MYSQL_HOST = 'localhost'
+  MYSQL_HOST = '192.168.99.100'
   MYSQL_PORT = 3306
-  MYSQL_DATABASE = 'database'
-  MYSQL_USERNAME = 'username'
+  MYSQL_DATABASE = 'test'
+  MYSQL_USERNAME = 'root'
   MYSQL_PASSWORD = 'password'
 }
 

@@ -2,6 +2,6 @@ spring:
   jpa:
     show-sql: true
   datasource:
-    url: jdbc:mysql://localhost:3306/database?useUnicode=true&characterEncoding=utf8&autoReconnect=true
-    username: username
+    url: jdbc:mysql://192.168.99.100:3306/test?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+    username: root
     password: password
