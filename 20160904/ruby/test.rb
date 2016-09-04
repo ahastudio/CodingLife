@@ -29,38 +29,32 @@ puts '----------------------------------------------'
 
 describe Fixnum do
   describe '#mirror_number?' do
-    it 'knows the number is mirror number' do
-      expect(0).to be_mirror_number
-      expect(1).to be_mirror_number
-      expect(2).not_to be_mirror_number
-      expect(3).to be_mirror_number
-      expect(4).not_to be_mirror_number
-      expect(8).not_to be_mirror_number
-      expect(9).to be_mirror_number
+    context 'with mirror-number' do
+      subject { [0, 1, 3, 9] }
+      it { is_expected.to be_all(&:mirror_number?) }
+    end
+
+    context 'with non-mirror-number' do
+      subject { [2, 4, 8] }
+      it { is_expected.not_to be_all(&:mirror_number?) }
     end
   end
 
   describe '#dec' do
     it 'converts dec number string' do
-      expect(0.dec).to eq('0')
-      expect(1.dec).to eq('1')
-      expect(10.dec).to eq('10')
+      expect([0, 1, 10].map(&:dec)).to match_array(%w(0 1 10))
     end
   end
 
   describe '#bin' do
     it 'converts bin number string' do
-      expect(0.bin).to eq('0')
-      expect(1.bin).to eq('1')
-      expect(2.bin).to eq('10')
+      expect([0, 1, 2].map(&:bin)).to match_array(%w(0 1 10))
     end
   end
 
   describe '#oct' do
     it 'converts oct number string' do
-      expect(0.oct).to eq('0')
-      expect(1.oct).to eq('1')
-      expect(8.oct).to eq('10')
+      expect([0, 1, 8].map(&:oct)).to match_array(%w(0 1 10))
     end
   end
 end
