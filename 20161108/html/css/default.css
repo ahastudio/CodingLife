@@ -1,0 +1,106 @@
+body {
+  font-size: 14px;
+  font-family: Apple Gothic, Dotum;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+header {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+header .container {
+  position: relative;
+  height: 4em;
+  background: #F00;
+}
+
+header nav {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+header ul {
+  list-style-type: none;
+}
+
+header ul::after {
+  clear: both;
+  display: block;
+  content: "";
+}
+
+header li {
+  float: left;
+  margin-right: 10px;
+}
+
+header li:first-child {
+  font-weight: bold;
+}
+
+header li:last-child {
+  margin-right: 0;
+}
+
+header a {
+  display: block;
+  padding: 0 10px;
+  background: #EEE;
+  color: #F00;
+}
+
+header li:nth-child(1) a {
+  background: #CCF;
+}
+
+aside,
+main {
+  margin-top: 4em;
+}
+
+aside {
+  float: right;
+  width: 10%;
+  padding: 1em;
+  background: #E39284;
+}
+
+main {
+  float: left;
+  width: 90%;
+  padding: 1em;
+  background: #AAF;
+}
+
+main h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+footer {
+  clear: both;
+  padding: 10px 0 20px;
+  background: #32201C;
+  color: #FFF;
+  text-align: center;
+}
+
+#popup {
+  z-index: 200;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  margin-left: -200px;
+  width: 400px;
+  height: 100px;
+  background: #EEE;
+}
