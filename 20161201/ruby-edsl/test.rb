@@ -1,7 +1,28 @@
+require 'rack'
+
+class Parameters
+  def initialize(hash = {})
+    @hash = hash
+  end
+
+  def [](key)
+    @hash[key.to_s] || @hash[key.to_sym]
+  end
+
+  def inspect
+    @hash.inspect
+  end
+end
+
 class HttpApp
-  def request(method, path, params = {})
-    @params = params.clone
-    instance_eval(&router[[method, path]])
+  def call(env)
+    request = Rack::Request.new(env)
+    method = request.request_method.downcase.to_sym
+    block = router[[method, request.path]]
+    return [404, {}, []] if block.nil?
+    @params = Parameters.new(request.params)
+    body = instance_eval(&block)
+    [200, { 'Content-Type' => 'text/html' }, [body.to_s]]
   end
 
   protected
@@ -46,10 +67,5 @@ class App < HttpApp
   end
 end
 
-puts '-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
-
 app = App.new
-puts app.request(:get, '/')
-puts app.request(:get, '/say')
-puts app.request(:post, '/say', message: 'New Message')
-puts app.request(:get, '/say')
+Rack::Handler::WEBrick.run app
