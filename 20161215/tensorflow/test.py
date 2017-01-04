@@ -25,6 +25,7 @@ def main():
     session.run(tf.initialize_all_variables())
 
     for i in range(1000):
+        print i
         x_data, y_data = mnist.train.next_batch(100)
         session.run(optimizer, {x: x_data, y: y_data})
 
