@@ -69,7 +69,7 @@ def create_cnn(size, n, k, x, y, keep_prob):
         conv = ConvLayer(feature_map_counts[i], feature_map_counts[i + 1])
         feature = pool.run(conv.run(feature))
 
-    last_size = size / (2 ** layers_count)
+    last_size = size // (2 ** layers_count)
     full_count = last_size * last_size * feature_map_counts[-1]
 
     flat = tf.reshape(feature, [-1, full_count])
@@ -98,8 +98,8 @@ def main():
     y = tf.placeholder(tf.float32, (None, k))
     keep_prob = tf.placeholder(tf.float32)
 
-    # optimizer, z = create_cnn(size, n, k, x, y, keep_prob)
-    optimizer, z = create_perceptron(size, n, k, x, y, keep_prob)
+    optimizer, z = create_cnn(size, n, k, x, y, keep_prob)
+    # optimizer, z = create_perceptron(size, n, k, x, y, keep_prob)
 
     session = tf.Session()
     session.run(tf.global_variables_initializer())
