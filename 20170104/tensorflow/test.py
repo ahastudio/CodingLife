@@ -4,7 +4,9 @@ from tensorflow.contrib.learn.python.learn.datasets.mnist import read_data_sets
 
 class Layer:
     def initial(self, shape):
+        # return tf.zeros(shape)
         return tf.truncated_normal(shape, stddev=0.1)
+
 
 class ConvLayer(Layer):
     def __init__(self, in_channels, out_channels):
@@ -14,7 +16,8 @@ class ConvLayer(Layer):
         self.b = tf.Variable(tf.constant(0.1, shape=[out_channels]))
 
     def run(self, source):
-        u = tf.nn.conv2d(source, self.w, strides=[1, 1, 1, 1], padding='SAME') \
+        u = tf.nn.conv2d(source, self.w, strides=[1, 1, 1, 1],
+                         padding='SAME') \
             + self.b
         z = tf.nn.relu(u)
         return z
@@ -38,20 +41,24 @@ class Perceptron(Layer):
         return z
 
 
-def main():
-    mnist = read_data_sets('/tmp/tensorflow/mnist/input_data', one_hot=True)
+def create_perceptron(size, n, k, x, y, keep_prob):
+    rate = 0.5
 
-    size = 28
-    n = size * size
-    k = 10
+    output = Perceptron(n, k, tf.nn.softmax)
+    z = output.run(x)
+
+    cost = tf.reduce_mean(-tf.reduce_sum(y * tf.log(z), 1))
+    optimizer = tf.train.GradientDescentOptimizer(rate).minimize(cost)
+
+    return optimizer, z
+
+
+def create_cnn(size, n, k, x, y, keep_prob):
     rate = 1e-4
     conv_size = 5
     layers_count = 2
     feature_map_counts = [1, 32, 64]
     fully_connected_size = 1024
-
-    x = tf.placeholder(tf.float32, (None, n))
-    y = tf.placeholder(tf.float32, (None, k))
 
     image = tf.reshape(x, [-1, size, size, 1])
 
@@ -70,7 +77,6 @@ def main():
     fc = Perceptron(full_count, fully_connected_size, tf.nn.relu)
     fully_connected = fc.run(flat)
 
-    keep_prob = tf.placeholder(tf.float32)
     drop = tf.nn.dropout(fully_connected, keep_prob)
 
     output = Perceptron(fully_connected_size, k, tf.nn.softmax)
@@ -78,6 +84,22 @@ def main():
 
     cost = tf.reduce_mean(-tf.reduce_sum(y * tf.log(z), 1))
     optimizer = tf.train.AdamOptimizer(rate).minimize(cost)
+
+    return optimizer, z
+
+
+def main():
+    mnist = read_data_sets('/tmp/tensorflow/mnist/input_data', one_hot=True)
+
+    size = 28
+    n = size * size
+    k = 10
+    x = tf.placeholder(tf.float32, (None, n))
+    y = tf.placeholder(tf.float32, (None, k))
+    keep_prob = tf.placeholder(tf.float32)
+
+    # optimizer, z = create_cnn(size, n, k, x, y, keep_prob)
+    optimizer, z = create_perceptron(size, n, k, x, y, keep_prob)
 
     session = tf.Session()
     session.run(tf.global_variables_initializer())
@@ -113,7 +135,8 @@ def main():
         if corrects[i]:
             continue
         draw(x_data[i])
-        print('right: %d / predict: %d' % (list(y_data[i]).index(1), z_data[i]))
+        print('right: %d / predict: %d' %
+              (list(y_data[i]).index(1), z_data[i]))
         count -= 1
         if count is 0:
             break
