@@ -25,7 +25,7 @@ def main():
     session.run(tf.initialize_all_variables())
 
     for i in range(1000):
-        print i
+        print(i)
         x_data, y_data = mnist.train.next_batch(100)
         session.run(optimizer, {x: x_data, y: y_data})
 
@@ -34,15 +34,16 @@ def main():
     x_data, y_data = mnist.test.images, mnist.test.labels
     correct = tf.equal(tf.argmax(y, 1), tf.argmax(z, 1))
     accuracy = tf.reduce_mean(tf.cast(correct, tf.float32))
-    print session.run(accuracy, {x: x_data, y: y_data})
+    print(session.run(accuracy, {x: x_data, y: y_data}))
 
     #
 
     def draw(image):
-        print '--' * 28
+        print('--' * 28)
         for i in range(28):
             offset = i * 28
-            print ''.join(['%2d' % (j * 10) for j in image[offset:offset + 28]])
+            print(''.join(['%2d' % (j * 10)
+                           for j in image[offset:offset + 28]]))
 
     z_data = session.run(tf.argmax(z, 1), {x: x_data, y: y_data})
     corrects = session.run(correct, {x: x_data, y: y_data})
@@ -52,7 +53,7 @@ def main():
         if corrects[i]:
             continue
         draw(x_data[i])
-        print 'right: %d / predict: %d' % (list(y_data[i]).index(1), z_data[i])
+        print('right: %d / predict: %d' % (list(y_data[i]).index(1), z_data[i]))
         count -= 1
         if count is 0:
             break
