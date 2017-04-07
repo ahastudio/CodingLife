@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue Carousel</title>
+    <style type="text/css">
+      #app {
+        margin: 10px auto;
+        width: 80%;
+      }
+
+      .carousel-component {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .carousel-page {
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px 50px;
+        border: 1px solid #EEE;
+        transition: 0.5s;
+      }
+
+      .carousel-page.active {
+        visibility: visible;
+        position: static;
+      }
+
+      .carousel-nav-prev {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+      }
+
+      .carousel-nav-next {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <carousel-component>
+        <carousel-item>
+          <p>내용 #1</p>
+          <p>........</p>
+          <p>........</p>
+          <p>........</p>
+          <p>........</p>
+        </carousel-item>
+        <carousel-item>
+          <p>내용 #2</p>
+          <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="">
+        </carousel-item>
+        <carousel-item>
+          <p>내용 #3</p>
+        </carousel-item>
+        <carousel-item>
+          <p>내용 #4</p>
+          <p>내용 #4</p>
+          <p>내용 #4</p>
+          <p>내용 #4</p>
+          <p>내용 #4</p>
+        </carousel-item>
+      </carousel-component>
+    </div>
+    <script type="text/x-template" id="carousel-item-template">
+      <div class="carousel-item">
+        <slot></slot>
+      </div>
+    </script>
+    <script src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+      Vue.component('carousel-component', {
+        render: function (createElement) {
+          return createElement('div', { class: 'carousel-component' },
+            this.items.map((item, index) =>
+              createElement('div', {
+                'class': 'carousel-page' + (this.current === index ? ' active' : ''),
+                style: {
+                  transform: `translate3d(${this.position(index) * 100}%, 0, 0)`,
+                }
+              }, [item])
+            ).concat([
+              createElement('button', {
+                'class': 'carousel-nav-prev',
+                on: { click: () => { this.decreaseCurrent(); } }
+              }, 'Prev'),
+              createElement('button', {
+                'class': 'carousel-nav-next',
+                on: { click: () => { this.increaseCurrent(); } }
+              }, 'Next')
+            ])
+          );
+        },
+        data: function() {
+          return {
+            current: 0
+          };
+        },
+        computed: {
+          items: function() {
+            return this.$slots.default.filter(function(item) {
+              return item.componentOptions !== undefined &&
+                  item.componentOptions.tag === 'carousel-item';
+            });
+          }
+        },
+        methods: {
+          decreaseCurrent: function() {
+            this.current += this.items.length - 1;
+            this.current %= this.items.length;
+          },
+          increaseCurrent: function() {
+            this.current += 1;
+            this.current %= this.items.length;
+          },
+          position: function(index) {
+            if (index === this.current) return 0;
+            if (index === (this.current + 1) % this.items.length) return 1;
+            return -1;
+          }
+        }
+      });
+      Vue.component('carousel-item', {
+        template: '#carousel-item-template',
+      });
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>
