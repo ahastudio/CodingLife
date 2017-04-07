@@ -73,9 +73,9 @@ def parse(text):
     if talk in triggers:
         recommend_food()
     elif recommended_restaurant:
-        if any(x[0] in yes_words for x in words):
+        if any(x in talk for x in yes_words):
             send_restaurant_info(recommended_restaurant)
-        elif any(x[0] in no_words for x in words):
+        elif any(x in talk for x in no_words):
             recommend_food()
 
 
@@ -88,6 +88,8 @@ def load_restaurant_data():
     with open('restaurant.csv', encoding='euc-kr') as f:
         reader = csv.DictReader(f)
         for row in reader:
+            if any(not row[x] for x in table.keys()):
+                next
             data = {table[x]: row[x] for x in table.keys()}
             restaurant = Restaurant(**data)
             restaurants.append(restaurant)
