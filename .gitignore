@@ -1,6 +1,11 @@
 .DS_Store
 .ipynb_checkpoints
+
+# Python
 *.pyc
+__pycache__
+.cache
+.benchmarks
 
 # SBT (Scala)
 project
