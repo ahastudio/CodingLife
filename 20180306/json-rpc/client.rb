@@ -19,7 +19,7 @@ class MyRPC
     params = PARAMS[name].zip(args).to_h
     response = http_request(jsonrpc: '2.0', id: '1004',
                             method: name, params: params)
-    raise JsonRpcError.new(response['error']) if response['error']
+    raise JsonRpcError, response['error'] if response['error']
     response['result']
   end
 
@@ -51,7 +51,7 @@ class App
     puts '---'
     puts rpc.hello('world')
     puts rpc.say('good-bye')
-  rescue => e
+  rescue StandardError => e
     puts "[ERROR] #{e.inspect}"
   end
 end

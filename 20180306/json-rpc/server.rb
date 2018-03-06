@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 require 'sinatra'
+require 'sinatra/cors'
 
 set :port, 8321
+
+set :allow_origin, 'http://localhost:8080'
 
 class Service
   NAMES = %i[hello].freeze
@@ -14,7 +17,7 @@ class Service
   end
 
   def hello(name:)
-    "Hello, #{name}"
+    "Hello, #{name}!"
   end
 end
 
