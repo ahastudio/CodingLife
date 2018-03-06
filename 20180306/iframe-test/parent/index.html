@@ -1,0 +1,32 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Parent</title>
+  </head>
+  <body>
+    <div>
+      <h1>Parent</h1>
+      <iframe id="frame" src="//frame-child.akusho.net/" width="300" height="50"></iframe>
+    </div>
+    <script>
+      var methods = {
+        resizeFrame: function(args) {
+          var frame = document.getElementById('frame');
+          frame.width = args.width;
+          frame.height = args.height;
+        }
+      };
+      var dispatchMessage = function(event) {
+        var method = methods[event.data.method];
+        if (method) {
+          method(event.data.params);
+        } else {
+          window.alert('Method not found: ' + event.data.method);
+        }
+      };
+      window.addEventListener('message', dispatchMessage, false)
+    </script>
+  </body>
+</html>
