@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+#!/usr/bin/env ruby
 
 require 'net/http'
 require 'json'
@@ -7,7 +7,8 @@ class JsonRpcError < RuntimeError
 end
 
 class MyRPC
-  REQUEST_URL = 'http://localhost:8321'
+  REQUEST_URL = 'http://localhost:8321'.freeze
+
   NAMES = %i[hello say].freeze
   PARAMS = {
     'hello': %i[name],
