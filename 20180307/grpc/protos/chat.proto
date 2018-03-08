@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package chat;
+
+service ChatRoom {
+  rpc Say (SayRequest) returns (SayReply) {}
+}
+
+message SayRequest {
+  string text = 1;
+}
+
+message SayReply {
+  int32 error = 1;
+}
