@@ -18,7 +18,8 @@
         el: '#app',
         data: {
           name: 'world',
-          message: '...'
+          message: '...',
+          callId: 0
         },
         created: function() {
           this.update();
@@ -30,6 +31,7 @@
         },
         methods: {
           update: function() {
+            this.callId += 1
             var self = this;
             var endpoint = 'http://localhost:8321/';
             var data = {
@@ -37,10 +39,12 @@
               method: 'hello',
               params: {
                 name: this.name
-              }
+              },
+              id: this.callId
             };
             axios.post(endpoint, JSON.stringify(data))
               .then(function(response) {
+                console.log(response.data);
                 self.message = response.data.result;
               })
               .catch(function(error) {
