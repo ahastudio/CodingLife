@@ -8,10 +8,10 @@ class App
     device = discover_nat
     service = wan_ip_connection_service(device)
     external_ip = get_external_ip(service)
+    list_port_mappping(service)
     add_port_mapping(service, PORT)
     puts '=' * 80
-    puts internal_ip
-    puts external_ip
+    puts internal_ip, external_ip
     puts "http://#{external_ip}:#{PORT}/"
     run_http_server
     delete_port_mapping(service, PORT)
@@ -21,8 +21,9 @@ class App
     puts "\n<<< Discover NAT >>>"
     devices = EasyUpnp::SsdpSearcher.new.search('ssdp:all')
     puts "Found: #{devices.size}"
-    device = devices.first
     puts '---'
+    urn = 'urn:schemas-upnp-org:service:WANIPConnection:1'
+    device = devices.find { |i| i.all_services.include?(urn) }
     puts device.inspect
     puts '---'
     puts device.all_services
@@ -65,6 +66,19 @@ class App
       NewProtocol: 'TCP'
     )
     puts result.inspect
+  end
+
+  def list_port_mappping(service)
+    puts "\n<<< Port Mapping Entries >>>"
+    20.times do |i|
+      result = service.GetGenericPortMappingEntry(
+        NewPortMappingIndex: i
+      )
+      puts i
+      puts result.inspect
+    end
+  rescue Savon::SOAPFault
+    puts
   end
 
   def internal_ip
