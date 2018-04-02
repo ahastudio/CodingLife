@@ -1,0 +1,11 @@
+{
+  "name": "tendermint-app-demo",
+  "version": "0.0.1",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "lotion": "^0.1.17"
+  }
+}
