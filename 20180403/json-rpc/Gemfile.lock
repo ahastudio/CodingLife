@@ -1,0 +1,19 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    faraday (0.14.0)
+      multipart-post (>= 1.2, < 3)
+    jsonrpc-client (0.1.3)
+      faraday
+      multi_json (>= 1.1.0)
+    multi_json (1.13.1)
+    multipart-post (2.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  jsonrpc-client
+
+BUNDLED WITH
+   1.16.1
