@@ -1,0 +1,12 @@
+{
+  "name": "demo",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ripemd160": "^2.0.1",
+    "tweetnacl": "^1.0.0"
+  }
+}
