@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EdDSA</title>
+    <style>
+      p {
+        word-break: break-all;
+      }
+      input, button {
+        height: 30px;
+        padding: 0 4px;
+        font-size: 1rem;
+      }
+      input {
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p>
+        Address:
+        {{ address }}
+        ({{ address.length / 2 }})
+      </p>
+      <p>
+        Public Key:
+        {{ toHex(publicKey) }}
+        ({{ publicKey.length }})
+      </p>
+      <p>
+        <input type="text" v-model="content">
+        <button @click="sign">Sign</button>
+      </p>
+      <p>
+        {{ toHex(signature) }}
+        ({{ signature.length }})
+      </p>
+      <p>
+        <button @click="verify">Verify</button>
+        {{ verified }}
+      </p>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://tweetnacl.js.org/nacl.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jshashes/1.0.7/hashes.min.js"></script>
+    <script>
+      function toHex(data) {
+        return Array.from(data)
+                    .map(i => ('0' + i.toString(16))
+                    .slice(-2)).join('').toUpperCase();
+      }
+
+      function fromHex(data) {
+        var r = Array(data.length / 2).fill().map((a, i) => i * 2);
+        var a = r.map(i => parseInt(data.slice(i, i + 2), 16));
+        return Uint8Array.from(a);
+      }
+
+      new Vue({
+        el: '#app',
+        data: {
+          privateKey: '',
+          publicKey: '',
+          address: '',
+          content: '',
+          signature: new Uint8Array(64),
+          verified: '',
+        },
+        created() {
+          var RMD160 = new Hashes.RMD160;
+          var key = nacl.sign.keyPair();
+          this.privateKey = key.secretKey;
+          this.publicKey = key.publicKey;
+          this.address = RMD160.hex(toHex(this.publicKey)).toUpperCase();
+        },
+        methods: {
+          getKey() {
+            var secretKey = fromHex(this.privateKey);
+            return nacl.sign.keyPair.fromSecretKey(secretKey);
+          },
+          sign() {
+            var body = new Uint8Array(this.content.split(''));
+            this.signature = nacl.sign.detached(body, this.privateKey);
+          },
+          verify() {
+            var body = new Uint8Array(this.content.split(''));
+            this.verified =
+              nacl.sign.detached.verify(body, this.signature, this.publicKey);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
