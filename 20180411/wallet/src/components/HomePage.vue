@@ -3,11 +3,10 @@
     <div class="accounts">
       <h2>Accounts</h2>
       <ol>
-        <li v-for="account in accounts" :key="account.privateKey"
-          class="account"
-          @click="selectAccount(account)"
-        >
-          {{ account.address }}
+        <li v-for="account in accounts" :key="account.privateKey">
+          <span @click="selectAccount(account)">
+            {{ account.address }}
+          </span>
         </li>
       </ol>
       <button @click="newAccount">New Account</button>
@@ -22,6 +21,7 @@
         <dd>{{ account.privateKey }}</dd>
       </dl>
       <div>
+        <h2>Send Transaction</h2>
         <div>
           From:
           <input type="text" v-model="transaction.from">
@@ -36,9 +36,17 @@
         </div>
         <button @click="sendTx">Send</button>
       </div>
-      <div v-if="transaction">
-        {{ JSON.stringify(transaction) }}
+      <div>
+        {{ rawTransaction }}
       </div>
+    </div>
+    <div>
+      <h2>Transactions ({{ transactions.length }})</h2>
+      <ol>
+        <li v-for="transaction in transactions" :key="transaction.hash">
+          {{ transaction }}
+        </li>
+      </ol>
     </div>
   </div>
 </template>
@@ -75,6 +83,17 @@ function concatenate(resultConstructor, ...arrays) {
   return result;
 }
 
+async function callMethod(method, params) {
+  const id = moment().valueOf();
+  const url = 'http://localhost:8123';
+  const data = { jsonrpc: '2.0', id, method, params };
+  const config = {
+    headers: { 'content-type': 'application/json' },
+  };
+  const response = await axios.post(url, data, config);
+  return response.data;
+}
+
 export default {
   name: 'HomePage',
   data() {
@@ -87,10 +106,12 @@ export default {
         from: '',
         to: '',
         amount: '100',
-        rawData: '',
         signature: '',
         publicKey: '',
+        confirmed: false,
       },
+      rawTransaction: '',
+      transactions: [],
     };
   },
   created: function() {
@@ -118,50 +139,61 @@ export default {
     },
     sendTx() {
       this.transaction.timestamp = moment().unix();
+
+      const data = this.rawTxData();
+      this.rawTransaction = toHex(data);
+
+      const privateKey = fromHex(this.account.privateKey);
+      const signature = nacl.sign.detached(data, privateKey);
+
+      this.transaction.signature = toHex(signature);
+      this.transaction.publicKey = this.account.publicKey;
+
+      this.callSendTransaction();
+    },
+    rawTxData() {
+      const { timestamp, from, to } = this.transaction;
       const amount = new BigNumber(this.transaction.amount);
-      const data = concatenate(
+      return concatenate(
         Uint8Array,
-        fromHex(this.transaction.timestamp.toString(16), 4).reverse(),
-        fromHex(this.transaction.from, 20),
-        fromHex(this.transaction.to, 20),
+        fromHex(timestamp.toString(16), 4).reverse(),
+        fromHex(from, 20),
+        fromHex(to, 20),
         fromHex(amount.toString(16), 32).reverse(),
       );
-      this.transaction.rawData = toHex(data);
-      const privateKey = fromHex(this.account.privateKey);
-      this.transaction.signature = toHex(nacl.sign.detached(data, privateKey));
-      this.transaction.publicKey = this.account.publicKey;
-      this.callSendTransaction();
     },
     async callSendTransaction() {
       const {
         timestamp, from, to, amount, signature, publicKey,
       } = this.transaction;
+
+      this.transaction.hash = '';
+
       try {
-        const data = await this.callMethod('send_transaction', {
+        const data = await callMethod('send_transaction', {
           timestamp, from, to, amount, signature, publicKey,
         });
         if (data.error) {
           console.error(data.error);
-          this.transaction.hash = '';
           return;
         }
         console.log(data.result);
+
         this.transaction.hash = data.result.hash;
+        this.transactions.push(Object.assign({}, this.transaction));
+
+        this.resetTransaction();
       } catch (e) {
         console.error(e);
       }
     },
-    async callMethod(method, params) {
-      const id = moment().valueOf();
-      const url = 'http://localhost:8123';
-      const data = { jsonrpc: '2.0', id, method, params };
-      const config = {
-        headers: { 'content-type': 'application/json' },
-      };
-      const response = await axios.post(url, data, config);
-      return response.data;
+    resetTransaction() {
+      this.transaction.hash = '';
+      this.transaction.timestamp = '';
+      this.transaction.signature = '';
+      this.confirmed = false;
     },
-  }
+  },
 }
 </script>
 
@@ -170,7 +202,7 @@ export default {
   word-break: break-all;
 }
 
-.accounts li {
+.accounts span {
   cursor: pointer;
 }
 
