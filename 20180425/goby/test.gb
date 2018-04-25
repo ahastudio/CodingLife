@@ -1,0 +1,20 @@
+require 'net/simple_server'
+
+puts 'http://localhost:3000/'
+puts 'http://localhost:3000/JOKER'
+puts ''
+
+server = Net::SimpleServer.new(3000)
+
+server.get('/') do |req, res|
+  res.body = 'Welcome!'
+  res.status = 200
+end
+
+server.get('/{name}') do |req, res|
+  name = req.params['name'] || 'world'
+  res.body = 'Hello, ' + name + '! [' + req.method + ' ' + req.path + ']'
+  res.status = 200
+end
+
+server.start
