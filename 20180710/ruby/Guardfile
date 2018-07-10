@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+guard :rubocop do
+  watch(/.+\.rb$/)
+end
+
+guard :minitest, test_folders: '.', test_file_patterns: '*.rb' do
+  watch(/.+\.rb$/) { '.' }
+end
