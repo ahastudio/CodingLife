@@ -29,6 +29,7 @@ class SelfNumberTest < MiniTest::Unit::TestCase
   end
 
   def test_solve
-    assert_equal 1_227_365, self_numbers(5000 + 1).sum
+    assert_equal 1_227_365, self_numbers(5_000 + 1).sum
+    assert_equal 122_295_392, self_numbers(50_000 + 1).sum
   end
 end
