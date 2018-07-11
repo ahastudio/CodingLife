@@ -28,3 +28,21 @@
 
 ; solve it!
 (apply + (self-numbers 5000))
+
+; BONUS ---
+
+(defn digits [n]
+  (map #(Integer. %)
+       (clojure.string/split (str n) #"")))
+
+(digits 1021)
+
+(defn d [n]
+  (apply + n (digits n)))
+
+(d 91)
+(d 100)
+
+(self-numbers 40)
+
+(apply + (self-numbers 5000))
