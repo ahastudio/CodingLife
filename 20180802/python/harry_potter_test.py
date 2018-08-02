@@ -28,7 +28,7 @@ def price_step(books, count):
     set_books = get_set_books(count)
     discount = DISCOUNTS[count]
     set_price = count * BOOK_PRICE * (1 - discount)
-    remain_books = [a - b for a, b in zip(books, set_books)]
+    remain_books = [a - b for a, b in zip(sorted(books)[::-1], set_books)]
     return set_price, sorted(remain_books)[::-1]
 
 
@@ -64,6 +64,8 @@ class HarryPotterTest(unittest.TestCase):
                          price_step([2, 2, 2, 1, 1], 3))
         self.assertEqual((32.00 * 0.80, [1, 1, 1, 1, 0]),
                          price_step([2, 2, 2, 1, 1], 4))
+        self.assertEqual((24.00 * 0.90, [1, 1, 1, 1, 1]),
+                         price_step([1, 1, 2, 2, 2], 3))
 
     def test_get_set_books_count(self):
         self.assertEqual(1, get_set_books_count([1, 0, 0, 0, 0]))
