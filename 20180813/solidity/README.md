@@ -1,0 +1,37 @@
+# ERC-20 Token Example
+
+## Install global packages
+
+```
+$ yarn global add truffle ganache-cli
+```
+
+## Generate a new project
+
+```
+$ truffle init
+$ yarn init
+$ yarn add eslint
+$ node_modules/.bin/eslint --init
+$ node_modules/.bin/eslint . --fix
+```
+
+## Generate a new token
+
+```
+$ yarn add openzeppelin-solidity
+$ truffle create contract MyToken
+$ truffle create migration deploy_my_token
+$ truffle create test MyToken
+$ mv test/my_test.js test/my_test.test.js
+```
+
+## Test
+
+```
+$ ganache-cli
+```
+
+```
+$ truffle test
+```
