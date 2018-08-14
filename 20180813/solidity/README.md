@@ -21,7 +21,6 @@ $ node_modules/.bin/eslint . --fix
 ```
 $ yarn add openzeppelin-solidity
 $ truffle create contract MyToken
-$ truffle create migration deploy_my_token
 $ truffle create test MyToken
 $ mv test/my_test.js test/my_test.test.js
 ```

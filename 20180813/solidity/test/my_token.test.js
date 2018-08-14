@@ -1,66 +1,76 @@
-/* global artifacts contract describe beforeEach it assert */
+/* global web3 artifacts contract describe before beforeEach it assert */
+
+const { BigNumber } = web3;
+
+const { advanceBlock } = require('openzeppelin-solidity/test/helpers/advanceToBlock');
 
 const MyToken = artifacts.require('./MyToken.sol');
 
-contract('MyToken', ([owner, ...accounts]) => {
-  const amount = 100;
+contract('MyToken', ([owner, account1, account2]) => {
+  const AMOUNT = new BigNumber(100);
+
+  before(async () => {
+    advanceBlock();
+  });
 
   beforeEach(async () => {
-    this.token = await MyToken.deployed();
-    [this.account1, this.account2] = accounts;
-
-    await this.token.transfer(this.account1, 1000, { from: owner });
+    this.token = await MyToken.new({ from: owner });
+    await this.token.transfer(account1, 1000, { from: owner });
   });
 
-  describe('transfer', () => {
+  describe('#transfer', () => {
     it('should transfer token to another', async () => {
-      const balance1 = await this.token.balanceOf(this.account1);
-      const balance2 = await this.token.balanceOf(this.account2);
+      const balance1 = await this.token.balanceOf(account1);
+      const balance2 = await this.token.balanceOf(account2);
 
-      await this.token.transfer(this.account2, amount, {
-        from: this.account1,
+      await this.token.transfer(account2, AMOUNT, {
+        from: account1,
       });
 
-      const newBalance1 = await this.token.balanceOf(this.account1);
-      const newBalance2 = await this.token.balanceOf(this.account2);
+      const newBalance1 = await this.token.balanceOf(account1);
+      const newBalance2 = await this.token.balanceOf(account2);
 
-      assert.equal(-amount, newBalance1.minus(balance1).valueOf());
-      assert.equal(+amount, newBalance2.minus(balance2).valueOf());
+      assert.equal(-AMOUNT, newBalance1.minus(balance1));
+      assert.equal(+AMOUNT, newBalance2.minus(balance2));
     });
   });
 
-  describe('transferFrom', () => {
-    it('should not transfer token from another without approve', async () => {
-      try {
-        await this.token.transferFrom(this.account1, this.account2, amount, {
-          from: this.account2,
-        });
-      } catch (e) {
-        if (e.message === 'VM Exception while processing transaction: revert') {
-          return;
-        }
-      }
+  describe('#transferFrom', () => {
+    describe('with #approve', () => {
+      it('should transfer token from another', async () => {
+        const balance1 = await this.token.balanceOf(account1);
+        const balance2 = await this.token.balanceOf(account2);
 
-      throw new Error();
+        await this.token.approve(account2, AMOUNT, {
+          from: account1,
+        });
+
+        await this.token.transferFrom(account1, account2, AMOUNT, {
+          from: account2,
+        });
+
+        const newBalance1 = await this.token.balanceOf(account1);
+        const newBalance2 = await this.token.balanceOf(account2);
+
+        assert.equal(-AMOUNT, newBalance1.minus(balance1));
+        assert.equal(+AMOUNT, newBalance2.minus(balance2));
+      });
     });
 
-    it('should transfer token from another with approve', async () => {
-      const balance1 = await this.token.balanceOf(this.account1);
-      const balance2 = await this.token.balanceOf(this.account2);
+    describe('without #approve', () => {
+      it('should not transfer token from another', async () => {
+        try {
+          await this.token.transferFrom(account1, account2, AMOUNT, {
+            from: account2,
+          });
+        } catch (e) {
+          if (e.message === 'VM Exception while processing transaction: revert') {
+            return;
+          }
+        }
 
-      await this.token.approve(this.account2, amount, {
-        from: this.account1,
+        throw new Error();
       });
-
-      await this.token.transferFrom(this.account1, this.account2, amount, {
-        from: this.account2,
-      });
-
-      const newBalance1 = await this.token.balanceOf(this.account1);
-      const newBalance2 = await this.token.balanceOf(this.account2);
-
-      assert.equal(-amount, newBalance1.minus(balance1).valueOf());
-      assert.equal(+amount, newBalance2.minus(balance2).valueOf());
     });
   });
 });
