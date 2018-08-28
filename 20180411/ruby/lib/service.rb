@@ -40,7 +40,7 @@ class Service
   end
 
   def address_from_pubkey(public_key)
-    Digest::RMD160.hexdigest(to_hex(public_key)).upcase
+    Digest::RMD160.hexdigest(public_key).upcase
   end
 
   def raw_tx_data(timestamp:, from:, to:, amount:)

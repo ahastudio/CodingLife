@@ -56,9 +56,7 @@ import { BigNumber } from 'bignumber.js';
 import moment from 'moment';
 import axios from 'axios';
 import nacl from 'tweetnacl';
-import Hashes from 'jshashes';
-
-const RMD160 = new Hashes.RMD160;
+import Hash from 'sumi-hash';
 
 function toHex(data) {
   return Array.from(data)
@@ -126,10 +124,11 @@ export default {
     },
     newAccount() {
       const key = nacl.sign.keyPair();
+      const publicKey = String.fromCharCode.apply(null, key.publicKey);
       this.accounts.push({
         privateKey: toHex(key.secretKey),
         publicKey: toHex(key.publicKey),
-        address: RMD160.hex(toHex(key.publicKey)).toUpperCase(),
+        address: Hash.rmd160(publicKey).toUpperCase()
       });
       this.saveAccounts();
     },
