@@ -1,35 +1,32 @@
+/* global artifacts contract it assert */
+
 const Bank = artifacts.require('Bank');
 const MyToken = artifacts.require('MyToken');
 
-contract('Bank', (accounts) => {
+contract('Bank', ([account]) => {
+  const unit = Math.pow(10, 8);
+  const amount = 10 * unit;
+
   it('should save token', async () => {
     const bank = await Bank.deployed();
     const token = await MyToken.deployed();
-    const account = accounts[0];
-
-    const amount = 100;
 
     await token.approve(bank.address, amount);
 
-    let oldBalance;
-    let newBalance;
+    const initialBalance = await token.balanceOf(account);
 
-    // deposite
+    // deposit
 
-    oldBalance = await token.balanceOf.call(account);
+    await bank.deposit(token.address, amount);
 
-    await bank.deposite(token.address, amount)
-
-    newBalance = await token.balanceOf.call(account);
-    assert.equal(amount, oldBalance.valueOf() - newBalance.valueOf());
+    const balance = await token.balanceOf(account);
+    assert.equal(amount, initialBalance.minus(balance));
 
     // withdraw
 
-    oldBalance = newBalance;
+    await bank.withdraw();
 
-    await bank.withdraw()
-
-    newBalance = await token.balanceOf.call(account);
-    assert.equal(amount, newBalance.valueOf() - oldBalance.valueOf());
+    const lastBalance = await token.balanceOf(account);
+    assert.equal(amount, lastBalance.minus(balance));
   });
 });

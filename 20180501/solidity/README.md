@@ -5,14 +5,10 @@
 
 ## Test
 
-```
-$ ganache-cli --port 8545
-$ truffle migrate --reset
-$ truffle test
-```
+    $ ganache-cli --port 8545 -e 1000000000
+    $ truffle migrate --reset
+    $ truffle test
 
 ## Deploy
 
-```
-$ ACCOUNT_PASSWORD=password truffle migrate
-```
+    $ ACCOUNT_PASSWORD=password truffle migrate

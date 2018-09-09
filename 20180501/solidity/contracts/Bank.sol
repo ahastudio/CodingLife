@@ -4,9 +4,14 @@ import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 
 contract Bank {
     address public tokenAddress;
-    uint public tokenAmount;
+    uint256 public tokenAmount;
 
-    function deposite(address _tokenAddress, uint _amount) public {
+    constructor() public {
+        tokenAddress = address(0);
+        tokenAmount = 0;
+    }
+
+    function deposit(address _tokenAddress, uint _amount) public {
         require(tokenAddress == address(0));
         require(_tokenAddress != address(0));
 
