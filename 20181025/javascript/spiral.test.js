@@ -1,46 +1,42 @@
 /* global describe it expect */
 
-const range = (n) => [...Array(n)].map((_, i) => i);
+const _ = require('lodash');
 
 const spiralMatrix = (n) => {
   const m = [...Array(n)].map(() => [...Array(n)]);
   spiralPoints(n).forEach(([x, y], i) => m[y][x] = i);
   return m;
-};
 
-const directions = [
-  [1, 0],
-  [0, 1],
-  [-1, 0],
-  [0, -1],
-];
+  // OR
+
+  // const points = spiralPoints(n);
+  // return _.range(n).map(y => _.range(n).map(x =>
+  //   points.findIndex(_.matches([x, y]))
+  // ));
+};
 
 const initialState = {
   x: 0,
   y: 0,
-  direction: 0,
+  dx: 1,
+  dy: 0,
   points: [],
 };
 
 const spiralPoints = (n) =>
-  range(n * n).reduce(({ x, y, direction, points }) => Object.assign({},
-    movePoint(n, { x, y, direction, points }),
-    { points: [...points, [x, y]] }
-  ), initialState).points;
+  _.range(n * n).reduce(state => movePoint(n, state), initialState).points;
 
-const movePoint = (n, { x, y, direction, points }) => {
-  let [dx, dy] = directions[direction];
-  if (!checkPoint(n, points, x + dx, y + dy)) {
-    direction = (direction + 1) % directions.length;
-    [dx, dy] = directions[direction];
-  }
-  x += dx;
-  y += dy;
-  return { x, y, direction };
+const movePoint = (n, state) => {
+  const { dx, dy } = delta(n, state);
+  const { x, y, points } = state;
+  return { x: x + dx, y: y + dy, dx, dy, points: [...points, [x, y]] };
 };
 
-const checkPoint = (n, points, x, y) =>
-  x >= 0 && x < n && y < n && !points.find(([px, py]) => x == px && y == py);
+const delta = (n, { x, y, dx, dy, points }) =>
+  checkPoint(n, x + dx, y + dy, points) ? { dx, dy } : { dx: -dy, dy: dx };
+
+const checkPoint = (n, x, y, points) =>
+  _.inRange(x, n) && _.inRange(y, n) && !points.find(_.matches([x, y]));
 
 describe('spiralMatrix', () => {
   describe('when n = 1', () => {
@@ -93,18 +89,19 @@ describe('spiralPoints', () => {
   });
 });
 
-describe('checkPoint', () => {
-  it('returns posibble to move', () => {
-    expect(checkPoint(2, [], 1, 1)).toBeTruthy();
-    expect(checkPoint(2, [], 2, 0)).toBeFalsy();
-    expect(checkPoint(2, [], -1, 0)).toBeFalsy();
-    expect(checkPoint(2, [[0, 0]], 0, 0)).toBeFalsy();
+describe('movePoint', () => {
+  it('returns new move state', () => {
+    expect(movePoint(2, { x: 1, y: 0, dx: 1, dy: 0, points: [] }))
+      .toEqual({ x: 1, y: 1, dx: -0, dy: 1, points: [[1, 0]] });
   });
 });
 
-describe('range', () => {
-  it('returns array from 0 to n - 1', () => {
-    expect(range(1)).toEqual([0]);
-    expect(range(3)).toEqual([0, 1, 2]);
+describe('checkPoint', () => {
+  it('returns posibble to move', () => {
+    expect(checkPoint(2, 0, 0, [])).toBeTruthy();
+    expect(checkPoint(2, 1, 1, [])).toBeTruthy();
+    expect(checkPoint(2, 2, 0, [])).toBeFalsy();
+    expect(checkPoint(2, -1, 0, [])).toBeFalsy();
+    expect(checkPoint(2, 0, 0, [[0, 0]])).toBeFalsy();
   });
 });
