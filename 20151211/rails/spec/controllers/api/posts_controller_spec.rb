@@ -35,7 +35,7 @@ RSpec.describe Api::PostsController, type: :controller do
 
       before(:each) do
         allow(Post).to receive(:find).with(post_id)
-          .and_raise(ActiveRecord::RecordNotFound)
+                                     .and_raise(ActiveRecord::RecordNotFound)
       end
 
       it 'responses 404' do
