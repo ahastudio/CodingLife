@@ -5,7 +5,8 @@ require 'sinatra/cors'
 
 require './lib/service'
 
-set :port, 32_180
+set :bind, '0.0.0.0'
+set :port, '32180'
 
 set :allow_origin, '*'
 set :allow_methods, 'GET,HEAD,POST'
