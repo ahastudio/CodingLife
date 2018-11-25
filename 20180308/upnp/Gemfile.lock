@@ -5,22 +5,23 @@ GEM
       gyoku (>= 0.4.0)
       nokogiri
     builder (3.2.3)
-    easy_upnp (1.2.0)
+    easy_upnp (1.2.2)
       nokogiri (~> 1.8)
+      nori (~> 2.6)
       rake
       rubyntlm (~> 0.3)
       savon (~> 2.11)
     gyoku (1.3.1)
       builder (>= 2.1.2)
-    httpi (2.4.3)
+    httpi (2.4.4)
       rack
       socksify
     mini_portile2 (2.3.0)
-    nokogiri (1.8.2)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     nori (2.6.0)
-    rack (2.0.4)
-    rake (12.3.0)
+    rack (2.0.6)
+    rake (12.3.1)
     rubyntlm (0.6.2)
     savon (2.12.0)
       akami (~> 1.2)
@@ -42,4 +43,4 @@ DEPENDENCIES
   easy_upnp
 
 BUNDLED WITH
-   1.16.1
+   1.17.1
