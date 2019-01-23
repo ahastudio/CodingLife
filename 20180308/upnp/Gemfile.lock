@@ -16,9 +16,9 @@ GEM
     httpi (2.4.4)
       rack
       socksify
-    mini_portile2 (2.3.0)
-    nokogiri (1.8.5)
-      mini_portile2 (~> 2.3.0)
+    mini_portile2 (2.4.0)
+    nokogiri (1.10.1)
+      mini_portile2 (~> 2.4.0)
     nori (2.6.0)
     rack (2.0.6)
     rake (12.3.1)
@@ -43,4 +43,4 @@ DEPENDENCIES
   easy_upnp
 
 BUNDLED WITH
-   1.17.1
+   1.17.2
