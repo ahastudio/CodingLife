@@ -1,8 +1,8 @@
 <?php
 
-function test(callable $fn) {
+function test(callable $callback) {
     $before = microtime(true);
-    $fn();
+    $callback();
     $after = microtime(true);
     return $after - $before;
 }
