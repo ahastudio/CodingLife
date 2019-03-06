@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>계산기</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #FFF;
+      color: #000;
+      font-size: 14px;
+    }
+
+    .field {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .text,
+    .result {
+      display: inline-block;
+      width: 200px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="field">
+    <input type="text" class="text" placeholder="Question">
+  </div>
+  <div class="field">
+    <input type="text" class="text result" readonly placeholder="Answer">
+  </div>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    (() => {
+      const operators = {
+        '+': (x, y) => x + y,
+        '-': (x, y) => x - y,
+        '*': (x, y) => x * y,
+        '/': (x, y) => x / y,
+      };
+      const re = /([\+\-]?[0-9]+)\s*([\+\-\*\/])\s*([\+\-]?[0-9]+)/;
+      const compute = text => {
+        const found = text.match(re);
+        if (!found) {
+          return '';
+        }
+        const [_, x, op, y] = found;
+        return operators[op](parseInt(x), parseInt(y));
+      };
+      const handler = ({ target }) => setTimeout(() => {
+        const element = document.querySelector('.text.result');
+        element.value = compute(target.value);
+      }, 0);
+      const init = () => {
+        const element = document.querySelector('.text');
+        const eventTypes = ['change', 'input'];
+        eventTypes.forEach(type => element.addEventListener(type, handler));
+      };
+      init();
+    })();
+  </script>
+</body>
+</html>
