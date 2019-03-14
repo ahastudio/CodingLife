@@ -21,50 +21,39 @@ class Application(tk.Frame):
         num_frame = tk.Frame(self)
         num_frame.grid(row=1, column=0)
 
-        num_list = [
+        symbols = [
             '7', '8', '9',
             '4', '5', '6',
             '1', '2', '3',
             '0', '.', '='
         ]
+        columns = 3
 
-        r = 0
-        c = 0
-
-        for btn_text in num_list:
-            def cmd(x=btn_text):
-                self.click(x)
-            button = tk.Button(num_frame, text=btn_text, width=5, command=cmd)
-            button.grid(row=r, column=c)
-            c = c + 1
-            if c > 2:
-                c = 0
-                r = r + 1
+        for index, symbol in enumerate(symbols):
+            button = self.create_button(num_frame, symbol)
+            button.grid(row=index // columns, column=index % columns)
 
     def create_operator_buttons(self):
         op_frame = tk.Frame(self)
         op_frame.grid(row = 1, column = 1)
 
-        op_list = [
+        symbols = [
             '*', '/',
             '+', '-',
             '(', ')',
             'C', 'AC'
         ]
+        columns = 2
 
-        r = 0
-        c = 0
+        for index, symbol in enumerate(symbols):
+            button = self.create_button(op_frame, symbol)
+            button.grid(row=index // columns, column=index % columns)
 
-        for btn_text in op_list:
-            def cmd (x = btn_text):
-                self.click(x)
+    def create_button(self, frame, symbol):
+        def handler():
+            return self.click(symbol)
 
-            button = tk.Button(op_frame, text=btn_text, width=5, command=cmd)
-            button.grid(row=r, column=c)
-            c = c + 1
-            if c > 1:
-                c = 0
-                r = r + 1
+        return tk.Button(frame, text=symbol, width=5, command=handler)
 
     def click(self, text):
         if text == "=":
