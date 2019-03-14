@@ -78,7 +78,7 @@ class Application(tk.Frame):
 
     def do_run(self):
         try:
-            result = eval(self.buffer.get())
+            result = self.calculate(self.buffer.get())
             value = round(result, 2)
             self.buffer.set(value)
         except:
@@ -86,6 +86,10 @@ class Application(tk.Frame):
 
     def do_clear(self):
         self.buffer.clear()
+
+    def calculate(self, expression):
+        # TODO: write this in right way!
+        return eval(expression)
 
 
 def main():
