@@ -32,6 +32,34 @@ class Buffer(tk.StringVar):
         self.set(self.get().replace(value, ''))
 
 
+class Display(tk.Frame):
+    def __init__(self, master, buffer):
+        super().__init__(master)
+        self.grid(row=0, column=0, columnspan=2)
+        display = tk.Entry(self, width=35, bg='light green')
+        display['textvariable'] = buffer
+        display.pack()
+
+
+class Buttons(tk.Frame):
+    def __init__(self, master, column, symbols, click):
+        super().__init__(master)
+        self.grid(row=1, column=column)
+        self.create_widgets(symbols)
+        self.click = click
+
+    def create_widgets(self, symbols):
+        for row, row_symbols in enumerate(symbols):
+            for column, symbol in enumerate(row_symbols):
+                button = self.create_button(symbol)
+                button.grid(row=row, column=column)
+
+    def create_button(self, symbol):
+        return tk.Button(self, text=symbol, width=5,
+                         command=lambda: self.click(symbol))
+
+
+
 # 참고: https://docs.python.org/3/library/tkinter.html
 class Application(tk.Frame):
     def __init__(self, master=None):
@@ -42,26 +70,9 @@ class Application(tk.Frame):
         self.init_handlers()
 
     def create_widgets(self):
-        self.create_display()
-        self.create_buttons(0, NUMBER_SYMBOLS)
-        self.create_buttons(1, OPERATOR_SYMBOLS)
-
-    def create_display(self):
-        display = tk.Entry(self, width=35, bg='light green')
-        display['textvariable'] = self.buffer
-        display.grid(row=0, column=0, columnspan=2)
-
-    def create_buttons(self, column, symbols):
-        frame = tk.Frame(self)
-        frame.grid(row=1, column=column)
-        for row, row_symbols in enumerate(symbols):
-            for column, symbol in enumerate(row_symbols):
-                button = self.create_button(frame, symbol)
-                button.grid(row=row, column=column)
-
-    def create_button(self, frame, symbol):
-        return tk.Button(frame, text=symbol, width=5,
-                         command=lambda: self.click(symbol))
+        Display(self, buffer=self.buffer)
+        Buttons(self, column=0, symbols=NUMBER_SYMBOLS, click=self.click)
+        Buttons(self, column=1, symbols=OPERATOR_SYMBOLS, click=self.click)
 
     def click(self, text):
         self.buffer.delete(ERROR_MESSAGE)
