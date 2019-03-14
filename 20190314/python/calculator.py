@@ -39,6 +39,7 @@ class Application(tk.Frame):
         self.pack()
         self.buffer = Buffer()
         self.create_widgets()
+        self.init_handlers()
 
     def create_widgets(self):
         self.create_display()
@@ -64,17 +65,27 @@ class Application(tk.Frame):
 
     def click(self, text):
         self.buffer.delete(ERROR_MESSAGE)
-        if text == "=":
-            try:
-                result = eval(self.buffer.get())
-                value = round(result, 2)
-                self.buffer.set(value)
-            except:
-                self.buffer.append(ERROR_MESSAGE)
-        elif text in ['C', 'CA']:
-            self.buffer.clear()
-        else:
-            self.buffer.append(text)
+        if text in self.handlers:
+            return self.handlers[text]()
+        self.buffer.append(text)
+
+    def init_handlers(self):
+        self.handlers = {
+            '=': self.do_run,
+            'C': self.do_clear,
+            'CA': self.do_clear
+        }
+
+    def do_run(self):
+        try:
+            result = eval(self.buffer.get())
+            value = round(result, 2)
+            self.buffer.set(value)
+        except:
+            self.buffer.append(ERROR_MESSAGE)
+
+    def do_clear(self):
+        self.buffer.clear()
 
 
 def main():
