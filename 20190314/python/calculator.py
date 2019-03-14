@@ -14,11 +14,30 @@ OPERATOR_SYMBOLS = [
     ['C', 'AC']
 ]
 
+ERROR_MESSAGE = ' -> 오류'
+
+
+class Buffer(tk.StringVar):
+    def __init__(self):
+        super().__init__()
+        self.clear()
+
+    def clear(self):
+        self.set('')
+
+    def append(self, value):
+        self.set(self.get() + value)
+
+    def delete(self, value):
+        self.set(self.get().replace(value, ''))
+
+
 # 참고: https://docs.python.org/3/library/tkinter.html
 class Application(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
         self.pack()
+        self.buffer = Buffer()
         self.create_widgets()
 
     def create_widgets(self):
@@ -27,8 +46,9 @@ class Application(tk.Frame):
         self.create_buttons(1, OPERATOR_SYMBOLS)
 
     def create_display(self):
-        self.display = tk.Entry(self, width=35, bg='light green')
-        self.display.grid(row=0, column=0, columnspan=2)
+        display = tk.Entry(self, width=35, bg='light green')
+        display['textvariable'] = self.buffer
+        display.grid(row=0, column=0, columnspan=2)
 
     def create_buttons(self, column, symbols):
         frame = tk.Frame(self)
@@ -43,19 +63,18 @@ class Application(tk.Frame):
                          command=lambda: self.click(symbol))
 
     def click(self, text):
+        self.buffer.delete(ERROR_MESSAGE)
         if text == "=":
-            try :
-                result = str(round(eval(self.display.get()), 2))
-                self.display.delete(0, tk.END)
-                self.display.insert(tk.END, result)
+            try:
+                result = eval(self.buffer.get())
+                value = round(result, 2)
+                self.buffer.set(value)
             except:
-                self.display.insert(tk.END, "-> 오류")
-        elif text == "C":
-            self.display.delete(0, tk.END)
-        elif text == "AC":
-            self.display.delete(0, tk.END)
+                self.buffer.append(ERROR_MESSAGE)
+        elif text in ['C', 'CA']:
+            self.buffer.clear()
         else:
-            self.display.insert(tk.END, text)
+            self.buffer.append(text)
 
 
 def main():
