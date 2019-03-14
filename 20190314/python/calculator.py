@@ -59,22 +59,16 @@ class Buttons(tk.Frame):
                          command=lambda: self.click(symbol))
 
 
-class Handler:
+class Command:
     def __init__(self, buffer):
         self.buffer = buffer
-        self.handlers = {
-            '=': self.do_run,
-            'C': self.do_clear,
-            'CA': self.do_clear
-        }
 
-    def command(self, value):
-        self.buffer.delete(ERROR_MESSAGE)
-        if value in self.handlers:
-            return self.handlers[value]()
-        self.buffer.append(value)
+    def do(self):
+        pass
 
-    def do_run(self):
+
+class CommandRun(Command):
+    def do(self):
         try:
             result = self.calculate(self.buffer.get())
             value = round(result, 2)
@@ -82,12 +76,30 @@ class Handler:
         except:
             self.buffer.append(ERROR_MESSAGE)
 
-    def do_clear(self):
-        self.buffer.clear()
-
     def calculate(self, expression):
         # TODO: write this in right way!
         return eval(expression)
+
+
+class CommandClear(Command):
+    def do(self):
+        self.buffer.clear()
+
+
+class Handler:
+    def __init__(self, buffer):
+        self.buffer = buffer
+        self.commands = {
+            '=': CommandRun(buffer),
+            'C': CommandClear(buffer),
+            'CA': CommandClear(buffer)
+        }
+
+    def command(self, value):
+        self.buffer.delete(ERROR_MESSAGE)
+        if value in self.commands:
+            return self.commands[value].do()
+        self.buffer.append(value)
 
 
 # 참고: https://docs.python.org/3/library/tkinter.html
