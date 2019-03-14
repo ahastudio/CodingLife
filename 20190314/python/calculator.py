@@ -59,33 +59,20 @@ class Buttons(tk.Frame):
                          command=lambda: self.click(symbol))
 
 
-
-# 참고: https://docs.python.org/3/library/tkinter.html
-class Application(tk.Frame):
-    def __init__(self, master=None):
-        super().__init__(master)
-        self.pack()
-        self.buffer = Buffer()
-        self.create_widgets()
-        self.init_handlers()
-
-    def create_widgets(self):
-        Display(self, buffer=self.buffer)
-        Buttons(self, column=0, symbols=NUMBER_SYMBOLS, click=self.click)
-        Buttons(self, column=1, symbols=OPERATOR_SYMBOLS, click=self.click)
-
-    def click(self, text):
-        self.buffer.delete(ERROR_MESSAGE)
-        if text in self.handlers:
-            return self.handlers[text]()
-        self.buffer.append(text)
-
-    def init_handlers(self):
+class Handler:
+    def __init__(self, buffer):
+        self.buffer = buffer
         self.handlers = {
             '=': self.do_run,
             'C': self.do_clear,
             'CA': self.do_clear
         }
+
+    def command(self, value):
+        self.buffer.delete(ERROR_MESSAGE)
+        if value in self.handlers:
+            return self.handlers[value]()
+        self.buffer.append(value)
 
     def do_run(self):
         try:
@@ -101,6 +88,24 @@ class Application(tk.Frame):
     def calculate(self, expression):
         # TODO: write this in right way!
         return eval(expression)
+
+
+# 참고: https://docs.python.org/3/library/tkinter.html
+class Application(tk.Frame):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.pack()
+        self.buffer = Buffer()
+        self.handler = Handler(self.buffer)
+        self.create_widgets()
+
+    def create_widgets(self):
+        Display(self, buffer=self.buffer)
+        Buttons(self, column=0, symbols=NUMBER_SYMBOLS, click=self.click)
+        Buttons(self, column=1, symbols=OPERATOR_SYMBOLS, click=self.click)
+
+    def click(self, text):
+        self.handler.command(text)
 
 
 def main():
