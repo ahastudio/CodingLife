@@ -1,0 +1,28 @@
+{
+  "name": "wallet",
+  "version": "0.0.1",
+  "description": "SASEUL Wallet Sample",
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server",
+    "test": "jest",
+    "lint": "eslint --fix ."
+  },
+  "author": "Ashal aka JOKER",
+  "license": "MIT",
+  "devDependencies": {
+    "dotenv-webpack": "^1.7.0",
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "jest": "^24.5.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  },
+  "dependencies": {
+    "dayjs": "^1.8.11",
+    "lodash": "^4.17.11",
+    "saseul": "file:../saseul-js-lib"
+  }
+}
