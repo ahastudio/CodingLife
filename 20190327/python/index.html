@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Calculator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    input,
+    button {
+      display: inline-block;
+    }
+    input {
+      padding: 4px;
+      text-align: right;
+    }
+    button {
+      width: 2em;
+      height: 2em;
+      border: 1px solid #CCC;
+    }
+    #app {
+      margin: 20px auto;
+      width: 90%;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p>
+      <input :value="text || 0" readonly>
+    </p>
+    <p>
+      <button @click="onClick('1')">1</button>
+      <button @click="onClick('2')">2</button>
+      <button @click="onClick('3')">3</button>
+      <button @click="onClick('4')">4</button>
+      <button @click="onClick('5')">5</button>
+    </p>
+    <p>
+      <button @click="onClick('6')">6</button>
+      <button @click="onClick('7')">7</button>
+      <button @click="onClick('8')">8</button>
+      <button @click="onClick('9')">9</button>
+      <button @click="onClick('0')">0</button>
+    </p>
+    <p>
+      <button @click="onClick('+')">+</button>
+      <button @click="onClick('-')">-</button>
+      <button @click="onClick('*')">*</button>
+      <button @click="onClick('/')">/</button>
+      <button @click="onClick('=')">=</button>
+      <button @click="onClick('C')">C</button>
+    </p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script type="module">
+    import * as app from './__target__/app.js';
+  </script>
+</body>
+</html>
