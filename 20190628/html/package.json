@@ -1,0 +1,16 @@
+{
+  "name": "webpack-dev-server-sample",
+  "version": "1.0.0",
+  "description": "Webpack DevServer Sample",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
+  }
+}
