@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bignumber.js": "^9.0.0",
-    "moment": "^2.22.0",
+    "moment": "^2.24.0",
     "sumi-hash": "^1.0.1",
     "tweetnacl": "^1.0.1",
     "vue": "^2.5.13"
