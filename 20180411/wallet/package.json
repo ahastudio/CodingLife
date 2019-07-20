@@ -13,13 +13,13 @@
     "moment": "^2.24.0",
     "sumi-hash": "^1.0.1",
     "tweetnacl": "^1.0.1",
-    "vue": "^2.5.13"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.2",
     "@vue/cli-plugin-eslint": "^3.9.2",
     "@vue/cli-service": "^3.9.3",
-    "vue-template-compiler": "^2.5.13"
+    "vue-template-compiler": "^2.6.10"
   },
   "babel": {
     "presets": [
