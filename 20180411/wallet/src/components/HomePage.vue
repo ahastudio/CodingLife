@@ -58,6 +58,8 @@ import axios from 'axios';
 import nacl from 'tweetnacl';
 import Hash from 'sumi-hash';
 
+const { log, error } = console;
+
 function toHex(data) {
   return Array.from(data)
               .map(i => ('0' + i.toString(16))
@@ -173,17 +175,17 @@ export default {
           timestamp, from, to, amount, signature, publicKey,
         });
         if (data.error) {
-          console.error(data.error);
+          error(data.error);
           return;
         }
-        console.log(data.result);
+        log(data.result);
 
         this.transaction.hash = data.result.hash;
         this.transactions.push(Object.assign({}, this.transaction));
 
         this.resetTransaction();
       } catch (e) {
-        console.error(e);
+        error(e);
       }
     },
     resetTransaction() {
