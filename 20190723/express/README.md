@@ -6,10 +6,10 @@
 - CORS <https://expressjs.com/en/resources/middleware/cors.html>
 - Body Parseser <https://expressjs.com/en/resources/middleware/body-parser.html>
 
-- node-persist <https://www.npmjs.com/package/node-persist>
+- node-storage <https://www.npmjs.com/package/node-storage>
 
 ```bash
-npm i nodemon eslint express cors body-parser node-persist
+npm i nodemon eslint express cors body-parser node-storage
 npm i -D jest
 
 npm test

@@ -1,26 +1,29 @@
-const storage = require('node-persist');
+const Storage = require('node-storage');
 
-const init = async () => {
-  await storage.init();
-};
+const generateId = () => process.hrtime.bigint().toString();
 
-const getTasks = async () => await storage.getItem('tasks') || [];
+const dbName = process.env.NODE_ENV === 'test'
+  ? `/tmp/data/tasks-${generateId()}.json`
+  : './data/tasks.json';
 
-const addTask = async (title) => {
-  const tasks = await getTasks();
-  const id = process.hrtime.bigint().toString();
-  await storage.setItem('tasks', [
+const store = new Storage(dbName);
+
+const getTasks = () => store.get('tasks') || [];
+
+const addTask = (title) => {
+  const tasks = getTasks();
+  const id = generateId();
+  store.put('tasks', [
     ...tasks,
     { id, title },
   ]);
 };
 
 const clearTasks = async () => {
-  await storage.setItem('tasks', []);
+  store.put('tasks', []);
 };
 
 module.exports = {
-  init,
   clearTasks,
   getTasks,
   addTask,

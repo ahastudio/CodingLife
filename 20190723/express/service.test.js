@@ -1,15 +1,14 @@
-const service = require('./service');
+const { clearTasks, getTasks, addTask } = require('./service');
 
-beforeEach(async () => {
-  await service.init();
-  await service.clearTasks();
+beforeEach(() => {
+  clearTasks();
 });
 
 test('addTasks', async () => {
-  await service.addTask('test1');
-  await service.addTask('test2');
+  addTask('test1');
+  addTask('test2');
 
-  const tasks = await service.getTasks();
+  const tasks = getTasks();
 
   expect(tasks.length).toBe(2);
   expect(tasks[0].title).toBe('test1');

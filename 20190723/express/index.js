@@ -1,8 +1,7 @@
-
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const service = require('./service');
+const { getTasks, addTask } = require('./service');
 
 const PORT = 3000;
 
@@ -13,21 +12,17 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/tasks', async (req, res) => {
-  const tasks = await service.getTasks();
+app.get('/tasks', (req, res) => {
+  const tasks = getTasks();
   res.send({ tasks });
 });
 
-app.post('/tasks', async (req, res) => {
+app.post('/tasks', (req, res) => {
   const { title } = req.body;
-  await service.addTask(title);
+  addTask(title);
   res.send({});
 });
 
-(async () => {
-  await service.init();
-
-  app.listen(PORT, () => {
-    log(`Listen :${PORT}`);
-  });
-})();
+app.listen(PORT, () => {
+  log(`Listen :${PORT}`);
+});
