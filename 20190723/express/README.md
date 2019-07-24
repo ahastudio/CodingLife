@@ -8,9 +8,11 @@
 
 - node-storage <https://www.npmjs.com/package/node-storage>
 
+- SuperTest <https://github.com/visionmedia/supertest>
+
 ```bash
 npm i nodemon eslint express cors body-parser node-storage
-npm i -D jest
+npm i -D jest supertest
 
 npm test
 
