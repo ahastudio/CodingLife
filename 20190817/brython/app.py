@@ -25,10 +25,10 @@ class App:
         ])
 
     def add_post(self, event):
+        event.preventDefault()
         body = document['input-body'].value
         self.post_service.add_posts(body)
         self.update()
-        return False
 
 
 if __name__ == '__main__':
