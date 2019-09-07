@@ -1,5 +1,7 @@
-const TILE_SIZE = 16;
-const BOARD_SIZE = 10;
+export const TILE_SIZE = 16;
+export const BOARD_SIZE = 20;
+
+const randInt = size => Math.floor(Math.random() * size);
 
 export class Snake {
   constructor(scene) {
@@ -23,7 +25,7 @@ export class Snake {
 
     this.elapsedTime += deltaTime;
 
-    const time = (10 - Math.min(9, this.speed)) / 10;
+    const time = 0.1 + 0.5 * (10 - Math.min(10, this.speed)) / 10;
     if (this.elapsedTime > time) {
       this.elapsedTime -= time;
       this.move();
@@ -105,7 +107,10 @@ class SnakePiece {
 }
 
 export class Apple {
-  constructor({ scene, x, y }) {
+  constructor({ scene }) {
+    const x = randInt(BOARD_SIZE);
+    const y = randInt(BOARD_SIZE);
+
     this.position = { x, y };
 
     this.sprite = scene.createSprite('apple');

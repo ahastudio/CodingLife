@@ -1,15 +1,14 @@
 import { Scene } from './scene';
-import { Snake, Apple } from './objects';
+import { TILE_SIZE, BOARD_SIZE, Snake, Apple } from './objects';
 
 (() => {
-  const scene = new Scene();
-
-  const randInt = size => Math.floor(Math.random() * size);
+  const scene = new Scene({
+    width: TILE_SIZE * BOARD_SIZE,
+    height: TILE_SIZE * BOARD_SIZE,
+  });
 
   const createApple = () => {
-    const x = randInt(10);
-    const y = randInt(10);
-    return new Apple({ scene, x, y });
+    return new Apple({ scene });
   };
 
   const snake = new Snake(scene);

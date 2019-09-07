@@ -13,10 +13,10 @@ const loadTexture = name => {
   return texture;
 };
 
-export function Scene() {
+export function Scene({ width, height }) {
   const app = new Application({
-    width: 16 * 10,
-    height: 16 * 10,
+    width,
+    height,
     backgroundColor: 0x1099bb,
     resolution: window.devicePixelRatio || 1,
   });

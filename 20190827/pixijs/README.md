@@ -6,6 +6,8 @@ Snake Bites Game
 npm start
 ```
 
+<http://localhost:8080/>
+
 ```bash
 npm run build
 
