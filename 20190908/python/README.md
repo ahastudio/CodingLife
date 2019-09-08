@@ -18,8 +18,10 @@ jupyter notebook
 
 - <http://localhost:8888/notebooks/animal.ipynb>
 - <http://localhost:8888/notebooks/child-house.ipynb>
+- <http://localhost:8888/notebooks/traditional-market.ipynb>
 
 ## Preview
 
 - <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20190908/python/animal.ipynb>
 - <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20190908/python/child-house.ipynb>
+- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20190908/python/traditional-market.ipynb>
