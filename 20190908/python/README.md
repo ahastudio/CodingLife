@@ -1,11 +1,17 @@
 # 공공데이터포털 자료 맛보기
 
+공공데이터포털: <https://www.data.go.kr/>
+
+카카오맵 REST API: <https://developers.kakao.com/docs/restapi/local>
+
 ```bash
 virtualenv venv
 
 source venv/bin/activate
 
 pip install -r requirements.txt
+
+export KAKAO_REST_API_KEY=<카카오 앱 REST API 키>
 
 jupyter notebook
 ```
