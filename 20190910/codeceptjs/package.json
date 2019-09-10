@@ -1,0 +1,16 @@
+{
+  "name": "e2e-test",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "codeceptjs run --steps --verbose"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "codeceptjs": "^2.3.1",
+    "puppeteer": "^1.19.0"
+  }
+}
