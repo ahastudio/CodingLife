@@ -1,0 +1,6 @@
+pandas==0.24.2
+matplotlib
+folium
+googlemaps
+requests
+jupyterlab
