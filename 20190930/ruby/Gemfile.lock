@@ -1,0 +1,18 @@
+GIT
+  remote: https://github.com/ruby-numo/numo-narray
+  revision: 342d5d74eafbed4c651de759a306b15317603672
+  specs:
+    numo-narray (0.9.1.4)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  numo-narray!
+
+BUNDLED WITH
+   2.0.2
