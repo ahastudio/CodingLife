@@ -26,3 +26,8 @@ puts
 
 d = a + 1
 puts d.inspect
+
+puts
+
+e = a ** 3 * [1, 2, 3, 4, 5] + 10
+puts e.inspect
