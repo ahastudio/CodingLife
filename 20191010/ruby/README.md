@@ -2,6 +2,8 @@
 
 Slide: [루비로 웹 게임 만들기](http://j.mp/2IFwvRn)
 
+Demo: [데모 페이지](http://j.mp/2ouKNgI)
+
 ## Develop
 
 ```bash
