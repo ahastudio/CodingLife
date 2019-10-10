@@ -18,8 +18,8 @@ class Bunny
     @sprite.x += @vx
     @sprite.y += @vy
 
-    @vx *= -1 if @sprite.x < 0 || @sprite.x >= 500 - 25
-    @vy *= -1 if @sprite.y < 0 || @sprite.y >= 500 - 35
+    @vx *= -1 if @sprite.x.negative? || @sprite.x >= 500 - 25
+    @vy *= -1 if @sprite.y.negative? || @sprite.y >= 500 - 35
   end
 end
 
@@ -31,7 +31,7 @@ app = Application.new(
 
 scene = app.scene
 
-bunnies = (0...50).map { |i| Bunny.new(scene) }
+bunnies = (0...50).map { Bunny.new(scene) }
 
 app.run do
   bunnies.each(&:update)
