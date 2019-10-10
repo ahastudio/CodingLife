@@ -1,6 +1,6 @@
 require 'opal'
 
-if `location.pathname`[1..-1].empty?
+if `location.search`.empty?
   require 'main-basic'
 else
   require 'main-objects'
