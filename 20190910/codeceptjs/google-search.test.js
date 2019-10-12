@@ -8,7 +8,7 @@ Scenario('search an interesting issue', I => {
 
   I.waitForNavigation();
 
-  I.see('CodeceptJS · Modern End 2 End Testing Framework for NodeJS');
+  I.see('CodeceptJS · SuperCharged End 2 End Testing with ...');
   I.see('https://codecept.io');
-  I.see('Modern End 2 End Testing Framework for NodeJS.');
+  I.see('SuperCharged End 2 End Testing with WebDriver & Puppeteer.');
 });
