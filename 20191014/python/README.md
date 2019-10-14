@@ -22,3 +22,9 @@ jupyter notebook
 
 - <http://localhost:8888/notebooks/01-import-data.ipynb>
 - <http://localhost:8888/notebooks/02-use-data.ipynb>
+
+## 미리 보기
+
+- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20191014/python/01-import-data.ipynb>
+- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20191014/python/01-import-data-with-identifier.ipynb>
+- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20191014/python/02-use-data.ipynb>
