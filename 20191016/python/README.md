@@ -26,4 +26,4 @@ jupyter notebook
 
 ## Preview
 
-<https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20191016/python/show_catpang.ipynb?flush_cache=true>
+[https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20191016/python/show_catpang.ipynb](http://j.mp/33BCPRH)
