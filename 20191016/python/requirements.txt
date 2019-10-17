@@ -1,0 +1,5 @@
+scrapy
+pandas==0.24.2
+matplotlib
+wordcloud
+jupyterlab
