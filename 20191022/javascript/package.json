@@ -1,0 +1,16 @@
+{
+  "name": "frisby-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "frisby": "^2.1.2",
+    "jest": "^24.9.0"
+  }
+}
