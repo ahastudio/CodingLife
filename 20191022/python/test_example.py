@@ -10,33 +10,37 @@ PATTERNS = [
 
 
 def solution(answers):
-    return good_students([score(answers, pattern) for pattern in PATTERNS])
-
+    # 1. 첫 번째 풀이
     # scores = []
     # for pattern in PATTERNS:
     #     scores.append(score(answers, pattern))
     # return good_students(scores)
 
+    # 2. 두 번째 풀이
+    return good_students([score(answers, pattern) for pattern in PATTERNS])
+
 
 def score(answers, pattern):
-    return sum(a == b for a, b in zip(answers, pattern * MAX_PROBLEMS))
-
-    # return sum(pattern[i % len(pattern)] == x for i, x in enumerate(answers))
-
-    # student_answers = pattern * math.ceil(len(answers) / len(pattern))
-    # return sum(a == b for a, b in zip(answers, student_answers))
-
+    # 1. 첫 번째 풀이
     # count = 0
     # for i, answer in enumerate(answers):
     #     if pattern[i % len(pattern)] == answer:
     #         count += 1
     # return count
 
+    # 2. 두 번째 풀이
+    # student_answers = pattern * math.ceil(len(answers) / len(pattern))
+    # return sum(a == b for a, b in zip(answers, student_answers))
+
+    # 3. 세 번째 풀이
+    # return sum(pattern[i % len(pattern)] == x for i, x in enumerate(answers))
+
+    # 4. 네 번째 풀이
+    return sum(a == b for a, b in zip(answers, pattern * MAX_PROBLEMS))
+
 
 def good_students(scores):
-    max_score = max(scores)
-    return [i + 1 for i, score in enumerate(scores) if score == max_score]
-
+    # 1. 첫 번째 풀이
     # max_score = 0
     # students = []
     # for i, score in enumerate(scores):
@@ -46,6 +50,10 @@ def good_students(scores):
     #         max_score = score
     #         students = [i + 1]
     # return students
+
+    # 2. 두 번째 풀이
+    max_score = max(scores)
+    return [i + 1 for i, score in enumerate(scores) if score == max_score]
 
 
 def test_sample():
