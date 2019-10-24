@@ -15,6 +15,6 @@ class AppTet < Minitest::Test
   def test_home
     get '/'
     assert last_response.ok?
-    assert_includes last_response.body, '서울특별시 인기 공동구매'
+    assert_includes last_response.body, '신선식품 공동구매'
   end
 end

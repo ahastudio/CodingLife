@@ -3,11 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>신선식품 공동구매</title>
+    <style>
+        #app { display: none; }
+    </style>
 </head>
 <body>
-    <h1>서울특별시 인기 공동구매</h1>
-    <select name="regions">
-        <option>서울특별시</option>
-    </select>
+    <div id="app">
+        <div v-if="!region">
+            <select name="regions" v-model="region">
+                <option value="">지역을 선택해 주세요</option>
+                <option>서울특별시</option>
+                <option>부산광역시</option>
+            </select>
+        </div>
+        <div v-if="region">
+            <h1>{{ region }} 인기 공동구매</h1>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                region: '',
+            },
+        });
+        document.getElementById('app').style.display = 'block';
+    </script>
 </body>
 </html>
