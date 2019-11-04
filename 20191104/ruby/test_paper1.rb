@@ -3,8 +3,9 @@
 require 'minitest/autorun'
 
 def squares(width, height)
-  a, b = [width, height].sort
-  (a * b - (b.to_f / a).ceil * a) >> 1 << 1
+  h, w = [width, height].sort
+  dx = w.to_f / h
+  (w * h) - (0...h).map { |y| (dx * (y + 1)).ceil - (dx * y).to_i }.sum
 end
 
 # Test
