@@ -4,7 +4,7 @@ require 'minitest/autorun'
 
 def squares(width, height)
   a, b = [width, height].sort
-  a * b - (b.to_f / a).ceil * a
+  (a * b - (b.to_f / a).ceil * a) >> 1 << 1
 end
 
 # Test
@@ -24,5 +24,9 @@ class PaperTest < MiniTest::Unit::TestCase
     assert_equal 2, squares(2, 3)
     assert_equal 6, squares(2, 6)
     assert_equal 4, squares(2, 5)
+  end
+
+  def test_edge
+    assert_equal 8, squares(3, 5)
   end
 end
