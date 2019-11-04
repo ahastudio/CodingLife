@@ -4,8 +4,7 @@ require 'minitest/autorun'
 
 def squares(width, height)
   h, w = [width, height].sort
-  dx = w.to_f / h
-  (w * h) - (0...h).map { |y| (dx * (y + 1)).ceil - (dx * y).to_i }.sum
+  (w * h) - (0...h).map { |y| ((y + 1).to_f * w / h).ceil - y * w / h }.sum
 end
 
 # Test
@@ -29,5 +28,9 @@ class PaperTest < MiniTest::Unit::TestCase
 
   def test_edge
     assert_equal 8, squares(3, 5)
+
+    [*1..100].combination(2).each do |w, h|
+      assert squares(w, h).even?, "w: #{w}, h: #{h}"
+    end
   end
 end
