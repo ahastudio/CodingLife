@@ -23,3 +23,7 @@ jupyter notebook
 ```
 
 <http://localhost:8888/notebooks/show_items.ipynb>
+
+## Preview
+
+[https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20191105/python/show_items.ipynb](http://j.mp/2oVBOFE)
