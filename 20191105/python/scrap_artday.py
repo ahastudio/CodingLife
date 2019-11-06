@@ -14,10 +14,10 @@ class ArtdayAuctionSpider(scrapy.Spider):
         for item in response.css('.auction-table tbody tr'):
             image = item.css('td:nth-child(2) img::attr(src)').get()
             yield {
-                'image': f'http://www.artday.co.kr{image}',
-                'artist': item.css('td:nth-child(3) .list-first::text').get(),
                 'title': item.css('td:nth-child(4) .list-first::text').get(),
+                'artist': item.css('td:nth-child(3) .list-first::text').get(),
                 'price': item.css('td:nth-child(5) .price::text').get(),
+                'image': f'http://www.artday.co.kr{image}',
             }
 
 
