@@ -4,9 +4,11 @@ import ReactDOM from 'react-dom';
 document.body.innerHTML += '<div id="app"></div>';
 
 function App() {
-  return React.createElement(React.Fragment, null,
-    React.createElement('h1', null, 'Welcome'),
-    React.createElement('p', null, 'Hello, world!'),
+  return (
+    <>
+      <h1>Welcome</h1>
+      <p>Hello, world!</p>
+    </>
   );
 }
 
