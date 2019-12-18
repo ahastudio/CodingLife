@@ -1,11 +1,26 @@
 {
   "name": "angular-electron-demo",
   "version": "0.0.1",
-  "main": "main.js",
   "scripts": {
-    "start": "coffee -c main.coffee && ./node_modules/.bin/electron ."
+    "start": "npm run build && npm run compile && electron dist/main.js",
+    "dev": "parcel serve index.html --port 8080",
+    "build": "parcel build index.html --public-url './'",
+    "compile": "coffee -o dist -c main.coffee"
+  },
+  "dependencies": {
+    "@angular/common": "^12.2.8",
+    "@angular/compiler": "^12.2.8",
+    "@angular/core": "^12.2.8",
+    "@angular/platform-browser": "^12.2.8",
+    "@angular/platform-browser-dynamic": "^12.2.8",
+    "rxjs": "^7.3.1",
+    "zone.js": "^0.11.4"
   },
   "devDependencies": {
-    "electron-prebuilt": "0.35.0"
+    "coffeescript": "^2.6.0",
+    "electron": "^15.1.0",
+    "electron-packager": "^15.4.0",
+    "parcel": "^2.0.0-rc.0",
+    "typescript": "^4.4.3"
   }
 }

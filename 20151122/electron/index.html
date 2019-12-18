@@ -1,21 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>Angular in Electron</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="https://code.angularjs.org/tools/system.js"></script>
-    <script src="https://code.angularjs.org/tools/typescript.js"></script>
-    <script src="https://code.angularjs.org/2.0.0-alpha.44/angular2.dev.js"></script>
-    <script>
-      System.config({
-        transpiler: 'typescript',
-        typescriptOptions: { emitDecoratorMetadata: true }
-      });
-      System.import('./app.ts');
-    </script>
   </head>
   <body>
     <my-app>loading...</my-app>
+    <script type="module" src="./app.ts"></script>
   </body>
 </html>

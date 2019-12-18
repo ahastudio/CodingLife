@@ -1,21 +1,18 @@
-app = require('app')
-BrowserWindow = require('browser-window')
+{ app, BrowserWindow } = require('electron')
 
-require('crash-reporter').start()
+createWindow = ->
+  mainWindow = new BrowserWindow
+    width: 800
+    height: 600
+  mainWindow.loadFile('./index.html')
+  mainWindow.webContents.openDevTools()
 
-mainWindow = null
+app.whenReady().then ->
+  createWindow()
+  app.on 'activate', ->
+    if BrowserWindow.getAllWindows().length is 0
+      createWindow()
 
 app.on 'window-all-closed', ->
   if process.platform isnt 'darwin'
     app.quit()
-
-app.on 'ready', ->
-  mainWindow = new BrowserWindow
-    width: 800
-    height: 600
-  mainWindow.loadUrl("file://#{__dirname}/index.html")
-
-  mainWindow.webContents.openDevTools()
-
-  mainWindow.on 'closed', ->
-    mainWindow = null
