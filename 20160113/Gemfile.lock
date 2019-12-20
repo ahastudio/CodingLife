@@ -31,7 +31,7 @@ GEM
     mustermann (1.0.3)
     mustermann-grape (1.0.0)
       mustermann (~> 1.0.0)
-    rack (2.0.6)
+    rack (2.0.8)
     rack-accept (0.4.5)
       rack (>= 0.4)
     thread_safe (0.3.6)
