@@ -24,17 +24,49 @@ createElement();
 
 //
 
-let count = 0;
+const OPERATOR_FUNCTIONS = {
+  '+': (x, y) => x + y,
+  '-': (x, y) => x - y,
+  '*': (x, y) => x * y,
+  '/': (x, y) => x / y,
+};
 
-function render() {
+function calculate({ operator, result, current }) {
+  if (!current) {
+    return result;
+  }
+  if (!operator) {
+    return current;
+  }
+  return OPERATOR_FUNCTIONS[operator](result, current);
+}
+
+function render(state) {
+  const {
+    count, current, operator, result,
+  } = state;
+
   function handleClick() {
-    count += 1;
-    render();
+    render({
+      ...state,
+      count: count + 1,
+    });
   }
 
   function handleClickNumber(value) {
-    count = value;
-    render();
+    render({
+      ...state,
+      current: (current || 0) * 10 + value,
+    });
+  }
+
+  function handleClickOperator(value) {
+    render({
+      ...state,
+      current: null,
+      operator: value,
+      result: calculate({ operator, result, current }),
+    });
   }
 
   const element = (
@@ -49,11 +81,24 @@ function render() {
         </button>
       </p>
       <p>
-        {[1, 2, 3].map((i) => (
+        {current === null ? result : current}
+      </p>
+      <p>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((i) => (
           <button type="button" onClick={() => handleClickNumber(i)}>
             {i}
           </button>
         ))}
+      </p>
+      <p>
+        {['+', '-', '*', '/'].map((i) => (
+          <button type="button" onClick={() => handleClickOperator(i)}>
+            {i}
+          </button>
+        ))}
+        <button type="button" onClick={() => handleClickOperator('')}>
+          =
+        </button>
       </p>
     </div>
   );
@@ -62,4 +107,9 @@ function render() {
   document.getElementById('app').appendChild(element);
 }
 
-render();
+render({
+  count: 0,
+  current: null,
+  operator: null,
+  result: 0,
+});
