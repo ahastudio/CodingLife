@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    jest: true,
   },
   extends: [
     'plugin:react/recommended',
@@ -10,6 +11,7 @@ module.exports = {
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
+    context: 'readonly',
   },
   parserOptions: {
     ecmaFeatures: {
