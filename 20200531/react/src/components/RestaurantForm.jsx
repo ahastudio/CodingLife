@@ -1,16 +1,9 @@
 import React from 'react';
 
 export default function RestaurantForm({ restaurantForm, onChange, onSubmit }) {
-  function handleChangeName(e) {
-    onChange('name', e.target.value);
-  }
-
-  function handleChangeCategory(e) {
-    onChange('category', e.target.value);
-  }
-
-  function handleChangeAddress(e) {
-    onChange('address', e.target.value);
+  function handleChange(event) {
+    const { target: { name, value } } = event;
+    onChange(name, value);
   }
 
   return (
@@ -22,8 +15,9 @@ export default function RestaurantForm({ restaurantForm, onChange, onSubmit }) {
         <input
           id="input-restaurant-name"
           type="text"
+          name="name"
           value={restaurantForm.name}
-          onChange={handleChangeName}
+          onChange={handleChange}
         />
       </p>
       <p>
@@ -33,8 +27,9 @@ export default function RestaurantForm({ restaurantForm, onChange, onSubmit }) {
         <input
           id="input-restaurant-category"
           type="text"
+          name="category"
           value={restaurantForm.category}
-          onChange={handleChangeCategory}
+          onChange={handleChange}
         />
       </p>
       <p>
@@ -44,8 +39,9 @@ export default function RestaurantForm({ restaurantForm, onChange, onSubmit }) {
         <input
           id="input-restaurant-address"
           type="text"
+          name="address"
           value={restaurantForm.address}
-          onChange={handleChangeAddress}
+          onChange={handleChange}
         />
       </p>
       <button
