@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import RestaurantForm from './RestaurantForm';
+import RestaurantForm from './components/RestaurantForm';
 
 import {
   addRestaurant,

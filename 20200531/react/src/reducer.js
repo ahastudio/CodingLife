@@ -1,7 +1,6 @@
-import fixtures from './fixtures';
-
-const initialState = {
-  restaurants: [...fixtures.restaurants],
+export const initialState = {
+  newId: 1,
+  restaurants: [],
   restaurantForm: {
     name: '',
     category: '',

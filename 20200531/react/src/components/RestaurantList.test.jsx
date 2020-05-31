@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 
 import RestaurantList from './RestaurantList';
 
-import fixtures from './fixtures';
+import fixtures from '../fixtures';
 
 test('RestaurantList', () => {
   const { restaurants } = fixtures;

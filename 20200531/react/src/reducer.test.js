@@ -37,12 +37,14 @@ describe('reducer', () => {
   });
 
   describe('changeRestaurantForm', () => {
-    const initialState = {
-      restaurantForm: { ...newRestaurant },
-    };
+    it('changes value of form', () => {
+      const initialState = {
+        restaurantForm: { ...newRestaurant },
+      };
 
-    const state = reducer(initialState, changeRestaurantForm('name', '김밥왕국'));
+      const state = reducer(initialState, changeRestaurantForm('name', '김밥왕국'));
 
-    expect(state.restaurantForm.name).toBe('김밥왕국');
+      expect(state.restaurantForm.name).toBe('김밥왕국');
+    });
   });
 });

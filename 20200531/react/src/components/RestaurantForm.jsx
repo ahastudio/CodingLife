@@ -12,6 +12,7 @@ export default function RestaurantForm({ restaurantForm, onChange, onSubmit }) {
   function handleChangeAddress(e) {
     onChange('address', e.target.value);
   }
+
   return (
     <>
       <p>
@@ -27,7 +28,7 @@ export default function RestaurantForm({ restaurantForm, onChange, onSubmit }) {
       </p>
       <p>
         <label htmlFor="input-restaurant-category">
-          카테고리
+          분류
         </label>
         <input
           id="input-restaurant-category"
