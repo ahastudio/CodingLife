@@ -8,25 +8,23 @@ test('Input', () => {
   const handleChange = jest.fn();
   const handleClick = jest.fn();
 
-  const { getByLabelText, getByDisplayValue, getByText } = render((
+  const { getByDisplayValue, getByLabelText, getByText } = render((
     <Input
-      value="무언가 하기"
+      value="기존 할 일"
       onChange={handleChange}
       onClick={handleClick}
     />
   ));
 
-  expect(getByLabelText(/할 일/)).not.toBeNull();
-  expect(getByDisplayValue(/무언가 하기/)).not.toBeNull();
-  expect(getByText(/추가/)).not.toBeNull();
+  expect(getByDisplayValue('기존 할 일')).not.toBeNull();
 
   fireEvent.change(getByLabelText('할 일'), {
-    target: { value: '무엇이든 하기' },
+    target: { value: '무언가 하기' },
   });
 
   expect(handleChange).toBeCalled();
 
-  fireEvent.click(getByText(/추가/));
+  fireEvent.click(getByText('추가'));
 
   expect(handleClick).toBeCalled();
 });
