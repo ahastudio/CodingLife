@@ -1,15 +1,24 @@
-export function addRestaurant() {
+export function setRestaurants(restaurants) {
   return {
-    type: 'addRestaurant',
+    type: 'setRestaurants',
+    payload: {
+      restaurants,
+    },
   };
 }
 
-export function changeRestaurantForm(fieldName, value) {
+export function changeRestaurantField({ name, value }) {
   return {
-    type: 'changeRestaurantForm',
+    type: 'changeRestaurantField',
     payload: {
-      fieldName,
+      name,
       value,
     },
+  };
+}
+
+export function addRestaurant() {
+  return {
+    type: 'addRestaurant',
   };
 }

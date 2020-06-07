@@ -1,50 +1,68 @@
 import reducer from './reducer';
 
 import {
+  setRestaurants,
+  changeRestaurantField,
   addRestaurant,
-  changeRestaurantForm,
 } from './actions';
 
-import fixtures from './fixtures';
+import restaurants from '../fixtures/restaurants';
 
 describe('reducer', () => {
-  const newRestaurant = {
-    name: '김밥제국',
-    category: '분식',
-    address: '서울특별시 강남구 역삼동',
-  };
+  describe('setRestaurants', () => {
+    it('changes restaurants array', () => {
+      const initailState = {
+        restaurants: [],
+      };
 
-  describe('addRestaurant', () => {
-    const initialState = {
-      newId: 101,
-      restaurants: fixtures.restaurants,
-      restaurantForm: { ...newRestaurant },
-    };
+      const state = reducer(initailState, setRestaurants(restaurants));
 
-    it('appends a new restaurant into restaurants', () => {
-      const oldCount = initialState.restaurants.length;
-
-      const { newId, restaurants } = reducer(initialState, addRestaurant());
-
-      expect(newId - initialState.newId).toBe(1);
-      expect(restaurants.length - oldCount).toBe(1);
-
-      const lastRestaurant = restaurants[restaurants.length - 1];
-
-      expect(lastRestaurant.id).toEqual(101);
-      expect(lastRestaurant.name).toEqual(newRestaurant.name);
+      expect(state.restaurants).not.toHaveLength(0);
     });
   });
 
-  describe('changeRestaurantForm', () => {
-    it('changes value of form', () => {
-      const initialState = {
-        restaurantForm: { ...newRestaurant },
+  describe('changeRestaurantField', () => {
+    it('changes restaurant form', () => {
+      const initailState = {
+        restaurant: {
+          name: '이름',
+          category: '분류',
+          address: '주소',
+        },
       };
 
-      const state = reducer(initialState, changeRestaurantForm('name', '김밥왕국'));
+      const state = reducer(initailState, changeRestaurantField({
+        name: 'address',
+        value: '서울시 강남구 역삼동',
+      }));
 
-      expect(state.restaurantForm.name).toBe('김밥왕국');
+      expect(state.restaurant.address).toBe('서울시 강남구 역삼동');
+    });
+  });
+
+  describe('addRestaurant', () => {
+    it('appends restaurant into restaurants and clear restaurant form', () => {
+      const initailState = {
+        newId: 101,
+        restaurants: [],
+        restaurant: {
+          name: '마법사주방',
+          category: '이탈리안',
+          address: '서울시 강남구 역삼동',
+        },
+      };
+
+      const state = reducer(initailState, addRestaurant());
+
+      expect(state.restaurants).toHaveLength(1);
+
+      const restaurant = state.restaurants[state.restaurants.length - 1];
+      expect(restaurant.id).toBe(101);
+      expect(restaurant.name).toBe('마법사주방');
+
+      expect(state.restaurant.name).toBe('');
+
+      expect(state.newId).toBe(102);
     });
   });
 });

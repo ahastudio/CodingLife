@@ -1,18 +1,25 @@
-// 1. Restaurant List -> State => RestaurantList
-// 2. Restaurant Create -> State <- Form => RestaurantForm
-// 3. Restaurant Update -> State <- Form => RestaurantForm
-// state - restaurants (array), restaurantForm...
+import React, { useEffect } from 'react';
 
-import React from 'react';
+import { useDispatch } from 'react-redux';
 
-import RestaurantListContainer from './RestaurantListContainer';
+import RestaurantsContainer from './RestaurantsContainer';
 import RestaurantCreateContainer from './RestaurantCreateContainer';
 
+import {
+  setRestaurants,
+} from './actions';
+
 export default function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setRestaurants([]));
+  }, []);
+
   return (
     <div>
       <h1>Restaurants</h1>
-      <RestaurantListContainer />
+      <RestaurantsContainer />
       <RestaurantCreateContainer />
     </div>
   );

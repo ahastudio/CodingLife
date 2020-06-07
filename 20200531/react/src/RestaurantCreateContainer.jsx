@@ -2,33 +2,33 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import RestaurantForm from './components/RestaurantForm';
+import RestaurantForm from './RestaurantForm';
 
 import {
+  changeRestaurantField,
   addRestaurant,
-  changeRestaurantForm,
 } from './actions';
 
 export default function RestaurantCreateContainer() {
   const dispatch = useDispatch();
 
-  const { restaurantForm } = useSelector((state) => ({
-    restaurantForm: state.restaurantForm,
+  const { restaurant } = useSelector((state) => ({
+    restaurant: state.restaurant,
   }));
 
-  function handleChange(fieldName, value) {
-    dispatch(changeRestaurantForm(fieldName, value));
+  function handleChange({ name, value }) {
+    dispatch(changeRestaurantField({ name, value }));
   }
 
-  function handleSubmit() {
+  function handleClick() {
     dispatch(addRestaurant());
   }
 
   return (
     <RestaurantForm
-      restaurantForm={restaurantForm}
+      restaurant={restaurant}
       onChange={handleChange}
-      onSubmit={handleSubmit}
+      onClick={handleClick}
     />
   );
 }
