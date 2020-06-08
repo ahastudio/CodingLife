@@ -22,6 +22,10 @@ createElement();
 
 //
 
+function or(x, y) {
+  return x === null ? y : x;
+}
+
 const operatorFunctions = {
   '+': (x, y) => x + y,
   '-': (x, y) => x - y,
@@ -30,7 +34,7 @@ const operatorFunctions = {
 };
 
 function defaultFunction(x, y) {
-  return x || y;
+  return or(y, x);
 }
 
 function calculate(operator, accumulator, number) {
@@ -39,7 +43,7 @@ function calculate(operator, accumulator, number) {
 
 const initialState = {
   accumulator: 0,
-  number: 0,
+  number: null,
   operator: '',
 };
 
@@ -51,7 +55,7 @@ function render({ accumulator, number, operator }) {
   function handleClickNumber(value) {
     render({
       accumulator,
-      number: number * 10 + value,
+      number: (number || 0) * 10 + value,
       operator,
     });
   }
@@ -59,14 +63,14 @@ function render({ accumulator, number, operator }) {
   function handleClickOperator(value) {
     render({
       accumulator: calculate(operator, accumulator, number),
-      number: 0,
+      number: null,
       operator: value,
     });
   }
 
   const element = (
     <div>
-      <p>{number || accumulator}</p>
+      <p>{or(number, accumulator)}</p>
       <p>
         {[1, 2, 3].map((i) => (
           <button type="button" onClick={() => handleClickNumber(i)}>
