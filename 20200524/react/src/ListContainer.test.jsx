@@ -1,24 +1,47 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ListContainer from './ListContainer';
 
 jest.mock('react-redux');
 
-test('ListContainer', () => {
-  useSelector.mockImplementation((selector) => selector({
-    tasks: [
-      { id: 1, title: '아무 것도 하지 않기 #1' },
-      { id: 2, title: '아무 것도 하지 않기 #2' },
-    ],
-  }));
+describe('ListContainer', () => {
+  const dispatch = jest.fn();
 
-  const { getByText } = render((
-    <ListContainer />
-  ));
+  beforeEach(() => {
+    dispatch.mockClear();
 
-  expect(getByText(/아무 것도 하지 않기 #1/)).not.toBeNull();
+    useDispatch.mockImplementation(() => dispatch);
+
+    useSelector.mockImplementation((selector) => selector({
+      tasks: [
+        { id: 1, title: '아무 것도 하지 않기 #1' },
+        { id: 2, title: '아무 것도 하지 않기 #2' },
+      ],
+    }));
+  });
+
+  it('renders tasks', () => {
+    const { queryByText } = render((
+      <ListContainer />
+    ));
+
+    expect(queryByText(/아무 것도 하지 않기 #1/)).not.toBeNull();
+    expect(queryByText(/아무 것도 하지 않기 #1/)).not.toBeNull();
+  });
+
+  it('renders “완료” button to delete a task', () => {
+    const { getAllByText } = render((
+      <ListContainer />
+    ));
+
+    const buttons = getAllByText('완료');
+
+    fireEvent.click(buttons[0]);
+
+    expect(dispatch).toBeCalled();
+  });
 });

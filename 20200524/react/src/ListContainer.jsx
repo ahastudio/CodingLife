@@ -15,14 +15,14 @@ export default function ListContainer() {
 
   const dispatch = useDispatch();
 
-  function handleClickDeleteTask(id) {
+  function handleClickDelete(id) {
     dispatch(deleteTask(id));
   }
 
   return (
     <List
       tasks={tasks}
-      onClickDeleteTask={handleClickDeleteTask}
+      onClickDelete={handleClickDelete}
     />
   );
 }
