@@ -10,9 +10,7 @@ import {
 } from './actions';
 
 export default function InputContainer() {
-  const { taskTitle } = useSelector((state) => ({
-    taskTitle: state.taskTitle,
-  }));
+  const taskTitle = useSelector((state) => state.taskTitle);
 
   const dispatch = useDispatch();
 
