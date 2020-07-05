@@ -9,6 +9,7 @@ import {
   selectCategory,
   changeLoginField,
   setAccessToken,
+  logout,
   changeReviewField,
 } from './actions';
 
@@ -114,63 +115,83 @@ describe('reducer', () => {
 
   describe('changeLoginField', () => {
     context('when email is changed', () => {
-      const initialState = {
-        loginFields: {
-          email: 'email',
-          password: 'password',
-        },
-      };
+      it('changes only email field', () => {
+        const initialState = {
+          loginFields: {
+            email: 'email',
+            password: 'password',
+          },
+        };
 
-      const state = reducer(
-        initialState,
-        changeLoginField({ name: 'email', value: 'test' }),
-      );
+        const state = reducer(
+          initialState,
+          changeLoginField({ name: 'email', value: 'test' }),
+        );
 
-      expect(state.loginFields.email).toBe('test');
-      expect(state.loginFields.password).toBe('password');
+        expect(state.loginFields.email).toBe('test');
+        expect(state.loginFields.password).toBe('password');
+      });
     });
 
     context('when password is changed', () => {
-      const initialState = {
-        loginFields: {
-          email: 'email',
-          password: 'password',
-        },
-      };
+      it('changes only password field', () => {
+        const initialState = {
+          loginFields: {
+            email: 'email',
+            password: 'password',
+          },
+        };
 
-      const state = reducer(
-        initialState,
-        changeLoginField({ name: 'password', value: 'test' }),
-      );
+        const state = reducer(
+          initialState,
+          changeLoginField({ name: 'password', value: 'test' }),
+        );
 
-      expect(state.loginFields.email).toBe('email');
-      expect(state.loginFields.password).toBe('test');
+        expect(state.loginFields.email).toBe('email');
+        expect(state.loginFields.password).toBe('test');
+      });
     });
   });
 
   describe('setAccessToken', () => {
-    const initialState = {
-      accessToken: '',
-    };
+    it('changes access token', () => {
+      const initialState = {
+        accessToken: '',
+      };
 
-    const state = reducer(initialState, setAccessToken('TOKEN'));
+      const state = reducer(initialState, setAccessToken('TOKEN'));
 
-    expect(state.accessToken).toBe('TOKEN');
+      expect(state.accessToken).toBe('TOKEN');
+    });
+  });
+
+  describe('logout', () => {
+    it('clears access token', () => {
+      const initialState = {
+        accessToken: 'ACCESS_TOKEN',
+      };
+
+      const state = reducer(initialState, logout());
+
+      expect(state.accessToken).toBe('');
+    });
   });
 
   describe('changeReviewField', () => {
-    const initialState = {
-      reviewFields: {
-        score: '',
-        description: '',
-      },
-    };
+    it('changes a field of review', () => {
+      const initialState = {
+        reviewFields: {
+          score: '',
+          description: '',
+        },
+      };
 
-    const state = reducer(
-      initialState,
-      changeReviewField({ name: 'score', value: '5' }),
-    );
+      const state = reducer(
+        initialState,
+        changeReviewField({ name: 'score', value: '5' }),
+      );
 
-    expect(state.reviewFields.score).toBe('5');
+      expect(state.reviewFields.score).toBe('5');
+    });
   });
 });
