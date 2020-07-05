@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function LoginForm({ fields, onChange, onSubmit }) {
+const LoginForm = React.memo(({ fields, onChange, onSubmit }) => {
   const { email, password } = fields;
 
   function handleChange(event) {
@@ -42,4 +42,6 @@ export default function LoginForm({ fields, onChange, onSubmit }) {
       </button>
     </>
   );
-}
+});
+
+export default LoginForm;
