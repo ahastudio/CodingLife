@@ -11,7 +11,7 @@ GEM
       concurrent-ruby (~> 1.0)
     minitest (5.14.1)
     mustermann (1.0.3)
-    rack (2.0.8)
+    rack (2.2.3)
     rack-protection (2.0.4)
       rack
     sinatra (2.0.4)
