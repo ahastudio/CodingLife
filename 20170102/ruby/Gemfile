@@ -2,4 +2,4 @@ source 'https://rubygems.org'
 
 gem 'sqlite3'
 gem 'sequel'
-gem 'activesupport', '~> 5.0.1'
+gem 'activesupport', '~> 5.2.4'
