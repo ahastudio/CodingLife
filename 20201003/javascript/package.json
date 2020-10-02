@@ -1,0 +1,15 @@
+{
+  "name": "max-chunks-to-make-sorted",
+  "version": "1.0.0",
+  "description": "Max Chunks To Make Sorted",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^26.4.2"
+  }
+}
