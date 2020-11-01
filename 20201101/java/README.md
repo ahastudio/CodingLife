@@ -5,10 +5,6 @@
 ```
 
 ```bash
-http GET localhost:8000/
-http GET localhost:8000/hello
-http GET localhost:8000/posts
-http POST localhost:8000/posts title=Demo
-http GET localhost:8000/posts
-http GET localhost:8000/posts/1
+curl http://localhost:8000/tasks
+curl -X POST http://localhost:8000/tasks -d '{"title":"task1"}'
 ```
