@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -21,6 +20,7 @@ import java.util.stream.Collectors;
 public class DemoHttpHandler implements HttpHandler {
     private ObjectMapper objectMapper = new ObjectMapper();
 
+    private Long newId = 1L;
     private List<Task> tasks = new ArrayList<>();
 
     @Override
@@ -34,28 +34,117 @@ public class DemoHttpHandler implements HttpHandler {
         URI uri = exchange.getRequestURI();
         String path = uri.getPath();
 
+        System.out.println(method + " " + path);
+
+        if (path.equals("/tasks")) {
+            handleCollection(exchange, method);
+            return;
+        }
+
+        if (path.startsWith("/tasks/")) {
+            Long id = Long.parseLong(path.substring("/tasks/".length()));
+            handleItem(exchange, method, id);
+            return;
+        }
+
+        send(exchange, 200, "Hello, world!");
+    }
+
+    private void handleCollection(HttpExchange exchange, String method)
+            throws IOException {
+        if (method.equals("GET")) {
+            handleList(exchange);
+        }
+
+        if (method.equals("POST")) {
+            String body = getBody(exchange);
+            handleCreate(exchange, body);
+        }
+    }
+
+    private void handleItem(HttpExchange exchange, String method, Long id)
+            throws IOException {
+        if (method.equals("GET")) {
+            handleDetail(exchange, id);
+        }
+
+        if (method.equals("PUT") || method.equals("PATCH")) {
+            String body = getBody(exchange);
+            handleUpdate(exchange, id, body);
+        }
+
+        if (method.equals("DELETE")) {
+            handleDelete(exchange, id);
+        }
+    }
+
+    private void handleList(HttpExchange exchange) throws IOException {
+        send(exchange, 200, toJSON(tasks));
+    }
+
+    private void handleDetail(HttpExchange exchange, Long id)
+            throws IOException {
+        Task task = findTask(id);
+
+        if (task == null) {
+            send(exchange, 404, "");
+            return;
+        }
+
+        send(exchange, 200, toJSON(task));
+    }
+
+    private void handleCreate(HttpExchange exchange, String body)
+            throws IOException {
+        Task task = toTask(body);
+        task.setId(newId);
+        newId += 1;
+
+        tasks.add(task);
+
+        send(exchange, 201, toJSON(task));
+    }
+
+    private void handleUpdate(HttpExchange exchange, Long id, String body)
+            throws IOException {
+        Task task = findTask(id);
+
+        if (task == null) {
+            send(exchange, 404, "");
+            return;
+        }
+
+        Task source = toTask(body);
+
+        task.setTitle(source.getTitle());
+
+        send(exchange, 200, toJSON(task));
+    }
+
+    private void handleDelete(HttpExchange exchange, Long id)
+            throws IOException {
+        Task task = findTask(id);
+
+        if (task == null) {
+            send(exchange, 404, "");
+            return;
+        }
+
+        tasks.remove(task);
+
+        send(exchange, 200, "");
+    }
+
+    private String getBody(HttpExchange exchange) {
         InputStream inputStream = exchange.getRequestBody();
-        String body = new BufferedReader(new InputStreamReader(inputStream))
+        return new BufferedReader(new InputStreamReader(inputStream))
                 .lines()
                 .collect(Collectors.joining("\n"));
+    }
 
-        System.out.println(method + " " + path);
-        if (!body.isBlank()) {
-            Task task = toTask(body);
-            tasks.add(task);
-        }
-
-        String content = "Hello, world!";
-
-        if (method.equals("GET") && path.equals("/tasks")) {
-            content = tasksToJSON();
-        }
-
-        if (method.equals("POST") && path.equals("/tasks")) {
-            content = "Create a new task.";
-        }
-
-        exchange.sendResponseHeaders(200, content.getBytes().length);
+    private void send(HttpExchange exchange, int code, String content)
+            throws IOException {
+        exchange.sendResponseHeaders(code, content.getBytes().length);
 
         OutputStream outputStream = exchange.getResponseBody();
 
@@ -64,13 +153,19 @@ public class DemoHttpHandler implements HttpHandler {
         outputStream.close();
     }
 
+    private Task findTask(Long id) {
+        return tasks.stream()
+                .filter(task -> task.getId().equals(id))
+                .findFirst().orElse(null);
+    }
+
     private Task toTask(String content) throws JsonProcessingException {
         return objectMapper.readValue(content, Task.class);
     }
 
-    private String tasksToJSON() throws IOException {
+    private String toJSON(Object object) throws IOException {
         OutputStream outputStream = new ByteArrayOutputStream();
-        objectMapper.writeValue(outputStream, tasks);
+        objectMapper.writeValue(outputStream, object);
 
         return outputStream.toString();
     }
