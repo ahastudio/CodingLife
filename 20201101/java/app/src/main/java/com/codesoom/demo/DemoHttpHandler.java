@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -18,72 +19,56 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DemoHttpHandler implements HttpHandler {
-    private static List<Task> tasks = new ArrayList<Task>();
+    private ObjectMapper objectMapper = new ObjectMapper();
+
+    private List<Task> tasks = new ArrayList<>();
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        String method = exchange.getRequestMethod();
+        // REST - CRUD
+        // 1. Method - GET, POST, PUT/PATCH, DELETE, ...
+        // 2. Path - "/", "/tasks", "/tasks/1", ...
+        // 3. Headers, Body(Content)
 
+        String method = exchange.getRequestMethod();
         URI uri = exchange.getRequestURI();
         String path = uri.getPath();
 
         InputStream inputStream = exchange.getRequestBody();
-        String body = streamToString(inputStream);
+        String body = new BufferedReader(new InputStreamReader(inputStream))
+                .lines()
+                .collect(Collectors.joining("\n"));
 
-        process(exchange, method, path, body);
-    }
-
-    private void process(
-            HttpExchange exchange, String method, String path, String body
-    ) throws IOException {
-        System.out.println();
         System.out.println(method + " " + path);
-
         if (!body.isBlank()) {
-            System.out.println(body);
-
             Task task = toTask(body);
             tasks.add(task);
         }
 
-        String content = fromTask(tasks);
+        String content = "Hello, world!";
 
-        send(exchange, 200, content);
-    }
+        if (method.equals("GET") && path.equals("/tasks")) {
+            content = tasksToJSON();
+        }
 
-    private void send(HttpExchange exchange, int statusCode, String content)
-            throws IOException {
-        exchange.sendResponseHeaders(statusCode, content.getBytes().length);
+        if (method.equals("POST") && path.equals("/tasks")) {
+            content = "Create a new task.";
+        }
+
+        exchange.sendResponseHeaders(200, content.getBytes().length);
 
         OutputStream outputStream = exchange.getResponseBody();
-        writeToStream(outputStream, content);
-    }
 
-    private String streamToString(InputStream stream) {
-        InputStreamReader streamReader = new InputStreamReader(stream);
-
-        return new BufferedReader(streamReader)
-                .lines()
-                .collect(Collectors.joining("\n"));
-    }
-
-    private void writeToStream(OutputStream stream, String content)
-            throws IOException {
-        stream.write(content.getBytes());
-        stream.flush();
-        stream.close();
+        outputStream.write(content.getBytes());
+        outputStream.flush();
+        outputStream.close();
     }
 
     private Task toTask(String content) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        Task task = objectMapper.readValue(content, Task.class);
-        return task;
+        return objectMapper.readValue(content, Task.class);
     }
 
-    private String fromTask(List<Task> tasks) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-
+    private String tasksToJSON() throws IOException {
         OutputStream outputStream = new ByteArrayOutputStream();
         objectMapper.writeValue(outputStream, tasks);
 
