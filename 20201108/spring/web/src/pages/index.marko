@@ -1,0 +1,48 @@
+// TODO
+// 1. GET /tasks -> 목록으로 표시
+// 2. 입력 -> POST /tasks (할 일 추가) -> GET /tasks (목록 갱신)
+
+import axios from 'axios';
+
+class {
+  onCreate() {
+    this.state = {
+      tasks: [],
+    };
+
+    this.loadTasks();
+  }
+
+  async loadTasks() {
+    const { data } = await axios.get('http://localhost:8080/tasks');
+    this.state.tasks = data;
+  }
+
+  async addTask() {
+    const title = this.getEl('title').value;
+    await axios.post('http://localhost:8080/tasks', {
+      title,
+    });
+    await this.loadTasks();
+  }
+}
+
+<layout>
+  <h1>ToDo</h1>
+  <ol>
+    <for|task| of=state.tasks>
+      <li>
+        ${task.title}
+      </li>
+    </for>
+  </ol>
+  <p>
+    <label for:scoped="title">
+      할 일
+    </label>
+    <input id:scoped="title" key="title" type="text" />
+    <button type="button" on-click("addTask")>
+      추가
+    </button>
+  </p>
+</layout>
