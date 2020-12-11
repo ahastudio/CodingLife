@@ -1,0 +1,28 @@
+{
+    "name": "e2e-test-demo",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "codeceptjs": "codeceptjs run --steps",
+        "codeceptjs:headless": "HEADLESS=true codeceptjs run --steps",
+        "codeceptjs:ui": "codecept-ui --app",
+        "codeceptjs:demo": "codeceptjs run --steps -c node_modules/@codeceptjs/examples",
+        "codeceptjs:demo:headless": "HEADLESS=true codeceptjs run --steps -c node_modules/@codeceptjs/examples",
+        "codeceptjs:demo:ui": "codecept-ui --app  -c node_modules/@codeceptjs/examples",
+        "cypress": "cypress open",
+        "testcafe": "testcafe chrome testcafe/tests/"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@codeceptjs/configure": "^0.6.2",
+        "@codeceptjs/examples": "^1.2.1",
+        "@codeceptjs/ui": "^0.4.2",
+        "codeceptjs": "^3.0.2",
+        "cypress": "^6.1.0",
+        "playwright": "^1.6.2",
+        "testcafe": "^1.9.4"
+    }
+}
