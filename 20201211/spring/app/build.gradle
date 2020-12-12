@@ -8,10 +8,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework:spring:5.3.2'
-    runtime 'org.springframework:spring:5.3.2'
-
     implementation 'org.springframework:spring-context:5.3.2'
-    runtime 'org.springframework:spring-context:5.3.2'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
@@ -24,10 +21,11 @@ tasks.withType(Jar) {
 }
 
 task fatJar(type: Jar) {
-    from {
-        configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) }
-    }
     with jar
+
+    from {
+        configurations.default.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 tasks.named('test') {
