@@ -1,0 +1,9 @@
+# Node.js
+node_modules/
+*.log
+
+# CodeceptJS
+output/
+
+# Marko.js
+build/

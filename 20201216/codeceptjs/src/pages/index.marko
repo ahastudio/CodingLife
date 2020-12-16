@@ -1,0 +1,47 @@
+class {
+  onCreate() {
+    this.state = {
+      tasks: [],
+      error: '',
+    }
+  }
+
+  onInputTaskTitle() {
+    this.state.error = '';
+    const taskTitle = this.getEl('taskTitle').value;
+    if (!taskTitle) {
+      this.state.error = '왜 그러셨어요?';
+    }
+  }
+
+  addTask() {
+    const taskTitle = this.getEl('taskTitle').value;
+    if (!taskTitle) {
+      this.state.error = '왜 그러셨어요?';
+      return;
+    }
+    this.state.tasks = [
+      ...this.state.tasks,
+      taskTitle,
+    ];
+  }
+}
+
+<layout>
+  <p>${state.error}</p>
+  <p>
+    <label for:scoped="task-title">
+      할 일을 입력해 주세요
+    </label>
+    <input key="taskTitle" type="text" id:scoped="task-title"
+      on-input('onInputTaskTitle')
+    >
+    <button type="button" on-click('addTask') id="add-button">
+      등록
+    </button>
+  </p>
+  <hr>
+  <div>
+    ${state.tasks}
+  </div>
+</layout>
