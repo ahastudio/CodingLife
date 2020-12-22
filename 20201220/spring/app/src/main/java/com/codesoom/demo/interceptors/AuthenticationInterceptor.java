@@ -37,7 +37,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
     private boolean filterWithPathAndMethod(HttpServletRequest request) {
         String path = request.getRequestURI();
-        if (!path.equals("/products")) {
+        if (!path.startsWith("/products")) {
             return true;
         }
 

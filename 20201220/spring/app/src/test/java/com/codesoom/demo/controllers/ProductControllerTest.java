@@ -8,11 +8,11 @@
 package com.codesoom.demo.controllers;
 
 import com.codesoom.demo.application.AuthenticationService;
-import com.codesoom.demo.errors.InvalidTokenException;
-import com.codesoom.demo.errors.ProductNotFoundException;
 import com.codesoom.demo.application.ProductService;
 import com.codesoom.demo.domain.Product;
 import com.codesoom.demo.dto.ProductData;
+import com.codesoom.demo.errors.InvalidTokenException;
+import com.codesoom.demo.errors.ProductNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -262,5 +262,18 @@ class ProductControllerTest {
                 .andExpect(status().isNotFound());
 
         verify(productService).deleteProduct(1000L);
+    }
+
+    @Test
+    void destroyWithInvalidAccessToken() throws Exception {
+        mockMvc.perform(
+                patch("/products/1")
+                        .accept(MediaType.APPLICATION_JSON_UTF8)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\":\"쥐순이\",\"maker\":\"냥이월드\"," +
+                                "\"price\":5000}")
+                        .header("Authorization", "Bearer " + INVALID_TOKEN)
+        )
+                .andExpect(status().isUnauthorized());
     }
 }
