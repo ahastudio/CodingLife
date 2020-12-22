@@ -60,7 +60,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         }
 
         String accessToken = authorization.substring("Bearer ".length());
-        authenticationService.parseToken(accessToken);
+        Long userId = authenticationService.parseToken(accessToken);
+
+        request.setAttribute("userId", userId);
 
         return true;
     }
