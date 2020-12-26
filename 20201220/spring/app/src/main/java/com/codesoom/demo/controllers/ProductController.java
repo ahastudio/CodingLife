@@ -68,8 +68,8 @@ public class ProductController {
 
     @DeleteMapping("{id}")
     public void destroy(
-            @PathVariable Long id,
-            @RequestAttribute Long userId
+            @RequestAttribute Long userId,
+            @PathVariable Long id
     ) {
         System.out.println("*** Delete a product by user: " + userId);
         productService.deleteProduct(id);
