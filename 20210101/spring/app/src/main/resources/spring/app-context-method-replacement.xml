@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"
+>
+    <bean id="singer-method-replacer"
+          class="com.ahastudio.components.SingMethodReplacer" />
+    <bean id="hacked-singer"
+          class="com.ahastudio.components.Singer">
+        <replaced-method name="sing" replacer="singer-method-replacer">
+            <arg-type>String</arg-type>
+        </replaced-method>
+    </bean>
+    <bean id="standard-singer"
+          class="com.ahastudio.components.Singer" />
+</beans>
