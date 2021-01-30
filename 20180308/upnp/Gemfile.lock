@@ -16,10 +16,12 @@ GEM
     httpi (2.4.4)
       rack
       socksify
-    mini_portile2 (2.4.0)
-    nokogiri (1.10.10)
-      mini_portile2 (~> 2.4.0)
+    mini_portile2 (2.5.0)
+    nokogiri (1.11.1)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     nori (2.6.0)
+    racc (1.5.2)
     rack (2.2.3)
     rake (13.0.1)
     rubyntlm (0.6.2)
