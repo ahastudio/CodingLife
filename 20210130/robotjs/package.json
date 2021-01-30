@@ -1,0 +1,21 @@
+{
+  "name": "robotjs-test",
+  "version": "1.0.0",
+  "description": "RobotJS test program",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "lint": "eslint --fix ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  },
+  "dependencies": {
+    "robotjs": "^0.6.0"
+  }
+}
