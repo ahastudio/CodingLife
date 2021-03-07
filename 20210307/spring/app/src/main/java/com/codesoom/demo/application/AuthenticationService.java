@@ -17,23 +17,23 @@ public class AuthenticationService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final JwtUtil jwtUtil;
-    private final PasswordEncoder passowrdEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     public AuthenticationService(UserRepository userRepository,
                                  RoleRepository roleRepository,
                                  JwtUtil jwtUtil,
-                                 PasswordEncoder passowrdEncoder) {
+                                 PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.jwtUtil = jwtUtil;
-        this.passowrdEncoder = passowrdEncoder;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public String login(String email, String password) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new LoginFailException(email));
 
-        if (!user.authenticate(password, passowrdEncoder)) {
+        if (!user.authenticate(password, passwordEncoder)) {
             throw new LoginFailException(email);
         }
 

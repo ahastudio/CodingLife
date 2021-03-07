@@ -1,0 +1,17 @@
+= 고양이 장난감 가게 API
+
+== GET /products
+
+상품 목록을 JSON 형태로 돌려준다.
+
+include::{snippets}/get-products/http-request.adoc[]
+
+include::{snippets}/get-products/http-response.adoc[]
+
+== GET /product/{id}
+
+상품에 대한 자세한 정보를 JSON 형태로 돌려준다.
+
+include::{snippets}/get-product/http-request.adoc[]
+
+include::{snippets}/get-product/http-response.adoc[]
