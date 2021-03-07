@@ -9,10 +9,10 @@ import com.codesoom.demo.dto.UserRegistrationData;
 import com.codesoom.demo.errors.UserEmailDuplicationException;
 import com.codesoom.demo.errors.UserNotFoundException;
 import com.github.dozermapper.core.Mapper;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.nio.file.AccessDeniedException;
 
 @Service
 @Transactional
@@ -44,7 +44,7 @@ public class UserService {
 
     public User updateUser(Long id, UserModificationData modificationData,
                            Long userId) throws AccessDeniedException {
-        if (id != userId) {
+        if (!id.equals(userId)) {
             throw new AccessDeniedException("Access denied");
         }
 

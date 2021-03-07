@@ -1,0 +1,11 @@
+= API 문서
+
+== `GET /products` - 제품 목록 얻기
+
+HTTP request:
+
+include::{snippets}/get-products/http-request.adoc[]
+
+HTTP response:
+
+include::{snippets}/get-products/http-response.adoc[]
