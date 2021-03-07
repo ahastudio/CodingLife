@@ -2,7 +2,6 @@ package com.codesoom.demo.infra;
 
 import com.codesoom.demo.domain.Product;
 import com.codesoom.demo.domain.ProductRepository;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
