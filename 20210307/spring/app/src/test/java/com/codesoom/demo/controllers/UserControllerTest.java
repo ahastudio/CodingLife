@@ -48,7 +48,7 @@ class UserControllerTest {
     private AuthenticationService authenticationService;
 
     @BeforeEach
-    void setUp() throws java.nio.file.AccessDeniedException {
+    void setUp() {
         given(userService.registerUser(any(UserRegistrationData.class)))
                 .will(invocation -> {
                     UserRegistrationData registrationData =

@@ -7,6 +7,7 @@ import com.codesoom.demo.domain.UserRepository;
 import com.codesoom.demo.errors.LoginFailException;
 import com.codesoom.demo.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,20 +17,23 @@ public class AuthenticationService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final JwtUtil jwtUtil;
+    private final PasswordEncoder passowrdEncoder;
 
     public AuthenticationService(UserRepository userRepository,
                                  RoleRepository roleRepository,
-                                 JwtUtil jwtUtil) {
+                                 JwtUtil jwtUtil,
+                                 PasswordEncoder passowrdEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.jwtUtil = jwtUtil;
+        this.passowrdEncoder = passowrdEncoder;
     }
 
     public String login(String email, String password) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new LoginFailException(email));
 
-        if (!user.authenticate(password)) {
+        if (!user.authenticate(password, passowrdEncoder)) {
             throw new LoginFailException(email);
         }
 

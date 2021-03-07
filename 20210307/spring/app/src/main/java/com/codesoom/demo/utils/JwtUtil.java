@@ -2,6 +2,9 @@ package com.codesoom.demo.utils;
 
 import com.codesoom.demo.errors.InvalidTokenException;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.InvalidClaimException;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
