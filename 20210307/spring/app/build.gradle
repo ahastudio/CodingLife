@@ -70,6 +70,7 @@ dependencies {
     // Spring Data JPA
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:2.7.2'
 
     // Spring Security
     implementation 'org.springframework.boot:spring-boot-starter-security'

@@ -19,7 +19,6 @@ public class App {
         return DozerBeanMapperBuilder.buildDefault();
     }
 
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
