@@ -1,8 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.5.2)
-      public_suffix (>= 2.0.2, < 4.0)
+    addressable (2.8.0)
+      public_suffix (>= 2.0.2, < 5.0)
     faraday (0.14.0)
       multipart-post (>= 1.2, < 3)
     google-protobuf (3.5.1.2)
@@ -29,7 +29,7 @@ GEM
     multi_json (1.13.1)
     multipart-post (2.0.0)
     os (0.9.6)
-    public_suffix (3.0.2)
+    public_suffix (4.0.6)
     signet (0.8.1)
       addressable (~> 2.3)
       faraday (~> 0.9)
