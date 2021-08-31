@@ -6,6 +6,6 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "lotion": "^0.1.17"
+    "lotion": "^0.4.27"
   }
 }

@@ -1,14 +1,14 @@
 const lotion = require('lotion');
 
-let app = lotion({
+const app = lotion({
   initialState: {
     balances: {
       'a': 1000,
       'b': 0,
     },
   },
-  tendermintPort: 46657,
   p2pPort: 46658,
+  rpcPort: 46657,
 });
 
 app.use((state, tx) => {
@@ -27,4 +27,4 @@ app.use((state, tx) => {
   state.balances[tx.to] += amount;
 });
 
-app.listen(3000);
+app.start();
