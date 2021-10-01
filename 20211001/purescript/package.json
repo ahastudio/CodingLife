@@ -1,0 +1,22 @@
+{
+  "name": "sample",
+  "version": "0.0.1",
+  "description": "PureScript Sample Program",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently --kill-others 'npm:serve' 'npm:watch-purs'",
+    "serve": "parcel serve index.html --port 8080",
+    "watch-purs": "spago build --watch",
+    "build": "spago build",
+    "test": "spago test"
+  },
+  "author": "Ashal aka JOKER",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^6.2.2",
+    "parcel-bundler": "^1.12.5",
+    "purescript": "^0.14.4",
+    "spago": "^0.20.3"
+  }
+}
