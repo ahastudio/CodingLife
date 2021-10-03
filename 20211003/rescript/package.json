@@ -6,7 +6,8 @@
     "serve": "parcel serve index.html --port 8080",
     "build": "rescript",
     "clean": "rescript clean -with-deps",
-    "watch": "rescript build -w"
+    "watch": "rescript build -w",
+    "fmt": "rescript format -all"
   },
   "keywords": [
     "rescript"

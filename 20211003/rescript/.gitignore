@@ -6,4 +6,4 @@
 .merlin
 
 /dist/
-.parcel-cache
+/.parcel-cache/
