@@ -1,1 +1,2 @@
-scrapy
+Scrapy==2.5.0
+user-agent==0.1.9

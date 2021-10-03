@@ -1,10 +1,7 @@
+from pprint import pprint
+
 import scrapy
 from scrapy.crawler import CrawlerProcess
-from scrapy.utils.project import get_project_settings
-
-DEFAULT_REQUEST_HEADERS = {
-    'Referer': 'https://www.melon.com/chart/search/index.htm',
-}
 
 
 def melon_chart_url(year, month, day):
@@ -17,18 +14,23 @@ def melon_chart_url(year, month, day):
 
 class MelonSpider(scrapy.Spider):
     name = 'melon'
+    start_urls = ['https://www.melon.com/chart/index.htm']
 
-    custom_settings = {
-        'USER_AGENT': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0)'
-                      ' like Gecko',
-    }
-
-    start_urls = [
-        melon_chart_url(2019, 11, 4),
-    ]
+    def parse(self, response):
+        urls = [
+            melon_chart_url(2019, 11, 4)
+        ]
+        cookies = {
+            'PCID': '12345678901234567890123'
+        }
+        for url in urls:
+            print('*' * 80)
+            print(f'\n* Follow: {url}\n')
+            yield response.follow(url, self.parse_chart, cookies=cookies)
 
     # 차트 페이지 분석
-    def parse(self, response):
+    def parse_chart(self, response):
+        print('......................')
         print('......................')
         print('......................')
         print(response.url)
@@ -37,19 +39,20 @@ class MelonSpider(scrapy.Spider):
         print('......................')
         print('......................')
         # 상품 상세 페이지로 이동
-        for el in response.css('tr .btn_icon.play ::text'):
-            song_id = el.get()
+        for el in response.css('tbody tr .input_check'):
+            song_id = el.attrib['value']
             yield {
-                song_id: song_id,
+                'song_id': song_id,
             }
             # yield response.follow(url, self.parse_product)
 
 
 if __name__ == '__main__':
-    process = CrawlerProcess({
-        **get_project_settings(),
-        'FEED_FORMAT': 'CSV',
-        'FEED_URI': 'output/chart.csv'
+    print('=' * 80)
+    process = CrawlerProcess(settings={
+        'FEEDS': {
+            'output/chart.csv': { 'format': 'csv' },
+        }
     })
     process.crawl(MelonSpider)
     process.start()
