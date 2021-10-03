@@ -1,0 +1,25 @@
+{
+  "name": "rescript-sample",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "npm run serve",
+    "serve": "parcel serve index.html --port 8080",
+    "build": "rescript",
+    "clean": "rescript clean -with-deps",
+    "watch": "rescript build -w"
+  },
+  "keywords": [
+    "rescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@rescript/react": "^0.10.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rescript": "^9.1.4"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.0-rc.0"
+  }
+}
