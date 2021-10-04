@@ -1,6 +1,6 @@
 # Flask API 서버
 
-기존 코드: <https://github.com/ahastudio/CodingLife/tree/master/20190618/flask>
+기존 코드: <https://github.com/ahastudio/CodingLife/tree/main/20190618/flask>
 
 ```bash
 source venv/bin/activate

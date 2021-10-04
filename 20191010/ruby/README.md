@@ -1,8 +1,8 @@
 # Opal Web Game Demo
 
-Slide: [루비로 웹 게임 만들기](http://j.mp/2IFwvRn)
+Slide: [루비로 웹 게임 만들기](https://j.mp/2IFwvRn)
 
-Demo: [데모 페이지](http://j.mp/2ouKNgI)
+Demo: [데모 페이지](https://j.mp/2ouKNgI)
 
 ## Develop
 

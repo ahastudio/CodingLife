@@ -1,1 +1,3 @@
-h-index & g-index 문제: http://j.mp/1YTswEg
+# h-index & g-index 문제
+
+문제: <https://j.mp/1YTswEg>

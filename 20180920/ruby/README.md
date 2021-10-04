@@ -1,8 +1,8 @@
 # Self Number
 
-Problem: http://j.mp/2m7AFG3
+Problem: <https://j.mp/2m7AFG3>
 
-```
-$ bundle
-$ bundle exec guard
+```bash
+bundle
+bundle exec guard
 ```

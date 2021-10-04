@@ -5,10 +5,11 @@
 LocationIQ: <https://locationiq.com/>
 
 ```bash
-virtualenv venv
+python3 -m venv venv
 
 source venv/bin/activate
 
+pip install --upgrade pip
 pip install -r requirements.txt
 
 export ANIMAL_API_KEY=<오픈 API 키>
@@ -24,7 +25,7 @@ jupyter notebook
 
 ## Preview
 
-- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20190919/python/01-requests.ipynb?refresh_cache=true>
-- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20190919/python/02-xml-parse.ipynb?flush_cache=true>
-- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20190919/python/03-locationiq.ipynb?flush_cache=true>
-- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20190919/python/04-integration.ipynb?flush_cache=true>
+- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/main/20190919/python/01-requests.ipynb>
+- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/main/20190919/python/02-xml-parse.ipynb>
+- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/main/20190919/python/03-locationiq.ipynb>
+- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/main/20190919/python/04-integration.ipynb>

@@ -1,64 +1,68 @@
+# Angaulr
+
 ## jspm 설치
 
-http://jspm.io/
+<http://jspm.io/>
 
-```
-$ npm install jspm -g
+```bash
+npm install jspm -g
 ```
 
 ## NPM 패키지 설정
 
-```
-$ npm init -y
-$ vi package.json
+```bash
+npm init -y
 
-적절히 수정
+vi package.json
+
+# 적절히 수정
 ```
 
 ## jspm 패키지 설정
 
-```
-$ npm install jspm --save-dev
-$ jspm init -y
+```bash
+npm install jspm --save-dev
+jspm init -y
 ```
 
 ## TypeScript 사용
 
-```
-$ jspm dl-loader typescript
+```bash
+jspm dl-loader typescript
 ```
 
 ## Angular 2 설치
 
-```
-$ jspm install angular2
-$ jspm install
+```bash
+jspm install angular2
+jspm install
 ```
 
 ## HTML 파일 작성
 
-```
-$ vi index.html
+```bash
+vi index.html
 ```
 
 `index.html` 파일 참고
 
 ## TS 파일 생성
 
-```
-$ mkdir app
-$ vi app/boot.ts
+```bash
+mkdir app
+
+vi app/boot.ts
 ```
 
 `boot.ts` 파일 참고
 
 ## live-server 설치 및 실행
 
-https://github.com/tapio/live-server
+<https://github.com/tapio/live-server>
 
-```
-$ npm install live-server -g
-$ live-server
+```bash
+npm install live-server -g
+live-server
 ```
 
-http://localhost:8080/
+<http://localhost:8080/>

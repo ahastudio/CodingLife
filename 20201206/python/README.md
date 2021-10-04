@@ -11,7 +11,7 @@ Local:
 In container:
 
 ```bash
-pip install -U pip && pip install -U virtualenv && virtualenv venv
+python -m venv venv
 
 source venv/bin/activate
 ```

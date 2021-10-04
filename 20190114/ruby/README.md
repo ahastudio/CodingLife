@@ -5,4 +5,4 @@
 
 YouTube: <https://youtu.be/FOsKPjrDP_g>
 
-Next Code: <https://github.com/ahastudio/CodingLife/tree/master/20190124/ruby>
+Next Code: <https://github.com/ahastudio/CodingLife/tree/main/20190124/ruby>

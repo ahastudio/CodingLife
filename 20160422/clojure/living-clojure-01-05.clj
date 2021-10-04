@@ -141,7 +141,7 @@
 
 ; http://www.4clojure.com/problem/195
 ; Parentheses... Again 문제
-; Ruby 코드를 그대로 옮김: https://github.com/ahastudio/CodingLife/tree/master/20160422/ruby
+; Ruby 코드를 그대로 옮김: https://github.com/ahastudio/CodingLife/tree/main/20160422/ruby
 
 (def __
   (fn f [n]

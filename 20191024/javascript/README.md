@@ -1,3 +1,3 @@
 # Buddy Strings
 
-문제: <http://j.mp/32JZfjZ>
+문제: <https://j.mp/32JZfjZ>

@@ -1,12 +1,14 @@
-https://github.com/jspm/jspm-cli/blob/master/docs/getting-started.md
+# Angular
 
-https://gist.github.com/robwormald/429e01c6d802767441ec
+<https://github.com/jspm/jspm-cli/blob/master/docs/getting-started.md>
 
-```
-$ npm install jspm -g
-$ npm init -y
-$ npm install jspm --save-dev
-$ jspm init
-$ jspm install angular2 zone.js reflect-metadata
-$ http-server
+<https://gist.github.com/robwormald/429e01c6d802767441ec>
+
+```bash
+npm install jspm -g
+npm init -y
+npm install jspm --save-dev
+jspm init
+jspm install angular2 zone.js reflect-metadata
+http-server
 ```

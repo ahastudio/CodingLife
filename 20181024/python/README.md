@@ -1,12 +1,16 @@
 # Spiral Matrix
 
-Problem: http://j.mp/2O3BcUM
+Problem: <https://j.mp/2O3BcUM>
 
 ## Run
 
 ```bash
-$ virtualenv venv
-$ source venv/bin/activate
-(venv) $ pip install -r requirements.txt
-(venv) $ ptw
+python3 -m venv venv
+
+source venv/bin/activate
+
+pip install --upgrade pip
+pip install -r requirements.txt
+
+ptw
 ```

@@ -3,10 +3,11 @@
 ## Run
 
 ```bash
-virtualenv venv
+python3 -m venv venv
 
 source venv/bin/activate
 
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
@@ -26,4 +27,4 @@ jupyter notebook
 
 ## Preview
 
-[https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20191016/python/show_catpang.ipynb](http://j.mp/33BCPRH)
+[https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/main/20191016/python/show_catpang.ipynb](https://j.mp/3opDXWo)

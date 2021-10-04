@@ -5,10 +5,11 @@
 카카오맵 REST API: <https://developers.kakao.com/docs/restapi/local>
 
 ```bash
-virtualenv venv
+python3 -m venv venv
 
 source venv/bin/activate
 
+pip install --upgrade pip
 pip install -r requirements.txt
 
 export KAKAO_REST_API_KEY=<카카오 앱 REST API 키>
@@ -22,6 +23,6 @@ jupyter notebook
 
 ## Preview
 
-- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20190908/python/animal.ipynb>
-- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20190908/python/child-house.ipynb>
-- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20190908/python/traditional-market.ipynb>
+- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/main/20190908/python/animal.ipynb>
+- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/main/20190908/python/child-house.ipynb>
+- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/main/20190908/python/traditional-market.ipynb>

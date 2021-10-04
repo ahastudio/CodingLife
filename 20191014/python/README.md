@@ -3,18 +3,19 @@
 ## 기존 자료
 
 동물보호관리시스템 유기동물 조회 서비스
-<https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20190919/python/04-integration.ipynb>
+<https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/main/20190919/python/04-integration.ipynb>
 
 SQLite 데이터베이스 사용
-<https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20191011/python/database.ipynb>
+<https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/main/20191011/python/database.ipynb>
 
 ## 실행
 
 ```bash
-virtualenv venv
+python3 -m venv venv
 
 source venv/bin/activate
 
+pip install --upgrade pip
 pip install -r requirements.txt
 
 jupyter notebook
@@ -25,6 +26,6 @@ jupyter notebook
 
 ## 미리 보기
 
-- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20191014/python/01-import-data.ipynb>
-- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20191014/python/01-import-data-with-identifier.ipynb>
-- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/master/20191014/python/02-use-data.ipynb>
+- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/main/20191014/python/01-import-data.ipynb>
+- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/main/20191014/python/01-import-data-with-identifier.ipynb>
+- <https://nbviewer.jupyter.org/github/ahastudio/CodingLife/blob/main/20191014/python/02-use-data.ipynb>
