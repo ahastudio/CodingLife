@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Greeting from './Greeting';
+import App from './App';
 
-describe('Greeting', () => {
+describe('App', () => {
   it('renders greeting message', () => {
-    const { container } = render(<Greeting name="world" />);
+    const { container } = render(<App />);
 
     expect(container).toHaveTextContent('Hello, world!');
   });
