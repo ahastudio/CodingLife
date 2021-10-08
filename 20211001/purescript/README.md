@@ -3,7 +3,7 @@
 ```bash
 npm init -y
 
-npm i -D purescript spago parcel-bundler concurrently
+npm i -D purescript spago parcel concurrently
 
 npx spago init
 
