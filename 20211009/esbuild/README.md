@@ -16,7 +16,7 @@ npx tsc --init
 npm install react react-dom
 npm install --save-dev @types/react @types/react-dom
 
-npm install --save-dev esbuild live-server concurrently
+npm install --save-dev esbuild es-dev-server concurrently
 
 npm run start
 ```
