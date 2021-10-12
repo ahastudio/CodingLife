@@ -98,3 +98,161 @@ export default function App() {
   );
 }
 ```
+
+## Recoil 사용
+
+Recoil 설치:
+
+```bash
+npm install recoil
+npm install --save-dev @types/recoil
+```
+
+`src/components/Main.tsx` 파일로 컨텐츠 이동:
+
+```tsx
+import styled from 'styled-components';
+
+const Greeting = styled.p`
+  font-size: 2em;
+  text-align: center;
+  i {
+    font-size: 5em;
+  }
+`;
+
+export default function Main() {
+  return (
+    <Greeting>
+      Hello, world
+      <i>!</i>
+    </Greeting>
+  );
+}
+```
+
+`src/App.tsx` 수정:
+
+```tsx
+import { RecoilRoot } from 'recoil';
+
+import Main from './components/Main';
+
+export default function App() {
+  return (
+    <RecoilRoot>
+      <Main />
+    </RecoilRoot>
+  );
+}
+```
+
+```src/state.ts` 파일 작성:
+
+```ts
+import { atom } from 'recoil';
+
+export interface Post {
+  id: number;
+  title: string;
+  body: string;
+}
+
+export const postsState = atom<Post[]>({
+  key: 'postsState',
+  default: [],
+});
+```
+
+`src/components/Posts.tsx` 파일 작성:
+
+```tsx
+import { useRecoilValue } from 'recoil';
+
+import { postsState } from '../state';
+
+export default function Posts() {
+  const posts = useRecoilValue(postsState);
+
+  if (!posts.length) {
+    return (
+      <p>(Empty...)</p>
+    );
+  }
+
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>
+          <strong>{post.title}</strong>
+          <p>{post.body}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+`src/components/PostForm.tsx` 파일 작성:
+
+```tsx
+import { useSetRecoilState } from 'recoil';
+
+import { postsState } from '../state';
+
+export default function Posts() {
+  const setPosts = useSetRecoilState(postsState);
+
+  const addPost = () => {
+    setPosts((posts) => [
+      {
+        id: new Date().getTime(),
+        title: 'What time is it?',
+        body: `It's ${new Date()}`,
+      },
+      ...posts,
+    ]);
+  };
+
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={addPost}
+      >
+        Add post!
+      </button>
+    </div>
+  );
+}
+```
+
+`src/components/Main.tsx` 파일 수정:
+
+```tsx
+import styled from 'styled-components';
+
+import PostForm from './PostForm';
+import Posts from './Posts';
+
+const Greeting = styled.p`
+  font-size: 2em;
+  text-align: center;
+  i {
+    font-size: 5em;
+  }
+`;
+
+export default function Main() {
+  return (
+    <div>
+      <Greeting>
+        Hello, world
+        <i>!</i>
+      </Greeting>
+      <PostForm />
+      <Posts />
+    </div>
+  );
+}
+```

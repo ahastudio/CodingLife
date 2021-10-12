@@ -1,18 +1,11 @@
-import styled from 'styled-components';
+import { RecoilRoot } from 'recoil';
 
-const Greeting = styled.p`
-  font-size: 2em;
-  text-align: center;
-  i {
-    font-size: 5em;
-  }
-`;
+import Main from './components/Main';
 
 export default function App() {
   return (
-    <Greeting>
-      Hello, world
-      <i>!</i>
-    </Greeting>
+    <RecoilRoot>
+      <Main />
+    </RecoilRoot>
   );
 }
