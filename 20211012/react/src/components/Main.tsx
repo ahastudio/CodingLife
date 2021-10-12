@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
+
 import styled from 'styled-components';
+import { usePosts } from '../hooks';
 
 import PostForm from './PostForm';
 import Posts from './Posts';
@@ -12,6 +15,12 @@ const Greeting = styled.p`
 `;
 
 export default function Main() {
+  const { loadPosts } = usePosts();
+
+  useEffect(() => {
+    loadPosts();
+  }, []);
+
   return (
     <div>
       <Greeting>

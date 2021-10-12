@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { postsState } from './state';
@@ -5,6 +7,12 @@ import { postsState } from './state';
 export function usePosts() {
   const posts = useRecoilValue(postsState);
   const setPosts = useSetRecoilState(postsState);
+
+  const loadPosts = async () => {
+    const url = 'https://jsonplaceholder.typicode.com/posts';
+    const { data } = await axios.get(url);
+    setPosts(data);
+  };
 
   const addPost = () => {
     setPosts((oldPosts) => [
@@ -19,6 +27,7 @@ export function usePosts() {
 
   return {
     posts,
+    loadPosts,
     addPost,
   };
 }

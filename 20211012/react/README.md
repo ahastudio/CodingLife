@@ -305,6 +305,7 @@ export default {};
 import { usePosts } from '../hooks';
 
 export default function Posts() {
+  // 복잡한 코드를 custom hook으로 위임.
   const { addPost } = usePosts();
 
   const handleClick = () => {
@@ -347,6 +348,104 @@ export default function Posts() {
         </li>
       ))}
     </ul>
+  );
+}
+```
+
+## Axios 사용
+
+목표:
+가짜 API 서비스([{JSON} Placeholder](https://j.mp/3BFQuZK))를
+이용해 게시물 목록을 얻어온다.
+
+Axios 설치:
+
+```bash
+npm install axios
+```
+
+> `axios` provides its own type definitions,
+> so you don't need `@types/axios` installed!
+
+`src/hooks.tsx` 파일 수정:
+
+```tsx
+import axios from 'axios';
+
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+
+import { postsState } from './state';
+
+export function usePosts() {
+  const posts = useRecoilValue(postsState);
+  const setPosts = useSetRecoilState(postsState);
+
+  // loadPosts 함수 추가
+  const loadPosts = async () => {
+    const url = 'https://jsonplaceholder.typicode.com/posts';
+    const { data } = await axios.get(url);
+    setPosts(data);
+  };
+  // ----
+
+  const addPost = () => {
+    setPosts((oldPosts) => [
+      {
+        id: new Date().getTime(),
+        title: 'What time is it?',
+        body: `It's ${new Date()}`,
+      },
+      ...oldPosts,
+    ]);
+  };
+
+  return {
+    posts,
+    loadPosts,
+    addPost,
+  };
+}
+
+// TODO: ESLint의 눈을 속이기 위한 임시 코드. 나중에 삭제할 것!
+export default {};
+```
+
+`src/components/Main.tsx` 파일 수정:
+
+```tsx
+import { useEffect } from 'react';
+
+import styled from 'styled-components';
+import { usePosts } from '../hooks';
+
+import PostForm from './PostForm';
+import Posts from './Posts';
+
+const Greeting = styled.p`
+  font-size: 2em;
+  text-align: center;
+  i {
+    font-size: 5em;
+  }
+`;
+
+export default function Main() {
+  const { loadPosts } = usePosts();
+
+  // useEffect로 맨 처음에 Posts 로딩하게 함.
+  useEffect(() => {
+    loadPosts();
+  }, []);
+
+  return (
+    <div>
+      <Greeting>
+        Hello, world
+        <i>!</i>
+      </Greeting>
+      <PostForm />
+      <Posts />
+    </div>
   );
 }
 ```
