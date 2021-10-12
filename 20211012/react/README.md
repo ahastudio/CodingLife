@@ -147,7 +147,7 @@ export default function App() {
 }
 ```
 
-```src/state.ts` 파일 작성:
+`src/state.ts` 파일 작성:
 
 ```ts
 import { atom } from 'recoil';
