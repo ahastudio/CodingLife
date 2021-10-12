@@ -21,6 +21,7 @@
     "@types/jest": "^27.0.2",
     "@types/react": "^17.0.27",
     "@types/react-dom": "^17.0.9",
+    "@types/styled-components": "^5.1.15",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "concurrently": "^6.3.0",
@@ -38,6 +39,7 @@
   },
   "dependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.1"
   }
 }

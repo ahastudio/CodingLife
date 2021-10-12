@@ -9,11 +9,17 @@
 - <https://github.com/lukejacksonn/servor>
 - <https://github.com/open-cli-tools/concurrently>
 
-```bash
-rm -rf .parcel-cache/
+Parcel 제거:
 
+```bash
 npm uninstall parcel
 
+rm -rf .parcel-cache/
+```
+
+esbuild, Servør, Concurrently 설치:
+
+```bash
 npm install --save-dev esbuild servor concurrently
 ```
 
@@ -49,5 +55,46 @@ export { React };
     "watch-js": "npm run build-js -- --watch",
     // ...(후략)...
   }
+}
+```
+
+## styled-components 사용
+
+[styled-components](https://github.com/styled-components/styled-components)
+설치.
+
+```bash
+npm install styled-components
+npm install --save-dev @types/styled-components
+```
+
+Visual Studio Code에
+“[vscode-styled-components](https://j.mp/3AzM3hF)”
+Extension 설치.
+
+설치 후 화면:
+
+<img src="https://github.com/styled-components/vscode-styled-components/raw/HEAD/demo.gif" alt="demo" width="617" />
+
+`src/App.tsx` 수정:
+
+```tsx
+import styled from 'styled-components';
+
+const Greeting = styled.p`
+  font-size: 2em;
+  text-align: center;
+  i {
+    font-size: 5em;
+  }
+`;
+
+export default function App() {
+  return (
+    <Greeting>
+      Hello, world
+      <i>!</i>
+    </Greeting>
+  );
 }
 ```
