@@ -1,26 +1,17 @@
-import { useSetRecoilState } from 'recoil';
-
-import { postsState } from '../state';
+import { usePosts } from '../hooks';
 
 export default function Posts() {
-  const setPosts = useSetRecoilState(postsState);
+  const { addPost } = usePosts();
 
-  const addPost = () => {
-    setPosts((posts) => [
-      {
-        id: new Date().getTime(),
-        title: 'What time is it?',
-        body: `It's ${new Date()}`,
-      },
-      ...posts,
-    ]);
+  const handleClick = () => {
+    addPost();
   };
 
   return (
     <div>
       <button
         type="button"
-        onClick={addPost}
+        onClick={handleClick}
       >
         Add post!
       </button>

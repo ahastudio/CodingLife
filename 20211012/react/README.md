@@ -256,3 +256,97 @@ export default function Main() {
   );
 }
 ```
+
+## Custom Hook 사용
+
+목표:
+
+1. 개별 컴포넌트에서 Recoil을 직접 사용하지 않게 한다(감춘다).
+1. 게시물을 추가하는 작업을 `addPost` 형태로 추상화한다.
+
+[자신만의 Hook 만들기](https://ko.reactjs.org/docs/hooks-custom.html)
+문서 참고.
+
+`src/hooks.tsx` 파일 작성:
+
+```tsx
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+
+import { postsState } from './state';
+
+export function usePosts() {
+  const posts = useRecoilValue(postsState);
+  const setPosts = useSetRecoilState(postsState);
+
+  const addPost = () => {
+    setPosts((oldPosts) => [
+      {
+        id: new Date().getTime(),
+        title: 'What time is it?',
+        body: `It's ${new Date()}`,
+      },
+      ...oldPosts,
+    ]);
+  };
+
+  return {
+    posts,
+    addPost,
+  };
+}
+
+// TODO: ESLint의 눈을 속이기 위한 임시 코드. 나중에 삭제할 것!
+export default {};
+```
+
+`src/PostForm.tsx` 파일 수정:
+
+```tsx
+import { usePosts } from '../hooks';
+
+export default function Posts() {
+  const { addPost } = usePosts();
+
+  const handleClick = () => {
+    addPost();
+  };
+
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={handleClick}
+      >
+        Add post!
+      </button>
+    </div>
+  );
+}
+```
+
+`src/Posts.tsx` 파일 수정:
+
+```tsx
+import { usePosts } from '../hooks';
+
+export default function Posts() {
+  const { posts } = usePosts();
+
+  if (!posts.length) {
+    return (
+      <p>(Empty...)</p>
+    );
+  }
+
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>
+          <strong>{post.title}</strong>
+          <p>{post.body}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+```

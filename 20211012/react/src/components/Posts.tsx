@@ -1,9 +1,7 @@
-import { useRecoilValue } from 'recoil';
-
-import { postsState } from '../state';
+import { usePosts } from '../hooks';
 
 export default function Posts() {
-  const posts = useRecoilValue(postsState);
+  const { posts } = usePosts();
 
   if (!posts.length) {
     return (
