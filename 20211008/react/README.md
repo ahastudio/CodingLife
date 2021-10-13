@@ -117,6 +117,12 @@ npx eslint --init
 ```javascript
 module.exports = {
   // ...(전략)...
+  extends: [
+    'airbnb',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+  ],
+  // ...(중략)...
   settings: {
     'import/resolver': {
       node: {
@@ -162,11 +168,6 @@ module.exports = {
     'react/jsx-filename-extension': [2, {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
     }],
-    'react/prop-types': 'off',
-    'react/jsx-uses-react': 'off',
-    'react/react-in-jsx-scope': 'off',
-    'react/require-default-props': 'off',
-    'jsx-a11y/label-has-associated-control': ['error', { assert: 'either' }],
   },
 };
 ```
