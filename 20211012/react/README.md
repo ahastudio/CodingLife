@@ -1,6 +1,6 @@
 # React 프로젝트 예제
 
-기존 코드:
+기존 코드에서 이어서 실습하세요:
 <https://github.com/ahastudio/CodingLife/tree/main/20211008/react>
 
 ## Parcel 대신 esbuild 사용
@@ -131,6 +131,51 @@ export default function Main() {
 }
 ```
 
+`src/components/Main.test.sx` 파일로 테스트 코드 이동
+및 `RecoilRoot`로 Recoil에 대응:
+
+```tsx
+import { render } from '@testing-library/react';
+
+import { RecoilRoot } from 'recoil';
+
+import Main from './Main';
+
+describe('Main', () => {
+  it('renders greeting message', () => {
+    const { container } = render((
+      <RecoilRoot>
+        <Main />
+      </RecoilRoot>
+    ));
+
+    expect(container).toHaveTextContent('Hello, world!');
+  });
+});
+```
+
+`src/components/Main.test.tsx` 파일 작성:
+
+```tsx
+import { render } from '@testing-library/react';
+
+import { RecoilRoot } from 'recoil';
+
+import Main from './Main';
+
+describe('Main', () => {
+  it('renders greeting message', () => {
+    const { container } = render((
+      <RecoilRoot>
+        <Main />
+      </RecoilRoot>
+    ));
+
+    expect(container).toHaveTextContent('Hello, world!');
+  });
+});
+```
+
 `src/App.tsx` 수정:
 
 ```tsx
@@ -145,6 +190,20 @@ export default function App() {
     </RecoilRoot>
   );
 }
+```
+
+`src/App.test.tsx` 파일 수정:
+
+```tsx
+import { render } from '@testing-library/react';
+
+import App from './App';
+
+describe('App', () => {
+  it('renders without crashing', () => {
+    render(<App />);
+  });
+});
 ```
 
 `src/state.ts` 파일 작성:
@@ -350,6 +409,122 @@ export default function Posts() {
     </ul>
   );
 }
+```
+
+## Custom Hook 테스트
+
+[React Hooks Testing Library](https://react-hooks-testing-library.com/)
+설치.
+
+```bash
+npm install --save-dev @testing-library/react-hooks
+```
+
+먼저, Custom Hook을 mocking해서 컴포넌트 테스트한다.
+
+`src/PostForm.test.tsx` 파일 작성:
+
+```tsx
+import { render, fireEvent } from '@testing-library/react';
+
+import PostForm from './PostForm';
+
+import { usePosts } from '../hooks';
+
+jest.mock('../hooks');
+
+describe('PostForm', () => {
+  const addPost = jest.fn();
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+
+    const hook = usePosts as jest.MockedFunction<typeof usePosts>;
+    hook.mockReturnValue({
+      posts: [],
+      addPost,
+    });
+  });
+
+  it('listens to the “add” button click event', () => {
+    const { getByText } = render(<PostForm />);
+
+    fireEvent.click(getByText('Add post!'));
+
+    expect(addPost).toBeCalled();
+  });
+});
+```
+
+`src/Posts.test.tsx` 파일 작성:
+
+```tsx
+import { render } from '@testing-library/react';
+
+import Posts from './Posts';
+
+import { usePosts } from '../hooks';
+
+jest.mock('../hooks');
+
+describe('Posts', () => {
+  const posts = [
+    { id: 1, title: 'Title', body: 'Body' },
+  ];
+
+  beforeEach(() => {
+    const hook = usePosts as jest.MockedFunction<typeof usePosts>;
+    hook.mockReturnValue({
+      posts,
+      addPost: jest.fn(),
+    });
+  });
+
+  it('renders a list of post', () => {
+    const { container } = render(<Posts />);
+
+    expect(container).toHaveTextContent('Title');
+    expect(container).toHaveTextContent('Body');
+  });
+});
+```
+
+이제 Custom Hook을 테스트합니다.
+
+`src/hooks.test.tsx` 파일 작성:
+
+```tsx
+import { renderHook, act } from '@testing-library/react-hooks';
+
+import { RecoilRoot } from 'recoil';
+
+import { usePosts } from './hooks';
+
+describe('usePosts', () => {
+  const wrapper = ({ children }: {children: any}) => (
+    <RecoilRoot>{children}</RecoilRoot>
+  );
+
+  const render = () => renderHook(() => usePosts(), { wrapper });
+
+  it('uses a list of post', () => {
+    const { result } = render();
+
+    expect(result.current.posts).toHaveLength(0);
+  });
+
+  describe('addPost', () => {
+    it('appends a new post', () => {
+      const { result } = render();
+
+      act(() => {
+        result.current.addPost();
+      });
+
+      expect(result.current.posts).toHaveLength(1);
+    });
+  });
+});
 ```
 
 ## Axios 사용
