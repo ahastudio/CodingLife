@@ -56,6 +56,22 @@ npx tsc --init
 }
 ```
 
+`pacakge.json` 파일에 `check` 명령 추가:
+
+```json
+{
+  "scripts": {
+    "check": "tsc --noEmit"
+  }
+}
+```
+
+TypeScript 컴파일 검사:
+
+```bash
+npm run check
+```
+
 ### ESLint 세팅
 
 ```bash
@@ -177,6 +193,7 @@ module.exports = {
 ```json
 {
   "scripts": {
+    // ...(전략)...
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src"
   }
 }
@@ -259,7 +276,7 @@ module.exports = {
 };
 ```
 
-`src/App.tsx` 파일 작성:
+`src/App.test.tsx` 파일 작성:
 
 ```tsx
 import { render } from '@testing-library/react';
