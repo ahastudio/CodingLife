@@ -329,7 +329,7 @@ export default function Main() {
 `src/hooks.tsx` 파일 작성:
 
 ```tsx
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import { postsState } from './state';
 
@@ -338,13 +338,13 @@ export function usePosts() {
   const setPosts = useSetRecoilState(postsState);
 
   const addPost = () => {
-    setPosts((oldPosts) => [
+    setPosts([
       {
         id: new Date().getTime(),
         title: 'What time is it?',
         body: `It's ${new Date()}`,
       },
-      ...oldPosts,
+      ...posts,
     ]);
   };
 
@@ -547,7 +547,7 @@ npm install axios
 ```tsx
 import axios from 'axios';
 
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import { postsState } from './state';
 
@@ -564,13 +564,13 @@ export function usePosts() {
   // ----
 
   const addPost = () => {
-    setPosts((oldPosts) => [
+    setPosts([
       {
         id: new Date().getTime(),
         title: 'What time is it?',
         body: `It's ${new Date()}`,
       },
-      ...oldPosts,
+      ...posts,
     ]);
   };
 
