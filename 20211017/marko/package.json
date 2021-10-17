@@ -1,0 +1,28 @@
+{
+  "name": "todo-app-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node ./build/index.js",
+    "dev": "marko-serve ./src/pages --no-browser",
+    "build": "marko-build ./src/pages --static",
+    "lint": "eslint --fix .",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@marko/build": "^4.2.3",
+    "@marko/serve": "^4.2.3",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.25.2",
+    "jest": "^27.2.5"
+  },
+  "dependencies": {
+    "axios": "^0.23.0",
+    "marko": "^5.16.0"
+  }
+}

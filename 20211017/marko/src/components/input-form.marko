@@ -1,0 +1,22 @@
+<form.input-form on-submit("submit")>
+  <label for:scoped="body">
+    Task:
+  </label>
+  <input key="body" type="text" id:scoped="body" />
+  <button type="submit">
+    추가
+  </button>
+</form>
+
+style {
+  .input-form label,
+  .input-form input,
+  .input-form button {
+    font-size: 1.6em;
+  }
+
+  .input-form input {
+    margin: 0 .1em;
+    max-width: 50%;
+  }
+}

@@ -1,0 +1,26 @@
+<li.task-item>
+  $ const { body, status } = input.task;
+  ${input.task.body}
+  (${input.task.status})
+  <if(status === 'todo')>
+    <button type="button" on-click("completeTask")>
+      완료
+    </button>
+  </if>
+  <if(status === 'done')>
+    <button type="button" on-click("cancelTask")>
+      취소
+    </button>
+  </if>
+  <button type="button" on-click("deleteTask")>
+    삭제
+  </button>
+</li>
+
+style {
+  .task-item button {
+    font-size: .7em;
+    margin-left: .5em;
+    vertical-align: top;
+  }
+}

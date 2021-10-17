@@ -1,0 +1,21 @@
+<div.app>
+  <h1>To-do</h1>
+  <input-form on-add-task("addTask") />
+  <task-list
+    tasks=state.tasks
+    on-complete-task("completeTask")
+    on-cancel-task("cancelTask")
+    on-delete-task("deleteTask")
+  />
+</div>
+
+style {
+  .app h1 {
+    font-size: 5em;
+    margin: 0 0 .1em;
+  }
+
+  .app p {
+    margin: 0;
+  }
+}

@@ -1,0 +1,21 @@
+<div.task-list>
+  <if(input.tasks.length)>
+    <ol>
+      <for|task| of=input.tasks>
+        <task-item
+          task=task
+          on-task-event("handleTaskEvent")
+        />
+      </for>
+    </ol>
+  </if>
+  <else>
+    <p.empty>No tasks...</p>
+  </else>
+</div>
+
+style {
+  .task-list .empty {
+    margin: 1em 0;
+  }
+}

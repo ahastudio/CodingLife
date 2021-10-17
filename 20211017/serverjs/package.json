@@ -1,0 +1,25 @@
+{
+  "name": "todo-app-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon index.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/server": "^1.0.4",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.25.2",
+    "nodemon": "^2.0.13"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "server": "^1.0.36"
+  }
+}
