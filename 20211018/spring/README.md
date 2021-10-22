@@ -1,4 +1,4 @@
-# Kotlin + Spring demo
+# Kotlin + Spring + Kotest 샘플 코드
 
 ## 실행
 
