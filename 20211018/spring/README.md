@@ -27,6 +27,17 @@ Run web server:
 Spring Initializr 사용:
 <https://start.spring.io/>
 
+- Project: Gradle Project
+- Language: Kotlin
+- Dependencies:
+  - Spring Boot DevTools
+  - Spring Web
+  - Validation
+  - JOOQ Access Layer
+  - H2 Database
+  - PostgreSQL Driver
+  - Spring REST Docs
+
 ## Kotest 설정
 
 - [Quick Start | Kotest](https://kotest.io/docs/quickstart)
