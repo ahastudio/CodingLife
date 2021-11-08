@@ -1,6 +1,7 @@
-# React + Fragstore
+# React + Teaful
 
-- <https://github.com/aralroca/fragstore>
+- <https://github.com/teafuljs/teaful>
+- <https://github.com/ahastudio/til/blob/main/react/teaful.md>
 - <https://github.com/ahastudio/CodingLife/tree/main/20211008/react>
 
 ## Set up
@@ -32,7 +33,7 @@ npm install --save-dev jest ts-jest @types/jest \
 ```
 
 ```bash
-npm install fragstore
+npm install teaful
 ```
 
 ```bash

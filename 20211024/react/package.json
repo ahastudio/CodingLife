@@ -1,10 +1,10 @@
 {
   "name": "react",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "React with Teaful",
+  "source": "index.html",
   "scripts": {
-    "start": "parcel index.html --port 8080",
+    "start": "parcel --port 8080",
     "check": "tsc --noEmit",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
     "test": "jest"
@@ -13,13 +13,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.0.2",
-    "@types/react": "^17.0.32",
-    "@types/react-dom": "^17.0.10",
-    "@typescript-eslint/eslint-plugin": "^5.1.0",
-    "@typescript-eslint/parser": "^5.1.0",
+    "@types/react": "^17.0.34",
+    "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.3.0",
+    "@typescript-eslint/parser": "^5.3.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.25.2",
@@ -32,9 +32,9 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
-    "fragstore": "^0.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "teaful": "^0.7.1",
     "ulid": "^2.3.0"
   }
 }
