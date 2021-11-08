@@ -2,12 +2,15 @@ import { render, fireEvent } from '@testing-library/react';
 
 import CounterButton from './CounterButton';
 
+import Counter from '../models/Counter';
+
 const count = 37;
-const setCount = jest.fn();
+const counter = new Counter(count);
+const setCounter = jest.fn();
 
 jest.mock('../store', () => ({
   useStore: {
-    count: jest.fn(() => [count, setCount]),
+    counter: jest.fn(() => [counter, setCounter]),
   },
 }));
 
@@ -28,7 +31,7 @@ describe('CounterButton', () => {
 
       fireEvent.click(getByText('Click me!'));
 
-      expect(setCount).toBeCalledWith(count + 1);
+      expect(setCounter).toBeCalledWith(new Counter(count + 1));
     });
   });
 });

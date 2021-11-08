@@ -2,11 +2,14 @@ import { render } from '@testing-library/react';
 
 import CounterPanel from './CounterPanel';
 
+import Counter from '../models/Counter';
+
 const count = 37;
+const counter = new Counter(count);
 
 jest.mock('../store', () => ({
   useStore: {
-    count: jest.fn(() => [count]),
+    counter: jest.fn(() => [counter]),
   },
 }));
 

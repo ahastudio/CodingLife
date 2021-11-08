@@ -1,13 +1,13 @@
 import { useStore } from '../store';
 
 export default function CounterPanel() {
-  const [count] = useStore.count();
+  const [counter] = useStore.counter();
 
   return (
     <p>
       Count:
       {' '}
-      {count}
+      {counter.count()}
     </p>
   );
 }

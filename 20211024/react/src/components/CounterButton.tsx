@@ -1,10 +1,10 @@
 import { useStore } from '../store';
 
 export default function CounterButton() {
-  const [count, setCount] = useStore.count();
+  const [counter, setCounter] = useStore.counter();
 
   const handleClick = () => {
-    setCount(count + 1);
+    setCounter(counter.increase());
   };
 
   return (
