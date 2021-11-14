@@ -66,6 +66,9 @@ module.exports = {
     'react/jsx-filename-extension': [2, {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
     }],
+    'react/function-component-definition': [2, {
+      namedComponents: 'function-declaration',
+    }],
     'jsx-a11y/label-has-associated-control': ['error', { assert: 'either' }],
   },
 };
