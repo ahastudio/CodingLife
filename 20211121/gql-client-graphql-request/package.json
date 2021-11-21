@@ -1,0 +1,31 @@
+{
+  "name": "gql-client-graphql-request",
+  "version": "1.0.0",
+  "description": "GraphQL Client using graphql-request",
+  "source": "index.html",
+  "scripts": {
+    "start": "parcel --port 8080",
+    "check": "tsc --noEmit",
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "graphql": "^15.7.2",
+    "graphql-request": "^3.6.1",
+    "preact": "^10.5.15"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb": "^19.0.0",
+    "eslint-config-preact": "^1.2.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "parcel": "^2.0.1",
+    "typescript": "^4.5.2"
+  }
+}
