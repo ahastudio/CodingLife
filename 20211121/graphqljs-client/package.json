@@ -1,0 +1,26 @@
+{
+  "name": "graphqljs-client",
+  "version": "1.0.0",
+  "description": "",
+  "source": "index.html",
+  "scripts": {
+    "start": "parcel --port 8080",
+    "lint": "eslint --fix --ext .js,.jsx .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb": "^19.0.0",
+    "eslint-config-preact": "^1.2.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "parcel": "^2.0.1"
+  },
+  "dependencies": {
+    "graphql.js": "^0.6.7",
+    "preact": "^10.5.15"
+  }
+}

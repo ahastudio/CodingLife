@@ -1,0 +1,15 @@
+# graphql.js client
+
+- <https://github.com/ahastudio/CodingLife/tree/main/20211121/graphql-client>
+- <https://github.com/preactjs/preact>
+- <https://github.com/preactjs/eslint-config-preact>
+- <https://github.com/f/graphql.js>
+
+```bash
+npm init -y
+
+npm i preact graphql.js
+npm i -D eslint@7.9.0 eslint-config-preact parcel
+
+npx eslint --init
+```

@@ -21,9 +21,11 @@ class App < Sinatra::Base
   end
 
   post '/graphql' do
+    varibales = params[:variables]
+    varibales = JSON.parse(varibales) if varibales.is_a?(String)
     json Schema.execute(
       params[:query],
-      variables: params[:variables],
+      variables: varibales,
       context: {}
     )
   end
