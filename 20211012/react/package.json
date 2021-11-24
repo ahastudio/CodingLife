@@ -10,7 +10,7 @@
     "build-js": "esbuild ./src --bundle --inject:./react-shim.js --outfile=dist/bundle.js",
     "watch-js": "npm run build-js -- --watch",
     "check": "tsc --noEmit",
-    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src tests",
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
     "test": "jest",
     "codeceptjs": "codeceptjs run --steps",
     "codeceptjs:headless": "HEADLESS=true codeceptjs run --steps",

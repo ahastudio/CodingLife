@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /// <reference types='codeceptjs' />
 
 declare namespace CodeceptJS {
