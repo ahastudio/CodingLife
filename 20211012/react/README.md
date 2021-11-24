@@ -131,7 +131,7 @@ export default function Main() {
 }
 ```
 
-`src/components/Main.test.sx` 파일로 테스트 코드 이동
+`src/components/Main.test.tsx` 파일로 테스트 코드 이동
 및 `RecoilRoot`로 Recoil에 대응:
 
 ```tsx
@@ -429,21 +429,19 @@ import { render, fireEvent } from '@testing-library/react';
 
 import PostForm from './PostForm';
 
-import { usePosts } from '../hooks';
+const addPost = jest.fn();
 
-jest.mock('../hooks');
+jest.mock('../hooks', () => ({
+  usePosts: () => ({
+    posts: [],
+    loadPosts: jest.fn(),
+    addPost,
+  }),
+}));
 
 describe('PostForm', () => {
-  const addPost = jest.fn();
-
   beforeEach(() => {
     jest.clearAllMocks();
-
-    const hook = usePosts as jest.MockedFunction<typeof usePosts>;
-    hook.mockReturnValue({
-      posts: [],
-      addPost,
-    });
   });
 
   it('listens to the “add” button click event', () => {
@@ -463,23 +461,17 @@ import { render } from '@testing-library/react';
 
 import Posts from './Posts';
 
-import { usePosts } from '../hooks';
-
-jest.mock('../hooks');
+jest.mock('../hooks', () => ({
+  usePosts: () => ({
+    posts: [
+      { id: 1, title: 'Title', body: 'Body' },
+    ],
+    loadPosts: jest.fn(),
+    addPost: jest.fn(),
+  }),
+}));
 
 describe('Posts', () => {
-  const posts = [
-    { id: 1, title: 'Title', body: 'Body' },
-  ];
-
-  beforeEach(() => {
-    const hook = usePosts as jest.MockedFunction<typeof usePosts>;
-    hook.mockReturnValue({
-      posts,
-      addPost: jest.fn(),
-    });
-  });
-
   it('renders a list of post', () => {
     const { container } = render(<Posts />);
 
@@ -500,8 +492,14 @@ import { RecoilRoot } from 'recoil';
 
 import { usePosts } from './hooks';
 
+const posts = [
+  { id: 1, title: 'title', body: 'body' },
+  { id: 2, title: 'title', body: 'body' },
+  { id: 3, title: 'title', body: 'body' },
+];
+
 describe('usePosts', () => {
-  const wrapper = ({ children }: {children: any}) => (
+  const wrapper = ({ children }: { children: any }) => (
     <RecoilRoot>{children}</RecoilRoot>
   );
 
@@ -623,6 +621,62 @@ export default function Main() {
     </div>
   );
 }
+```
+
+`src/hooks.test.tsx` 파일 수정:
+
+```tsx
+import { renderHook, act } from '@testing-library/react-hooks';
+
+import { RecoilRoot } from 'recoil';
+
+import { usePosts } from './hooks';
+
+const posts = [
+  { id: 1, title: 'title', body: 'body' },
+  { id: 2, title: 'title', body: 'body' },
+  { id: 3, title: 'title', body: 'body' },
+];
+
+describe('usePosts', () => {
+  const wrapper = ({ children }: { children: any }) => (
+    <RecoilRoot>{children}</RecoilRoot>
+  );
+
+  const render = () => renderHook(() => usePosts(), { wrapper });
+
+  it('uses a list of post', () => {
+    const { result } = render();
+
+    expect(result.current.posts).toHaveLength(0);
+  });
+
+  describe('addPost', () => {
+    it('appends a new post', () => {
+      const { result } = render();
+
+      act(() => {
+        result.current.addPost();
+      });
+
+      expect(result.current.posts).toHaveLength(1);
+    });
+  });
+
+  // loadPosts 함수 테스트 추가
+  describe('loadPosts', () => {
+    it('fetches a list of post', async () => {
+      const { result } = render();
+
+      await act(async () => {
+        await result.current.loadPosts();
+      });
+
+      expect(result.current.posts).toBe(posts);
+    });
+  });
+  // ----
+});
 ```
 
 ## CodeceptJS 사용

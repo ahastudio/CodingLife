@@ -1,32 +1,27 @@
 import { renderHook, act } from '@testing-library/react-hooks';
 
-import axios from 'axios';
-
 import { RecoilRoot } from 'recoil';
 
 import { usePosts } from './hooks';
 
-jest.mock('axios');
+const posts = [
+  { id: 1, title: 'title', body: 'body' },
+  { id: 2, title: 'title', body: 'body' },
+  { id: 3, title: 'title', body: 'body' },
+];
+
+jest.mock('axios', () => ({
+  get: () => ({
+    data: posts,
+  }),
+}));
 
 describe('usePosts', () => {
-  const posts = [
-    { id: 1, title: 'title', body: 'body' },
-    { id: 2, title: 'title', body: 'body' },
-    { id: 3, title: 'title', body: 'body' },
-  ];
-
-  const wrapper = ({ children }: {children: any}) => (
+  const wrapper = ({ children }: { children: any }) => (
     <RecoilRoot>{children}</RecoilRoot>
   );
 
   const render = () => renderHook(() => usePosts(), { wrapper });
-
-  beforeEach(() => {
-    const mock = axios.get as jest.MockedFunction<typeof axios.get>;
-    mock.mockResolvedValue({
-      data: posts,
-    });
-  });
 
   it('uses a list of post', () => {
     const { result } = render();

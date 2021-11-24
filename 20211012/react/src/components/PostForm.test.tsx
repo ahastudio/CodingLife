@@ -2,22 +2,19 @@ import { render, fireEvent } from '@testing-library/react';
 
 import PostForm from './PostForm';
 
-import { usePosts } from '../hooks';
+const addPost = jest.fn();
 
-jest.mock('../hooks');
+jest.mock('../hooks', () => ({
+  usePosts: () => ({
+    posts: [],
+    loadPosts: jest.fn(),
+    addPost,
+  }),
+}));
 
 describe('PostForm', () => {
-  const addPost = jest.fn();
-
   beforeEach(() => {
     jest.clearAllMocks();
-
-    const hook = usePosts as jest.MockedFunction<typeof usePosts>;
-    hook.mockReturnValue({
-      posts: [],
-      loadPosts: jest.fn(),
-      addPost,
-    });
   });
 
   it('listens to the “add” button click event', () => {
