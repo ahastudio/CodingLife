@@ -7,18 +7,36 @@ class Baseball {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int[] answers = new int[]{ 0, 0, 0 };
+        // Shuffle
+
+        int[] numbers = new int[]{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+        for (int i = 0; i < 100; i++) {
+            int a = (int)(Math.random() * 10);
+            int b = (int)(Math.random() * 10);
+            int temp = numbers[a];
+            numbers[a] = numbers[b];
+            numbers[b] = temp;
+        }
+
+        // Generate answers
+
+        int[] answers = new int[3];
 
         for (int i = 0; i < 3; i++) {
-            answers[i] = (int)(Math.random() * 10);
+            answers[i] = numbers[i];
         }
 
         System.out.println(
                 "[%d %d %d]".formatted(answers[0], answers[1], answers[2]));
 
+        // Prepare inputs
+
         int[] inputs = new int[3];
 
         while (true) {
+            // Input numbers
+
             System.out.println();
 
             System.out.println("Guess numbers!");
@@ -26,6 +44,8 @@ class Baseball {
             for (int i = 0; i < 3; i++) {
                 inputs[i] = scanner.nextInt();
             }
+
+            // Count strike and ball
 
             int strike = 0;
             int ball = 0;
@@ -42,6 +62,8 @@ class Baseball {
               }
             }
 
+            // Show result
+
             System.out.println();
 
             if (strike > 0) {
@@ -53,6 +75,8 @@ class Baseball {
             }
 
             System.out.println();
+
+            // Finish!
 
             if (strike == 3) {
                 System.out.println();
