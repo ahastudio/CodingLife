@@ -2,10 +2,6 @@ import java.util.Scanner;
 
 class Hello {
     public static void main(String[] args) {
-        new Hello().run();
-    }
-
-    public void run() {
         System.out.println("Hello World!");
 
         System.out.println();
@@ -45,8 +41,6 @@ class Hello {
 
         System.out.println();
 
-        System.out.println(a + " + " + b + " = " + add(a, b));
-
         System.out.println("-".repeat(80));
 
         // Input
@@ -59,10 +53,5 @@ class Hello {
         scanner.close();
 
         System.out.println("Hello, " + name + "!");
-    }
-
-    // method & parameters(variables)
-    private int add(int a, int b) {
-        return a + b;
     }
 }
