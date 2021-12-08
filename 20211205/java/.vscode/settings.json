@@ -3,5 +3,6 @@
     "editor.rulers": [
         80
     ],
-    "trailing-spaces.trimOnSave": true
+    "trailing-spaces.trimOnSave": true,
+    "java.checkstyle.configuration": "${workspaceFolder}/sun_checks.xml"
 }
