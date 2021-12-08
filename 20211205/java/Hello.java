@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class Hello {
     public static void main(String[] args) {
         new Hello().run();
@@ -46,6 +48,17 @@ class Hello {
         System.out.println(a + " + " + b + " = " + add(a, b));
 
         System.out.println("-".repeat(80));
+
+        // Input
+
+        System.out.print("What's your name? ");
+
+        Scanner scanner = new Scanner(System.in);
+
+        String name = scanner.nextLine();
+        scanner.close();
+
+        System.out.println("Hello, " + name + "!");
     }
 
     // method & parameters(variables)
