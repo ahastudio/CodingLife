@@ -49,3 +49,9 @@ java -classpath classes Hello
 ```bash
 javac -d classes Hello.java && java --class-path=classes Hello
 ```
+
+## 숫자 야구 게임
+
+```bash
+javac -d classes Baseball.java && java --class-path=classes Baseball
+```
