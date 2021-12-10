@@ -1,0 +1,11 @@
+{
+    "editor.tabSize": 4,
+    "editor.rulers": [
+        80
+    ],
+    "trailing-spaces.trimOnSave": true,
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "junit-platform-console-standalone-1.8.2.jar"
+    ]
+}
