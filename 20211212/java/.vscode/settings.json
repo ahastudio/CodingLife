@@ -3,8 +3,5 @@
     "editor.rulers": [
         80
     ],
-    "trailing-spaces.trimOnSave": true,
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar"
-    ]
+    "trailing-spaces.trimOnSave": true
 }
