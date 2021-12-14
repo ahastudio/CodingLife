@@ -1,4 +1,4 @@
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,8 +9,7 @@ public class HelloWorld {
     public static void main(String[] args) {
         JFrame frame = new JFrame("My application");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 200);
-        frame.setLayout(new FlowLayout());
+        frame.setLayout(new GridLayout(3, 1));
 
         JLabel label = new JLabel("Hello, world!");
         frame.add(label);
@@ -25,6 +24,7 @@ public class HelloWorld {
         });
         frame.add(button);
 
+        frame.pack();
         frame.setVisible(true);
     }
 }
