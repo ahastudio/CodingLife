@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Table {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("My application");
+        JFrame frame = new JFrame("Table example");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 600);
         frame.setLayout(new FlowLayout());

@@ -4,7 +4,7 @@
 - <https://docs.oracle.com/javase/tutorial/uiswing/examples/start/HelloWorldSwingProject/src/start/HelloWorldSwing.java>
 
 ```bash
-javac -d out HelloWorld.java
+javac -d out *.java
 
 java --class-path out HelloWorld
 ```
