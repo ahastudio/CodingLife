@@ -1,7 +1,7 @@
 # graphql-request client
 
-- <https://github.com/ahastudio/CodingLife/tree/main/20211121/gql-client-urql>
-- <https://github.com/ahastudio/CodingLife/tree/main/20211121/gql-client-graphqljs>
+- <https://github.com/ahastudio/CodingLife/tree/main/20211121/1-gql-client-urql>
+- <https://github.com/ahastudio/CodingLife/tree/main/20211121/2-gql-client-graphqljs>
 - <https://github.com/prisma-labs/graphql-request>
 
 ```bash
