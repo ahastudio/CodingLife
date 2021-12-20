@@ -1,5 +1,7 @@
 # Java Gradle Project Demo
 
+- <https://docs.gradle.org/current/userguide/gradle_wrapper.html>
+- <https://docs.gradle.org/current/userguide/building_java_projects.html>
 - <https://docs.gradle.org/current/userguide/java_plugin.html>
 - <https://junit.org/junit5/>
 - <https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter/5.8.2>
@@ -11,7 +13,7 @@ echo "rootProject.name = 'demo'" > settings.gradle
 
 touch build.gradle
 
-gradle wrapper
+gradle wrapper --gradle-version 7.3.2 --distribution-type all
 
 touch build.gradle
 
