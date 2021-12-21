@@ -33,7 +33,7 @@ export const handlers = [
         ],
       }),
     );
-  }
+  }),
 ];
 ```
 
