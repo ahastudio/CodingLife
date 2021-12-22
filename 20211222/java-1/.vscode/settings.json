@@ -1,0 +1,8 @@
+{
+    "editor.tabSize": 4,
+    "editor.rulers": [
+        80
+    ],
+    "trailing-spaces.trimOnSave": true,
+    "java.configuration.updateBuildConfiguration": "automatic"
+}
