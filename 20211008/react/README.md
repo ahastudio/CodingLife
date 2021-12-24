@@ -359,7 +359,7 @@ npm start
 
 웹 브라우저로 확인: <http://localhost:8080/>
 
-### Visual Studio Code 세팅
+### (BONUS) Visual Studio Code 세팅
 
 `.vscode/settings.json` 파일에 설정 추가.
 
