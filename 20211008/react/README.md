@@ -28,13 +28,16 @@ npm init -y
 
 ### TypeScript 세팅
 
+`typescript` 패키지를 설치하고,
+`tsconfig.json` 파일을 자동으로 생성합니다.
+
 ```bash
 npm install --save-dev typescript
 
 npx tsc --init
 ```
 
-`package.json` 파일에 포함된 의존성:
+`package.json` 파일에 의존성이 추가된 걸 확인할 수 있습니다.
 
 ```json
 {
@@ -44,7 +47,8 @@ npx tsc --init
 }
 ```
 
-`tsconfig.json` 파일의 옵션 하나 수정:
+JSX를 사용하기 위해 `tsconfig.json` 파일을 열어
+옵션을 하나 수정합니다.
 
 ```json
 {
@@ -56,7 +60,8 @@ npx tsc --init
 }
 ```
 
-`package.json` 파일에 `check` 명령 추가:
+TypeScript 컴파일을 통해 문법 오류를 확인하는
+`check` 명령을 `package.json` 파일에 추가합니다.
 
 ```json
 {
@@ -66,7 +71,8 @@ npx tsc --init
 }
 ```
 
-TypeScript 컴파일 검사:
+다음 명령을 입력해서 문법 오류가 있습니다.
+이 명령을 자주 실행하고, CI 등에 포함시킵니다.
 
 ```bash
 npm run check
