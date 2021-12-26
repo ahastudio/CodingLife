@@ -56,7 +56,7 @@ npx tsc --init
 }
 ```
 
-`pacakge.json` 파일에 `check` 명령 추가:
+`package.json` 파일에 `check` 명령 추가:
 
 ```json
 {
