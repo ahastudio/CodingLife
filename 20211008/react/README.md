@@ -14,13 +14,24 @@ npm start
 
 ## 처음부터 따라하기
 
-아래 내용은 이 프로젝트를 참고하되, 빈 폴더에서 진행하셔야 합니다.
+GitHub 저장소에 있는 코드를 참고하되,
+아래 내용을 따라 하는 건 빈 폴더에서 진행하셔야 합니다.
 
 기본적인 설정은
 “[JavaScript 프로젝트 시작하기](https://j.mp/3FCU7C7)”
 문서를 참고하세요.
 
 ### NPM 프로젝트 생성
+
+혹시 아직도 빈 폴더를 준비하지 않았다면 빈 폴더를 하나 만들어 줍니다.
+
+```bash
+mkdir my-react-project
+
+cd my-react-project
+```
+
+이제 npm 프로젝트를 생성합니다.
 
 ```bash
 npm init -y
