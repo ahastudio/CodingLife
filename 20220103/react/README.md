@@ -1,6 +1,11 @@
 # React + Apollo Client 캐시 예제
 
 - <https://github.com/ahastudio/CodingLife/tree/main/20211008/react>
+- <https://github.com/apollographql/apollo-client>
+- <https://www.npmjs.com/package/@apollo/client>
+- <https://apollographql.com/client>
+→ <https://www.apollographql.com/docs/react/>
+- <https://www.apollographql.com/docs/react/development-testing/testing/>
 
 ## npm 프로젝트 생성
 
@@ -51,7 +56,8 @@ touch .eslintignore
     "build": "parcel build index.html",
     "check": "tsc --noEmit",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
-    "test": "jest"
+    "test": "jest",
+    "watch:test": "jest --watchAll"
   },
   // ...(후략)...
 }
@@ -272,3 +278,239 @@ npx parcel index.html --port 8080
 ```
 
 <http://localhost:8080/>
+
+## 공개 GraphQL API 확인
+
+SWAPI - The Star Wars API
+<https://swapi.dev/>
+
+GraphQL 버전:
+
+- <https://graphql.org/swapi-graphql>
+- <https://github.com/graphql/swapi-graphql>
+
+Schema:
+<https://github.com/graphql/swapi-graphql/blob/master/schema.graphql>
+
+예제 쿼리:
+
+```graphql
+query GetAllFilms {
+  allFilms {
+    films {
+      id
+      episodeID
+      title
+      openingCrawl
+      created
+      edited
+    }
+  }
+}
+```
+
+Endpoint: `https://swapi-graphql.netlify.app/.netlify/functions/index`
+
+## Apollo Client 설치
+
+```bash
+npm install @apollo/client graphql
+```
+
+`src/index.tsx` 파일 수정
+
+```tsx
+import * as ReactDOM from 'react-dom';
+
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+} from '@apollo/client';
+
+import App from './App';
+
+const client = new ApolloClient({
+  uri: 'https://swapi-graphql.netlify.app/.netlify/functions/index',
+  cache: new InMemoryCache(),
+});
+
+ReactDOM.render(
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>,
+  document.getElementById('app'),
+);
+```
+
+## Query로 영화 목록 얻기
+
+```bash
+mkdir src/components
+touch src/components/Films.tsx
+touch src/components/Films.test.tsx
+```
+
+`src/components/Films.test.tsx` 파일 작성.
+
+```tsx
+import { render, waitFor } from '@testing-library/react';
+import { MockedProvider } from '@apollo/client/testing';
+
+import Films, { GET_FILMS_QUERY } from './Films';
+
+const mocks = [
+  {
+    request: {
+      query: GET_FILMS_QUERY,
+      variables: {},
+    },
+    result: {
+      data: {
+        allFilms: {
+          films: [
+            {
+              id: 'ID-0001',
+              episodeID: 4,
+              title: 'A New Hope',
+              openingCrawl: 'It is a period of civil war. blah blah',
+              created: '2014-12-10T14:23:31.880000Z',
+              edited: '2014-12-20T19:49:45.256000Z',
+            },
+          ],
+        },
+      },
+    },
+  },
+];
+
+describe('Films', () => {
+  function Component() {
+    return (
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <Films />
+      </MockedProvider>
+    );
+  }
+
+  it('renders a list of films', async () => {
+    const { container } = render(<Component />);
+
+    expect(container).toHaveTextContent('Loading...');
+
+    await waitFor(() => {
+      expect(container).toHaveTextContent('A New Hope');
+    });
+  });
+});
+```
+
+`src/components/Films.tsx` 파일 작성.
+
+```tsx
+import { gql, useQuery } from '@apollo/client';
+
+export const GET_FILMS_QUERY = gql`
+  query GetAllFilms {
+    allFilms {
+      films {
+        id
+        episodeID
+        title
+        openingCrawl
+        created
+        edited
+      }
+    }
+  }
+`;
+
+type Film = {
+  id: string;
+  episodeID: number;
+  title: string;
+  openingCrawl: string;
+  created: string;
+  edited: string;
+}
+
+type AllFilms = {
+  allFilms: {
+    films: Film[];
+  }
+}
+
+export default function Films() {
+  const { loading, error, data } = useQuery<AllFilms>(GET_FILMS_QUERY);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>Error :(</p>;
+  }
+
+  const films = data?.allFilms?.films || [];
+
+  return (
+    <ul>
+      {films.map((film) => (
+        <li key={film.id}>
+          [
+          {film.episodeID}
+          ]
+          {' '}
+          {film.title}
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+`src/App.test.tsx` 파일 수정.
+
+```tsx
+import { render } from '@testing-library/react';
+
+import App from './App';
+
+jest.mock('@apollo/client', () => ({
+  gql: jest.fn((x) => x),
+  useQuery: jest.fn(() => ({
+    loading: false,
+    error: undefined,
+    data: {
+      allFilms: {
+        films: [
+          // TODO: if you want, fill this place.
+        ],
+      },
+    },
+  })),
+}));
+
+describe('App', () => {
+  it('renders greeting message', () => {
+    const { container } = render(<App />);
+
+    expect(container).toHaveTextContent('Hello, world!');
+  });
+});
+```
+
+`src/App.tsx` 파일 수정.
+
+```tsx
+import Films from './components/Films';
+
+export default function App() {
+  return (
+    <div>
+      <h1>Hello, world!</h1>
+      <h2>Star Wars Films</h2>
+      <Films />
+    </div>
+  );
+}
+```
