@@ -393,6 +393,6 @@ touch .vscode/settings.json
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
-    "trailing-spaces.trimOnSave": true,
+    "trailing-spaces.trimOnSave": true
 }
 ```
