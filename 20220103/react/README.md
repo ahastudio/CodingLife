@@ -1,4 +1,4 @@
-# React + Apollo Client 캐시 예제
+# React + Apollo Client 예제
 
 - <https://github.com/ahastudio/CodingLife/tree/main/20211008/react>
 - <https://github.com/apollographql/apollo-client>
