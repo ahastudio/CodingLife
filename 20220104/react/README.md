@@ -11,6 +11,9 @@
 
 여기선 `cache.modify`를 사용합니다.
 
+`cache.modify`를 사용하면 GraphQL과 무관하게
+캐시 데이터 자체를 조작할 수 있습니다.
+
 ### 테스트 코드 먼저 작성
 
 `src/components/Films.test.tsx` 파일에
@@ -202,6 +205,9 @@ export default function App() {
 ## 캐시를 조작해서 필름 추가하기
 
 여기선 `cache.updateQuery`를 사용합니다.
+
+`cache.updateQuery`를 사용하면
+특정 GraphQL 쿼리의 결과를 조작할 수 있습니다.
 
 ### 이번에도 테스트 코드 먼저 작성
 
