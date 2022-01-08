@@ -1,9 +1,17 @@
 # Create React App 예제
 
 - <https://create-react-app.dev/>
+- <https://github.com/facebook/create-react-app>
+
 - <https://swr.vercel.app/ko>
+- <https://github.com/vercel/swr>
+
+- <https://axios-http.com/>
+- <https://github.com/axios/axios>
+
 - <https://chancejs.com/>
 - <https://github.com/chancejs/chancejs>
+
 - <https://npm.im/lorem-ipsum>
 - <https://github.com/knicklabs/lorem-ipsum.js>
 
@@ -36,20 +44,21 @@ npm start
 
 ## SWR 적용
 
-SWR 설치.
+SWR, Axios 설치.
 
 ```bash
-npm install swr
+npm install swr axios
 ```
 
 `src/App.js` 파일에 코드 추가.
 
 ```jsx
 import useSWR from 'swr';
+import axios from 'axios';
 
 // ...(중략)...
 
-const fetcher = (url) => fetch(url).then((response) => response.json());
+const fetcher = (url) => axios.get(url).then((response) => response.data);
 
 function App() {
   const url = 'http://localhost:3000/posts';
@@ -109,6 +118,7 @@ npm i chance lorem-ipsum
 
 ```jsx
 import useSWR from 'swr';
+import axios from 'axios';
 import Chance from 'chance';
 import { loremIpsum } from 'lorem-ipsum';
 
@@ -122,14 +132,13 @@ function App() {
     return <p>Loading...</p>;
   }
 
-  async function addPost() {
+  function addPost() {
     const chance = new Chance();
-    await requestPost(url, {
+    axios.post(url, {
       author: chance.name(),
       title: chance.animal(),
       body: loremIpsum(),
-    });
-    mutate();
+    }).then(() => mutate());
   }
 
   return (

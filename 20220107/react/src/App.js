@@ -1,19 +1,12 @@
 import useSWR from 'swr';
+import axios from 'axios';
 import Chance from 'chance';
 import { loremIpsum } from 'lorem-ipsum';
 
 import logo from './logo.svg';
 import './App.css';
 
-const fetcher = (url) => fetch(url).then((response) => response.json());
-
-async function requestPost(url, data) {
-  await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  });
-}
+const fetcher = (url) => axios.get(url).then((response) => response.data);
 
 function App() {
   const url = 'http://localhost:3000/posts';
@@ -23,14 +16,13 @@ function App() {
     return <p>Loading...</p>;
   }
 
-  async function addPost() {
+  function addPost() {
     const chance = new Chance();
-    await requestPost(url, {
+    axios.post(url, {
       author: chance.name(),
       title: chance.animal(),
       body: loremIpsum(),
-    });
-    mutate();
+    }).then(() => mutate());
   }
 
   return (
