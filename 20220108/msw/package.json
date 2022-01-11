@@ -1,0 +1,20 @@
+{
+  "name": "msw",
+  "version": "1.0.0",
+  "description": "MSW demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && node out.js",
+    "build": "npx esbuild src/index.js --bundle --platform=node --outfile=out.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.14.11",
+    "msw": "^0.36.4"
+  },
+  "dependencies": {
+    "axios": "^0.24.0"
+  }
+}
