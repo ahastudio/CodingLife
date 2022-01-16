@@ -6,7 +6,7 @@
 - <https://www.electronjs.org/docs/latest/tutorial/quick-start/>
 - <https://github.com/electron/electron-quick-start>
 - [https://github.com/ahastudio/CodingLife/tree/main/20151116/angular](https://j.mp/3zZT7Ux)
-- <https://coffeescript.org/>
+- [https://coffeescript.org/](https://j.mp/3g9IF2A)
 
 ## Install dependencies
 
