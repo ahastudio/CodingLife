@@ -21,11 +21,11 @@ Spring Initialzr에서 의존성 추가:
 ```properties
 server.port=3000
 
-spring.datasource.url=jdbc:h2:~/data/post-api-demo
+spring.datasource.url=jdbc:h2:./data/post-api-demo
 spring.datasource.username=sa
 spring.datasource.password=
 
-spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.hibernate.ddl-auto=update
 
 spring.h2.console.enabled=true
 ```
