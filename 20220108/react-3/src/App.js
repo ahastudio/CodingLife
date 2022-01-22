@@ -20,7 +20,7 @@ import './App.css';
 const fetcher = (url) => axios.get(url).then((response) => response.data);
 
 function App() {
-  const url = 'http://localhost:3000/posts';
+  const url = process.env.REACT_APP_API_BASE_URL + '/posts';
   const { data: posts, mutate } = useSWR(url, fetcher);
 
   const { register, handleSubmit } = useForm();
