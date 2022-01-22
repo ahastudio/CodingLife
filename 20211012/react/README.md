@@ -537,6 +537,8 @@ Axios 설치:
 npm install axios
 ```
 
+Axios의 경우엔 별도의 `@types` 패키지를 설치하지 않는다.
+
 > `axios` provides its own type definitions,
 > so you don't need `@types/axios` installed!
 
@@ -665,6 +667,8 @@ describe('usePosts', () => {
 
   // loadPosts 함수 테스트 추가
   describe('loadPosts', () => {
+    // TODO: fetch API에 대한 mocking 또는 Mock API를 활용할 것.
+
     it('fetches a list of post', async () => {
       const { result } = render();
 
@@ -740,7 +744,7 @@ npx codeceptjs init
 
 ```txt
 ? Where are your tests located? (./*_test.js)
-./tests/**/*_test.ts
+./tests/**/*_test.js
 
 ? What helpers do you want to use? (Use arrow keys)
 ❯ Playwright
@@ -766,7 +770,7 @@ chromium
 welcome
 
 ? Filename of a test (welcome_test.js)
-welcome_test.ts
+welcome_test.js
 ```
 
 불필요한 파일 삭제:
