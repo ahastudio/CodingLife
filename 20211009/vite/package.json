@@ -7,7 +7,7 @@
     "start": "vite --port 8080",
     "build": "vite build",
     "serve": "vite preview --port 8080",
-    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

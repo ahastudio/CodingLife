@@ -21,10 +21,10 @@ npm install --save-dev @types/react @types/react-dom
 npm install --save-dev vite @vitejs/plugin-react
 ```
 
-## `vite.config.js` 파일 작성
+## `vite.config.ts` 파일 작성
 
 ```bash
-touch vite.config.js
+touch vite.config.ts
 ```
 
 ```javascript
