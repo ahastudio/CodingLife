@@ -211,9 +211,16 @@ module.exports = {
 {
   "scripts": {
     // ...(전략)...
-    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src"
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
   }
 }
+```
+
+`.eslintignore` 파일 작성:
+
+```txt
+/node_modules/
+/dist/
 ```
 
 Lint and fix all:
@@ -343,11 +350,20 @@ npm install --save-dev parcel
 }
 ```
 
-`.gitignore` 내용 추가:
+`.gitignore` 파일에 Parcel 캐시 추가:
 
 ```txt
-/.parcel-cache/
+/node_modules/
 /dist/
+/.parcel-cache/
+```
+
+`.eslintignore` 파일에 Parcel 캐시 추가:
+
+```txt
+/node_modules/
+/dist/
+/.parcel-cache/
 ```
 
 `index.html` 파일 작성:

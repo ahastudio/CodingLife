@@ -6,7 +6,7 @@
     "start": "parcel index.html --port 8080",
     "build": "parcel build index.html",
     "check": "tsc --noEmit",
-    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
     "test": "jest"
   },
   "keywords": [],
