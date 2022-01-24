@@ -44,13 +44,11 @@ describe('Users', () => {
       expect(container).toHaveTextContent('Peter Parker');
     });
 
-    it('renders `Assign` button and listens for clicking event', async () => {
-      const { container, getAllByText } = render(<Users />);
-
-      const [button] = getAllByText('Assign');
+    it('listens for clicking event', async () => {
+      const { container, getByText } = render(<Users />);
 
       await act(async () => {
-        fireEvent.click(button);
+        fireEvent.click(getByText('Peter Parker'));
       });
 
       expect(assignUser).toBeCalled();

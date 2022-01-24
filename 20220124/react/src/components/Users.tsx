@@ -50,25 +50,28 @@ export default function Users() {
       </p>
       <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
         {users?.map((user) => (
-          <li
-            key={user.id}
-            style={{
-              margin: '.5em 0',
-              padding: '.5em',
-              border: '1px solid #CCC',
-              borderRadius: '.4em',
-            }}
-          >
-            <img
-              src={user.avatar.imageUrl}
-              alt="Avatar"
-              style={{ width: 50, verticalAlign: 'middle' }}
-            />
-            {' '}
-            {user.name}
-            {' '}
-            <button type="button" onClick={() => handleClickUser(user)}>
-              Assign
+          <li key={user.id} style={{ margin: '.5em 0' }}>
+            <button
+              type="button"
+              onClick={() => handleClickUser(user)}
+              style={{
+                display: 'block',
+                width: '20em',
+                padding: '.5em',
+                border: '1px solid #CCC',
+                borderRadius: '.4em',
+                background: 'transparent',
+                textAlign: 'left',
+                cursor: 'pointer',
+              }}
+            >
+              <img
+                src={user.avatar.imageUrl}
+                alt="Avatar"
+                style={{ width: 50, verticalAlign: 'middle' }}
+              />
+              {' '}
+              {user.name}
             </button>
           </li>
         ))}
