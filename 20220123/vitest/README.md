@@ -86,8 +86,11 @@ module.exports = {
 
 ```bash
 npx vitest
+# npx vitest watch
 
-npx vitest --coverage
+npx vitest run
+
+npx vitest run --coverage
 ```
 
 ## 서버 실행

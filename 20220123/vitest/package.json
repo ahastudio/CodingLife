@@ -8,8 +8,8 @@
     "build": "vite build",
     "serve": "vite preview --port 8080",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
-    "test": "vitest",
-    "coverage": "vitest --coverage"
+    "test": "vitest run",
+    "coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
