@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.ts",
+    "start": "nodemon --exec swc-node src/index.ts",
     "lint": "eslint --fix --ext .js,.ts .",
     "test": "jest --detectOpenHandles"
   },
@@ -26,7 +26,7 @@
     "jest": "^27.4.7",
     "nodemon": "^2.0.15",
     "regenerator-runtime": "^0.13.9",
-    "ts-node": "^10.4.0",
+    "swc-node": "^1.0.0",
     "typescript": "^4.5.5",
     "ws": "^8.4.2"
   },

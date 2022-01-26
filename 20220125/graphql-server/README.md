@@ -7,6 +7,7 @@
 - <https://www.apollographql.com/docs/apollo-server/data/subscriptions/>
 - <https://www.apollographql.com/docs/react/api/core/ApolloClient/#ApolloClient.subscribe>
 - <https://github.com/lquixada/cross-fetch>
+- <https://github.com/Brooooooklyn/swc-node>
 
 ## 프로젝트 생성
 
@@ -122,12 +123,12 @@ touch src/server.ts
 
 자세한 내용은 코드 참고.
 
-## `ts-node`, `nodemon` 설치 및 실행
+## `swc-node`, `nodemon` 설치 및 실행
 
 ```bash
-npm i -D ts-node nodemon
+npm i -D swc-node nodemon
 
-npx nodemon src/index.ts
+npx nodemon --exec swc-node src/index.ts
 ```
 
 ```bash
