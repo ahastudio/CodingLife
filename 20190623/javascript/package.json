@@ -1,5 +1,5 @@
 {
-  "name": "localForge-sample",
+  "name": "store-and-localforage-sample",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,14 +11,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.17.3",
-    "jest": "^24.8.0"
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.4.7"
   },
   "dependencies": {
-    "http-server": "^0.11.1",
-    "localforage": "^1.7.3",
+    "http-server": "^14.1.0",
+    "localforage": "^1.10.0",
     "store": "^2.0.12"
   }
 }

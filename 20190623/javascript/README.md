@@ -1,4 +1,4 @@
-# Storage example
+# `Store.js` and `localForage` example
 
 - <https://github.com/marcuswestin/store.js>
 - <https://github.com/localForage/localForage>
@@ -11,3 +11,5 @@ npm test -- --watch-all
 
 npm start
 ```
+
+<http://localhost:8080>
