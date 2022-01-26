@@ -1,0 +1,23 @@
+{
+  "name": "graphql-subscription-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/client": "^3.5.8",
+    "@types/ws": "^8.2.2",
+    "cross-fetch": "^3.1.5",
+    "graphql": "^16.2.0",
+    "subscriptions-transport-ws": "^0.11.0",
+    "ws": "^8.4.2"
+  },
+  "devDependencies": {
+    "swc-node": "^1.0.0"
+  }
+}
