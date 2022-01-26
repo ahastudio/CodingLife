@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+
 import fetch from 'cross-fetch';
 import WebSocket from 'ws';
 
@@ -34,8 +36,19 @@ export function createApolloClient({ port, path }: {
     httpLink,
   );
 
-  return new ApolloClient({
-    link: splitLink,
-    cache: new InMemoryCache(),
-  });
+  return Object.assign(
+    (
+      new ApolloClient({
+        link: splitLink,
+        cache: new InMemoryCache(),
+      })
+    ),
+    {
+      wsLink,
+    },
+  );
+}
+
+export function closeApolloClient(apolloClient: any) {
+  (apolloClient.wsLink as any).subscriptionClient.close();
 }

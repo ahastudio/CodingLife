@@ -1,9 +1,11 @@
 import http from 'http';
 
+import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { ApolloClient, gql } from '@apollo/client/core';
 
 import { startServer } from '../src/server';
-import { createApolloClient } from './client';
+
+import { createApolloClient, closeApolloClient } from './client';
 
 const port = 3333;
 const path = '/graphql';
@@ -67,4 +69,7 @@ test('subscription messageAdded', async () => {
   const { data } = await promise;
 
   expect(data.messageAdded).toEqual(message);
+
+  closeApolloClient(client1);
+  closeApolloClient(client2);
 }, 10_000);
