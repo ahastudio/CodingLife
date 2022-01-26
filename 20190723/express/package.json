@@ -11,17 +11,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.19.1",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "node-storage": "0.0.8",
-    "nodemon": "^1.19.1"
+    "express": "^4.17.2",
+    "node-storage": "0.0.9",
+    "nodemon": "^2.0.15"
   },
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-plugin-import": "^2.18.2",
-    "jest": "^24.8.0",
-    "supertest": "^4.0.2"
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.4.7",
+    "supertest": "^6.2.2"
   }
 }
