@@ -12,7 +12,11 @@ npm install --save-dev webpack webpack-cli webpack-dev-server
 ## Run server
 
 ```bash
-node_modules/.bin/webpack-dev-server
+node_modules/.bin/webpack serve --mode=development
+
+# or
+
+npx webpack serve --mode=development
 
 # or
 
