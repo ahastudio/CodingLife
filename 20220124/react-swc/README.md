@@ -1,6 +1,6 @@
 # React + SWC + PubSub 실험
 
-기본적인 아이디어는 [Teaful](https://j.mp/3KD3kwx)을 참고함.
+기본적인 아이디어는 [Teaful](https://bit.ly/3KD3kwx)을 참고함.
 
 - <https://github.com/ahastudio/CodingLife/tree/main/20211008/react>
 - <https://github.com/swc-project/jest>
