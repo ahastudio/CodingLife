@@ -1,0 +1,15 @@
+<h1>Job</h1>
+<dl>
+  <dt>Title:</dt>
+  <dd><%= @job.title %></dd>
+  <dt>Body:</dt>
+  <dd><%= simple_format @job.body %></dd>
+</dl>
+
+<h2>Frames</h2>
+<div>
+  <% @job.frames.each do |frame| %>
+    <%= link_to image_tag(frame.image_url, height: 100, alt: ''),
+                job_frame_path(@job, frame) %>
+  <% end %>
+</div>

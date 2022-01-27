@@ -1,0 +1,25 @@
+<h1>Project: <%= @project.title %></h1>
+
+<h2>Jobs</h2>
+<ul>
+  <% @jobs.each do |job| %>
+    <li>
+      <%= link_to job.title, job %>
+      (<%= job.task.title %>)
+    </li>
+  <% end %>
+</ul>
+
+<h2>Tickets</h2>
+<ul>
+  <% @tickets.each do |ticket| %>
+    <li>
+      <%= link_to ticket do %>
+        <%= ticket.body %>
+        <% if ticket.target.present? %>
+          (<%= ticket.target_type %>[<%= ticket.target_id %>])
+        <% end %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

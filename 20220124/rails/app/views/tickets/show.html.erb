@@ -1,0 +1,11 @@
+<h1>Ticket</h1>
+<dl>
+  <dt>Body:</dt>
+  <dd><%= simple_format @ticket.body %></dd>
+  <dt>Created at:</dt>
+  <dd><%= @ticket.created_at.strftime('%Y-%m-%d %H:%M:%S') %></dd>
+  <dt>Priority:</dt>
+  <dd><%= @ticket.priority %></dd>
+  <dt>Assignee:</dt>
+  <dd><%= @ticket.assignee %></dd>
+</dl>

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  sequence: 1
+  title: MyString
+  body: MyText
+
+two:
+  project: two
+  sequence: 1
+  title: MyString
+  body: MyText

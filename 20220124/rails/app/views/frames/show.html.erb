@@ -1,0 +1,18 @@
+<h1>Job: <%= @job.title %></h1>
+
+<%= image_tag(@frame.image_url, alt: '') %>
+
+<h2>Tickets</h2>
+<ul>
+  <% @frame.tickets.each do |ticket| %>
+    <li><%= link_to ticket.body, ticket %></li>
+  <% end %>
+</ul>
+
+<h2>Frames</h2>
+<div>
+  <% @job.frames.each_with_index do |frame, index| %>
+    <%= link_to image_tag(frame.image_url, height: 100, alt: ''),
+        job_frame_path(@job, frame) %>
+  <% end %>
+</div>

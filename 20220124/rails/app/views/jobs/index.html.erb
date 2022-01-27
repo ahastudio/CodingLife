@@ -1,0 +1,9 @@
+<h1>Jobs</h1>
+<ul>
+  <% @jobs.each do |job| %>
+    <li>
+      <%= link_to job.title, job %>
+      (<%= job.task.title %>)
+    </li>
+  <% end %>
+</ul>

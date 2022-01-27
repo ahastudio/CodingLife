@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task: one
+  image_url: MyString
+  width: 1
+  height: 1
+  job: one
+
+two:
+  task: two
+  image_url: MyString
+  width: 1
+  height: 1
+  job: two

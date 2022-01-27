@@ -1,0 +1,13 @@
+<h1>Tickets</h1>
+<ul>
+  <% @tickets.each do |ticket| %>
+    <li>
+      <%= link_to ticket do %>
+        <%= ticket.body %>
+        <% if ticket.target.present? %>
+          (<%= ticket.target_type %>[<%= ticket.target_id %>])
+        <% end %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

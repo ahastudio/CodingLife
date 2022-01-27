@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  body: MyText
+  priority: 1
+  assignee: MyString
+  target: one
+  target_type: Target
+
+two:
+  project: two
+  body: MyText
+  priority: 1
+  assignee: MyString
+  target: two
+  target_type: Target
