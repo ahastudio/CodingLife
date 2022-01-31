@@ -1,6 +1,11 @@
 # React + SWC + PubSub 실험
 
-기본적인 아이디어는 [Teaful](https://bit.ly/3KD3kwx)을 참고함.
+PubSub의 기본적인 아이디어는
+React Redux에서 사용하는
+[useSyncExternalStore](https://bit.ly/3GdeyV3)와
+[Teaful](https://bit.ly/3KD3kwx)을 참고함.
+실제로는 고려해야 할 게 많지만,
+여기서는 기본 원리를 이해하기 쉽도록 최소한의 코드에 집중하려고 함.
 
 - <https://github.com/ahastudio/CodingLife/tree/main/20211008/react>
 - <https://github.com/swc-project/jest>
