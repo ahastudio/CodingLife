@@ -1,0 +1,27 @@
+{
+  "name": "multisig-wallet",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "truffle compile && vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "eslint migrations test src",
+    "test": "truffle test --network test",
+    "watch": "nodemon --exec 'npm run test' -e js,sol --watch contracts --watch test"
+  },
+  "dependencies": {
+    "truffle-contract": "^3.0.6",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1",
+    "web3": "^1.0.0-beta.36"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.4",
+    "@vue/cli-service": "^3.0.4",
+    "eslint": "^5.6.1",
+    "nodemon": "^1.18.4",
+    "truffle-hdwallet-provider": "^0.0.6",
+    "vue-template-compiler": "^2.5.17"
+  }
+}
