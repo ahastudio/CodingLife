@@ -1,5 +1,8 @@
 # Wallet
 
+JSON-RPC Server:
+<https://github.com/ahastudio/CodingLife/tree/main/20180411/ruby>
+
 Libraries:
 
 - <https://github.com/vuejs/vue>
