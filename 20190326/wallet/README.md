@@ -1,4 +1,4 @@
-# Wallet Sample
+# SASEUL Wallet Sample
 
 <https://github.com/saseul/js-lib>
 
