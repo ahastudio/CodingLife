@@ -1,4 +1,4 @@
-# Wallet Sample
+# SASEUL Wallet Sample
 
 `.env`
 
