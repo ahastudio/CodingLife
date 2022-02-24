@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import logo from './logo.svg';
+
 import './App.css';
 
 class App extends Component {
@@ -22,10 +24,12 @@ class App extends Component {
           Hello, {name || 'world'}!
         </p>
         <p>
-          <input type="text"
-                 placeholder="Input your name"
-                 value={name}
-                 onChange={e => this.setState({ name: e.target.value })} />
+          <input
+            type="text"
+            placeholder="Input your name"
+            value={name}
+            onChange={e => this.setState({ name: e.target.value })}
+          />
         </p>
       </div>
     );
