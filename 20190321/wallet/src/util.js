@@ -1,3 +1,4 @@
+import { Buffer } from 'buffer';
 import Hash from 'sumi-hash';
 import nacl from 'tweetnacl';
 import axios from 'axios';

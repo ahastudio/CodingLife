@@ -45,6 +45,7 @@ const app = new Vue({
         this.message = `TxID: ${data.txid}\nMessage: ${data.result}`;
       } catch (e) {
         this.message = `[ ERROR! ] ${e}`;
+        console.log(e);
       }
     },
   },

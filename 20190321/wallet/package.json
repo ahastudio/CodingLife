@@ -4,25 +4,26 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack serve --mode=development",
     "test": "jest",
     "lint": "eslint --fix ."
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "dotenv-webpack": "^1.7.0",
-    "eslint": "^5.15.3",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0",
-    "jest": "^24.5.0",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.2.1"
+    "dotenv-webpack": "^7.1.0",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.5.1",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.26.0",
+    "buffer": "^6.0.3",
     "sumi-hash": "^1.0.1",
-    "tweetnacl": "^1.0.1"
+    "tweetnacl": "^1.0.3"
   }
 }
