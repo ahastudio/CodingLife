@@ -23,13 +23,17 @@ contract('MultiSigWalletFactory', ([admin, ...accounts]) => {
       });
       const walletAddress = receipt.logs[0].args.wallet;
 
-      const wallet = MultiSigWallet.at(walletAddress);
+      const wallet = await MultiSigWallet.at(walletAddress);
 
       const count = await wallet.getOwnersCount();
       assert.equal(owners.length, count);
 
-      const owner = await wallet.getOwner(0);
-      assert.equal(owners[0], owner);
+      await Promise.all((
+        owners.map(async (owner, index) => {
+          const found = await wallet.getOwner(index);
+          assert.equal(owner, found);
+        })
+      ));
     });
 
     it('should add wallet into list', async () => {
@@ -41,7 +45,7 @@ contract('MultiSigWalletFactory', ([admin, ...accounts]) => {
 
       const count = await factory.getWalletsCount();
 
-      assert.equal(1, count.minus(oldCount));
+      assert.equal(1, count.sub(oldCount));
     });
   });
 });

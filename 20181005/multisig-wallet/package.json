@@ -1,27 +1,31 @@
 {
   "name": "multisig-wallet",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "truffle compile && vue-cli-service serve",
+    "serve": "vue-cli-service serve --port=3000",
     "build": "vue-cli-service build",
-    "lint": "eslint migrations test src",
+    "lint": "eslint --ext .js,.vue . && solhint 'contracts/**/*.sol'",
     "test": "truffle test --network test",
-    "watch": "nodemon --exec 'npm run test' -e js,sol --watch contracts --watch test"
+    "watch:test": "nodemon --exec 'npm run test' -e js,sol --watch contracts --watch test"
   },
   "dependencies": {
-    "truffle-contract": "^3.0.6",
-    "vue": "^2.5.17",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.0.1",
-    "web3": "^1.0.0-beta.36"
+    "@metamask/detect-provider": "^1.2.0",
+    "@truffle/contract": "^4.5.1",
+    "vue": "^2.6.14",
+    "vue-router": "^3.5.3",
+    "vuex": "^3.6.2",
+    "web3-utils": "^1.7.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.4",
-    "@vue/cli-service": "^3.0.4",
-    "eslint": "^5.6.1",
-    "nodemon": "^1.18.4",
-    "truffle-hdwallet-provider": "^0.0.6",
-    "vue-template-compiler": "^2.5.17"
+    "@truffle/hdwallet-provider": "^2.0.4",
+    "@vue/cli-service": "^4.5.17",
+    "eslint": "^8.11.0",
+    "eslint-plugin-vue": "^8.5.0",
+    "ganache": "^7.0.3",
+    "nodemon": "^2.0.15",
+    "solhint": "^3.3.7",
+    "truffle": "^5.5.5",
+    "vue-template-compiler": "^2.6.14"
   }
 }

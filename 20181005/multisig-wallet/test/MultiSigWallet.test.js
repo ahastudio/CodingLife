@@ -1,6 +1,6 @@
 /* global artifacts, contract, describe, beforeEach, it, assert, web3 */
 
-const { eth } = web3;
+const { eth, utils: { toBN } } = web3;
 
 const MultiSigWallet = artifacts.require('./MultiSigWallet.sol');
 
@@ -42,9 +42,9 @@ contract('MultiSigWallet', (accounts) => {
     });
 
     const request = async (from) => {
-      const receipt = await wallet.requestTransaction(target, amount, '', {
-        from: from,
-      });
+      const receipt = await wallet.requestTransaction(
+        target, amount, web3.utils.asciiToHex(''), { from: from },
+      );
       return receipt.logs[0].args.transactionId;
     };
 
@@ -65,7 +65,7 @@ contract('MultiSigWallet', (accounts) => {
         assert.equal(1, count.valueOf());
 
         const pendingTxId = await wallet.getPendingTransactionId(0);
-        assert.equal(txId, pendingTxId.valueOf());
+        assert.equal(txId.toString(), pendingTxId.toString());
       });
     });
 
@@ -82,17 +82,19 @@ contract('MultiSigWallet', (accounts) => {
   });
 
   describe('confirmTransaction', () => {
+    const requester = owners[0];
+    const otherOwners = owners.filter(i => i != requester);
     const target = others[0];
     let txId;
 
     beforeEach(async () => {
       await eth.sendTransaction({
-        from: accounts[0], to: wallet.address, value: deposit,
+        from: requester, to: wallet.address, value: deposit,
       });
 
-      const receipt = await wallet.requestTransaction(target, amount, '', {
-        from: owners[0],
-      });
+      const receipt = await wallet.requestTransaction(
+        target, amount, web3.utils.asciiToHex(''), { from: owners[0] },
+      );
       txId = receipt.logs[0].args.transactionId;
     });
 
@@ -103,27 +105,35 @@ contract('MultiSigWallet', (accounts) => {
         oldCount = await wallet.getConfirmationsCount(txId);
       });
 
-      it('should confirm a transaction', async () => {
-        await wallet.confirmTransaction(txId, { from: owners[1] });
+      it('should not confirm by myself', async () => {
+        await wallet.confirmTransaction(txId, { from: requester });
 
         const count = await wallet.getConfirmationsCount(txId);
-        assert.equal(1, count.minus(oldCount));
+        assert.equal(0, count.sub(oldCount));
+      });
+
+      it('should confirm a transaction', async () => {
+        await wallet.confirmTransaction(txId, { from: otherOwners[0] });
+
+        const count = await wallet.getConfirmationsCount(txId);
+        assert.equal(1, count.sub(oldCount));
       });
 
       it('should not confirm twice', async () => {
-        await wallet.confirmTransaction(txId, { from: owners[0] });
+        await wallet.confirmTransaction(txId, { from: otherOwners[0] });
+        await wallet.confirmTransaction(txId, { from: otherOwners[0] });
 
         const count = await wallet.getConfirmationsCount(txId);
-        assert.equal(0, count.minus(oldCount));
+        assert.equal(1, count.sub(oldCount));
       });
 
       context('when more confirmations required', () => {
         it('should increase confirmations count', async () => {
-          await wallet.confirmTransaction(txId, { from: owners[1] });
-          await wallet.confirmTransaction(txId, { from: owners[2] });
+          await wallet.confirmTransaction(txId, { from: otherOwners[0] });
+          await wallet.confirmTransaction(txId, { from: otherOwners[1] });
 
           const count = await wallet.getConfirmationsCount(txId);
-          assert.equal(2, count.minus(oldCount));
+          assert.equal(2, count.sub(oldCount));
         });
       });
 
@@ -131,21 +141,25 @@ contract('MultiSigWallet', (accounts) => {
         it('should remove pending transaction', async () => {
           const oldBalance = await eth.getBalance(target);
 
-          [...Array(required - 1).keys()].forEach(async (i) => {
-            await wallet.confirmTransaction(txId, { from: owners[i + 1] });
-          });
+          await Promise.all((
+            [...Array(required - 1).keys()].map(async (i) => {
+              await wallet.confirmTransaction(txId, { from: otherOwners[i] });
+            })
+          ));
 
           const count = await wallet.getPendingsCount();
           assert.equal(0, count.valueOf());
 
           const balance = await eth.getBalance(target);
-          assert.equal(amount, balance.minus(oldBalance).valueOf());
+          assert.equal(amount, toBN(balance).sub(toBN(oldBalance)));
         });
 
         it('should not confirm executed transaction', async () => {
-          [...Array(required - 1).keys()].forEach(async (i) => {
-            await wallet.confirmTransaction(txId, { from: owners[i + 1] });
-          });
+          await Promise.all((
+            [...Array(required - 1).keys()].map(async (i) => {
+              await wallet.confirmTransaction(txId, { from: otherOwners[i] });
+            })
+          ));
 
           try {
             await wallet.confirmTransaction(txId, { from: owners[required] });
@@ -178,9 +192,9 @@ contract('MultiSigWallet', (accounts) => {
         from: accounts[0], to: wallet.address, value: deposit,
       });
 
-      const receipt = await wallet.requestTransaction(target, amount, '', {
-        from: owners[0],
-      });
+      const receipt = await wallet.requestTransaction(
+        target, amount, web3.utils.asciiToHex(''), { from: owners[0] },
+      );
       txId = receipt.logs[0].args.transactionId;
 
       await wallet.confirmTransaction(txId, { from: owners[1] });
@@ -206,7 +220,7 @@ contract('MultiSigWallet', (accounts) => {
         await wallet.revokeTransaction(txId, { from: owners[1] });
 
         const count = await wallet.getConfirmationsCount(txId);
-        assert.equal(1, oldCount.minus(count));
+        assert.equal(1, oldCount.sub(count));
       });
     });
 

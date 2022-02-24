@@ -1,4 +1,6 @@
-pragma solidity ^0.4.23;
+// SPDX-License-Identifier: UNLICENSED
+
+pragma solidity ^0.8.0;
 
 import "./MultiSigWallet.sol";
 
@@ -13,10 +15,10 @@ contract MultiSigWalletFactory {
 
     // Methods
 
-    function createWallet(string _name, address[] _owners, uint8 _required)
-    public
-    returns (address wallet) {
-        wallet = new MultiSigWallet(_name, _owners, _required);
+    function createWallet(
+        string memory _name, address[] memory _owners, uint8 _required
+    ) public returns (address wallet) {
+        wallet = address(new MultiSigWallet(_name, _owners, _required));
 
         wallets.push(wallet);
 
@@ -25,12 +27,12 @@ contract MultiSigWalletFactory {
 
     // Getters
 
-    function getWalletsCount() public constant returns (uint count) {
+    function getWalletsCount() public view returns (uint count) {
         count = wallets.length;
     }
 
-    function getWallet(uint _index) public constant returns (address wallet) {
-        require(_index < wallets.length);
+    function getWallet(uint _index) public view returns (address wallet) {
+        require(_index < wallets.length, "Out of range");
         wallet = wallets[_index];
     }
 }
