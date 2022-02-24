@@ -1,4 +1,4 @@
-import { default as contract } from 'truffle-contract';
+import contract from '@truffle/contract';
 
 import MultiSigWalletFactoryArtifacts
   from '../../build/contracts/MultiSigWalletFactory.json';
@@ -16,4 +16,4 @@ export function initContracts(provider) {
 export {
   MultiSigWalletFactory,
   MultiSigWallet,
-}
+};
