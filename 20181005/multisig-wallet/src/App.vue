@@ -1,51 +1,58 @@
 <template>
-    <div id="app">
-        <div v-if="isReady">
-            <router-view/>
-        </div>
+  <div id="app">
+    <div v-if="isReady">
+      <router-view />
     </div>
+  </div>
 </template>
 
 <script>
-  import * as Web3 from 'web3';
+import detectEthereumProvider from '@metamask/detect-provider';
 
-  import {
-    MultiSigWalletFactory,
-    initContracts,
-  } from './utils/contracts';
+import {
+  MultiSigWalletFactory,
+  initContracts,
+} from './utils/contracts';
 
-  export default {
-    name: 'app',
-    data() {
-      return {
-        isReady: false,
-      };
-    },
-    async created() {
-      if (typeof(web3) === 'undefined') {
-        alert('Provider not found!');
-        return;
-      }
+export default {
+  name: 'App',
+  data() {
+    return {
+      isReady: false,
+    };
+  },
+  async created() {
+    const provider = await detectEthereumProvider();
 
-      const provider = web3.currentProvider;
-      window.web3 = new Web3(provider);
+    if (!provider) {
+      alert('MetaMask is not installed!');
+      return;
+    }
 
-      try {
-        initContracts(provider);
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
+    if (accounts.length) {
+      this.init({ provider, accounts });
+      return;
+    }
 
-        const accounts = await web3.eth.getAccounts();
-        this.$store.commit('setAccount', accounts[0]);
+    ethereum.request({ method: 'eth_requestAccounts' });
+    ethereum.on('accountsChanged', (accounts) => {
+      this.init({ provider, accounts });
+    });
+  },
+  methods: {
+    async init({ provider, accounts }) {
+      initContracts(provider);
 
-        const factory = await MultiSigWalletFactory.deployed();
-        this.$store.commit('setWalletFactory', factory);
-      } catch (e) {
-        console.error(e);
-        return;
-      }
+      this.$store.commit('setAccount', accounts[0]);
+
+      const factory = await MultiSigWalletFactory.deployed();
+      this.$store.commit('setWalletFactory', factory);
 
       this.isReady = true;
     },
-  }
+  },
+};
 </script>
 
 <style>
