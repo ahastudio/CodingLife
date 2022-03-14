@@ -1,5 +1,6 @@
 const { promisify } = require('util');
 const path = require('path');
+const fs = require('fs');
 const glob = require('glob');
 const sharp = require('sharp');
 
@@ -12,11 +13,18 @@ async function main() {
 
   await Promise.all((
     filenames.map(async (filename) => {
-      log(`File: ${filename}`);
+      const dirname = path.dirname(filename).replace(inputPath, '');
       const basename = path.basename(filename);
+
+      log(`File: ${dirname}/${basename}`);
+
+      fs.promises.mkdir(path.join(outputPath, dirname), {
+        recursive: true,
+      });
+
       await sharp(filename)
         .resize({ width: 200, height: 200 })
-        .toFile(path.join(outputPath, basename));
+        .toFile(path.join(outputPath, dirname, basename));
     })
   ));
 }
