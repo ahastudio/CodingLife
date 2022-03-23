@@ -15,5 +15,5 @@ npx tsc --init
 npx eslint --init
 
 npm uninstall eslint-plugin-react eslint-plugin-react-hooks
-npm i -D eslint@7.9.0 eslint-config-preact
+npm i -D eslint eslint-config-preact
 ```
