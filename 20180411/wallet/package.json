@@ -3,55 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "start": "parcel index.html -p 3000",
+    "lint": "eslint --fix --ext .js,.jsx ."
   },
   "dependencies": {
     "axios": "^0.21.1",
     "bignumber.js": "^9.0.0",
-    "moment": "^2.24.0",
-    "sumi-hash": "^1.0.1",
-    "tweetnacl": "^1.0.1",
     "core-js": "^2.6.5",
-    "vue": "^2.6.10"
+    "moment": "^2.24.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sumi-hash": "^1.0.1",
+    "tweetnacl": "^1.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.9.2",
-    "@vue/cli-plugin-eslint": "^3.9.2",
-    "@vue/cli-service": "^3.9.3",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "vue-template-compiler": "^2.6.10"
-  },
-  "babel": {
-    "presets": [
-      "@vue/app"
-    ]
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+    "@types/react": "^17.0.42",
+    "@types/react-dom": "^17.0.14",
+    "eslint": "^8.11.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "parcel": "^2.4.0",
+    "process": "^0.11.10"
+  }
 }
