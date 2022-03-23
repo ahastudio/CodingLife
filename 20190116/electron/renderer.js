@@ -1,7 +1,6 @@
-const { ipcRenderer } = require('electron');
-
 console.log('renderer!');
 
-window.handleClick = () => {
-  ipcRenderer.send('handle-click');
-};
+const button = document.getElementById('button-click-me');
+button.addEventListener('click', () => {
+  window.electronAPI.click();
+});

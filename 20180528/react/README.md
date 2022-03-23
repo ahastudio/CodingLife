@@ -2,10 +2,25 @@
 
 ## React Helmet
 
-- <https://www.npmjs.com/package/react-helmet>
-- <https://github.com/nfl/react-helmet>
+<https://github.com/nfl/react-helmet>
 
 ## React Snapshot
 
-- <https://www.npmjs.com/package/react-snapshot>
-- <https://github.com/geelen/react-snapshot>
+<https://github.com/stereobooster/react-snap>
+
+## React Router
+
+<https://reactrouter.com/>
+
+## Deployment
+
+<https://cra.link/deployment>
+
+## Build & Run
+
+```bash
+npm run build
+npm run serve
+```
+
+<http://localhost:3000/>

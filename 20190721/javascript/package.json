@@ -4,13 +4,11 @@
   "description": "Bar Chart Race",
   "main": "src/index.js",
   "scripts": {
-    "start": "webpack serve --mode=development --port 3000"
+    "start": "parcel index.html --port 3000"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "webpack": "^5.67.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.3"
+    "parcel": "^2.4.0"
   }
 }
