@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 const Home = () => (
@@ -27,11 +27,15 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Link to="/">Home</Link>
+          {' '}
           |
+          {' '}
           <Link to="/about">About</Link>
           <hr />
-          <Route exact path="/" component={Home}/>
-          <Route path="/about" component={About}/>
+          <Routes>
+            <Route path="/" element={<Home />}/>
+            <Route path="/about" element={<About />}/>
+          </Routes>
         </div>
       </BrowserRouter>
     );

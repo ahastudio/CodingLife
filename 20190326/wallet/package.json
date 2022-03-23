@@ -4,25 +4,30 @@
   "description": "SASEUL Wallet Sample",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "parcel index.html -p 3000",
     "test": "jest",
     "lint": "eslint --fix ."
   },
   "author": "Ashal aka JOKER",
   "license": "MIT",
   "devDependencies": {
-    "dotenv-webpack": "^1.7.0",
-    "eslint": "^5.15.3",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0",
-    "jest": "^24.5.0",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.2.1"
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "eslint": "^8.11.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.5.1",
+    "parcel": "^2.4.0",
+    "process": "^0.11.10"
   },
   "dependencies": {
-    "dayjs": "^1.8.11",
-    "lodash": "^4.17.11",
+    "dayjs": "^1.11.0",
+    "lodash": "^4.17.21",
     "saseul": "file:../saseul-js-lib"
+  },
+  "alias": {
+    "process": {
+      "global": "process"
+    }
   }
 }
