@@ -1,52 +1,56 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.4.3)
+    activesupport (7.0.2.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      i18n (>= 0.7, < 2)
-      minitest (~> 5.1)
-      tzinfo (~> 1.1)
-    ast (2.4.0)
-    concurrent-ruby (1.1.7)
-    ffi (1.9.25)
-    i18n (1.8.5)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
+    ast (2.4.2)
+    concurrent-ruby (1.1.10)
+    ffi (1.15.5)
+    i18n (1.10.0)
       concurrent-ruby (~> 1.0)
-    jaro_winkler (1.5.1)
-    minitest (5.14.1)
-    mustermann (1.0.3)
-    parallel (1.12.1)
-    parser (2.5.3.0)
-      ast (~> 2.4.0)
-    powerpack (0.1.2)
+    minitest (5.15.0)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
+    parallel (1.22.0)
+    parser (3.1.1.0)
+      ast (~> 2.4.1)
     rack (2.2.3)
-    rack-protection (2.0.4)
+    rack-protection (2.2.0)
       rack
-    rainbow (3.0.0)
-    rbnacl (6.0.0)
+    rainbow (3.1.1)
+    rbnacl (7.1.1)
       ffi
-    rubocop (0.60.0)
-      jaro_winkler (~> 1.5.1)
+    regexp_parser (2.2.1)
+    rexml (3.2.5)
+    rubocop (1.26.1)
       parallel (~> 1.10)
-      parser (>= 2.5, != 2.5.1.1)
-      powerpack (~> 0.1)
+      parser (>= 3.1.0.0)
       rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.16.0, < 2.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (~> 1.4.0)
-    ruby-progressbar (1.10.0)
-    sinatra (2.0.4)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.16.0)
+      parser (>= 3.1.1.0)
+    ruby-progressbar (1.11.0)
+    ruby2_keywords (0.0.5)
+    sinatra (2.2.0)
       mustermann (~> 1.0)
-      rack (~> 2.0)
-      rack-protection (= 2.0.4)
+      rack (~> 2.2)
+      rack-protection (= 2.2.0)
       tilt (~> 2.0)
-    sinatra-cors (1.1.0)
-    thread_safe (0.3.6)
-    tilt (2.0.8)
-    tzinfo (1.2.7)
-      thread_safe (~> 0.1)
-    unicode-display_width (1.4.0)
+    sinatra-cors (1.2.0)
+    tilt (2.0.10)
+    tzinfo (2.0.4)
+      concurrent-ruby (~> 1.0)
+    unicode-display_width (2.1.0)
 
 PLATFORMS
-  ruby
+  arm64-darwin-21
 
 DEPENDENCIES
   activesupport
@@ -56,4 +60,4 @@ DEPENDENCIES
   sinatra-cors
 
 BUNDLED WITH
-   1.17.1
+   2.3.9
