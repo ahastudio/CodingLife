@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "coffeescript": "^2.6.1",
-    "electron": "^16.0.2",
+    "electron": "^16.0.6",
     "electron-packager": "^15.4.0",
     "parcel": "^2.2.0",
     "typescript": "^4.5.2"
