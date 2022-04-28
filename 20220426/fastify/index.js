@@ -1,5 +1,16 @@
 const { log } = console;
 
+function readStream(stream) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    stream.on('data', (chunk) => chunks.push(chunk));
+    stream.on('end', () => resolve(Buffer.concat(chunks)));
+    stream.on('error', (err) => reject(err));
+  });
+}
+
+//
+
 const fastify = require('fastify')({
   logger: true,
 });
@@ -19,20 +30,25 @@ fastify.get('/', async (request) => {
 });
 
 fastify.post('/', async (request, reply) => {
+  if (!request.isMultipart()) {
+    log('😵');
+    reply.send();
+    return;
+  }
+
   const data = await request.file();
   const { image } = data.fields;
   const { fields, ...rest } = image;
 
   log('\n🚀 POST / 👉', rest);
 
-  const blob = await image.file.read();
+  const blob = await readStream(image.file);
   log('✅ Data:', blob);
+  log('✅ Data Size:', blob.length);
 
   log('🔥🔥🔥\n');
 
-  reply.send({
-    Points: '10,10;30,20;20,30',
-  });
+  reply.send('Hello, world!');
 });
 
 async function main() {
