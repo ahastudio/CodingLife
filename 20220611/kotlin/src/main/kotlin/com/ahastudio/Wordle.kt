@@ -5,10 +5,11 @@ val words = arrayOf(
     "grade",
     "model",
     "major",
+    "happy",
 )
 
 fun main() {
-    val index = (0 until words.size).random()
+    val index = words.indices.random()
     val word = words[index]
 
     while (true) {
@@ -32,21 +33,24 @@ fun main() {
 
 fun check(answer: String, word: String): String {
     var result = ""
-    for (i in 0 until answer.length) {
+
+    for (i in answer.indices) {
         result += check(word, answer, i)
     }
+
     return result
 }
 
 fun check(word: String, answer: String, index: Int): String {
-    for (i in 0 until word.length) {
-        if (answer[index] != word[i]) {
-            continue
-        }
-        return when {
-            index == i -> "O"
-            else -> "X"
+    if (answer[index] == word[index]) {
+        return "O"
+    }
+
+    for (i in word.indices) {
+        if (answer[index] == word[i]) {
+            return "X"
         }
     }
+
     return "."
 }
