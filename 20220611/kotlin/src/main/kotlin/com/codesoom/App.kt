@@ -1,11 +1,11 @@
+package com.codesoom
+
 // 이건 한 줄 주석.
 
 /*
  * 여러 줄.
  * 이렇게 하면 뭔가 서식이 맞는 것 같음.
  */
-
-package com.ahastudio
 
 // fun -> function (함수)
 fun main() {

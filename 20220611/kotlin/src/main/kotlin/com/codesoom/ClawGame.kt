@@ -1,4 +1,4 @@
-package com.ahastudio
+package com.codesoom
 
 fun main() {
     val board = arrayOf(

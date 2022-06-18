@@ -1,4 +1,4 @@
-package com.ahastudio
+package com.codesoom
 
 fun main() {
     println(sum(intArrayOf(1, 2, 3, 4, 5)))
