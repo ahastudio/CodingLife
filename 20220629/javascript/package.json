@@ -1,0 +1,26 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "JavaScript First Program",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "watch:test": "jest --watchAll",
+    "lint": "eslint --fix .",
+    "hello": "echo 'Hello, world'"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@swc/core": "^1.2.207",
+    "@swc/jest": "^0.2.21",
+    "eslint": "^8.18.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^28.1.2",
+    "swc-node": "^1.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
