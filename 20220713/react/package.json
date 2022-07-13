@@ -1,0 +1,50 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "React 테스트 코드에 Mock이 없는 게 없다니?",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html --port 8080",
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
+    "check": "tsc --noEmit",
+    "test": "jest --detectOpenHandles",
+    "watch:test": "npm test -- --watchAll"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@swc/core": "^1.2.213",
+    "@swc/jest": "^0.2.21",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/jest": "^28.1.5",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
+    "cors": "^2.8.5",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.0",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "express": "^4.18.1",
+    "jest": "^28.1.2",
+    "jest-environment-jsdom": "^28.1.2",
+    "json-server": "^0.17.0",
+    "parcel": "^2.6.2",
+    "process": "^0.11.10",
+    "typescript": "^4.7.4",
+    "whatwg-fetch": "^3.6.2"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.2"
+  }
+}

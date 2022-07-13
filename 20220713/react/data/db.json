@@ -1,0 +1,6 @@
+{
+  "posts": [
+    { "id": 1, "title": "인사", "body": "Hi!" },
+    { "id": 2, "title": "끝", "body": "Bye~" }
+  ]
+}
