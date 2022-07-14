@@ -49,7 +49,7 @@ npm i react-redux @reduxjs/toolkit
 npm i -D parcel
 ```
 
-## JSON Server 실행
+## 웹 브라우저에서 확인할 땐 API 서버 실행
 
 ```bash
 mkdir data
