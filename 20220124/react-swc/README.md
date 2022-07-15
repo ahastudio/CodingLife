@@ -73,6 +73,7 @@ npx eslint --init
 
 ```bash
 npm i -D jest @types/jest @swc/core @swc/jest \
+    jest-environment-jsdom \
     @testing-library/react @testing-library/jest-dom
 ```
 
