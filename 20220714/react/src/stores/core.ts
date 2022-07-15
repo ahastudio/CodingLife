@@ -42,7 +42,9 @@ export function Store() {
     return class extends klass {
       constructor(...args: any[]) {
         super(...args);
-        Reflect.set(this, STORE_PROPERTY_NAME, new ExternalStore(this));
+        const externalStore = new ExternalStore(this);
+        Reflect.set(this, STORE_PROPERTY_NAME, externalStore);
+        externalStore.updateSnapshot();
       }
     };
   };

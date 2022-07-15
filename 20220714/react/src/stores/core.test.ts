@@ -1,4 +1,6 @@
-import { Store, Action, STORE_PROPERTY_NAME } from './core';
+import {
+  STORE_PROPERTY_NAME, ExternalStore, Store, Action,
+} from './core';
 
 @Store()
 class MyStore {
@@ -9,6 +11,29 @@ class MyStore {
     this.name = name;
   }
 }
+
+test('ExternalStore', () => {
+  const name = 'Peter Parker';
+  const handleChange = jest.fn();
+
+  const target = {
+    name,
+  };
+
+  const externalStore = new ExternalStore(target);
+
+  externalStore.subscribe(handleChange);
+
+  externalStore.updateSnapshot();
+
+  const snapshot = {
+    name,
+  };
+
+  expect(handleChange).toBeCalledWith(snapshot);
+
+  expect(externalStore.getSnapshot()).toEqual(snapshot);
+});
 
 test('@Action', () => {
   const name = 'Peter Parker';

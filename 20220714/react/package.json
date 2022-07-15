@@ -8,6 +8,7 @@
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
     "check": "tsc --noEmit",
     "test": "jest --detectOpenHandles",
+    "coverage": "npm test -- --coverage --coverage-reporters html",
     "watch:test": "npm test -- --watchAll"
   },
   "keywords": [],
