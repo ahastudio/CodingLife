@@ -1,5 +1,8 @@
 # Mock 없는 평범한 React 테스트 예제
 
+`jest.mock` 같은 건 안 썼지만, 테스트용 API 서버를 띄우긴 함. 😉
+([src/TestServer.ts](https://github.com/ahastudio/CodingLife/blob/main/20220713/react/src/TestServer.ts))
+
 ## 기본 세팅
 
 ```bash
