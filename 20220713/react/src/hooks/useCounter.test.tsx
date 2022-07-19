@@ -22,4 +22,16 @@ test('useCounter', () => {
   });
 
   expect(result.current.count).toBe(11);
+
+  act(() => {
+    result.current.decrease10();
+  });
+
+  expect(result.current.count).toBe(1);
+
+  act(() => {
+    result.current.decrease();
+  });
+
+  expect(result.current.count).toBe(0);
 });
