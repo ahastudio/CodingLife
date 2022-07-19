@@ -1,13 +1,17 @@
+import { memo } from 'react';
+
 import Field from '../models/Field';
 
-export default function TextInput({
-  type, name, field, onChange,
-}: {
+type TextInputProps = {
   name: string;
   type: string;
   field: Field;
   onChange: (value: string) => void;
-}) {
+}
+
+function TextInput({
+  name, type, field, onChange,
+}: TextInputProps) {
   const { value, error } = field;
 
   return (
@@ -30,3 +34,5 @@ export default function TextInput({
     </div>
   );
 }
+
+export default memo(TextInput);

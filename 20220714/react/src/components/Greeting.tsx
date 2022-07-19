@@ -1,9 +1,15 @@
-import useUserStore from '../hooks/useUserStore';
+import { useCallback } from 'react';
 
 import TextInput from './TextInput';
 
+import useUserStore from '../hooks/useUserStore';
+
 export default function Greeting() {
   const userStore = useUserStore();
+
+  const handleChange = useCallback((value: string) => {
+    userStore.changeName(value);
+  }, [userStore]);
 
   return (
     <div>
@@ -17,7 +23,7 @@ export default function Greeting() {
         name="name"
         type="text"
         field={userStore.name}
-        onChange={(value) => userStore.changeName(value)}
+        onChange={handleChange}
       />
     </div>
   );

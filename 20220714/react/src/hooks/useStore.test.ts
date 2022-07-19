@@ -13,19 +13,17 @@ class MyStore {
 
 describe('useStore', () => {
   context('with correct store', () => {
-    it('returns snapshot of store', () => {
+    it('returns the store', () => {
       const store = new MyStore();
 
       const { result } = renderHook(() => useStore(store));
 
-      expect(result.current).toEqual({
-        name: 'Peter',
-      });
+      expect(result.current).toBe(store);
     });
   });
 
   context('with incorrect store', () => {
-    let consoleError: any;
+    let consoleError: (...args: unknown[]) => void;
 
     beforeEach(() => {
       // eslint-disable-next-line no-console

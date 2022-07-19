@@ -2,9 +2,11 @@
   "name": "react",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "source": "./index.html",
   "scripts": {
-    "start": "parcel index.html --port 8080",
+    "start": "parcel --port 8080",
+    "build": "parcel build",
+    "serve": "servor dist index.html 8080 --reload",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
     "check": "tsc --noEmit",
     "test": "jest --detectOpenHandles",
@@ -38,6 +40,7 @@
     "jest-environment-jsdom": "^28.1.3",
     "parcel": "^2.6.2",
     "process": "^0.11.10",
+    "servor": "^4.0.2",
     "typescript": "^4.7.4"
   }
 }

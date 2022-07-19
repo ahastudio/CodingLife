@@ -1,14 +1,18 @@
 import { useSyncExternalStore } from 'react';
 
-import { STORE_PROPERTY_NAME, ExternalStore } from '../stores/core';
+import { STORE_GLUE_PROPERTY_NAME, StoreGlue } from '../stores/core';
 
-export default function useStore(store: any) {
-  const externalStore: ExternalStore = Reflect.get(store, STORE_PROPERTY_NAME);
-  if (!externalStore) {
-    throw new Error('Cannot find external store');
+import log from '../utils/log';
+
+export default function useStore<T extends object>(store: T): T {
+  const glue: StoreGlue = Reflect.get(store, STORE_GLUE_PROPERTY_NAME);
+  if (!glue) {
+    throw new Error('Cannot find store glue');
   }
-  return useSyncExternalStore(
-    externalStore.subscribe.bind(externalStore),
-    externalStore.getSnapshot.bind(externalStore),
+  const snapshot = useSyncExternalStore(
+    glue.subscribe.bind(glue),
+    glue.getSnapshot.bind(glue),
   );
+  log('* useStore - snapshot:', JSON.stringify(snapshot));
+  return store;
 }

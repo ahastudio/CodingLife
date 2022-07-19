@@ -6,6 +6,7 @@ module.exports = {
   },
   extends: [
     'airbnb',
+    'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
   ],
@@ -49,10 +50,6 @@ module.exports = {
     'object-curly-spacing': ['error', 'always'],
     'key-spacing': ['error', { mode: 'strict' }],
     'arrow-spacing': ['error', { before: true, after: true }],
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['error'],
-    'no-extra-semi': 'off',
-    '@typescript-eslint/no-extra-semi': ['error'],
     'import/no-extraneous-dependencies': ['error', {
       devDependencies: [
         '**/*.test.js',

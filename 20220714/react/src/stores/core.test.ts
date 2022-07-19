@@ -1,5 +1,5 @@
 import {
-  STORE_PROPERTY_NAME, ExternalStore, Store, Action,
+  STORE_GLUE_PROPERTY_NAME, StoreGlue, Store, Action,
 } from './core';
 
 @Store()
@@ -12,7 +12,9 @@ class MyStore {
   }
 }
 
-test('ExternalStore', () => {
+const context = describe;
+
+test('StoreGlue', () => {
   const name = 'Peter Parker';
   const handleChange = jest.fn();
 
@@ -20,40 +22,56 @@ test('ExternalStore', () => {
     name,
   };
 
-  const externalStore = new ExternalStore(target);
+  const glue = new StoreGlue(target);
 
-  externalStore.subscribe(handleChange);
+  glue.subscribe(handleChange);
 
-  externalStore.updateSnapshot();
+  glue.updateSnapshot(target);
 
   const snapshot = {
     name,
   };
 
-  expect(handleChange).toBeCalledWith(snapshot);
+  expect(handleChange).toBeCalled();
 
-  expect(externalStore.getSnapshot()).toEqual(snapshot);
+  expect(glue.getSnapshot()).toEqual(snapshot);
 });
 
-test('@Action', () => {
+describe('@Action', () => {
   const name = 'Peter Parker';
   const handleChange = jest.fn();
 
-  const myStore = new MyStore();
+  let store: MyStore;
+  let glue: StoreGlue;
 
-  const externalStore = Reflect.get(myStore, STORE_PROPERTY_NAME);
+  beforeEach(() => {
+    jest.clearAllMocks();
 
-  externalStore.subscribe(handleChange);
+    store = new MyStore();
 
-  myStore.changeName(name);
+    glue = Reflect.get(store, STORE_GLUE_PROPERTY_NAME);
+    glue.subscribe(handleChange);
+  });
 
-  expect(myStore.name).toBe(name);
+  context('with different state', () => {
+    it('calls onChange handler', () => {
+      store.changeName(name);
 
-  const snapshot = {
-    name,
-  };
+      expect(store.name).toBe(name);
 
-  expect(handleChange).toBeCalledWith(snapshot);
+      expect(handleChange).toBeCalled();
 
-  expect(externalStore.getSnapshot()).toEqual(snapshot);
+      expect(glue.getSnapshot()).toEqual({
+        name,
+      });
+    });
+  });
+
+  context('with same state', () => {
+    it("doesn't calls onChange handler", () => {
+      store.changeName(store.name);
+
+      expect(handleChange).not.toBeCalled();
+    });
+  });
 });
