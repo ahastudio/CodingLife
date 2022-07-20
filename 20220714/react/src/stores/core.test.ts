@@ -26,7 +26,7 @@ test('StoreGlue', () => {
 
   glue.subscribe(handleChange);
 
-  glue.updateSnapshot(target);
+  glue.update(target);
 
   const snapshot = {
     name,
@@ -42,14 +42,13 @@ describe('@Action', () => {
   const handleChange = jest.fn();
 
   let store: MyStore;
-  let glue: StoreGlue;
 
   beforeEach(() => {
     jest.clearAllMocks();
 
     store = new MyStore();
 
-    glue = Reflect.get(store, STORE_GLUE_PROPERTY_NAME);
+    const glue = Reflect.get(store, STORE_GLUE_PROPERTY_NAME);
     glue.subscribe(handleChange);
   });
 
@@ -60,10 +59,6 @@ describe('@Action', () => {
       expect(store.name).toBe(name);
 
       expect(handleChange).toBeCalled();
-
-      expect(glue.getSnapshot()).toEqual({
-        name,
-      });
     });
   });
 

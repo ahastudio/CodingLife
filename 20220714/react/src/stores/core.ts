@@ -13,11 +13,10 @@ export class StoreGlue {
 
   listeners = new Set<() => void>();
 
-  snapshot: object = {};
+  snapshot = {};
 
   constructor(target: object) {
-    this.propertyKeys = Reflect.ownKeys(target).map((i) => String(i))
-      .filter((i) => !i.startsWith('#'));
+    this.propertyKeys = Reflect.ownKeys(target).map((i) => String(i));
   }
 
   subscribe(onChange: () => void): () => void {
@@ -27,11 +26,11 @@ export class StoreGlue {
     };
   }
 
-  getSnapshot(): object {
+  getSnapshot() {
     return this.snapshot;
   }
 
-  updateSnapshot(target: object): void {
+  update(target: object): void {
     const snapshot = this.propertyKeys.reduce((acc, key) => ({
       ...acc,
       [key]: Reflect.get(target, key),
@@ -54,7 +53,7 @@ export function Store() {
         super(...args);
         const glue = new StoreGlue(this);
         Reflect.set(this, STORE_GLUE_PROPERTY_NAME, glue);
-        glue.updateSnapshot(this);
+        glue.update(this);
       }
     };
   };
@@ -70,7 +69,7 @@ export function Action() {
     // eslint-disable-next-line no-param-reassign
     descriptor.value = function decorator(...args: unknown[]) {
       const returnValue = method.apply(this, args);
-      Reflect.get(this, STORE_GLUE_PROPERTY_NAME).updateSnapshot(this);
+      Reflect.get(this, STORE_GLUE_PROPERTY_NAME).update(this);
       return returnValue;
     };
   };

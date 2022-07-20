@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import Greeting from './Greeting';
 
@@ -6,23 +6,17 @@ import NameField from '../models/NameField';
 
 const context = describe;
 
-const mocks = {
+const mockState = {
   name: new NameField(),
-  changeName: jest.fn(),
 };
 
-jest.mock('../hooks/useUserStore', () => () => ({
-  get name() {
-    return mocks.name;
-  },
-  changeName: mocks.changeName,
-}));
+jest.mock('../hooks/useUserStore', () => () => [
+  mockState,
+]);
 
 describe('Greeting', () => {
   beforeEach(() => {
-    mocks.name = new NameField();
-
-    jest.clearAllMocks();
+    mockState.name = new NameField();
   });
 
   context('without name', () => {
@@ -37,27 +31,13 @@ describe('Greeting', () => {
     const name = 'Peter Parker';
 
     beforeEach(() => {
-      mocks.name = new NameField(name);
+      mockState.name = new NameField(name);
     });
 
     it('renders greeting message with name', () => {
       render(<Greeting />);
 
       screen.getByText(new RegExp(`Hello, ${name}`));
-    });
-  });
-
-  context('when input control is changed', () => {
-    const name = 'Peter Parker';
-
-    it('calls `onChange`', () => {
-      render(<Greeting />);
-
-      fireEvent.change(screen.getByLabelText('Name'), {
-        target: { value: name },
-      });
-
-      expect(mocks.changeName).toBeCalledWith(name);
     });
   });
 });

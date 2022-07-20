@@ -19,6 +19,7 @@ function TextInput({
       <label htmlFor={`input-${name}`}>
         Name
       </label>
+      {' '}
       <input
         id={`input-${name}`}
         type={type}
@@ -27,9 +28,9 @@ function TextInput({
         onChange={(e) => onChange(e.target.value)}
       />
       {error && (
-        <div>
+        <p>
           {error}
-        </div>
+        </p>
       )}
     </div>
   );

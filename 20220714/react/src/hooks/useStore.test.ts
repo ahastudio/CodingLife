@@ -13,12 +13,15 @@ class MyStore {
 
 describe('useStore', () => {
   context('with correct store', () => {
-    it('returns the store', () => {
+    it('returns the store and the state as snapshot', () => {
       const store = new MyStore();
 
       const { result } = renderHook(() => useStore(store));
 
-      expect(result.current).toBe(store);
+      expect(result.current).toEqual([
+        { name: 'Peter' },
+        store,
+      ]);
     });
   });
 

@@ -1,18 +1,24 @@
 import { useSyncExternalStore } from 'react';
 
-import { STORE_GLUE_PROPERTY_NAME, StoreGlue } from '../stores/core';
+import { STORE_GLUE_PROPERTY_NAME } from '../stores/core';
 
-import log from '../utils/log';
+type FunctionPropertyNames<T> = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [K in keyof T]: T[K] extends (...args: any) => any ? K : never
+}[keyof T];
 
-export default function useStore<T extends object>(store: T): T {
-  const glue: StoreGlue = Reflect.get(store, STORE_GLUE_PROPERTY_NAME);
+type NonFunctionProperties<T> = Omit<T, FunctionPropertyNames<T>>;
+
+export default function useStore<Store extends object>(
+  store: Store,
+): [NonFunctionProperties<Store>, Readonly<Store>] {
+  const glue = Reflect.get(store, STORE_GLUE_PROPERTY_NAME);
   if (!glue) {
     throw new Error('Cannot find store glue');
   }
   const snapshot = useSyncExternalStore(
     glue.subscribe.bind(glue),
     glue.getSnapshot.bind(glue),
-  );
-  log('* useStore - snapshot:', JSON.stringify(snapshot));
-  return store;
+  ) as NonFunctionProperties<Store>;
+  return [snapshot, store];
 }
