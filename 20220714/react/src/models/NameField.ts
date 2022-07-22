@@ -1,9 +1,11 @@
+/* eslint-disable class-methods-use-this */
+
 import Field from './Field';
 
 export default class NameField implements Field {
-  value: string;
+  readonly value: string;
 
-  error: string;
+  readonly error: string;
 
   constructor(value?: string, error?: string) {
     this.value = value || '';
@@ -11,14 +13,13 @@ export default class NameField implements Field {
   }
 
   update(value: string): NameField {
-    this.validate(value);
-    return new NameField(value.trimStart(), this.error);
+    return new NameField(value.trimStart(), this.validate(value));
   }
 
-  private validate(value: string) {
-    this.error = '';
+  validate(value: string): string {
     if (value.length < 2) {
-      this.error = '이름을 2글자 이상 입력해 주세요';
+      return '이름을 2글자 이상 입력해 주세요';
     }
+    return '';
   }
 }

@@ -1,6 +1,6 @@
 interface Field {
-  value: string;
-  error: string;
+  readonly value: string;
+  readonly error: string;
 }
 
 export default Field;
