@@ -1,10 +1,10 @@
 {
-  "name": "react",
+  "name": "react-test-example",
   "version": "1.0.0",
-  "description": "React 테스트 코드에 Mock이 없는 게 없다니?",
-  "main": "index.js",
+  "description": "",
+  "source": "./index.html",
   "scripts": {
-    "start": "parcel index.html --port 8080",
+    "start": "parcel --port 8080",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
     "check": "tsc --noEmit",
     "test": "jest --detectOpenHandles",
