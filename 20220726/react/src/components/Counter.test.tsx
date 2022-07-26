@@ -1,8 +1,12 @@
+import { container } from 'tsyringe';
+
 import { render, screen, act } from '@testing-library/react';
 
-import { counterStore } from '../hooks/useCounterStore';
-
 import Counter from './Counter';
+
+import CounterStore from '../stores/CounterStore';
+
+const counterStore = container.resolve(CounterStore);
 
 describe('Counter', () => {
   it('renders count', () => {

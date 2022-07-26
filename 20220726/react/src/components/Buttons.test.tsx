@@ -1,9 +1,14 @@
+import { container } from 'tsyringe';
+
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import { counterStore } from '../hooks/useCounterStore';
-import { cartStore } from '../hooks/useCartStore';
-
 import Buttons from './Buttons';
+
+import CounterStore from '../stores/CounterStore';
+import CartStore from '../stores/CartStore';
+
+const counterStore = container.resolve(CounterStore);
+const cartStore = container.resolve(CartStore);
 
 const context = describe;
 

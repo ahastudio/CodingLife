@@ -1,8 +1,12 @@
+import { container } from 'tsyringe';
+
 import { render, screen, act } from '@testing-library/react';
 
-import { cartStore } from '../hooks/useCartStore';
-
 import Cart from './Cart';
+
+import CartStore from '../stores/CartStore';
+
+const cartStore = container.resolve(CartStore);
 
 describe('Cart', () => {
   it('renders total price and items', () => {

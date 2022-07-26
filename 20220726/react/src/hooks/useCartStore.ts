@@ -1,8 +1,10 @@
+import { container } from 'tsyringe';
+
 import { useStore } from 'usestore-ts';
 
 import CartStore from '../stores/CartStore';
 
-export const cartStore = new CartStore();
+const cartStore = container.resolve(CartStore);
 
 export default function useCartStore() {
   return useStore(cartStore);
