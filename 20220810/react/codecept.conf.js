@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 const { setHeadlessWhen, setCommonPlugins } = require('@codeceptjs/configure');
 
 // turn on headless mode when running with HEADLESS=true environment variable
