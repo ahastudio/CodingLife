@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html --port 8080",
+    "lint": "eslint --fix --ext .js,.jsx .",
     "test": "jest",
     "watch:test": "npm test -- --watchAll",
     "codeceptjs": "codeceptjs run --steps",
