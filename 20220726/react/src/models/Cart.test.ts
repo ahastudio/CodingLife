@@ -2,7 +2,7 @@ import Cart from './Cart';
 
 describe('Cart', () => {
   describe('addItem', () => {
-    let cart = new Cart();
+    let cart: Cart;
 
     beforeEach(() => {
       cart = new Cart();
