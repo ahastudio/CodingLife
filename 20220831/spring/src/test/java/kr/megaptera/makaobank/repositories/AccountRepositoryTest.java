@@ -1,4 +1,4 @@
-package kr.megaptera.makaobank.respositories;
+package kr.megaptera.makaobank.repositories;
 
 import kr.megaptera.makaobank.models.Account;
 import org.junit.jupiter.api.Test;

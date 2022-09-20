@@ -1,9 +1,8 @@
 package kr.megaptera.makaobank.services;
 
-import kr.megaptera.makaobank.models.Account;
 import kr.megaptera.makaobank.models.AccountNumber;
 import kr.megaptera.makaobank.models.Transaction;
-import kr.megaptera.makaobank.respositories.TransactionRepository;
+import kr.megaptera.makaobank.repositories.TransactionRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

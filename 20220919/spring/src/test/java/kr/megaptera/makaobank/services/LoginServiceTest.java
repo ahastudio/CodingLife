@@ -3,7 +3,7 @@ package kr.megaptera.makaobank.services;
 import kr.megaptera.makaobank.exceptions.LoginFailed;
 import kr.megaptera.makaobank.models.Account;
 import kr.megaptera.makaobank.models.AccountNumber;
-import kr.megaptera.makaobank.respositories.AccountRepository;
+import kr.megaptera.makaobank.repositories.AccountRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;

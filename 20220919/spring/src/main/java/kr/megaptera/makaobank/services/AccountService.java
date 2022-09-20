@@ -3,7 +3,7 @@ package kr.megaptera.makaobank.services;
 import kr.megaptera.makaobank.exceptions.AccountNotFound;
 import kr.megaptera.makaobank.models.Account;
 import kr.megaptera.makaobank.models.AccountNumber;
-import kr.megaptera.makaobank.respositories.AccountRepository;
+import kr.megaptera.makaobank.repositories.AccountRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
