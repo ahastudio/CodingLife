@@ -5,8 +5,10 @@ const {
   checkPoint,
 } = require('./spiral');
 
+const context = describe;
+
 describe('spiralMatrix', () => {
-  describe('when n = 1', () => {
+  context('when n = 1', () => {
     it('returns spiral matrix', () => {
       expect(spiralMatrix(1)).toEqual([
         [0],
@@ -14,7 +16,7 @@ describe('spiralMatrix', () => {
     });
   });
 
-  describe('when n = 2', () => {
+  context('when n = 2', () => {
     it('returns spiral matrix', () => {
       expect(spiralMatrix(2)).toEqual([
         [0, 1],
@@ -23,7 +25,7 @@ describe('spiralMatrix', () => {
     });
   });
 
-  describe('when n = 3', () => {
+  context('when n = 3', () => {
     it('returns spiral matrix', () => {
       expect(spiralMatrix(3)).toEqual([
         [0, 1, 2],
@@ -33,7 +35,7 @@ describe('spiralMatrix', () => {
     });
   });
 
-  describe('when n = 5', () => {
+  context('when n = 5', () => {
     it('returns spiral matrix', () => {
       expect(spiralMatrix(5)).toEqual([
         [0, 1, 2, 3, 4],
