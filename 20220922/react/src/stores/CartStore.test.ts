@@ -1,5 +1,6 @@
-import Item from '../models/Item';
 import CartStore from './CartStore';
+
+import Item from '../models/Item';
 
 test('CartStore', () => {
   const cartStore = new CartStore();
