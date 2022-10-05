@@ -1,9 +1,6 @@
-const {
-  spiralMatrix,
-  spiralPoints,
-  movePoint,
-  checkPoint,
-} = require('./spiral');
+import {
+  spiralMatrix, spiralPoints, movePoint, checkPoint,
+} from './spiral';
 
 const context = describe;
 
@@ -60,17 +57,21 @@ describe('spiralPoints', () => {
 
 describe('movePoint', () => {
   it('returns new move state', () => {
-    expect(movePoint(2, { x: 1, y: 0, dx: 1, dy: 0, points: [] }))
-      .toEqual({ x: 1, y: 1, dx: -0, dy: 1, points: [[1, 0]] });
+    expect(movePoint(2, {
+      x: 1, y: 0, dx: 1, dy: 0, points: [],
+    }))
+      .toEqual({
+        x: 1, y: 1, dx: -0, dy: 1, points: [[1, 0]],
+      });
   });
 });
 
 describe('checkPoint', () => {
-  it('returns posibble to move', () => {
-    expect(checkPoint(2, 0, 0, [])).toBeTruthy();
-    expect(checkPoint(2, 1, 1, [])).toBeTruthy();
-    expect(checkPoint(2, 2, 0, [])).toBeFalsy();
-    expect(checkPoint(2, -1, 0, [])).toBeFalsy();
-    expect(checkPoint(2, 0, 0, [[0, 0]])).toBeFalsy();
+  it('returns possibility to move', () => {
+    expect(checkPoint(2, { x: 0, y: 0, points: [] })).toBeTruthy();
+    expect(checkPoint(2, { x: 1, y: 1, points: [] })).toBeTruthy();
+    expect(checkPoint(2, { x: 2, y: 0, points: [] })).toBeFalsy();
+    expect(checkPoint(2, { x: -1, y: 0, points: [] })).toBeFalsy();
+    expect(checkPoint(2, { x: 0, y: 0, points: [[0, 0]] })).toBeFalsy();
   });
 });

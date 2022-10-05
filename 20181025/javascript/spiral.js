@@ -1,17 +1,10 @@
-const _ = require('lodash');
+function range(n) {
+  return [...Array(n)].map((_, i) => i);
+}
 
-const spiralMatrix = (n) => {
-  const m = [...Array(n)].map(() => [...Array(n)]);
-  spiralPoints(n).forEach(([x, y], i) => m[y][x] = i);
-  return m;
-
-  // OR
-
-  // const points = spiralPoints(n);
-  // return _.range(n).map(y => _.range(n).map(x =>
-  //   points.findIndex(_.matches([x, y]))
-  // ));
-};
+function equals(expected) {
+  return (actual) => actual.join() === expected.join();
+}
 
 const initialState = {
   x: 0,
@@ -21,24 +14,50 @@ const initialState = {
   points: [],
 };
 
-const spiralPoints = (n) =>
-  _.range(n * n).reduce(state => movePoint(n, state), initialState).points;
+export function checkPoint(n, { x, y, points }) {
+  return range(n).includes(x) && range(n).includes(y)
+    && !points.find(equals([x, y]));
+}
 
-const movePoint = (n, state) => {
+function delta(n, state) {
+  const { dx, dy } = state;
+  return checkPoint(n, {
+    x: state.x + dx,
+    y: state.y + dy,
+    points: state.points,
+  }) ? { dx, dy } : { dx: -dy, dy: dx };
+}
+
+export function movePoint(n, state) {
   const { dx, dy } = delta(n, state);
   const { x, y, points } = state;
-  return { x: x + dx, y: y + dy, dx, dy, points: [...points, [x, y]] };
-};
+  return {
+    x: x + dx,
+    y: y + dy,
+    dx,
+    dy,
+    points: [...points, [x, y]],
+  };
+}
 
-const delta = (n, { x, y, dx, dy, points }) =>
-  checkPoint(n, x + dx, y + dy, points) ? { dx, dy } : { dx: -dy, dy: dx };
+export function spiralPoints(n) {
+  return range(n * n)
+    .reduce((state) => movePoint(n, state), initialState)
+    .points;
+}
 
-const checkPoint = (n, x, y, points) =>
-  _.inRange(x, n) && _.inRange(y, n) && !points.find(_.matches([x, y]));
+export function spiralMatrix(n) {
+  const m = [...Array(n)].map(() => [...Array(n)]);
+  // eslint-disable-next-line no-return-assign
+  spiralPoints(n).forEach(([x, y], i) => m[y][x] = i);
+  return m;
 
-module.exports = {
-  spiralMatrix,
-  spiralPoints,
-  movePoint,
-  checkPoint,
-};
+  // OR
+
+  // const points = spiralPoints(n);
+  // return range(n).map((y) => (
+  //   range(n).map((x) => (
+  //     points.findIndex(equals([x, y]))
+  //   ))
+  // ));
+}
