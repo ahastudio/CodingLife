@@ -141,8 +141,6 @@ touch jest.config.js
 ```
 
 `jest.config.js` 파일 작성.
-`usestore-ts` 패키지도 변환하도록
-`transformIgnorePatterns` 옵션을 설정한다.
 
 ```js
 module.exports = {
@@ -168,9 +166,6 @@ module.exports = {
   testPathIgnorePatterns: [
     '<rootDir>/node_modules/',
     '<rootDir>/dist/',
-  ],
-  transformIgnorePatterns: [
-    'node_modules/(?!usestore-ts)',
   ],
 };
 ```
