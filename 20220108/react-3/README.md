@@ -11,3 +11,15 @@ npx json-server --watch db.json
 ```bash
 npm start
 ```
+
+## Fly로 배포
+
+```bash
+REACT_APP_API_BASE_URL=https://board-spring.fly.dev npm run build
+```
+
+```bash
+fly launch
+
+fly deploy
+```
