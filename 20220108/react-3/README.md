@@ -12,6 +12,10 @@ npx json-server --watch db.json
 npm start
 ```
 
+## `Dockerfile`
+
+<https://github.com/ahastudio/dockerfiles/blob/main/parcel-react/Dockerfile>
+
 ## Fly로 배포
 
 ```bash
