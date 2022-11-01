@@ -35,6 +35,7 @@ public class PostService {
 
         Post post = postRepository.getById(id);
         post.decorateTitle();
+        post.addTag("Test");
 
         return post.toDto();
     }
