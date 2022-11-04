@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import kr.megaptera.makaobank.exceptions.AuthenticationError;
 
 @ControllerAdvice
-public class AuthencitationErrorAdvice {
+public class AuthenticationErrorAdvice {
     @ResponseBody
     @ExceptionHandler(AuthenticationError.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
