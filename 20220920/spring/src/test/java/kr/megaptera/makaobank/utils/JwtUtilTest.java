@@ -1,9 +1,11 @@
 package kr.megaptera.makaobank.utils;
 
-import com.auth0.jwt.exceptions.JWTDecodeException;
-import kr.megaptera.makaobank.models.AccountNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.auth0.jwt.exceptions.JWTDecodeException;
+
+import kr.megaptera.makaobank.models.AccountNumber;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;

@@ -1,18 +1,10 @@
 package kr.megaptera.makaobank.controllers;
 
-import kr.megaptera.makaobank.dtos.AccountNotFoundErrorDto;
-import kr.megaptera.makaobank.dtos.ErrorDto;
-import kr.megaptera.makaobank.dtos.IncorrectAmountErrorDto;
-import kr.megaptera.makaobank.dtos.TransactionDto;
-import kr.megaptera.makaobank.dtos.TransactionsDto;
-import kr.megaptera.makaobank.dtos.TransferDto;
-import kr.megaptera.makaobank.dtos.TransferResultDto;
-import kr.megaptera.makaobank.exceptions.AccountNotFound;
-import kr.megaptera.makaobank.exceptions.IncorrectAmount;
-import kr.megaptera.makaobank.models.AccountNumber;
-import kr.megaptera.makaobank.models.Transaction;
-import kr.megaptera.makaobank.services.TransactionService;
-import kr.megaptera.makaobank.services.TransferService;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +16,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import kr.megaptera.makaobank.dtos.AccountNotFoundErrorDto;
+import kr.megaptera.makaobank.dtos.ErrorDto;
+import kr.megaptera.makaobank.dtos.IncorrectAmountErrorDto;
+import kr.megaptera.makaobank.dtos.TransactionDto;
+import kr.megaptera.makaobank.dtos.TransactionsDto;
+import kr.megaptera.makaobank.dtos.TransferDto;
+import kr.megaptera.makaobank.dtos.TransferResultDto;
+import kr.megaptera.makaobank.exceptions.AccountNotFound;
+import kr.megaptera.makaobank.exceptions.IncorrectAmount;
+import kr.megaptera.makaobank.models.AccountNumber;
+import kr.megaptera.makaobank.services.TransactionService;
+import kr.megaptera.makaobank.services.TransferService;
 
 @RestController
 @RequestMapping("transactions")

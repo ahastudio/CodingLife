@@ -1,13 +1,15 @@
 package kr.megaptera.makaobank.repositories;
 
-import kr.megaptera.makaobank.models.Account;
-import kr.megaptera.makaobank.models.AccountNumber;
+import javax.transaction.Transactional;
+
 import org.junit.jupiter.api.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import javax.transaction.Transactional;
+import kr.megaptera.makaobank.models.Account;
+import kr.megaptera.makaobank.models.AccountNumber;
 
 @SpringBootTest
 @Transactional

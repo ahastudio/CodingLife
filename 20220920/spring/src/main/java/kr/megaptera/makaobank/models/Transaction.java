@@ -1,8 +1,6 @@
 package kr.megaptera.makaobank.models;
 
-import kr.megaptera.makaobank.dtos.TransactionDto;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
@@ -10,7 +8,11 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import kr.megaptera.makaobank.dtos.TransactionDto;
 
 @Entity
 public class Transaction {

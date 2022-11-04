@@ -1,13 +1,13 @@
 package kr.megaptera.makaobank.interceptors;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import kr.megaptera.makaobank.exceptions.AuthenticationError;
 import kr.megaptera.makaobank.models.AccountNumber;
 import kr.megaptera.makaobank.utils.JwtUtil;
 import org.springframework.web.servlet.HandlerInterceptor;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class AuthenticationInterceptor implements HandlerInterceptor {
     private final JwtUtil jwtUtil;

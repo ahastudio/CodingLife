@@ -1,11 +1,12 @@
 package kr.megaptera.makaobank.advices;
 
-import kr.megaptera.makaobank.exceptions.AuthenticationError;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import kr.megaptera.makaobank.exceptions.AuthenticationError;
 
 @ControllerAdvice
 public class AuthencitationErrorAdvice {

@@ -1,13 +1,15 @@
 package kr.megaptera.makaobank.models;
 
-import kr.megaptera.makaobank.exceptions.IncorrectAmount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import kr.megaptera.makaobank.exceptions.IncorrectAmount;
+
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AccountTest {
     final Long AMOUNT1 = 1_000_000L;
