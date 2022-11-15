@@ -27,7 +27,7 @@ ls -al build/libs/
 `Dockerfile`:
 
 ```dockerfile
-FROM eclipse-temurin:17
+FROM ghcr.io/graalvm/jdk:ol9-java17-22.3.0
 
 WORKDIR /u/myapp
 
