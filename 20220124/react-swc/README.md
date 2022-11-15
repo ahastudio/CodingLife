@@ -36,7 +36,7 @@ touch .eslintignore
 
 ## Visual Studio Code 세팅
 
-기존 파일을 그대로 다운로드헤서 사용한다.
+기존 파일을 그대로 다운로드해서 사용한다.
 
 ```bash
 mkdir .vscode
