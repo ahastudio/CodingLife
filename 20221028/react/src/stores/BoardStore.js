@@ -3,7 +3,7 @@ import { Store, Action } from 'usestore-ts';
 import { apiService } from '../services/ApiService';
 
 @Store()
-class BoardSotre {
+class BoardStore {
   posts = [];
 
   async fetchPosts() {
@@ -17,4 +17,4 @@ class BoardSotre {
   }
 }
 
-export default BoardSotre;
+export default BoardStore;
