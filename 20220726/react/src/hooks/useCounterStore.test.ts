@@ -6,10 +6,14 @@ import useCounterSotre from './useCounterStore';
 
 import CounterStore from '../stores/CounterStore';
 
-const counterStore = container.resolve(CounterStore);
-
 describe('useCounterSotre', () => {
+  beforeEach(() => {
+    container.clearInstances();
+  });
+
   it('returns the snapshot and the store', () => {
+    const counterStore = container.resolve(CounterStore);
+
     const { result } = renderHook(() => useCounterSotre());
 
     expect(result.current).toEqual([

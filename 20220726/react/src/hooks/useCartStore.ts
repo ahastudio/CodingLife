@@ -4,8 +4,7 @@ import { useStore } from 'usestore-ts';
 
 import CartStore from '../stores/CartStore';
 
-const cartStore = container.resolve(CartStore);
-
 export default function useCartStore() {
+  const cartStore = container.resolve(CartStore);
   return useStore(cartStore);
 }

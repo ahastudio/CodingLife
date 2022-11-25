@@ -8,10 +8,14 @@ import Cart from '../models/Cart';
 
 import CartStore from '../stores/CartStore';
 
-const cartStore = container.resolve(CartStore);
-
 describe('useCartStore', () => {
+  beforeEach(() => {
+    container.clearInstances();
+  });
+
   it('returns the snapshot and the store', () => {
+    const cartStore = container.resolve(CartStore);
+
     const { result } = renderHook(() => useCartStore());
 
     expect(result.current).toEqual([

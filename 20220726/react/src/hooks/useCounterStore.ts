@@ -4,8 +4,7 @@ import { useStore } from 'usestore-ts';
 
 import CounterStore from '../stores/CounterStore';
 
-const counterStore = container.resolve(CounterStore);
-
 export default function useCounterStore() {
+  const counterStore = container.resolve(CounterStore);
   return useStore(counterStore);
 }
