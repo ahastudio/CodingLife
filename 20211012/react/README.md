@@ -413,13 +413,6 @@ export default function Posts() {
 
 ## Custom Hook 테스트
 
-[React Hooks Testing Library](https://react-hooks-testing-library.com/)
-설치.
-
-```bash
-npm install --save-dev @testing-library/react-hooks
-```
-
 먼저, Custom Hook을 mocking해서 컴포넌트 테스트한다.
 
 `src/PostForm.test.tsx` 파일 작성:
@@ -486,7 +479,7 @@ describe('Posts', () => {
 `src/hooks.test.tsx` 파일 작성:
 
 ```tsx
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react';
 
 import { RecoilRoot } from 'recoil';
 
@@ -743,14 +736,20 @@ npx codeceptjs init
 ```
 
 ```txt
+? Do you plan to write tests in TypeScript? (y/N)
+y
+
 ? Where are your tests located? (./*_test.js)
-./tests/**/*_test.js
+./tests/**/*_test.ts
 
 ? What helpers do you want to use? (Use arrow keys)
 ❯ Playwright
 
 ? Where should logs, screenshots, and reports to be stored? (./output)
 ./output
+
+? Would you prefer to use promise-based typings for all I.* commands? http://bit.ly/3XIMq6n (y/N)
+N
 
 ? Do you want localization for tests? (See https://codecept.io/translation/) (Us
 e arrow keys)
@@ -765,29 +764,57 @@ Y
 ? [Playwright] Browser in which testing will be performed. Possible options: chr
 omium, firefox, webkit or electron (chromium)
 chromium
-
-? Feature which is being tested (ex: account, login, etc)
-welcome
-
-? Filename of a test (welcome_test.js)
-welcome_test.js
 ```
 
-불필요한 파일 삭제:
+CodeceptJS의 문제로 에러가 발생하지만
+공명의 함정이니 당황하지 말 것.
+
+```txt
+TSError: ⨯ Unable to compile TypeScript:
+codecept.conf.ts:9:22 - error TS2503: Cannot find namespace 'CodeceptJS'.
+```
+
+`codecept.conf.ts`에서 문제가 되는 부분 수정:
+
+```typescript
+// CodeceptJS.MainConfig 타입 지정을 제거!
+export const config = {
+```
+
+`steps.d.ts` 파일 생성:
 
 ```bash
-rm jsconfig.json
-rm steps_file.js
+npx codeceptjs def
 ```
 
-`codecept.conf.js` 파일에서 `include` 부분 삭제:
+테스트 폴더 생성:
+
+```bash
+mkdir tests
+```
+
+`steps.d.ts`, `steps_file.ts` 파일 옮기기:
+
+```bash
+mv steps.d.ts tests/
+mv steps_file.ts tests/
+```
+
+`codecept.conf.js` 파일에서 `include` 부분 수정:
 
 ```javascript
-  // 아래 3줄 삭제
   include: {
-    I: './steps_file.js',
+    I: './tests/steps_file.js',
   },
-  // ---
+```
+
+CodeceptJS가 내부적으로 `ts-node`를 쓰기 때문에
+`tsconfig.json` 파일에 다음 설정을 추가:
+
+```json
+  "ts-node": {
+    "files": true
+  }
 ```
 
 `.gitignore` 파일에 실패 기록 위치 추가:
@@ -805,13 +832,31 @@ npm install --save-dev eslint-plugin-codeceptjs
 
 `tests/.eslintrc.js` 파일 작성:
 
+```bash
+touch tests/.eslintrc.js
+```
+
 ```javascript
 module.exports = {
   extends: ['plugin:codeceptjs/recommended'],
 };
 ```
 
-`tests/welcome_test.js` 파일에 테스트 추가:
+테스트 코드 생성:
+
+```bash
+npx codeceptjs generate:test
+```
+
+```txt
+? Feature which is being tested (ex: account, login, etc)
+welcome
+
+? Filename of a test (welcome_test.ts)
+welcome_test.ts
+```
+
+`tests/welcome_test.ts` 파일에 테스트 추가:
 
 ```javascript
 Feature('Welcome');

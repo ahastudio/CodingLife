@@ -269,7 +269,8 @@ ReactDOM.render(<App />, container);
 
 ```bash
 npm install --save-dev jest ts-jest @types/jest \
-    @testing-library/react @testing-library/jest-dom
+    @testing-library/react @testing-library/jest-dom \
+    jest-environment-jsdom
 ```
 
 `jest.config.js` 파일 작성:
