@@ -1,9 +1,9 @@
 package utils;
 
-import com.sun.net.httpserver.HttpExchange;
-
 import java.io.IOException;
 import java.io.OutputStream;
+
+import com.sun.net.httpserver.HttpExchange;
 
 public class MessageWriter {
     private HttpExchange exchange;
