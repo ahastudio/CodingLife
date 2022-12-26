@@ -61,6 +61,10 @@ public class App {
         System.out.println("*".repeat(80));
         System.out.println(content);
         System.out.println("*".repeat(80));
+
+        // Close
+
+        socket.close();
     }
 
     public void runServer() throws IOException {
@@ -81,11 +85,11 @@ public class App {
     }
 
     public void process(Socket socket) throws IOException {
-        OutputStreamWriter output =
-                new OutputStreamWriter(socket.getOutputStream());
-
         BufferedReader input = new BufferedReader(
                 new InputStreamReader(socket.getInputStream()));
+
+        OutputStreamWriter output =
+                new OutputStreamWriter(socket.getOutputStream());
 
         // Request
 
@@ -100,10 +104,14 @@ public class App {
 
         // Response
 
-        String body = "Hello, world!\n";
+        String body = "Hello, world!";
 
         output.write(generateResponseMessage(body));
         output.flush();
+
+        // Close
+
+        socket.close();
     }
 
     public String generateRequestMessage(String path, String body) {
