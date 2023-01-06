@@ -1,3 +1,4 @@
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import App from './App';
@@ -21,7 +22,11 @@ function main() {
 	const root = ReactDOM.createRoot(element);
 	const root2 = ReactDOM.createRoot(element2);
 
-	root.render(<App />);
+	root.render((
+		<React.StrictMode>
+			<App />
+		</React.StrictMode>
+	));
 
 	let count = 0;
 

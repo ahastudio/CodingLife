@@ -2,6 +2,16 @@ import {useState} from 'react';
 
 import Greeting from './components/Greeting';
 
+function Image({src, alt = '', width}: {
+	src: string;
+	alt?: string;
+	width?: number;
+}) {
+	return (
+		<img src={src} alt={alt} width={width ?? 'auto'} />
+	);
+}
+
 export default function App() {
 	const [count, setCount] = useState(0);
 
@@ -12,7 +22,8 @@ export default function App() {
 	return (
 		<div>
 			<Greeting name='world'/>
-			<img src='/images/test.jpg' alt='Test image' width='200' />
+			<Image src='/images/test.jpg' alt='Test image' width={200} />
+			<Image src='/images/test.jpg' />
 			<p>Count: {count}</p>
 			<button type='button' onClick={handleClick}>
 				클릭!
