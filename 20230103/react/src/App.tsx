@@ -23,7 +23,6 @@ export default function App() {
 		<div>
 			<Greeting name='world'/>
 			<Image src='/images/test.jpg' alt='Test image' width={200} />
-			<Image src='/images/test.jpg' />
 			<p>Count: {count}</p>
 			<button type='button' onClick={handleClick}>
 				클릭!
