@@ -1,5 +1,7 @@
 import { useBoolean } from 'usehooks-ts';
 
+import Greeting from './components/Greeting';
+
 import useCountRef from './hooks/useCountRef';
 import useCounts from './hooks/useCounts';
 
@@ -36,7 +38,7 @@ export default function App() {
 
   return (
     <div>
-      <p>Hello, world!</p>
+      <Greeting />
       <p>
         <button type="button" onClick={handleClickToggle}>
           Toggle
