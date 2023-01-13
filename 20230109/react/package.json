@@ -1,7 +1,7 @@
 {
-  "name": "react-demo",
+  "name": "react-demo-app",
   "version": "0.0.0",
-  "description": "React Application Demo",
+  "description": "React Demo Application",
   "source": "index.html",
   "scripts": {
     "start": "parcel --port 8080",
