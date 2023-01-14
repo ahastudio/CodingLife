@@ -1,66 +1,15 @@
-import { useBoolean } from 'usehooks-ts';
-
 import Greeting from './components/Greeting';
-
-import useCountRef from './hooks/useCountRef';
-import useCounts from './hooks/useCounts';
-
-import useFetchUsers from './hooks/useFetchUsers';
-
-import useCreateUser from './hooks/useCreateUser';
-
-function temporaryKey(index: number) {
-  return `key-${index}`;
-}
+import Switch from './components/Switch';
+import Counter from './components/Counter';
+import UserList from './components/UserList';
 
 export default function App() {
-  const { value: flag, toggle: toggleFlag } = useBoolean();
-
-  const users = useFetchUsers();
-
-  const { createUser } = useCreateUser();
-
-  const count = useCountRef();
-
-  const { counts, increase } = useCounts(5);
-
-  console.log(`render App: ${counts}`);
-
-  const handleClickToggle = () => {
-    toggleFlag();
-  };
-
-  const handleClick = (index: number) => {
-    count.current += 1;
-    increase(index);
-    createUser({ name: 'Mr.Hong', job: 'Tester' });
-  };
-
   return (
     <div>
       <Greeting />
-      <p>
-        <button type="button" onClick={handleClickToggle}>
-          Toggle
-          {' '}
-          (
-          {flag ? 'On' : 'Off'}
-          )
-        </button>
-      </p>
-      <p>{count.current}</p>
-      <p>{JSON.stringify(counts)}</p>
-      {counts.map((_, index) => (
-        <button
-          key={temporaryKey(index)}
-          type="button"
-          onClick={() => handleClick(index)}
-        >
-          Click #
-          {index + 1}
-        </button>
-      ))}
-      <p>{JSON.stringify(users)}</p>
+      <Switch />
+      <Counter />
+      <UserList />
     </div>
   );
 }

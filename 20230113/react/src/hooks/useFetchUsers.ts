@@ -31,7 +31,15 @@ function useFetchUsersOld() {
 }
 
 export default function useFetchUsers() {
+  type UsersRespone = {
+    data: User[];
+  }
+
   const url = 'https://reqres.in/api/users';
-  const { data } = useFetch<User[]>(url);
-  return data;
+  const response = useFetch<UsersRespone>(url);
+  if (!response.data) {
+    return [];
+  }
+  const { data: users } = response.data;
+  return users;
 }

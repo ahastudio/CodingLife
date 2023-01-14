@@ -1,11 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function useCounts(size: number) {
   const [counts, setCounts] = useState(Array(size).fill(0));
-
-  useEffect(() => {
-    console.log(`Effect: ${counts[0]}`);
-  }, [counts[0]]);
 
   return {
     // States

@@ -22,6 +22,7 @@ export default function useCreateUser() {
       });
 
       const data = await response.json();
+      console.log('Create User:', data);
 
       cache.current[name] = data;
 

@@ -20,6 +20,7 @@ export default async function useCreateUserImmediately({ name, job }: {
   });
 
   const data = await response.json();
+  console.log('Create User:', data);
 
   cache.current[name] = data;
 
