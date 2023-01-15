@@ -1,7 +1,7 @@
 import Greeting from './components/Greeting';
 import Switch from './components/Switch';
 import Counter from './components/Counter';
-import UserList from './components/UserList';
+import PostList from './components/PostList';
 
 export default function App() {
   return (
@@ -9,7 +9,7 @@ export default function App() {
       <Greeting />
       <Switch />
       <Counter />
-      <UserList />
+      <PostList />
     </div>
   );
 }
