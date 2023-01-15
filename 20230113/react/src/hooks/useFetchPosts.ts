@@ -4,7 +4,7 @@ import { useEffectOnce, useFetch } from 'usehooks-ts';
 
 import { Post } from '../types';
 
-export default function useFetchPostsOld() {
+function useFetchPostsOld() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffectOnce(() => {
@@ -24,7 +24,7 @@ export default function useFetchPostsOld() {
   return posts;
 }
 
-function useFetchPosts() {
+export default function useFetchPosts() {
   const url = 'http://localhost:3000/posts';
   const { data } = useFetch<Post[]>(url);
   return data;
