@@ -1,6 +1,5 @@
 package com.ahastudio.api.rest.demo.repositories;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,14 +18,17 @@ public class PostRepository {
     public PostRepository() {
         this.posts = new HashMap<PostId, Post>();
 
-        this.posts.put(PostId.of("1"),
-                new Post(PostId.of("1"), "제목", MultilineText.of("테스트입니다")));
-        this.posts.put(PostId.of("2"),
-                new Post(PostId.of("2"), "2등", MultilineText.of("2등이다!")));
+        this.posts.put(PostId.of("001"),
+                new Post(PostId.of("001"), "제목",
+                        MultilineText.of("테스트입니다")));
+        this.posts.put(PostId.of("002"),
+                new Post(PostId.of("002"), "2등", MultilineText.of("2등이다!")));
     }
 
     public List<Post> findAll() {
-        return new ArrayList<>(posts.values());
+        return posts.values().stream()
+                .sorted((a, b) -> a.id().compareTo(b.id()))
+                .toList();
     }
 
     public Post find(PostId id) {
