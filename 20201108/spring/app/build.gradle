@@ -11,28 +11,18 @@ plugins {
     id 'application'
 
     // Spring
-    id 'org.springframework.boot' version '2.3.5.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
 }
 
 repositories {
-    // Use JCenter for resolving dependencies.
-    jcenter()
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
 }
 
 dependencies {
-    // Use JUnit Jupiter API for testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
-
-    // Use JUnit Jupiter Engine for testing.
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-
-    // This dependency is used by the application.
-    implementation 'com.google.guava:guava:29.0-jre'
-
-    // Jackson for JSON.
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.3'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
+    // Spring Test
+    implementation 'org.springframework.boot:spring-boot-starter-test'
 
     // Spring Web
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -44,6 +34,6 @@ application {
 }
 
 tasks.named('test') {
-    // Use junit platform for unit tests.
+    // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
