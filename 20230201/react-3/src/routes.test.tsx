@@ -1,23 +1,20 @@
 import { render, screen } from '@testing-library/react';
 
-import { MemoryRouter } from 'react-router-dom';
+import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 
-import App from './App';
+import routes from './routes';
 
 const context = describe;
 
-describe('App', () => {
-  function renderApp(path: string) {
-    render((
-      <MemoryRouter initialEntries={[path]}>
-        <App />
-      </MemoryRouter>
-    ));
+describe('routes', () => {
+  function renderRouter(path: string) {
+    const router = createMemoryRouter(routes, { initialEntries: [path] });
+    render(<RouterProvider router={router} />);
   }
 
   context('when the current page is "/"', () => {
     it('renders the home page', () => {
-      renderApp('/');
+      renderRouter('/');
 
       screen.getByText(/Welcome/);
     });
@@ -25,7 +22,7 @@ describe('App', () => {
 
   context('when the current page is "/products"', () => {
     it('renders the product list page', () => {
-      renderApp('/products');
+      renderRouter('/products');
 
       screen.getByText(/Product list/);
     });
@@ -33,7 +30,7 @@ describe('App', () => {
 
   context('when the current page is "/about"', () => {
     it('renders the about page', () => {
-      renderApp('/about');
+      renderRouter('/about');
 
       screen.getByText(/About Demo App/);
     });
@@ -41,7 +38,7 @@ describe('App', () => {
 
   context('when the current page is "/login"', () => {
     it('renders the login page', () => {
-      renderApp('/login');
+      renderRouter('/login');
 
       screen.getByText(/Username/);
     });
