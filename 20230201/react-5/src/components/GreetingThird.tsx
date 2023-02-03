@@ -8,8 +8,8 @@ function HelloWorld({ className }: React.HTMLAttributes<HTMLElement>) {
   );
 }
 
-const Greeting = styled(HelloWorld)`
+const GreetingThird = styled(HelloWorld)`
   color: #00F;
 `;
 
-export default Greeting;
+export default GreetingThird;
