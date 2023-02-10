@@ -27,7 +27,7 @@ function HelloWorld({ className }: React.HTMLAttributes<HTMLElement>) {
 }
 
 const SmallHelloWorld = styled(HelloWorld)`
-  font-size: .1em;
+  font-size: .5em;
 `;
 
 export default function Greeting() {
