@@ -6,6 +6,7 @@
   "scripts": {
     "start": "parcel --port 3000",
     "build": "parcel build",
+    "serve": "servor dist index.html 8080 --reload",
     "lint": "eslint --fix --ext .js,.jsx .",
     "test": "jest",
     "coverage": "jest --coverage --coverage-reporters html",
@@ -35,7 +36,8 @@
     "jest": "^29.2.2",
     "jest-environment-jsdom": "^29.2.2",
     "parcel": "^2.7.0",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "servor": "^4.0.2"
   },
   "dependencies": {
     "axios": "^1.1.3",
