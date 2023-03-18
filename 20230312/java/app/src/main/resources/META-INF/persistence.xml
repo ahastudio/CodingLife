@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             version="2.1">
+    <persistence-unit name="demo">
+        <class>com.example.demo.models.Person</class>
+        <class>com.example.demo.models.Item</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:postgresql://localhost:5432/postgres"/>
+            <property name="jakarta.persistence.jdbc.user"
+                      value="postgres"/>
+            <property name="jakarta.persistence.jdbc.password"
+                      value="password"/>
+        </properties>
+    </persistence-unit>
+</persistence>
