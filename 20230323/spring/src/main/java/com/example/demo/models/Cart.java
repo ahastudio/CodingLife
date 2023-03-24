@@ -57,7 +57,8 @@ public class Cart {
         Optional<LineItem> found = findLineItem(product.id());
 
         if (found.isPresent()) {
-            found.get().increaseQuantity(quantity);
+            LineItem lineItem = found.get();
+            lineItem.increaseQuantity(quantity);
             return;
         }
 
@@ -67,16 +68,14 @@ public class Cart {
     }
 
     public void changeLineItemQuantity(LineItemId lineItemId, int quantity) {
-        Optional<LineItem> found = lineItems.stream()
-                .filter(item -> item.id().equals(lineItemId))
-                .findFirst();
+        LineItem lineItem = findLineItem(lineItemId).get();
 
         if (quantity <= 0) {
-            lineItems.remove(found.get());
+            lineItems.remove(lineItem);
             return;
         }
 
-        found.get().changeQuantity(quantity);
+        lineItem.changeQuantity(quantity);
     }
 
     public int lineItemsSize() {
@@ -90,6 +89,12 @@ public class Cart {
     public Optional<LineItem> findLineItem(ProductId productId) {
         return lineItems.stream()
                 .filter(item -> item.sameProduct(productId))
+                .findFirst();
+    }
+
+    public Optional<LineItem> findLineItem(LineItemId lineItemId) {
+        return lineItems.stream()
+                .filter(item -> item.id().equals(lineItemId))
                 .findFirst();
     }
 }
