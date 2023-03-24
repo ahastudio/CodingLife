@@ -18,6 +18,7 @@ public class Product {
     @EmbeddedId
     private ProductId id;
 
+    @Column(name = "name")
     private String name;
 
     @CreationTimestamp

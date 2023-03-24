@@ -17,8 +17,8 @@ public class CreateProductService {
         this.productRepository = productRepository;
     }
 
-    public Product createProduct() {
-        Product product = Product.create("제-품", new Money(100_000L));
+    public Product createProduct(String name, Money price) {
+        Product product = Product.create(name, price);
 
         productRepository.save(product);
 
