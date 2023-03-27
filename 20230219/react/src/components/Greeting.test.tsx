@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 
-import App from './App';
+import Greeting from './Greeting';
 
-test('App', () => {
-  render(<App />);
+test('Greeting', () => {
+  render(<Greeting />);
 
   screen.getByText(/Hello, world/);
 });
