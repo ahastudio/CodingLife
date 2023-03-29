@@ -1,0 +1,36 @@
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Git
+.git
+.gitignore
+
+# GitHub
+.github
+README.md
+
+# IDE
+.vscode
+.idea
+
+# Node.js
+node_modules
+.nvmrc
+
+# ESLint
+.eslintrc.js
+.eslintignore
+
+# Jest
+jest.config.js
+
+# TypeScript
+tsconfig*.json
+**/*.ts
+
+# Test
+__mocks__
+fixtures
+coverage
