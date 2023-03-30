@@ -8,6 +8,7 @@ spring:
       ddl-auto: update
 
 server:
+  port: 3000
   servlet:
     encoding:
       force-response: true
