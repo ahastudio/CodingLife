@@ -50,6 +50,8 @@ const products: Product[] = [
     name: 'CBCL 레이어드 탑',
     price: 89_000,
     options: [
+      options['3-color'],
+      options['3-size'],
     ],
     description: `
       Color: Black, Beige, Cream, Charcoal
@@ -65,6 +67,8 @@ const products: Product[] = [
     name: 'CBCL 배색 후드',
     price: 89_000,
     options: [
+      options['4-color'],
+      options['4-size'],
     ],
     description: `
       Color: Beige, Khaki, Charcoal
@@ -80,6 +84,8 @@ const products: Product[] = [
     name: '박시롱코트',
     price: 298_000,
     options: [
+      options['5-color'],
+      options['5-size'],
     ],
     description: `
       Color: Navy, Beige, Yellow
@@ -96,6 +102,8 @@ const products: Product[] = [
     name: 'CBCL 레귤러핏 야구점퍼',
     price: 397_000,
     options: [
+      options['6-color'],
+      options['6-size'],
     ],
     description: `
       Color: Black, Brown, Gray
@@ -112,6 +120,8 @@ const products: Product[] = [
     name: 'CBCL 핀턱자수후드',
     price: 158_000,
     options: [
+      options['7-color'],
+      options['7-size'],
     ],
     description: `
       Color: Brown, Khaki, Charcoal
@@ -127,6 +137,8 @@ const products: Product[] = [
     name: '밴딩스커트',
     price: 966_000,
     options: [
+      options['8-color'],
+      options['8-size'],
     ],
     description: `
       Color: Pink
@@ -143,6 +155,8 @@ const products: Product[] = [
     name: 'CBCL 하트자수셋업조거',
     price: 138_000,
     options: [
+      options['9-color'],
+      options['9-size'],
     ],
     description: `
       Color: Navy, Brown, Gray, Black
@@ -158,8 +172,7 @@ const products: Product[] = [
     images: [{ url: `${imageBaseUrl}/10.jpg` }],
     name: 'CBCL EARRING Silver',
     price: 62_000,
-    options: [
-    ],
+    options: [],
     description: `
       고급스러운 광채가 나는 이어링
     `,
@@ -170,8 +183,7 @@ const products: Product[] = [
     images: [{ url: `${imageBaseUrl}/11.jpg` }],
     name: 'CBCL EARRING Green',
     price: 82_000,
-    options: [
-    ],
+    options: [],
     description: `
       그린 컬러의 로고 이미지가 돋보이는 이어링
     `,
