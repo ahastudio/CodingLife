@@ -10,7 +10,7 @@ const [product] = fixtures.products;
 const { options } = product;
 
 const store = {
-  options,
+  product,
   selectedOptionItems: options.map((i) => i.items[0]),
   quantity: 1,
   changeOptionItem: jest.fn(),

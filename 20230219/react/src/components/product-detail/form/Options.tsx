@@ -5,7 +5,7 @@ import useProductFormStore from '../../../hooks/useProductFormStore';
 import { ChangeFunction } from './types';
 
 export default function Options() {
-  const [{ options, selectedOptionItems }, store] = useProductFormStore();
+  const [{ product, selectedOptionItems }, store] = useProductFormStore();
 
   const handleChange: ChangeFunction = ({ optionId, optionItemId }) => {
     store.changeOptionItem({ optionId, optionItemId });
@@ -13,7 +13,7 @@ export default function Options() {
 
   return (
     <div>
-      {options.map((option, index) => (
+      {product.options.map((option, index) => (
         <Option
           key={option.id}
           option={option}

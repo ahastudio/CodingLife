@@ -5,8 +5,10 @@ import Button from '../../ui/Button';
 import useProductFormStore from '../../../hooks/useProductFormStore';
 
 const Container = styled.div`
+  display: flex;
+
   input {
-    width: 5rem;
+    max-width: 5rem;
     text-align: center;
   }
 `;

@@ -29,8 +29,7 @@ describe('ProductFormStore', () => {
     it('sets state', () => {
       store.setProduct(product);
 
-      expect(store.productId).toBe(product.id);
-      expect(store.options).toHaveLength(product.options.length);
+      expect(store.product).toBe(product);
       expect(store.selectedOptionItems).toHaveLength(product.options.length);
       expect(store.quantity).toBe(1);
     });
@@ -64,7 +63,7 @@ describe('ProductFormStore', () => {
     });
 
     context('with incorrect item ID', () => {
-      it("doesn't change anoything", () => {
+      it("doesn't change anything", () => {
         const prevItems = store.selectedOptionItems;
 
         store.changeOptionItem({
@@ -92,11 +91,16 @@ describe('ProductFormStore', () => {
       });
     });
 
-    context('with incorrect value', () => {
+    context('when value is less than 1', () => {
       it("doesn't changes quantity", () => {
         store.changeQuantity(-1);
-        store.changeQuantity(11);
+        expect(store.quantity).toBe(1);
+      });
+    });
 
+    context('when value is greater than 10', () => {
+      it("doesn't changes quantity", () => {
+        store.changeQuantity(11);
         expect(store.quantity).toBe(1);
       });
     });

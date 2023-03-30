@@ -8,9 +8,9 @@ const context = describe;
 
 describe('Description', () => {
   context('when text is empty', () => {
-    it('renders nothing', () => {
-      const text = '';
+    const text = '';
 
+    it('renders nothing', () => {
       const { container } = render(<Description value={text} />);
 
       expect(container).toBeEmptyDOMElement();
@@ -18,10 +18,10 @@ describe('Description', () => {
   });
 
   context('when text is not empty', () => {
-    it('renders multi-line text', () => {
-      const lines = ['1st line', '2nd line', '3rd line'];
-      const text = lines.join('\n');
+    const lines = ['1st line', '2nd line', '3rd line'];
+    const text = lines.join('\n');
 
+    it('renders multi-line text', () => {
       render(<Description value={text} />);
 
       lines.forEach((line) => {

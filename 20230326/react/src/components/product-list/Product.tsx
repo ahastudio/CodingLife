@@ -5,7 +5,10 @@ import { ProductSummary } from '../../types';
 import numberFormat from '../../utils/numberFormat';
 
 const Container = styled.div`
-  word-break: keep-all;
+  div {
+    margin-top: .5rem;
+    word-break: keep-all;
+  }
 `;
 
 const Thumbnail = styled.img.attrs({

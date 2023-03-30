@@ -8,6 +8,7 @@ import numberFormat from '../../utils/numberFormat';
 
 const Container = styled.div`
   table {
+    margin-block: 2rem;
     width: 100%;
   }
 

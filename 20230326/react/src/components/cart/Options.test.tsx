@@ -1,4 +1,3 @@
-import { screen } from '@testing-library/react';
 import { render } from '../../test-helpers';
 
 import Options from './Options';

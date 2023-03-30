@@ -1,3 +1,3 @@
-export default function numberFormat(value: number) {
+export default function numberFormat(value: number): string {
   return new Intl.NumberFormat().format(value);
 }

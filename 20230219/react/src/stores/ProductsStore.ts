@@ -12,8 +12,8 @@ export default class ProductsStore {
   products: ProductSummary[] = [];
 
   async fetchProducts({ categoryId }: {
-  categoryId?: string;
-}) {
+    categoryId?: string;
+  }) {
     this.setProducts([]);
 
     const products = await apiService.fetchProducts({ categoryId });

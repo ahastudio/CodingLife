@@ -9,7 +9,7 @@ import { ProductDetail, nullProductDetail } from '../types';
 @singleton()
 @Store()
 export default class ProductDetailStore {
-  product = nullProductDetail;
+  product: ProductDetail = nullProductDetail;
 
   loading = true;
 

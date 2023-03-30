@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -37,11 +37,11 @@ export default function Header() {
       <nav>
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <NavLink to="/products">Products</NavLink>
-            {categories.length && (
+            <Link to="/products">Products</Link>
+            {!!categories.length && (
               <ul>
                 {categories.map((category) => (
                   <li key={category.id}>
@@ -54,7 +54,7 @@ export default function Header() {
             )}
           </li>
           <li>
-            <NavLink to="/cart">Cart</NavLink>
+            <Link to="/cart">Cart</Link>
           </li>
         </ul>
       </nav>

@@ -18,7 +18,7 @@ export default function Options({ options }: OptionsProps) {
 
   const text = options
     .map((option) => `${option.name}: ${option.item.name}`)
-    .join(',');
+    .join(', ');
 
   return (
     <Container>

@@ -7,6 +7,7 @@ import numberFormat from '../../utils/numberFormat';
 const Container = styled.div`
   div {
     margin-top: .5rem;
+    word-break: keep-all;
   }
 `;
 

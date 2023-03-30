@@ -3,30 +3,19 @@ import { useEffect } from 'react';
 import useProductDetailStore from './useProductDetailStore';
 import useProductFormStore from './useProductFormStore';
 
-import { ProductDetail } from '../types';
-
 export default function useFetchProduct({ productId }: {
   productId: string;
-}): {
-  product: ProductDetail;
-  loading: boolean;
-  error: boolean;
-} {
-  const [{
-    product, loading, error,
-  }, productDetailStore] = useProductDetailStore();
-
+}) {
+  const [{ product, loading, error }, store] = useProductDetailStore();
   const [, productFormStore] = useProductFormStore();
 
   useEffect(() => {
-    productDetailStore.fetchProduct({ productId });
-  }, [productDetailStore, productId]);
+    store.fetchProduct({ productId });
+  }, [store]);
 
   useEffect(() => {
-    if (!loading && !error) {
-      productFormStore.setProduct(product);
-    }
-  }, [loading, error, product]);
+    productFormStore.setProduct(product);
+  }, [productFormStore, product]);
 
-  return { product, loading, error };
+  return { loading, error };
 }

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import useProductDetailStore from '../../../hooks/useProductDetailStore';
 import useProductFormStore from '../../../hooks/useProductFormStore';
 
 import numberFormat from '../../../utils/numberFormat';
@@ -11,12 +10,11 @@ const Container = styled.div`
 `;
 
 export default function Price() {
-  const [{ product }] = useProductDetailStore();
-  const [{ quantity }] = useProductFormStore();
+  const [{ price }] = useProductFormStore();
 
   return (
     <Container>
-      {numberFormat(product.price * quantity)}
+      {numberFormat(price)}
       원
     </Container>
   );

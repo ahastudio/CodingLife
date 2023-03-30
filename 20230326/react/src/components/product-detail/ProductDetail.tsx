@@ -17,6 +17,11 @@ const Container = styled.div`
 
   article {
     width: 60%;
+
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
   }
 `;
 

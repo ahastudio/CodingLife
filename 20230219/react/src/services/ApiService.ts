@@ -4,7 +4,8 @@ import {
   Category, ProductSummary, ProductDetail, Cart,
 } from '../types';
 
-const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3000';
+const API_BASE_URL = process.env.API_BASE_URL
+                     || 'https://shop-demo-api-01.fly.dev';
 
 export default class ApiService {
   private instance = axios.create({
