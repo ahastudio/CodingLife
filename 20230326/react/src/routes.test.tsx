@@ -8,6 +8,8 @@ import defaultTheme from './styles/defaultTheme';
 
 import routes from './routes';
 
+import fixtures from '../fixtures';
+
 const context = describe;
 
 describe('routes', () => {
@@ -24,65 +26,65 @@ describe('routes', () => {
     it('renders the home page', async () => {
       renderRouter('/');
 
-      // await waitFor(() => {
-      //   screen.getByText(/Category #1/);
-      // });
+      await waitFor(() => {
+        screen.getByText(/Category #1/);
+      });
     });
   });
 
-  // context('when the current path is “/products”', () => {
-  //   context('without category ID', () => {
-  //     it('renders the product list page', async () => {
-  //       renderRouter('/products');
+  context('when the current path is “/products”', () => {
+    context('without category ID', () => {
+      it('renders the product list page', async () => {
+        renderRouter('/products');
 
-  //       await waitFor(() => {
-  //         screen.getByText(/Product #1/);
-  //       });
-  //     });
-  //   });
+        await waitFor(() => {
+          screen.getByText(/Product #1/);
+        });
+      });
+    });
 
-  //   context('with category ID', () => {
-  //     it('renders the product list page', async () => {
-  //       renderRouter(`/products?categoryId=${fixtures.categories[0].id}`);
+    context('with category ID', () => {
+      it('renders the product list page', async () => {
+        renderRouter(`/products?categoryId=${fixtures.categories[0].id}`);
 
-  //       await waitFor(() => {
-  //         screen.getByText(/Product #1/);
-  //       });
-  //     });
-  //   });
-  // });
+        await waitFor(() => {
+          screen.getByText(/Product #1/);
+        });
+      });
+    });
+  });
 
-  // context('when the current path is “/products/{id}”', () => {
-  //   context('with correct ID', () => {
-  //     it('renders the product detail page', async () => {
-  //       renderRouter('/products/product-01');
+  context('when the current path is “/products/{id}”', () => {
+    context('with correct ID', () => {
+      it('renders the product detail page', async () => {
+        renderRouter('/products/product-01');
 
-  //       screen.getByText(/Loading/);
+        screen.getByText(/Loading/);
 
-  //       await waitFor(() => {
-  //         screen.getByText(/Product #1/);
-  //       });
-  //     });
-  //   });
+        await waitFor(() => {
+          screen.getByText(/Product #1/);
+        });
+      });
+    });
 
-  //   context('with incorrect ID', () => {
-  //     it('renders “not found” message', async () => {
-  //       renderRouter('/products/xxx');
+    context('with incorrect ID', () => {
+      it('renders “not found” message', async () => {
+        renderRouter('/products/xxx');
 
-  //       await waitFor(() => {
-  //         screen.getByText(/Error/);
-  //       });
-  //     });
-  //   });
-  // });
+        await waitFor(() => {
+          screen.getByText(/Error/);
+        });
+      });
+    });
+  });
 
-  // context('when the current path is “/cart”', () => {
-  //   it('renders the cart page', async () => {
-  //     renderRouter('/cart');
+  context('when the current path is “/cart”', () => {
+    it('renders the cart page', async () => {
+      renderRouter('/cart');
 
-  //     await waitFor(() => {
-  //       screen.getByText(/합계/);
-  //     });
-  //   });
-  // });
+      await waitFor(() => {
+        screen.getByText(/합계/);
+      });
+    });
+  });
 });

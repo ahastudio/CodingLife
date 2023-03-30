@@ -1,16 +1,17 @@
-test('test', () => {
-  //
-});
+import { container } from 'tsyringe';
 
-// import { screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
-// import { render } from '../../test-helpers';
+import { render } from '../../test-helpers';
 
-// import ProductDetail from './ProductDetail';
+import ProductDetail from './ProductDetail';
 
-// import fixtures from '../../../fixtures';
+import ProductDetailStore from '../../stores/ProductDetailStore';
 
-// const [product] = fixtures.products;
+import fixtures from '../../../fixtures';
+
+const [product] = fixtures.products;
+
 // const { options } = product;
 
 // jest.mock('../../hooks/useProductDetailStore', () => () => [
@@ -25,8 +26,12 @@ test('test', () => {
 //   },
 // ]);
 
-// test('ProductDetail', () => {
-//   render(<ProductDetail />);
+test('ProductDetail', async () => {
+  const store = container.resolve(ProductDetailStore);
 
-//   screen.getByText(product.name);
-// });
+  await store.fetchProduct({ productId: product.id });
+
+  render(<ProductDetail />);
+
+  screen.getByText(product.name);
+});

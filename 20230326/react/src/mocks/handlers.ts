@@ -5,13 +5,13 @@ import { ProductSummary } from '../types';
 
 import fixtures from '../../fixtures';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://shop-demo-api-01.fly.dev';
 
 const productSummaries: ProductSummary[] = fixtures.products
   .map((product) => ({
     id: product.id,
     category: product.category,
-    thumbnail: { url: product.images[0].url },
+    thumbnail: product.images[0],
     name: product.name,
     price: product.price,
   }));
