@@ -5,7 +5,7 @@ import { ProductSummary } from '../types';
 
 import fixtures from '../../fixtures';
 
-const BASE_URL = 'https://shop-demo-api-01.fly.dev';
+const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3000';
 
 const productSummaries: ProductSummary[] = fixtures.products
   .map((product) => ({
@@ -17,23 +17,23 @@ const productSummaries: ProductSummary[] = fixtures.products
   }));
 
 const handlers = [
-  rest.get(`${BASE_URL}/categories`, (req, res, ctx) => (
+  rest.get(`${API_BASE_URL}/categories`, (req, res, ctx) => (
     res(ctx.json({ categories: fixtures.categories }))
   )),
-  rest.get(`${BASE_URL}/products`, (req, res, ctx) => (
+  rest.get(`${API_BASE_URL}/products`, (req, res, ctx) => (
     res(ctx.json({ products: productSummaries }))
   )),
-  rest.get(`${BASE_URL}/products/:id`, (req, res, ctx) => {
+  rest.get(`${API_BASE_URL}/products/:id`, (req, res, ctx) => {
     const product = fixtures.products.find((i) => i.id === req.params.id);
     if (!product) {
       return res(ctx.status(404));
     }
     return res(ctx.json(product));
   }),
-  rest.get(`${BASE_URL}/cart`, (req, res, ctx) => (
+  rest.get(`${API_BASE_URL}/cart`, (req, res, ctx) => (
     res(ctx.json(fixtures.cart))
   )),
-  rest.post(`${BASE_URL}/cart/line-items`, (req, res, ctx) => (
+  rest.post(`${API_BASE_URL}/cart/line-items`, (req, res, ctx) => (
     res(ctx.status(201))
   )),
 ];

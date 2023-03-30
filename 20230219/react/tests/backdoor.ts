@@ -1,6 +1,7 @@
 const { I } = inject();
 
-const BACKDOOR_BASE_URL = 'https://shop-demo-api-01.fly.dev/backdoor';
+const BACKDOOR_BASE_URL = process.env.BACKDOOR_BASE_URL
+                          || 'http://localhost:3000/backdoor';
 
 export = {
   setupDatabase() {
