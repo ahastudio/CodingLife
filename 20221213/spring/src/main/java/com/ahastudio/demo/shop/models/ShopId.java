@@ -7,6 +7,6 @@ public record ShopId(
 ) {
     @Override
     public String toString() {
-        return String.valueOf(value);
+        return value;
     }
 }
