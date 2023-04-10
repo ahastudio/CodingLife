@@ -10,13 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.example.demo.application.cart.AddProductToCartService;
 import com.example.demo.application.cart.ChangeCartItemQuantityService;
 import com.example.demo.application.cart.GetCartService;
 import com.example.demo.controllers.dtos.CartDto;
+import com.example.demo.controllers.helpers.ControllerTest;
 import com.example.demo.models.LineItemId;
 import com.example.demo.models.ProductId;
 
@@ -29,8 +29,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(LineItemController.class)
-@ActiveProfiles("test")
-class LineItemControllerTest {
+class LineItemControllerTest extends ControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -48,7 +47,9 @@ class LineItemControllerTest {
     void list() throws Exception {
         given(getCartService.getCartDto()).willReturn(new CartDto(List.of()));
 
-        mockMvc.perform(get("/cart-line-items"))
+        mockMvc.perform(get("/cart-line-items")
+                        .header("Authorization", "Bearer " + userAccessToken)
+                )
                 .andExpect(status().isOk());
     }
 
@@ -68,6 +69,7 @@ class LineItemControllerTest {
         );
 
         mockMvc.perform(post("/cart-line-items")
+                        .header("Authorization", "Bearer " + userAccessToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isCreated());
@@ -83,6 +85,7 @@ class LineItemControllerTest {
         String json = "{\"quantity\": 3}";
 
         mockMvc.perform(patch("/cart-line-items/" + lineItemId)
+                        .header("Authorization", "Bearer " + userAccessToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isNoContent());
@@ -102,6 +105,7 @@ class LineItemControllerTest {
                 .changeQuantity(lineItemId, 3);
 
         mockMvc.perform(patch("/cart-line-items/" + lineItemId)
+                        .header("Authorization", "Bearer " + userAccessToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isNotFound());

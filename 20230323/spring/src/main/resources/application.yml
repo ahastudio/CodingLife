@@ -6,12 +6,19 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+  security:
+    user:
+      name: tester
+      password: password
 
 server:
   port: 3000
   servlet:
     encoding:
       force-response: true
+
+jwt:
+  secret: SECRET
 
 ---
 spring:

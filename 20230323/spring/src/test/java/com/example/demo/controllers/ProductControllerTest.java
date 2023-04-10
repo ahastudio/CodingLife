@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.example.demo.application.product.CreateProductService;
 import com.example.demo.application.product.GetProductListService;
 import com.example.demo.controllers.dtos.ProductListDto;
+import com.example.demo.controllers.helpers.ControllerTest;
 import com.example.demo.models.Money;
 
 import static com.example.demo.controllers.helpers.ResultMatchers.contentContains;
@@ -25,8 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ProductController.class)
-@ActiveProfiles("test")
-class ProductControllerTest {
+class ProductControllerTest extends ControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -64,6 +63,7 @@ class ProductControllerTest {
         );
 
         mockMvc.perform(post("/products")
+                        .header("Authorization", "Bearer " + adminAccessToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isCreated());
