@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import {
-  Category, ProductSummary, ProductDetail, Cart,
+  Category, ProductSummary, ProductDetail, Cart, OrderSummary, OrderDetail,
 } from '../types';
 
 const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3000';
@@ -10,6 +10,54 @@ export default class ApiService {
   private instance = axios.create({
     baseURL: API_BASE_URL,
   });
+
+  private accessToken = '';
+
+  setAccessToken(accessToken: string) {
+    if (accessToken === this.accessToken) {
+      return;
+    }
+
+    const authorization = accessToken ? `Bearer ${accessToken}` : undefined;
+
+    this.instance = axios.create({
+      baseURL: API_BASE_URL,
+      headers: { Authorization: authorization },
+    });
+
+    this.accessToken = accessToken;
+  }
+
+  async login({ email, password }: {
+    email: string;
+    password: string;
+  }): Promise<string> {
+    const { data } = await this.instance.post('/session', { email, password });
+    const { accessToken } = data;
+    return accessToken;
+  }
+
+  async logout(): Promise<void> {
+    await this.instance.delete('/session');
+  }
+
+  async signup({ email, password }: {
+    email: string;
+    password: string;
+  }): Promise<string> {
+    const { data } = await this.instance.post('/users', { email, password });
+    const { accessToken } = data;
+    return accessToken;
+  }
+
+  async fetchCurrentUser(): Promise<{
+    id: string;
+    name: string;
+  }> {
+    const { data } = await this.instance.get('/users/me');
+    const { id, name } = data;
+    return { id, name };
+  }
 
   async fetchCategories(): Promise<Category[]> {
     const { data } = await this.instance.get('/categories');
@@ -50,6 +98,19 @@ export default class ApiService {
     await this.instance.post('/cart/line-items', {
       productId, options, quantity,
     });
+  }
+
+  async fetchOrders(): Promise<OrderSummary[]> {
+    const { data } = await this.instance.get('/orders');
+    const { orders } = data;
+    return orders;
+  }
+
+  async fetchOrder({ orderId }: {
+    orderId: string;
+  }): Promise<OrderDetail> {
+    const { data } = await this.instance.get(`/orders/${orderId}`);
+    return data;
   }
 }
 

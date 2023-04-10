@@ -2,7 +2,7 @@ import CartView from '../components/cart/CartView';
 
 import useFetchCart from '../hooks/useFetchCart';
 
-export default function OrderPage() {
+export default function CartPage() {
   const { cart } = useFetchCart();
 
   if (!cart) {

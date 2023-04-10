@@ -1,20 +1,20 @@
 import { ulid } from 'ulid';
 
-import { Product, LineItem } from '../types';
+import { User, Product, LineItem } from '../types';
 
 import data from '../data';
 
 export default class CartService {
   products: Product[];
 
-  lineItems: LineItem[];
-
   constructor() {
     this.products = data.products;
-    this.lineItems = data.lineItems;
   }
 
-  addProduct({ productId, optionItems, quantity }: {
+  addProduct({
+    user, productId, optionItems, quantity,
+  }: {
+    user: User,
     productId: string;
     optionItems: Record<string, string>;
     quantity: number;
@@ -24,7 +24,7 @@ export default class CartService {
       throw Error('Product Not Found');
     }
 
-    const found = this.lineItems.find((lineItem) => (
+    const found = user.cart.lineItems.find((lineItem) => (
       lineItem.product.id === productId
         && lineItem.options.every((i) => i.item.id === optionItems[i.id])
     ));
@@ -51,7 +51,9 @@ export default class CartService {
       quantity,
     };
 
-    this.lineItems.push(lineItem);
+    user.cart.lineItems.push(lineItem);
+
+    console.log(JSON.stringify(lineItem, null, '  '));
   }
 }
 

@@ -36,3 +36,26 @@ export type LineItem = {
   options: OrderOption[];
   quantity: number;
 };
+
+export type Cart = {
+  lineItems: LineItem[];
+};
+
+export type Order = {
+  id: string;
+  title: string;
+  lineItems: LineItem[];
+  totalPrice: number;
+  status: string;
+  orderedAt: string;
+};
+
+export type User = {
+  id: string;
+  email: string;
+  name: string;
+  password: string;
+  accessToken: string;
+  cart: Cart;
+  orders: Order[];
+};

@@ -1,6 +1,6 @@
 import options from './options';
 
-import { Product } from '../types';
+import { Product, OrderOption } from '../types';
 
 const imageBaseUrl = 'https://ahastudio.github.io/my-image-assets/images/cbcl-products';
 
@@ -200,5 +200,29 @@ const products: Product[] = [
     `,
   },
 ];
+
+export function getProduct(id: string): Product {
+  return products.find((i) => i.id === id) ?? products[0];
+}
+
+export function getOrderOptions({ productId, itemIds }: {
+  productId: string;
+  itemIds: string[];
+}): OrderOption[] {
+  const product = products.find((i) => i.id === productId);
+  if (!product) {
+    return [];
+  }
+
+  return itemIds.map((itemId, index) => {
+    const option = product.options[index];
+    const item = option.items.find((i) => i.id === itemId);
+    return {
+      id: option.id,
+      name: option.name,
+      item: { id: itemId, name: item?.name ?? '' },
+    };
+  });
+}
 
 export default products;
