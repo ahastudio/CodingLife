@@ -30,12 +30,12 @@ export default class LoginFormStore {
   }
 
   @Action()
-  setAccessToken(accessToken: string) {
+  private setAccessToken(accessToken: string) {
     this.accessToken = accessToken;
   }
 
   @Action()
-  setError() {
+  private setError() {
     this.error = true;
   }
 

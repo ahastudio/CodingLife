@@ -4,7 +4,8 @@ import {
   Category, ProductSummary, ProductDetail, Cart, OrderSummary, OrderDetail,
 } from '../types';
 
-const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3000';
+const API_BASE_URL = process.env.API_BASE_URL
+                     || 'http://localhost:3000';
 
 export default class ApiService {
   private instance = axios.create({
@@ -41,11 +42,14 @@ export default class ApiService {
     await this.instance.delete('/session');
   }
 
-  async signup({ email, password }: {
+  async signup({ email, name, password }: {
     email: string;
+    name: string;
     password: string;
   }): Promise<string> {
-    const { data } = await this.instance.post('/users', { email, password });
+    const { data } = await this.instance.post('/users', {
+      email, name, password,
+    });
     const { accessToken } = data;
     return accessToken;
   }

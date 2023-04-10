@@ -12,6 +12,7 @@ Scenario('Signup success', ({ I }) => {
   I.click('회원 가입');
 
   I.fillField('E-mail', 'newbie@example.com');
+  I.fillField('Name', 'Newbie');
   I.fillField('Password', 'password');
   I.fillField('Password Confirmation', 'password');
 
@@ -28,6 +29,7 @@ Scenario('Email has been already taken', ({ I }) => {
   I.click('회원 가입');
 
   I.fillField('E-mail', 'tester@example.com');
+  I.fillField('Name', 'Tester');
   I.fillField('Password', 'password');
   I.fillField('Password Confirmation', 'password');
 
@@ -44,6 +46,7 @@ Scenario('Password confirmation does not match', ({ I }) => {
   I.click('회원 가입');
 
   I.fillField('E-mail', 'newbie@example.com');
+  I.fillField('Name', 'Newbie');
   I.fillField('Password', 'password');
   I.fillField('Password Confirmation', 'xxx');
 

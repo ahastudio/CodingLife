@@ -4,6 +4,10 @@ import Table from '../line-item/Table';
 
 import { OrderDetail } from '../../types';
 
+const STATUS_MESSAGES: Record<string, string> = {
+  paid: '결제 완료',
+};
+
 const Container = styled.div`
   dl {
     display: flex;
@@ -26,9 +30,7 @@ type OrderProps = {
 
 export default function Order({ order }: OrderProps) {
   if (!order.lineItems.length) {
-    return (
-      <p>장바구니가 비었습니다</p>
-    );
+    return null;
   }
 
   return (
@@ -38,6 +40,8 @@ export default function Order({ order }: OrderProps) {
         <dd>{order.orderedAt}</dd>
         <dt>주문 코드</dt>
         <dd>{order.id}</dd>
+        <dt>처리 상태</dt>
+        <dd>{STATUS_MESSAGES[order.status]}</dd>
       </dl>
       <Table
         lineItems={order.lineItems}

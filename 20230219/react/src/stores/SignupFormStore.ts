@@ -9,6 +9,8 @@ import { apiService } from '../services/ApiService';
 export default class SignupFormStore {
   email = '';
 
+  name = '';
+
   password = '';
 
   passwordConfirmation = '';
@@ -19,6 +21,7 @@ export default class SignupFormStore {
 
   get valid() {
     return this.email.includes('@')
+      && !!this.name
       && this.password.length >= 4
       && this.password === this.passwordConfirmation;
   }
@@ -26,6 +29,11 @@ export default class SignupFormStore {
   @Action()
   changeEmail(email: string) {
     this.email = email;
+  }
+
+  @Action()
+  changeName(name: string) {
+    this.name = name;
   }
 
   @Action()
@@ -51,6 +59,7 @@ export default class SignupFormStore {
   @Action()
   reset() {
     this.email = '';
+    this.name = '';
     this.password = '';
     this.passwordConfirmation = '';
     this.error = false;
@@ -61,6 +70,7 @@ export default class SignupFormStore {
     try {
       const accessToken = await apiService.signup({
         email: this.email,
+        name: this.name,
         password: this.password,
       });
 

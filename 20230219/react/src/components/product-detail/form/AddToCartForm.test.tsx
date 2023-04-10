@@ -13,7 +13,9 @@ import fixtures from '../../../../fixtures';
 let accessToken = '';
 
 jest.mock('../../../hooks/useAccessToken', () => () => ({
-  accessToken,
+  get accessToken() {
+    return accessToken;
+  },
 }));
 
 const context = describe;

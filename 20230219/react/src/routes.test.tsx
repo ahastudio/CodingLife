@@ -76,6 +76,10 @@ describe('routes', () => {
         target: { value: 'newbie@example.com' },
       });
 
+      fireEvent.change(screen.getByLabelText('Name'), {
+        target: { value: 'Newbie' },
+      });
+
       ['Password', 'Password Confirmation'].forEach((label) => {
         fireEvent.change(screen.getByLabelText(label), {
           target: { value: 'password' },

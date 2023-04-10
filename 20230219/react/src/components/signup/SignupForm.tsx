@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import styled from 'styled-components';
 
@@ -27,7 +27,7 @@ export default function SignupForm() {
   const { setAccessToken } = useAccessToken();
 
   const [{
-    email, password, passwordConfirmation, valid, error, accessToken,
+    email, name, password, passwordConfirmation, valid, error, accessToken,
   }, store] = useSignupFormStore();
 
   useEffect(() => {
@@ -38,6 +38,10 @@ export default function SignupForm() {
 
   const handleChangeEmail = (value: string) => {
     store.changeEmail(value);
+  };
+
+  const handleChangeName = (value: string) => {
+    store.changeName(value);
   };
 
   const handleChangePassword = (value: string) => {
@@ -62,6 +66,11 @@ export default function SignupForm() {
           placeholder="tester@example.com"
           value={email}
           onChange={handleChangeEmail}
+        />
+        <TextBox
+          label="Name"
+          value={name}
+          onChange={handleChangeName}
         />
         <TextBox
           label="Password"

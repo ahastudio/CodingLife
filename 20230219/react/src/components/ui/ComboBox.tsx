@@ -35,8 +35,8 @@ export default function ComboBox<T>({
       </label>
       <select
         id={id.current}
-        value={itemToId(selectedItem)}
         onChange={handleChange}
+        value={itemToId(selectedItem)}
       >
         {items.map((item) => (
           <option key={itemToId(item)} value={itemToId(item)}>
