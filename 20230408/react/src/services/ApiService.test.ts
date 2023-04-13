@@ -11,6 +11,44 @@ describe('ApiService', () => {
     apiService = new ApiService();
   });
 
+  test('setAccessToken', async () => {
+    apiService.setAccessToken('ACCESS-TOKEN');
+    apiService.setAccessToken('');
+    apiService.setAccessToken('ACCESS-TOKEN');
+  });
+
+  test('login', async () => {
+    const accessToken = await apiService.login({
+      email: 'tester@example.com',
+      password: 'password',
+    });
+    expect(accessToken).toBeTruthy();
+  });
+
+  test('logout', async () => {
+    apiService.setAccessToken('ACCESS-TOKEN');
+
+    await apiService.logout();
+  });
+
+  test('signup', async () => {
+    const accessToken = await apiService.signup({
+      email: 'newbie@example.com',
+      name: 'Newbie',
+      password: 'password',
+    });
+    expect(accessToken).toBeTruthy();
+  });
+
+  test('fetchCurrentUser', async () => {
+    apiService.setAccessToken('ACCESS-TOKEN');
+
+    const user = await apiService.fetchCurrentUser();
+
+    expect(user.id).toBeTruthy();
+    expect(user.name).toBeTruthy();
+  });
+
   test('fetchCategories', async () => {
     const categories = await apiService.fetchCategories();
     expect(categories).not.toHaveLength(0);
@@ -42,11 +80,16 @@ describe('ApiService', () => {
   });
 
   test('fetchCart', async () => {
+    apiService.setAccessToken('ACCESS-TOKEN');
+
     const cart = await apiService.fetchCart();
+
     expect(cart.lineItems).not.toHaveLength(0);
   });
 
   test('addProductToCart', async () => {
+    apiService.setAccessToken('ACCESS-TOKEN');
+
     const [product] = fixtures.products;
 
     await apiService.addProductToCart({
@@ -57,5 +100,26 @@ describe('ApiService', () => {
       })),
       quantity: 1,
     });
+  });
+
+  test('fetchOrders', async () => {
+    apiService.setAccessToken('ACCESS-TOKEN');
+
+    const orders = await apiService.fetchOrders();
+
+    expect(orders).toHaveLength(1);
+  });
+
+  test('fetchOrder', async () => {
+    const [orderData] = fixtures.orders;
+
+    apiService.setAccessToken('ACCESS-TOKEN');
+
+    const order = await apiService.fetchOrder({
+      orderId: orderData.id,
+    });
+
+    expect(order.id).toEqual(orderData.id);
+    expect(order.lineItems).toHaveLength(orderData.lineItems.length);
   });
 });
