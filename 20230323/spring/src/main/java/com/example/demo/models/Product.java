@@ -18,6 +18,9 @@ public class Product {
     @EmbeddedId
     private ProductId id;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @Column(name = "name")
     private String name;
 
@@ -54,5 +57,9 @@ public class Product {
 
     public Money price() {
         return price;
+    }
+
+    public void changeImage(String url) {
+        this.imageUrl = url;
     }
 }

@@ -1,0 +1,2 @@
+cloudinary:
+  url: ${CLOUDINARY_URL:cloudinary://key:secret@cloud}

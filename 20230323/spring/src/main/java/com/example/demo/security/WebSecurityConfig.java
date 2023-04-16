@@ -25,6 +25,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http)
             throws Exception {
+        http.cors();
         http.csrf().disable();
 
         http.addFilterAt(
@@ -34,6 +35,7 @@ public class WebSecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/session").permitAll()
                 .requestMatchers(HttpMethod.POST, "/users").permitAll()
                 .requestMatchers(HttpMethod.GET, "/products").permitAll()
+                .requestMatchers("/images").permitAll()
                 .requestMatchers("/backdoor/*").permitAll()
                 .anyRequest().authenticated();
 
