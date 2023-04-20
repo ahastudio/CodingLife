@@ -159,6 +159,40 @@ describe('routes', () => {
       await waitFor(() => {
         screen.getByText(/합계/);
       });
+
+      fireEvent.click(screen.getByRole('button', { name: '주문하기' }));
+
+      await waitFor(() => {
+        screen.getByText(/우편번호 검색/);
+      });
+    });
+  });
+
+  context('when the current path is “/order', () => {
+    it('renders the order page', async () => {
+      renderRouter('/order');
+
+      await waitFor(() => {
+        screen.getByText(/합계/);
+      });
+
+      fireEvent.change(screen.getByLabelText('이름'), {
+        target: { value: '홍길동' },
+      });
+
+      fireEvent.click(screen.getByText('우편번호 검색'));
+
+      fireEvent.click(screen.getByTestId('daum-postcode-test-button'));
+
+      fireEvent.change(screen.getByLabelText('상세 주소'), {
+        target: { value: 'ㅇㅇㅇ호' },
+      });
+
+      fireEvent.change(screen.getByLabelText('전화번호'), {
+        target: { value: '010-1234-5678' },
+      });
+
+      // fireEvent.click(screen.getByRole('button', { name: '결제' }));
     });
   });
 
