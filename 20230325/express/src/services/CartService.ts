@@ -1,6 +1,8 @@
 import { ulid } from 'ulid';
 
-import { User, Product, LineItem } from '../types';
+import {
+  User, Product, Order, LineItem,
+} from '../types';
 
 import data from '../data';
 
@@ -54,6 +56,39 @@ export default class CartService {
     user.cart.lineItems.push(lineItem);
 
     console.log(JSON.stringify(lineItem, null, '  '));
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  createOrder(user: User) {
+    const { cart } = user;
+    const { lineItems } = cart;
+
+    if (!lineItems.length) {
+      return;
+    }
+
+    const title = lineItems[0].product.name + (
+      lineItems.length > 2 ? ` 외 ${lineItems.length - 1}` : ''
+    );
+
+    const totalPrice = lineItems.reduce((acc, lineItem) => (
+      acc + lineItem.product.price * lineItem.quantity
+    ), 0);
+
+    const now = new Date().toISOString();
+
+    const order: Order = {
+      id: ulid(),
+      title,
+      lineItems,
+      totalPrice,
+      status: 'paid',
+      orderedAt: now.replace('T', ' ').slice(0, now.indexOf('.')),
+    };
+
+    user.orders.push(order);
+
+    cart.lineItems = [];
   }
 }
 

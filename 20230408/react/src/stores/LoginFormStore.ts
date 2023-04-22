@@ -30,7 +30,7 @@ export default class LoginFormStore {
   }
 
   @Action()
-  private setAccessToken(accessToken: string) {
+  setAccessToken(accessToken: string) {
     this.accessToken = accessToken;
   }
 

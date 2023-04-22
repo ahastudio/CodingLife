@@ -328,6 +328,23 @@ app.get('/orders/:id', (req, res) => {
   });
 });
 
+app.post('/orders', (req, res) => {
+  const user = findUser(req.headers.authorization);
+  if (!user) {
+    res.status(403).send('Forbidden');
+    return;
+  }
+
+  try {
+    cartService.createOrder(user);
+
+    res.status(201).send('Created');
+  } catch (e) {
+    console.error(e);
+    res.status(400).send('Bad Request');
+  }
+});
+
 app.get('/backdoor/setup-database', (req, res) => {
   resetUsers();
 
