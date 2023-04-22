@@ -2,25 +2,26 @@ package com.ahastudio.demo.shop.controllers.dtos;
 
 import java.util.List;
 
-import lombok.Builder;
-import lombok.Getter;
-
-@Getter
-public class ProductListDto {
-    private List<Product> products;
-
-    private ProductListDto() {
+public record ProductListDto(
+        List<Product> products
+) {
+    public record Product(
+            String id,
+            Category category,
+            Image thumbnail,
+            String name,
+            Long price
+    ) {
     }
 
-    @Builder
-    public ProductListDto(List<Product> products) {
-        this.products = products;
+    public record Category(
+            String id,
+            String name
+    ) {
     }
 
-    @Getter
-    public static class Product {
-        private String id;
-        private String name;
-        private Long price;
+    public record Image(
+            String url
+    ) {
     }
 }

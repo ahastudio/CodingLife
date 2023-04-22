@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.modelmapper.ModelMapper;
-
 import com.ahastudio.demo.shop.controllers.dtos.ProductDetailDto;
 import com.ahastudio.demo.shop.controllers.dtos.ProductListDto;
 import com.ahastudio.demo.shop.exceptions.ProductNotFound;
@@ -23,21 +21,26 @@ import com.ahastudio.demo.shop.repositories.ProductRepository;
 @RequestMapping("/products")
 public class ProductController {
     private final ProductRepository productRepository;
-    private final ModelMapper modelMapper;
 
-    public ProductController(ProductRepository productRepository,
-                             ModelMapper modelMapper) {
+    public ProductController(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.modelMapper = modelMapper;
     }
 
     @GetMapping
     public ProductListDto list() {
         List<Product> products = productRepository.findAll();
 
-        return ProductListDto.builder()
-                .products(modelsToDtos(products))
-                .build();
+        return new ProductListDto(
+                products.stream()
+                        .map(product -> new ProductListDto.Product(
+                                product.id().toString(),
+                                new ProductListDto.Category("", ""),
+                                new ProductListDto.Image(""),
+                                product.name(),
+                                product.price().asLong()
+                        ))
+                        .toList()
+        );
     }
 
     @GetMapping("/{id}")
@@ -45,23 +48,16 @@ public class ProductController {
         Product product = productRepository.findById(new ProductId(id))
                 .orElseThrow(ProductNotFound::new);
 
-        return mapToDto(product);
+        return new ProductDetailDto(
+                product.id().toString(),
+                product.name(),
+                product.price().asLong()
+        );
     }
 
     @ExceptionHandler(ProductNotFound.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String productNotFound() {
+    public String notFound() {
         return "Product Not Found";
-    }
-
-    private List<ProductListDto.Product> modelsToDtos(List<Product> products) {
-        return products.stream()
-                .map(product ->
-                        modelMapper.map(product, ProductListDto.Product.class))
-                .toList();
-    }
-
-    private ProductDetailDto mapToDto(Product product) {
-        return modelMapper.map(product, ProductDetailDto.class);
     }
 }

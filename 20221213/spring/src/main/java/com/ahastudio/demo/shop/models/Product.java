@@ -16,8 +16,10 @@ import lombok.Builder;
 @Table(name = "products")
 public class Product {
     @EmbeddedId
+    @Column(name = "id")
     private ProductId id;
 
+    @Column(name = "name")
     private String name;
 
     @Column(name = "price")
@@ -37,5 +39,17 @@ public class Product {
         this.id = id;
         this.name = name;
         this.price = price;
+    }
+
+    public ProductId id() {
+        return id;
+    }
+
+    public String name() {
+        return name;
+    }
+
+    public Money price() {
+        return price;
     }
 }

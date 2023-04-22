@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import jakarta.transaction.Transactional;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,8 +21,6 @@ public class BackdoorController {
 
     @GetMapping("setup-database")
     public String setupDatabase() {
-        Model model;
-
         jdbcTemplate.execute("DELETE FROM products");
         jdbcTemplate.execute("DELETE FROM shops");
 

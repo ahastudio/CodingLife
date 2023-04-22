@@ -1,10 +1,8 @@
 package com.ahastudio.demo.shop.controllers.dtos;
 
-import lombok.Getter;
-
-@Getter
-public class ProductDetailDto {
-    private String id;
-    private String name;
-    private Long price;
+public record ProductDetailDto(
+        String id,
+        String name,
+        Long price
+) {
 }
