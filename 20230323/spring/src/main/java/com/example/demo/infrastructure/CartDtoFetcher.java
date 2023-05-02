@@ -40,6 +40,6 @@ public class CartDtoFetcher {
                 cartId.toString()
         );
 
-        return new CartDto(lineItemDtos);
+        return new CartDto("test", lineItemDtos);
     }
 }

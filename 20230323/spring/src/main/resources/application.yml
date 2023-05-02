@@ -6,6 +6,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+  redis:
+    host: localhost
+    port: 6379
   security:
     user:
       name: tester
@@ -23,6 +26,10 @@ jwt:
 
 cloudinary:
   url: ${CLOUDINARY_URL:cloudinary://key:secret@cloud}
+
+redis:
+  host: localhost
+  port: 6379
 
 ---
 spring:

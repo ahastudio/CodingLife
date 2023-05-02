@@ -1,9 +1,8 @@
-package com.example.demo.controllers.dtos;
+package com.example.demo.dtos;
 
 import java.util.List;
 
-import jakarta.persistence.Id;
-
+import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
 @RedisHash("carts")
@@ -25,6 +24,14 @@ public class CartDto {
         return lineItems;
     }
 
+    @Override
+    public String toString() {
+        return "CartDto{" +
+                "id='" + id + '\'' +
+                ", lineItems=" + lineItems +
+                '}';
+    }
+
     public record LineItemDto(
             String id,
             String productName,
@@ -32,13 +39,5 @@ public class CartDto {
             int quantity,
             long totalPrice
     ) {
-    }
-
-    @Override
-    public String toString() {
-        return "CartDto{" +
-                "id='" + id + '\'' +
-                ", lineItems=" + lineItems +
-                '}';
     }
 }

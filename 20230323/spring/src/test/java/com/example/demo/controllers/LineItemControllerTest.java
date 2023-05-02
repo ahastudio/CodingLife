@@ -45,7 +45,8 @@ class LineItemControllerTest extends ControllerTest {
     @Test
     @DisplayName("GET /cart-line-items")
     void list() throws Exception {
-        given(getCartService.getCartDto()).willReturn(new CartDto(List.of()));
+        given(getCartService.getCartDto())
+                .willReturn(new CartDto("test", List.of()));
 
         mockMvc.perform(get("/cart-line-items")
                         .header("Authorization", "Bearer " + userAccessToken)
