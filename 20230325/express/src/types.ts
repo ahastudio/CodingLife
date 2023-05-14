@@ -12,11 +12,15 @@ export type ProductOption = {
 export type Product = {
   id: string;
   categoryName: string;
-  images: [{ url: string }];
+  images: {
+    id?: string;
+    url: string;
+  }[];
   name: string;
   price: number;
   options: ProductOption[];
   description: string;
+  hidden: boolean;
 };
 
 export type OrderOptionItem = {
@@ -41,11 +45,26 @@ export type Cart = {
   lineItems: LineItem[];
 };
 
+export type Receiver = {
+  name: string;
+  address1: string;
+  address2: string;
+  postalCode: string;
+  phoneNumber: string;
+}
+
+export type Payment = {
+  merchantId: string;
+  transactionId: string;
+}
+
 export type Order = {
   id: string;
   title: string;
   lineItems: LineItem[];
   totalPrice: number;
+  receiver: Receiver;
+  payment: Payment;
   status: string;
   orderedAt: string;
 };
@@ -56,6 +75,7 @@ export type User = {
   name: string;
   password: string;
   accessToken: string;
+  role: string;
   cart: Cart;
   orders: Order[];
 };

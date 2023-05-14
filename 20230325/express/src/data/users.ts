@@ -10,6 +10,7 @@ const users: User[] = [
     email: 'tester@example.com',
     name: 'tester',
     password: argon2.hashSync('password'),
+    role: 'ROLE_USER',
     accessToken: '',
     cart: {
       lineItems: [],
@@ -42,6 +43,17 @@ const users: User[] = [
           getProduct('0BV000PRO0001').price * 2,
           getProduct('0BV000PRO0006').price * 1,
         ].reduce((a, b) => a + b, 0),
+        receiver: {
+          name: '홍길동',
+          address1: '서울특별시 성동구 상원12길 34',
+          address2: 'ㅇㅇㅇ호',
+          postalCode: '04790',
+          phoneNumber: '01012345678',
+        },
+        payment: {
+          merchantId: 'ORDER-20230101-00000001',
+          transactionId: '123456789012',
+        },
         status: 'paid',
         orderedAt: '2023-01-01 00:00:00',
       },
@@ -49,9 +61,22 @@ const users: User[] = [
   },
   {
     id: '0BV000USR0002',
+    email: 'admin@example.com',
+    name: 'admin',
+    password: argon2.hashSync('password'),
+    role: 'ROLE_ADMIN',
+    accessToken: '',
+    cart: {
+      lineItems: [],
+    },
+    orders: [],
+  },
+  {
+    id: '0BV000USR0003',
     email: 'staff@example.com',
     name: 'staff',
     password: argon2.hashSync('password'),
+    role: 'ROLE_STAFF',
     accessToken: '',
     cart: {
       lineItems: [],

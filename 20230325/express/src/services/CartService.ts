@@ -1,18 +1,14 @@
+/* eslint-disable class-methods-use-this */
+
 import { ulid } from 'ulid';
 
 import {
-  User, Product, Order, LineItem,
+  User, Order, LineItem, Receiver, Payment,
 } from '../types';
 
 import data from '../data';
 
 export default class CartService {
-  products: Product[];
-
-  constructor() {
-    this.products = data.products;
-  }
-
   addProduct({
     user, productId, optionItems, quantity,
   }: {
@@ -21,7 +17,7 @@ export default class CartService {
     optionItems: Record<string, string>;
     quantity: number;
   }) {
-    const product = this.products.find((i) => i.id === productId);
+    const product = data.products.find((i) => i.id === productId);
     if (!product) {
       throw Error('Product Not Found');
     }
@@ -58,8 +54,11 @@ export default class CartService {
     console.log(JSON.stringify(lineItem, null, '  '));
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  createOrder(user: User) {
+  createOrder({ user, receiver, payment }: {
+    user: User;
+    receiver: Receiver;
+    payment: Payment;
+  }) {
     const { cart } = user;
     const { lineItems } = cart;
 
@@ -82,6 +81,8 @@ export default class CartService {
       title,
       lineItems,
       totalPrice,
+      receiver,
+      payment,
       status: 'paid',
       orderedAt: now.replace('T', ' ').slice(0, now.indexOf('.')),
     };
