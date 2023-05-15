@@ -5,11 +5,13 @@ import { apiService } from '../services/ApiService';
 import { Category } from '../types';
 
 export default function useFetchCategories() {
+  type Data = {
+    categories: Category[];
+  };
+
   const {
     data, error, loading, mutate,
-  } = useFetch<{
-    categories: Category[];
-  }>('/categories');
+  } = useFetch<Data>('/categories');
 
   return {
     categories: data?.categories ?? [],

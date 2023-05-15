@@ -47,7 +47,7 @@ const Container = styled.div`
   }
 `;
 
-export default function OrderEditPage() {
+export default function OrderDetailPage() {
   const params = useParams();
 
   const { order, loading, error } = useFetchOrder({
@@ -129,9 +129,17 @@ export default function OrderEditPage() {
         <dt>상태</dt>
         <dd>{STATUS_MESSAGES[order.status]}</dd>
       </dl>
-      <Link to={`/orders/${order.id}/edit`}>
-        상태 변경
-      </Link>
+      <p>
+        <Link to={`/orders/${order.id}/edit`}>
+          상태 변경
+        </Link>
+        {' '}
+        |
+        {' '}
+        <Link to="/orders">
+          주문 목록
+        </Link>
+      </p>
     </Container>
   );
 }

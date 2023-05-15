@@ -45,6 +45,8 @@ describe('ProductFormStore', () => {
     beforeEach(() => {
       store.reset();
 
+      expect(store.valid).toBeFalsy();
+
       store.changeCategory(category);
       store.changeName('New Product');
       store.changePrice('123400');

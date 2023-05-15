@@ -9,21 +9,19 @@ import useAccessToken from '../hooks/useAccessToken';
 import { apiService } from '../services/ApiService';
 
 const Container = styled.header`
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   h1 {
-    font-size: 4rem;
+    font-size: 3rem;
   }
 
-  nav {
-    padding-block: 2rem;
-
-    ul {
-      display: flex;
-    }
+  ul {
+    display: flex;
 
     li {
-      margin-right: 2rem;
+      height: 4rem;
+      line-height: 4rem;
+      margin-right: 1rem;
     }
   }
 `;

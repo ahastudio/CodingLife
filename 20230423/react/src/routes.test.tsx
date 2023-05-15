@@ -166,16 +166,16 @@ describe('routes', () => {
       });
     });
 
-    // context('when the current path is “/products/{id}/edit', () => {
-    //   const [product] = fixtures.products;
+    context('when the current path is “/products/{id}/edit', () => {
+      const [product] = fixtures.products;
 
-    //   it('renders the edit product page', async () => {
-    //     renderRouter(`/products/${product.id}/edit`);
+      it('renders the edit product page', async () => {
+        renderRouter(`/products/${product.id}/edit`);
 
-    //     await waitFor(() => {
-    //       screen.getByDisplayValue(product.name);
-    //     });
-    //   });
-    // });
+        await waitFor(() => {
+          screen.getByDisplayValue(product.name);
+        });
+      });
+    });
   });
 });

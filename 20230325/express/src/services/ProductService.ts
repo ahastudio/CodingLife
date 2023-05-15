@@ -171,8 +171,6 @@ export default class ProductService {
     }));
     product.description = productDto.description;
     product.hidden = !!product.hidden;
-
-    data.products.push(product);
   }
 }
 

@@ -3,9 +3,11 @@ import useFetch from './useFetch';
 import { User } from '../types';
 
 export default function useFetchUsers() {
-  const { data, error, loading } = useFetch<{
+  type Data = {
     users: User[];
-  }>('/users');
+  };
+
+  const { data, error, loading } = useFetch<Data>('/users');
 
   return {
     users: data?.users ?? [],

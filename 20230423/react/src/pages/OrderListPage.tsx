@@ -58,7 +58,7 @@ export default function OrderListPage() {
 
   return (
     <Container>
-      <h2>Products</h2>
+      <h2>Orders</h2>
       <table>
         <thead>
           <tr>
