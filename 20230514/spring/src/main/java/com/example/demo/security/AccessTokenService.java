@@ -1,21 +1,20 @@
 package com.example.demo.security;
 
+import java.util.List;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import com.example.demo.infrastructure.UserDetailsDao;
-import com.example.demo.utils.AccessTokenGenerator;
-
-@Service
+@Component
 public class AccessTokenService {
     private final AccessTokenGenerator accessTokenGenerator;
-    private final UserDetailsDao userDetailsDao;
+    private final AuthUserDao authUserDao;
 
     public AccessTokenService(AccessTokenGenerator accessTokenGenerator,
-                              UserDetailsDao userDetailsDao) {
+                              AuthUserDao authUserDao) {
         this.accessTokenGenerator = accessTokenGenerator;
-        this.userDetailsDao = userDetailsDao;
+        this.authUserDao = authUserDao;
     }
 
     public Authentication authenticate(String accessToken) {
@@ -23,12 +22,10 @@ public class AccessTokenService {
             return null;
         }
 
-        return userDetailsDao.findByAccessToken(accessToken)
-                .map(userDetails ->
+        return authUserDao.findByAccessToken(accessToken)
+                .map(authUser ->
                         UsernamePasswordAuthenticationToken.authenticated(
-                                userDetails.getUsername(),
-                                userDetails.getPassword(),
-                                userDetails.getAuthorities()))
+                                authUser, null, List.of(authUser::role)))
                 .orElse(null);
     }
 }

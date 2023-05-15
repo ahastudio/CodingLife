@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import io.hypersistence.tsid.TSID;
 
 import com.example.demo.exceptions.UserAlreadyExistsException;
-import com.example.demo.infrastructor.UserDetailsDao;
+import com.example.demo.infrastructure.UserDetailsDao;
 import com.example.demo.utils.AccessTokenGenerator;
 
 @Service

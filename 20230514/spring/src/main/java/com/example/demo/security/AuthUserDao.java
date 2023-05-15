@@ -1,40 +1,37 @@
-package com.example.demo.infrastructor;
+package com.example.demo.security;
 
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserDetailsDao {
+public class AuthUserDao {
     private final JdbcTemplate jdbcTemplate;
 
-    public UserDetailsDao(JdbcTemplate jdbcTemplate) {
+    public AuthUserDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Optional<UserDetails> findByUsername(String username) {
-        String query = "SELECT id, password, role FROM users WHERE username=?";
+    public Optional<AuthUser> findByEmail(String email) {
+        String query = "SELECT id, password, role FROM users WHERE email=?";
 
         return jdbcTemplate.query(query, resultSet -> {
             if (!resultSet.next()) {
                 return Optional.empty();
             }
 
-            String id = resultSet.getString("id");
-            String password = resultSet.getString("password");
-            String role = resultSet.getString("role");
+            AuthUser authUser = AuthUser.of(
+                    resultSet.getString("id"),
+                    email,
+                    resultSet.getString("password"),
+                    resultSet.getString("role")
+            );
 
-            UserDetails userDetails = User.withUsername(id)
-                    .password(password)
-                    .authorities(role)
-                    .build();
-
-            return Optional.of(userDetails);
-        }, username);
+            return Optional.of(authUser);
+        }, email);
     }
 
     public void addAccessToken(String userId, String accessToken) {
@@ -46,7 +43,7 @@ public class UserDetailsDao {
         );
     }
 
-    public Optional<UserDetails> findByAccessToken(String accessToken) {
+    public Optional<AuthUser> findByAccessToken(String accessToken) {
         String query = """
                 SELECT users.id, users.role
                 FROM users
@@ -59,15 +56,13 @@ public class UserDetailsDao {
                 return Optional.empty();
             }
 
-            String id = resultSet.getString("id");
-            String role = resultSet.getString("role");
+            AuthUser authUser = AuthUser.authenticated(
+                    resultSet.getString("id"),
+                    resultSet.getString("role"),
+                    accessToken
+            );
 
-            UserDetails userDetails = User.withUsername(id)
-                    .password(accessToken)
-                    .authorities(role)
-                    .build();
-
-            return Optional.of(userDetails);
+            return Optional.of(authUser);
         }, accessToken);
     }
 
@@ -86,12 +81,15 @@ public class UserDetailsDao {
                 jdbcTemplate.query(query, ResultSet::next, username));
     }
 
-    public void addUser(String id, String username, String encodedPassword) {
+    public void addUser(String id, String email, String encodedPassword) {
+        LocalDateTime now = LocalDateTime.now();
+
         jdbcTemplate.update("""
-                        INSERT INTO users (id, username, password, role)
-                        VALUES (?, ?, ?, ?)
+                        INSERT INTO users (
+                            id, email, password, role, created_at, updated_at)
+                        VALUES (?, ?, ?, ?, ?, ?)
                         """,
-                id, username, encodedPassword, "ROLE_USER"
+                id, email, encodedPassword, "ROLE_USER", now, now
         );
     }
 }

@@ -1,20 +1,15 @@
 package com.example.demo.models;
 
-import jakarta.persistence.Column;
-
-public class ProductId {
-    @Column(name = "id")
-    private String value;
-
+public class ProductId extends EntityId {
     private ProductId() {
+        super();
     }
 
     public ProductId(String value) {
-        this.value = value;
+        super(value);
     }
 
-    @Override
-    public String toString() {
-        return value;
+    public static ProductId generate() {
+        return new ProductId(newTsid());
     }
 }

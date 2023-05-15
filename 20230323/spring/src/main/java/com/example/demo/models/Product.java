@@ -24,15 +24,15 @@ public class Product {
     @Column(name = "name")
     private String name;
 
+    @Embedded
+    @AttributeOverride(name = "value", column = @Column(name = "price"))
+    private Money price;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-
-    @Embedded
-    @AttributeOverride(name = "value", column = @Column(name = "price"))
-    private Money price;
 
     private Product() {
     }

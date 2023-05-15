@@ -1,6 +1,5 @@
 package com.example.demo.controllers;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +11,6 @@ import com.example.demo.application.GetProductListService;
 import com.example.demo.dtos.ProductDetailDto;
 import com.example.demo.dtos.ProductListDto;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/products")
 public class ProductController {

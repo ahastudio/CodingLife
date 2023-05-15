@@ -6,15 +6,14 @@ import org.junit.jupiter.api.BeforeEach;
 
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.example.demo.DemoApplication;
-import com.example.demo.infrastructure.UserDetailsDao;
+import com.example.demo.security.AccessTokenGenerator;
 import com.example.demo.security.AccessTokenService;
+import com.example.demo.security.AuthUser;
+import com.example.demo.security.AuthUserDao;
 import com.example.demo.security.WebSecurityConfig;
-import com.example.demo.utils.AccessTokenGenerator;
 
 import static org.mockito.BDDMockito.given;
 
@@ -33,7 +32,7 @@ public abstract class ControllerTest {
     protected AccessTokenGenerator accessTokenGenerator;
 
     @MockBean
-    protected UserDetailsDao userDetailsDao;
+    protected AuthUserDao authUserDao;
 
     protected String userAccessToken;
 
@@ -44,20 +43,16 @@ public abstract class ControllerTest {
         userAccessToken = accessTokenGenerator.generate(USER_ID);
         adminAccessToken = accessTokenGenerator.generate(ADMIN_ID);
 
-        UserDetails user = User.withUsername(USER_ID)
-                .password(userAccessToken)
-                .authorities("ROLE_USER")
-                .build();
+        AuthUser user = AuthUser.authenticated(
+                USER_ID, "ROLE_USER", userAccessToken);
 
-        given(userDetailsDao.findByAccessToken(userAccessToken))
+        given(authUserDao.findByAccessToken(userAccessToken))
                 .willReturn(Optional.of(user));
 
-        UserDetails admin = User.withUsername(ADMIN_ID)
-                .password(adminAccessToken)
-                .authorities("ROLE_ADMIN")
-                .build();
+        AuthUser admin = AuthUser.authenticated(
+                ADMIN_ID, "ROLE_ADMIN", adminAccessToken);
 
-        given(userDetailsDao.findByAccessToken(adminAccessToken))
+        given(authUserDao.findByAccessToken(adminAccessToken))
                 .willReturn(Optional.of(admin));
     }
 }

@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.infrastructor.UserDetailsDao;
+import com.example.demo.infrastructure.UserDetailsDao;
 
 @Service
 @Transactional

@@ -6,7 +6,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.infrastructor.UserDetailsDao;
+import com.example.demo.infrastructure.UserDetailsDao;
 import com.example.demo.utils.AccessTokenGenerator;
 
 @Service
