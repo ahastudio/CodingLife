@@ -1,7 +1,5 @@
 package com.example.demo.security;
 
-import java.sql.ResultSet;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -71,25 +69,6 @@ public class AuthUserDao {
                         DELETE FROM access_tokens WHERE token=?
                         """,
                 accessToken
-        );
-    }
-
-    public boolean existsByUsername(String username) {
-        String query = "SELECT id FROM users WHERE username=?";
-
-        return Boolean.TRUE.equals(
-                jdbcTemplate.query(query, ResultSet::next, username));
-    }
-
-    public void addUser(String id, String email, String encodedPassword) {
-        LocalDateTime now = LocalDateTime.now();
-
-        jdbcTemplate.update("""
-                        INSERT INTO users (
-                            id, email, password, role, created_at, updated_at)
-                        VALUES (?, ?, ?, ?, ?, ?)
-                        """,
-                id, email, encodedPassword, "ROLE_USER", now, now
         );
     }
 }

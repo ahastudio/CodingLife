@@ -22,13 +22,13 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 class LoginServiceTest {
-    private LoginService loginService;
-
     private AuthUserDao authUserDao;
 
     private PasswordEncoder passwordEncoder;
 
     private AccessTokenGenerator accessTokenGenerator;
+
+    private LoginService loginService;
 
     @BeforeEach
     void setUp() {
@@ -49,12 +49,12 @@ class LoginServiceTest {
         String email = "tester@example.com";
         String password = "password";
         String encodedPassword = "ENCODED-PASSWORD";
+        String role = "ROLE_USER";
 
-        AuthUser authUser = AuthUser.of(
-                userId, email, encodedPassword, "ROLE_USER");
+        AuthUser authUser = AuthUser.of(userId, email, encodedPassword, role);
 
-        given(authUserDao.findByEmail(email))
-                .willReturn(Optional.of(authUser));
+        given(authUserDao.findByEmail(email)).willReturn(Optional.of(authUser));
+
         given(passwordEncoder.matches(password, encodedPassword))
                 .willReturn(true);
 
@@ -85,12 +85,12 @@ class LoginServiceTest {
         String email = "tester@example.com";
         String password = "xxx";
         String encodedPassword = "ENCODED-PASSWORD";
+        String role = "ROLE_USER";
 
-        AuthUser authUser = AuthUser.of(
-                userId, email, encodedPassword, "ROLE_USER");
+        AuthUser authUser = AuthUser.of(userId, email, encodedPassword, role);
 
-        given(authUserDao.findByEmail(email))
-                .willReturn(Optional.of(authUser));
+        given(authUserDao.findByEmail(email)).willReturn(Optional.of(authUser));
+
         given(passwordEncoder.matches(password, encodedPassword))
                 .willReturn(false);
 

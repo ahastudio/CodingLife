@@ -17,12 +17,16 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    // Spring Security
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
+    // TSID → Generate ID
     implementation 'io.hypersistence:hypersistence-tsid:2.0.0'
 
+    // Bouncy Castle Provider → Argon2
     implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
 
+    // JWT
     implementation 'com.auth0:java-jwt:4.4.0'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

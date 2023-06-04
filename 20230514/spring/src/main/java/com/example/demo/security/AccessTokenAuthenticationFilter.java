@@ -43,7 +43,7 @@ public class AccessTokenAuthenticationFilter extends OncePerRequestFilter {
     private String parseAccessToken(HttpServletRequest request) {
         return Optional.ofNullable(request.getHeader("Authorization"))
                 .filter(i -> i.startsWith(AUTHORIZATION_PREFIX))
-                .map(i -> i.substring("Bearer ".length()))
+                .map(i -> i.substring(AUTHORIZATION_PREFIX.length()))
                 .orElse("");
     }
 }

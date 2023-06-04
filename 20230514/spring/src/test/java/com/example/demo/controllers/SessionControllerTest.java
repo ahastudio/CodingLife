@@ -15,6 +15,7 @@ import com.example.demo.application.LoginService;
 import com.example.demo.application.LogoutService;
 
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -96,6 +97,8 @@ class SessionControllerTest extends ControllerTest {
         mockMvc.perform(delete("/session")
                         .header("Authorization", "Bearer " + userAccessToken))
                 .andExpect(status().isOk());
+
+        verify(logoutService).logout(userAccessToken);
     }
 
     @Test

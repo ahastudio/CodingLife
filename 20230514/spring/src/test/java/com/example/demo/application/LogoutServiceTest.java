@@ -9,9 +9,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 class LogoutServiceTest {
-    private LogoutService logoutService;
-
     private AuthUserDao authUserDao;
+
+    private LogoutService logoutService;
 
     @BeforeEach
     void setUp() {
