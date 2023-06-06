@@ -2,12 +2,15 @@ package com.example.demo.models;
 
 import java.util.Objects;
 
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 
 import io.hypersistence.tsid.TSID;
 
 @MappedSuperclass
+@Access(value = AccessType.FIELD)
 public abstract class EntityId {
     @Column(name = "id")
     private String value;

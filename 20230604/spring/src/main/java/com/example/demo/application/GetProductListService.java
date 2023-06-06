@@ -30,7 +30,7 @@ public class GetProductListService {
                 .map(product -> {
                     Category category = categoryRepository
                             .findById(product.categoryId())
-                            .get();
+                            .orElseThrow();
                     return ProductSummaryDto.of(product, category);
                 })
                 .toList();

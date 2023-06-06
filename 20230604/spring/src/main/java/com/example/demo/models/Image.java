@@ -25,6 +25,13 @@ public class Image {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    private Image() {
+    }
+
+    public Image(String url) {
+        this.url = url;
+    }
+
     public String url() {
         return url;
     }

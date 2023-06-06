@@ -7,6 +7,8 @@ import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class Money {
+    public static final Money ZERO = new Money(0L);
+
     @Column(name = "amount")
     private Long amount;
 
@@ -19,6 +21,10 @@ public class Money {
 
     public Long asLong() {
         return amount;
+    }
+
+    public Money times(int quantity) {
+        return new Money(amount * quantity);
     }
 
     @Override
@@ -34,8 +40,8 @@ public class Money {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Money money = (Money) o;
-        return Objects.equals(amount, money.amount);
+        Money other = (Money) o;
+        return Objects.equals(amount, other.amount);
     }
 
     @Override

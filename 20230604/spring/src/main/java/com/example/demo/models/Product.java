@@ -3,6 +3,7 @@ package com.example.demo.models;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.CascadeType;
@@ -54,6 +55,22 @@ public class Product {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    private Product() {
+    }
+
+    public Product(
+            ProductId id, CategoryId categoryId, List<Image> images,
+            String name, Money price, List<ProductOption> productOptions,
+            String description) {
+        this.id = id;
+        this.categoryId = categoryId;
+        this.images = images;
+        this.name = name;
+        this.price = price;
+        this.options = productOptions;
+        this.description = description;
+    }
+
     public ProductId id() {
         return id;
     }
@@ -84,6 +101,13 @@ public class Product {
 
     public ProductOption option(int index) {
         return options.get(index);
+    }
+
+    public ProductOption optionById(ProductOptionId optionId) {
+        return options.stream()
+                .filter(option -> Objects.equals(option.id(), optionId))
+                .findFirst()
+                .orElseThrow();
     }
 
     public String description() {

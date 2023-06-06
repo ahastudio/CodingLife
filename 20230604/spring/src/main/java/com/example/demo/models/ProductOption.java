@@ -36,6 +36,17 @@ public class ProductOption {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    private ProductOption() {
+    }
+
+    public ProductOption(
+            ProductOptionId id, String name,
+            List<ProductOptionItem> productOptionItems) {
+        this.id = id;
+        this.name = name;
+        this.items = productOptionItems;
+    }
+
     public ProductOptionId id() {
         return id;
     }
@@ -50,5 +61,12 @@ public class ProductOption {
 
     public ProductOptionItem item(int index) {
         return items.get(index);
+    }
+
+    public ProductOptionItem itemById(ProductOptionItemId itemId) {
+        return items.stream()
+                .filter(item -> item.id().equals(itemId))
+                .findFirst()
+                .orElseThrow();
     }
 }
