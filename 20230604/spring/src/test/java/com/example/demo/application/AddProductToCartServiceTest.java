@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.example.demo.Fixtures;
@@ -16,18 +17,23 @@ import com.example.demo.repositories.ProductRepository;
 
 import static com.example.demo.TestUtils.createCartLineItemOption;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 class AddProductToCartServiceTest {
     private AddProductToCartService addProductToCartService;
 
     private CartRepository cartRepository;
-
     private ProductRepository productRepository;
 
+    private Product product;
+    private Set<CartLineItemOption> options;
+    private int quantity;
+
     @BeforeEach
-    void setUp() {
+    void setUpMockObjects() {
         cartRepository = mock(CartRepository.class);
 
         productRepository = mock(ProductRepository.class);
@@ -36,20 +42,24 @@ class AddProductToCartServiceTest {
                 cartRepository, productRepository);
     }
 
-    @Test
-    void addProductToCart() {
-        UserId userId = new UserId("USER-ID");
+    @BeforeEach
+    void setUpFixtures() {
+        product = Fixtures.product("맨투맨");
 
-        Cart cart = new Cart(userId);
-
-        Product product = Fixtures.product("맨투맨");
-
-        Set<CartLineItemOption> options = Set.of(
+        options = Set.of(
                 createCartLineItemOption(product, 0, 0),
                 createCartLineItemOption(product, 1, 0)
         );
 
-        int quantity = 1;
+        quantity = 1;
+    }
+
+    @Test
+    @DisplayName("addProductToCart - when cart exists")
+    void addProductToCart() {
+        UserId userId = new UserId("USER-ID");
+
+        Cart cart = new Cart(userId);
 
         given(cartRepository.findByUserId(userId))
                 .willReturn(Optional.of(cart));
@@ -61,5 +71,43 @@ class AddProductToCartServiceTest {
                 userId, product.id(), options, quantity);
 
         assertThat(cart.lineItemSize()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("addProductToCart - when cart doesn't exist")
+    void addProductToCartWithoutCart() {
+        UserId userId = new UserId("USER-ID");
+
+        given(cartRepository.findByUserId(userId))
+                .willReturn(Optional.empty());
+
+        given(productRepository.findById(product.id()))
+                .willReturn(Optional.of(product));
+
+        addProductToCartService.addProductToCart(
+                userId, product.id(), options, quantity);
+
+        verify(cartRepository).save(any(Cart.class));
+    }
+
+    @Test
+    @DisplayName("addProductToCart - when product has no option")
+    void addProductToCartWithoutOption() {
+        UserId userId = new UserId("USER-ID");
+
+        product = Fixtures.product("셔츠");
+
+        options = Set.of();
+
+        given(cartRepository.findByUserId(userId))
+                .willReturn(Optional.empty());
+
+        given(productRepository.findById(product.id()))
+                .willReturn(Optional.of(product));
+
+        addProductToCartService.addProductToCart(
+                userId, product.id(), options, quantity);
+
+        verify(cartRepository).save(any(Cart.class));
     }
 }

@@ -28,7 +28,7 @@ class CartLineItemControllerTest extends ControllerTest {
     private AddProductToCartService addProductToCartService;
 
     @Test
-    @DisplayName("POST /cart/line-items")
+    @DisplayName("POST /cart/line-items - with options")
     void addToCart() throws Exception {
         UserId userId = new UserId(USER_ID);
         ProductId productId = new ProductId("0BV000PRO0001");
@@ -48,6 +48,34 @@ class CartLineItemControllerTest extends ControllerTest {
                                     "itemId": "0BV000ITEM004"
                                 }
                             ],
+                            "quantity": %d
+                        }
+                        """,
+                productId, quantity
+        );
+
+        mockMvc.perform(post("/cart/line-items")
+                        .header("Authorization", "Bearer " + userAccessToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isCreated());
+
+        verify(addProductToCartService).addProductToCart(
+                eq(userId), eq(productId), any(), eq(quantity));
+    }
+
+    @Test
+    @DisplayName("POST /cart/line-items - without option")
+    void addToCartWithoutOption() throws Exception {
+        UserId userId = new UserId(USER_ID);
+        ProductId productId = new ProductId("0BV000PRO0001");
+        int quantity = 1;
+
+        String json = String.format(
+                """
+                        {
+                            "productId": "%s",
+                            "options": [],
                             "quantity": %d
                         }
                         """,

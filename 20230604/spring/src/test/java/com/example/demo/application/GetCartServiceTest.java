@@ -44,6 +44,8 @@ class GetCartServiceTest {
 
         CartDto cartDto = getCartService.getCartDto(userId);
 
+        assertThat(cartDto.lineItems()).isEmpty();
+
         assertThat(cartDto.totalPrice()).isEqualTo(0L);
     }
 

@@ -28,7 +28,8 @@ public class AddProductToCartService {
     }
 
     public void addProductToCart(UserId userId, ProductId productId,
-                                 Set<CartLineItemOption> options, int quantity) {
+                                 Set<CartLineItemOption> options,
+                                 int quantity) {
         Cart cart = cartRepository.findByUserId(userId)
                 .orElse(new Cart(CartId.generate(), userId));
 

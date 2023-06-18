@@ -3,6 +3,7 @@ package com.example.demo.models;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -39,12 +40,11 @@ public class ProductOption {
     private ProductOption() {
     }
 
-    public ProductOption(
-            ProductOptionId id, String name,
-            List<ProductOptionItem> productOptionItems) {
+    public ProductOption(ProductOptionId id, String name,
+                         List<ProductOptionItem> items) {
         this.id = id;
         this.name = name;
-        this.items = productOptionItems;
+        this.items = items;
     }
 
     public ProductOptionId id() {
@@ -65,7 +65,7 @@ public class ProductOption {
 
     public ProductOptionItem itemById(ProductOptionItemId itemId) {
         return items.stream()
-                .filter(item -> item.id().equals(itemId))
+                .filter(item -> Objects.equals(item.id(), itemId))
                 .findFirst()
                 .orElseThrow();
     }

@@ -3,6 +3,8 @@ package com.example.demo.controllers;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import jakarta.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +38,7 @@ public class CartLineItemController {
     @ResponseStatus(HttpStatus.CREATED)
     public String create(
             Authentication authentication,
-            @RequestBody AddProductToCartDto requestDto) {
+            @Valid @RequestBody AddProductToCartDto requestDto) {
         AuthUser authUser = (AuthUser) authentication.getPrincipal();
 
         UserId userId = new UserId(authUser.id());
