@@ -36,32 +36,33 @@ public class GetOrderDetailService {
         return new OrderDetailDto(
                 order.id().toString(),
                 order.title(),
-                lineItems(order),
+                mapToLineItemDtos(order),
                 order.totalPrice().asLong(),
                 order.status().toString(),
                 order.orderedAt().format(DATE_TIME_FORMATTER)
         );
     }
 
-    private List<OrderLineItemDto> lineItems(Order order) {
+    private List<OrderLineItemDto> mapToLineItemDtos(Order order) {
         return IntStream.range(0, order.lineItemSize())
                 .mapToObj(order::lineItem)
-                .map(this::orderLineItem)
+                .map(this::mapToLineItemDto)
                 .toList();
     }
 
-    private OrderLineItemDto orderLineItem(OrderLineItem lineItem) {
+    private OrderLineItemDto mapToLineItemDto(OrderLineItem lineItem) {
         return new OrderLineItemDto(
                 lineItem.id().toString(),
-                product(lineItem),
-                options(lineItem),
+                mapToProductDto(lineItem),
+                mapToOptionDtos(lineItem),
                 lineItem.unitPrice().asLong(),
                 lineItem.quantity(),
                 lineItem.totalPrice().asLong()
         );
     }
 
-    private OrderLineItemDto.ProductDto product(OrderLineItem lineItem) {
+    private OrderLineItemDto.ProductDto mapToProductDto(
+            OrderLineItem lineItem) {
         return new OrderLineItemDto.ProductDto(
                 lineItem.productId().toString(),
                 new ImageDto(""),
@@ -69,14 +70,15 @@ public class GetOrderDetailService {
         );
     }
 
-    private List<OrderLineItemDto.OptionDto> options(OrderLineItem lineItem) {
+    private List<OrderLineItemDto.OptionDto> mapToOptionDtos(
+            OrderLineItem lineItem) {
         return IntStream.range(0, lineItem.optionSize())
                 .mapToObj(lineItem::option)
-                .map(this::orderOption)
+                .map(this::mapToOptionDto)
                 .toList();
     }
 
-    private OrderLineItemDto.OptionDto orderOption(OrderOption orderOption) {
+    private OrderLineItemDto.OptionDto mapToOptionDto(OrderOption orderOption) {
         String optionName = orderOption.name();
         String optionItemName = orderOption.optionItem().name();
 

@@ -32,16 +32,16 @@ import com.example.demo.security.UserRequired;
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
-    private final CreateOrderService createOrderService;
     private final GetOrderListService getOrderListService;
     private final GetOrderDetailService getOrderDetailService;
+    private final CreateOrderService createOrderService;
 
-    public OrderController(CreateOrderService createOrderService,
-                           GetOrderListService getOrderListService,
-                           GetOrderDetailService getOrderDetailService) {
-        this.createOrderService = createOrderService;
+    public OrderController(GetOrderListService getOrderListService,
+                           GetOrderDetailService getOrderDetailService,
+                           CreateOrderService createOrderService) {
         this.getOrderListService = getOrderListService;
         this.getOrderDetailService = getOrderDetailService;
+        this.createOrderService = createOrderService;
     }
 
     @GetMapping

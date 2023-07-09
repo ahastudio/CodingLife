@@ -86,7 +86,7 @@ public class Order {
 
         String title = lineItem.productName();
 
-        if (size == 1) {
+        if (size > 1) {
             return title + " 외 " + (size - 1);
         }
 

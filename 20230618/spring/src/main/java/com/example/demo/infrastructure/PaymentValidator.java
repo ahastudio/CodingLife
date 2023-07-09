@@ -36,7 +36,7 @@ public class PaymentValidator {
         // 1. Access Token 얻기
         String accessToken = getAccessToken();
 
-        // 2. 결제 정보 얻기
+        // 2. 결제 금액 얻기
         Long amount = fetchPaymentAmount(payment, accessToken);
 
         // 3. 금액 비교
