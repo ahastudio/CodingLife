@@ -23,6 +23,10 @@ public class Money {
         return amount;
     }
 
+    public Money plus(Money other) {
+        return new Money(amount + other.amount);
+    }
+
     public Money times(int quantity) {
         return new Money(amount * quantity);
     }

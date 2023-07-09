@@ -26,6 +26,9 @@ public class BackdoorController {
     @GetMapping("/setup-database")
     @Transactional
     public String setupDatabase() {
+        deleteOrderOptions();
+        deleteOrderLineItems();
+        deleteOrders();
         deleteCartLineItemOptions();
         deleteCartLineItems();
         deleteCarts();
@@ -38,11 +41,15 @@ public class BackdoorController {
         deleteUsers();
 
         createUsers();
+        createAccessTokens();
         createCategories();
         createProducts();
         createProductOptions();
         createProductOptionItems();
         createImages();
+        createOrders();
+        createOrderLineItems();
+        createOrderOptions();
 
         return "OK!";
     }
@@ -87,6 +94,18 @@ public class BackdoorController {
         jdbcTemplate.update("DELETE FROM cart_line_item_options");
     }
 
+    private void deleteOrders() {
+        jdbcTemplate.update("DELETE FROM orders");
+    }
+
+    private void deleteOrderLineItems() {
+        jdbcTemplate.update("DELETE FROM order_line_items");
+    }
+
+    private void deleteOrderOptions() {
+        jdbcTemplate.update("DELETE FROM order_options");
+    }
+
     private void createUsers() {
         LocalDateTime now = LocalDateTime.now();
 
@@ -110,6 +129,19 @@ public class BackdoorController {
                 "0BV000USR0002", "admin@example.com", "관리자",
                 passwordEncoder.encode("password"), "ROLE_ADMIN",
                 now, now
+        );
+    }
+
+    private void createAccessTokens() {
+        LocalDateTime now = LocalDateTime.now();
+
+        jdbcTemplate.update("""
+                        INSERT INTO access_tokens (
+                            token, user_id, created_at, updated_at)
+                        VALUES (?, ?, ?, ?)
+                        """,
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwQlYwMDBVU1IwMDAxIn0.wuvV6kpkzRZt7rUXRmjvY9dEEsRkEIdsg7TCtvfJgMM",
+                "0BV000USR0001", now, now
         );
     }
 
@@ -243,6 +275,80 @@ public class BackdoorController {
                         """,
                 "0BV000IMG0002", "0BV000PRO0002",
                 "https://ahastudio.github.io/my-image-assets/images/cbcl-products/02.jpg",
+                now, now
+        );
+    }
+
+    private void createOrders() {
+        LocalDateTime now = LocalDateTime.now();
+
+        jdbcTemplate.update("""
+                        INSERT INTO orders (
+                            id, user_id, total_price, receiver_name,
+                            address1, address2, postal_code, phone_number,
+                            payment_merchant_id, payment_transaction_id,
+                            status, ordered_at, created_at, updated_at)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """,
+                "0BV000ODR0001", "0BV000USR0001", 246_000, "테스터",
+                "상원12길 34", "ㅇㅇㅇ호", "04790", "010-1234-5678",
+                "PaymentMerchantID", "PaymentTransactionID",
+                "PAID", now, now, now
+        );
+    }
+
+    private void createOrderLineItems() {
+        LocalDateTime now = LocalDateTime.now();
+
+        jdbcTemplate.update("""
+                        INSERT INTO order_line_items (
+                            id, order_id, product_id, product_name,
+                            unit_price, quantity, total_price,
+                            created_at, updated_at)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """,
+                "0BV000OLI0001", "0BV000ODR0001", "0BV000PRO0001", "맨투맨",
+                128_000, 1, 128_000,
+                now, now
+        );
+
+        jdbcTemplate.update("""
+                        INSERT INTO order_line_items (
+                            id, order_id, product_id, product_name,
+                            unit_price, quantity, total_price,
+                            created_at, updated_at)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """,
+                "0BV000OLI0002", "0BV000ODR0001", "0BV000PRO0002", "셔츠",
+                118_000, 1, 118_000,
+                now, now
+        );
+    }
+
+    private void createOrderOptions() {
+        LocalDateTime now = LocalDateTime.now();
+
+        jdbcTemplate.update("""
+                        INSERT INTO order_options (
+                            id, order_line_item_id, product_option_id, name,
+                            product_option_item_id, product_option_item_name,
+                            created_at, updated_at)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                        """,
+                "0BV000OOP0001", "0BV000OLI0001", "0BV000OPT0001", "색상",
+                "0BV000ITEM002", "White",
+                now, now
+        );
+
+        jdbcTemplate.update("""
+                        INSERT INTO order_options (
+                            id, order_line_item_id, product_option_id, name,
+                            product_option_item_id, product_option_item_name,
+                            created_at, updated_at)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                        """,
+                "0BV000OOP0002", "0BV000OLI0001", "0BV000OPT0002", "사이즈",
+                "0BV000ITEM005", "L",
                 now, now
         );
     }

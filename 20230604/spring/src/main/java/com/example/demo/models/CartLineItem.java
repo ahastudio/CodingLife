@@ -49,11 +49,11 @@ public class CartLineItem {
 
     public CartLineItem(CartLineItemId id,
                         ProductId productId,
-                        Set<CartLineItemOption> cartOptionItems,
+                        Set<CartLineItemOption> options,
                         int quantity) {
         this.id = id;
         this.productId = productId;
-        this.options = cartOptionItems;
+        this.options = options;
         this.quantity = quantity;
     }
 
@@ -86,9 +86,9 @@ public class CartLineItem {
     }
 
     public boolean sameProduct(ProductId productId,
-                               Set<CartLineItemOption> cartOptionItems) {
+                               Set<CartLineItemOption> options) {
         return this.productId.equals(productId) &&
-                this.options.equals(cartOptionItems);
+                this.options.equals(options);
     }
 
     public void increaseQuantity(int quantity) {

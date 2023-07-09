@@ -86,9 +86,9 @@ public class CartLineItem {
     }
 
     public boolean sameProduct(ProductId productId,
-                               Set<CartLineItemOption> cartOptionItems) {
+                               Set<CartLineItemOption> cartOptions) {
         return this.productId.equals(productId) &&
-                this.options.equals(cartOptionItems);
+                this.options.equals(cartOptions);
     }
 
     public void increaseQuantity(int quantity) {

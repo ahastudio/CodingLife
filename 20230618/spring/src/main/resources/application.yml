@@ -3,10 +3,14 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: password
-#  jpa:
-#    properties:
-#      hibernate:
-#        show_sql: true
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
 
 jwt:
   secret: SECRET
+
+portone:
+  rest_api_key: REST-API-KEY
+  rest_api_secret: REST-API-SECRET

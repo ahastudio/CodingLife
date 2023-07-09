@@ -3,15 +3,20 @@ package com.example.demo;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import com.example.demo.models.Address;
 import com.example.demo.models.CategoryId;
 import com.example.demo.models.Image;
 import com.example.demo.models.Money;
+import com.example.demo.models.Payment;
+import com.example.demo.models.PhoneNumber;
+import com.example.demo.models.PostalCode;
 import com.example.demo.models.Product;
 import com.example.demo.models.ProductId;
 import com.example.demo.models.ProductOption;
 import com.example.demo.models.ProductOptionId;
 import com.example.demo.models.ProductOptionItem;
 import com.example.demo.models.ProductOptionItemId;
+import com.example.demo.models.Receiver;
 
 public class Fixtures {
     public static Product product(String name) {
@@ -104,5 +109,17 @@ public class Fixtures {
         }
 
         throw new NoSuchElementException("ProductOptionItem - name: " + name);
+    }
+
+    public static Receiver receiver(String name) {
+        return new Receiver(
+                name,
+                new Address("서울 성동구 상원12길 34", "ㅇㅇㅇ호",
+                        new PostalCode("04790")),
+                new PhoneNumber("01012345678"));
+    }
+
+    public static Payment payment() {
+        return new Payment("PaymentMerchantID", "PaymentTransactionID");
     }
 }

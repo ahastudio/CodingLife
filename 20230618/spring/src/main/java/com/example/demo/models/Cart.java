@@ -61,6 +61,10 @@ public class Cart {
         return lineItems.get(index);
     }
 
+    public void clear() {
+        lineItems.clear();
+    }
+
     public void addProduct(
             Product product, Set<CartLineItemOption> options, int quantity) {
         Optional<CartLineItem> found = findLineItem(product, options);
