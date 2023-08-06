@@ -3,6 +3,7 @@ package com.example.demo.application;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.example.demo.models.Category;
@@ -26,13 +27,29 @@ class GetCategoryListServiceTest {
     }
 
     @Test
+    @DisplayName("getCategories")
     void list() {
         CategoryId id = new CategoryId("0BV000CAT0001");
         Category category = new Category(id, "top");
 
-        given(categoryRepository.findAll()).willReturn(List.of(category));
+        given(categoryRepository.findAllByHiddenFalseOrderByIdAsc())
+                .willReturn(List.of(category));
 
         List<Category> categories = getCategoryListService.getCategories();
+
+        assertThat(categories).hasSize(1);
+    }
+
+    @Test
+    @DisplayName("getAllCategories")
+    void listAll() {
+        CategoryId id = new CategoryId("0BV000CAT0001");
+        Category category = new Category(id, "top");
+
+        given(categoryRepository.findAllByOrderByIdAsc())
+                .willReturn(List.of(category));
+
+        List<Category> categories = getCategoryListService.getAllCategories();
 
         assertThat(categories).hasSize(1);
     }

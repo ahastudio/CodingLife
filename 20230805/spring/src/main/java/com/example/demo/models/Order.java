@@ -80,6 +80,10 @@ public class Order {
         return id;
     }
 
+    public UserId userId() {
+        return userId;
+    }
+
     public String title() {
         OrderLineItem lineItem = lineItems.get(0);
         int size = lineItems.size();
@@ -105,11 +109,23 @@ public class Order {
         return totalPrice;
     }
 
+    public Receiver receiver() {
+        return receiver;
+    }
+
+    public Payment payment() {
+        return payment;
+    }
+
     public OrderStatus status() {
         return status;
     }
 
     public LocalDateTime orderedAt() {
         return orderedAt;
+    }
+
+    public void changeStatus(OrderStatus status) {
+        this.status = status;
     }
 }

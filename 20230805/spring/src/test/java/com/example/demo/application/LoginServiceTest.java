@@ -98,4 +98,48 @@ class LoginServiceTest {
             loginService.login(email, password);
         }).isInstanceOf(BadCredentialsException.class);
     }
+
+    @Test
+    @DisplayName("loginAdmin - with admin email and password")
+    void loginAdminSuccess() {
+        String userId = "ADMIN-ID";
+        String email = "admin@example.com";
+        String password = "password";
+        String encodedPassword = "ENCODED-PASSWORD";
+        String role = "ROLE_ADMIN";
+
+        AuthUser authUser = AuthUser.of(userId, email, encodedPassword, role);
+
+        given(authUserDao.findByEmail(email)).willReturn(Optional.of(authUser));
+
+        given(passwordEncoder.matches(password, encodedPassword))
+                .willReturn(true);
+
+        String accessToken = loginService.loginAdmin(email, password);
+
+        verify(authUserDao).addAccessToken(eq(userId), any());
+
+        assertThat(accessToken).isNotBlank();
+    }
+
+    @Test
+    @DisplayName("loginAdmin - with non-admin email and password")
+    void loginAdminFail() {
+        String userId = "USER-ID";
+        String email = "tester@example.com";
+        String password = "password";
+        String encodedPassword = "ENCODED-PASSWORD";
+        String role = "ROLE_USER";
+
+        AuthUser authUser = AuthUser.of(userId, email, encodedPassword, role);
+
+        given(authUserDao.findByEmail(email)).willReturn(Optional.of(authUser));
+
+        given(passwordEncoder.matches(password, encodedPassword))
+                .willReturn(true);
+
+        assertThatThrownBy(() -> {
+            loginService.loginAdmin(email, password);
+        }).isInstanceOf(BadCredentialsException.class);
+    }
 }

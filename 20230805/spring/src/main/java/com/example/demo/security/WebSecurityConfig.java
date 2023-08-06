@@ -36,6 +36,7 @@ public class WebSecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/users").permitAll()
                 .requestMatchers(HttpMethod.GET, "/categories").permitAll()
                 .requestMatchers(HttpMethod.GET, "/products/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/admin/session").permitAll()
                 .requestMatchers(HttpMethod.GET, "/backdoor/**").permitAll()
                 .anyRequest().authenticated();
 

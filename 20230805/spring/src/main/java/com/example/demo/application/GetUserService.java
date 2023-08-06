@@ -20,4 +20,10 @@ public class GetUserService {
         return userRepository.findById(id)
                 .orElseThrow();
     }
+
+    public User getAdminUser(UserId id) {
+        return userRepository.findById(id)
+                .filter(User::isAdmin)
+                .orElseThrow();
+    }
 }

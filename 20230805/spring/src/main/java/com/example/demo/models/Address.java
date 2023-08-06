@@ -26,6 +26,18 @@ public class Address {
         this.postalCode = postalCode;
     }
 
+    public String address1() {
+        return address1;
+    }
+
+    public String address2() {
+        return address2;
+    }
+
+    public PostalCode postalCode() {
+        return postalCode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

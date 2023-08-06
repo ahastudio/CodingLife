@@ -10,6 +10,8 @@ import com.example.demo.models.OrderId;
 import com.example.demo.models.UserId;
 
 public interface OrderRepository extends CrudRepository<Order, OrderId> {
+    List<Order> findAllByOrderByIdDesc();
+
     List<Order> findAllByUserIdOrderByIdDesc(UserId userId);
 
     Optional<Order> findByIdAndUserId(OrderId id, UserId userId);

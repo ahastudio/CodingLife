@@ -9,7 +9,10 @@ import com.example.demo.models.Product;
 import com.example.demo.models.ProductId;
 
 public interface ProductRepository extends CrudRepository<Product, ProductId> {
-    List<Product> findAll();
+    List<Product> findAllByOrderByIdAsc();
 
-    List<Product> findAllByCategoryId(CategoryId categoryId);
+    List<Product> findAllByHiddenIsFalseOrderByIdAsc();
+
+    List<Product> findAllByCategoryIdAndHiddenIsFalseOrderByIdAsc(
+            CategoryId categoryId);
 }

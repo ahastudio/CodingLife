@@ -9,5 +9,7 @@ import com.example.demo.models.CategoryId;
 
 public interface CategoryRepository
         extends CrudRepository<Category, CategoryId> {
-    List<Category> findAll();
+    List<Category> findAllByOrderByIdAsc();
+
+    List<Category> findAllByHiddenFalseOrderByIdAsc();
 }

@@ -1,12 +1,10 @@
 package com.example.demo.application;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dtos.ProductDetailDto;
+import com.example.demo.dtos.admin.AdminProductDetailDto;
 import com.example.demo.models.Category;
-import com.example.demo.models.CategoryId;
 import com.example.demo.models.Product;
 import com.example.demo.models.ProductId;
 import com.example.demo.repositories.CategoryRepository;
@@ -35,12 +33,14 @@ public class GetProductDetailService {
         return ProductDetailDto.of(product, category);
     }
 
-    private List<Product> findProducts(String categoryId) {
-        if (categoryId == null) {
-            return productRepository.findAll();
-        }
+    public AdminProductDetailDto getAdminProductDetailDto(ProductId productId) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow();
 
-        CategoryId id = new CategoryId(categoryId);
-        return productRepository.findAllByCategoryId(id);
+        Category category = categoryRepository
+                .findById(product.categoryId())
+                .orElseThrow();
+
+        return AdminProductDetailDto.of(product, category);
     }
 }

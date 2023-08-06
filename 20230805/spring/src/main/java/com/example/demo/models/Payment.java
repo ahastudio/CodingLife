@@ -21,6 +21,10 @@ public class Payment {
         this.transactionId = transactionId;
     }
 
+    public String merchantId() {
+        return merchantId;
+    }
+
     public String transactionId() {
         return transactionId;
     }

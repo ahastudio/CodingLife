@@ -61,4 +61,16 @@ public class User {
     public String name() {
         return name;
     }
+
+    public String email() {
+        return email;
+    }
+
+    public Role role() {
+        return role;
+    }
+
+    public boolean isAdmin() {
+        return role.equals(Role.ROLE_ADMIN);
+    }
 }

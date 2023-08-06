@@ -40,4 +40,8 @@ public class ProductOptionItem {
     public String name() {
         return name;
     }
+
+    public void changeName(String name) {
+        this.name = name;
+    }
 }

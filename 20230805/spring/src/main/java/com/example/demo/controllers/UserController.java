@@ -21,6 +21,7 @@ import com.example.demo.exceptions.EmailAlreadyTaken;
 import com.example.demo.models.User;
 import com.example.demo.models.UserId;
 import com.example.demo.security.AuthUser;
+import com.example.demo.security.UserRequired;
 
 @RestController
 @RequestMapping("/users")
@@ -48,6 +49,7 @@ public class UserController {
         return new SignupResultDto(accessToken);
     }
 
+    @UserRequired
     @GetMapping("/me")
     public UserDto me(Authentication authentication) {
         AuthUser authUser = (AuthUser) authentication.getPrincipal();
