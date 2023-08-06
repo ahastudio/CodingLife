@@ -46,7 +46,7 @@ public class ProductOption {
                          List<ProductOptionItem> items) {
         this.id = id;
         this.name = name;
-        this.items = items;
+        this.items = new ArrayList<>(items);
     }
 
     public ProductOptionId id() {

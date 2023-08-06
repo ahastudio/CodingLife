@@ -18,7 +18,7 @@ public class GetCategoryListService {
     }
 
     public List<Category> getCategories() {
-        return categoryRepository.findAllByHiddenFalseOrderByIdAsc();
+        return categoryRepository.findAllByHiddenIsFalseOrderByIdAsc();
     }
 
     public List<Category> getAllCategories() {

@@ -11,5 +11,5 @@ public interface CategoryRepository
         extends CrudRepository<Category, CategoryId> {
     List<Category> findAllByOrderByIdAsc();
 
-    List<Category> findAllByHiddenFalseOrderByIdAsc();
+    List<Category> findAllByHiddenIsFalseOrderByIdAsc();
 }

@@ -38,7 +38,7 @@ class AdminSessionControllerTest extends ControllerTest {
                 .willReturn("Admin.Access.Token");
 
         given(loginService.loginAdmin("tester@example.com", "password"))
-                .willReturn("Tester.Access.Token");
+                .willThrow(new BadCredentialsException("Login failed"));
 
         given(loginService.loginAdmin("xxx", "password"))
                 .willThrow(new BadCredentialsException("Login failed"));
@@ -47,8 +47,9 @@ class AdminSessionControllerTest extends ControllerTest {
                 .willThrow(new BadCredentialsException("Login failed"));
     }
 
+
     @Test
-    @DisplayName("POST /admin/session - with admin email and password")
+    @DisplayName("POST /admin/session - with correct email and password")
     void loginSuccess() throws Exception {
         String json = """
                 {
@@ -64,8 +65,8 @@ class AdminSessionControllerTest extends ControllerTest {
     }
 
     @Test
-    @DisplayName("POST /admin/session - with non-admin email and password")
-    void loginWithNonAdmin() throws Exception {
+    @DisplayName("POST /admin/session - when the user is not admin")
+    void loginWithoutAdmin() throws Exception {
         String json = """
                 {
                     "email": "tester@example.com",
@@ -76,7 +77,7 @@ class AdminSessionControllerTest extends ControllerTest {
         mockMvc.perform(post("/admin/session")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
-                .andExpect(status().isCreated());
+                .andExpect(status().isBadRequest());
     }
 
     @Test

@@ -7,7 +7,7 @@ import com.example.demo.models.User;
 
 public record AdminOrderSummaryDto(
         String id,
-        UserDto orderer,
+        OrdererDto orderer,
         String title,
         Long totalPrice,
         String status,
@@ -19,7 +19,7 @@ public record AdminOrderSummaryDto(
     public static AdminOrderSummaryDto of(Order order, User user) {
         return new AdminOrderSummaryDto(
                 order.id().toString(),
-                new UserDto(user.name()),
+                new OrdererDto(user.name()),
                 order.title(),
                 order.totalPrice().asLong(),
                 order.status().toString(),
@@ -27,7 +27,7 @@ public record AdminOrderSummaryDto(
         );
     }
 
-    public record UserDto(
+    public record OrdererDto(
             String name
     ) {
     }

@@ -60,8 +60,8 @@ public class GetProductListService {
             return productRepository.findAllByHiddenIsFalseOrderByIdAsc();
         }
 
-        return productRepository
-                .findAllByCategoryIdAndHiddenIsFalseOrderByIdAsc(
+        return productRepository.
+                findAllByCategoryIdAndHiddenIsFalseOrderByIdAsc(
                         new CategoryId(categoryId));
     }
 }

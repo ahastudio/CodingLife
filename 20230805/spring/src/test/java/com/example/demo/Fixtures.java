@@ -143,18 +143,6 @@ public class Fixtures {
         throw new NoSuchElementException("ProductOptionItem - name: " + name);
     }
 
-    public static Receiver receiver(String name) {
-        return new Receiver(
-                name,
-                new Address("서울 성동구 상원12길 34", "ㅇㅇㅇ호",
-                        new PostalCode("04790")),
-                new PhoneNumber("01012345678"));
-    }
-
-    public static Payment payment() {
-        return new Payment("PaymentMerchantID", "PaymentTransactionID");
-    }
-
     public static Order order(User user) {
         Product product = Fixtures.product("맨투맨");
 
@@ -174,5 +162,17 @@ public class Fixtures {
 
         return new Order(orderId, user.id(), lineItems, receiver, payment,
                 OrderStatus.PAID);
+    }
+
+    public static Receiver receiver(String name) {
+        return new Receiver(
+                name,
+                new Address("서울 성동구 상원12길 34", "ㅇㅇㅇ호",
+                        new PostalCode("04790")),
+                new PhoneNumber("01012345678"));
+    }
+
+    public static Payment payment() {
+        return new Payment("PaymentMerchantID", "PaymentTransactionID");
     }
 }

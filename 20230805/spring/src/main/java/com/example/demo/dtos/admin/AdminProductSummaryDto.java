@@ -13,7 +13,8 @@ public record AdminProductSummaryDto(
         Long price,
         boolean hidden
 ) {
-    public static AdminProductSummaryDto of(Product product, Category category) {
+    public static AdminProductSummaryDto of(
+            Product product, Category category) {
         return new AdminProductSummaryDto(
                 product.id().toString(),
                 CategoryDto.of(category),

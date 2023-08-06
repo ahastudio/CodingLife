@@ -13,6 +13,5 @@ public interface ProductRepository extends CrudRepository<Product, ProductId> {
 
     List<Product> findAllByHiddenIsFalseOrderByIdAsc();
 
-    List<Product> findAllByCategoryIdAndHiddenIsFalseOrderByIdAsc(
-            CategoryId categoryId);
+    List<Product> findAllByCategoryIdAndHiddenIsFalseOrderByIdAsc(CategoryId id);
 }

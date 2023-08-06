@@ -14,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import static com.example.demo.models.Role.ROLE_ADMIN;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -71,6 +73,6 @@ public class User {
     }
 
     public boolean isAdmin() {
-        return role.equals(Role.ROLE_ADMIN);
+        return role.equals(ROLE_ADMIN);
     }
 }

@@ -61,7 +61,8 @@ public class AdminCategoryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String create(@RequestBody AdminCreateCategoryDto categoryDto) {
+    public String create(
+            @Valid @RequestBody AdminCreateCategoryDto categoryDto) {
         createCategoryService.createCategory(categoryDto.name());
         return "Created";
     }
