@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>WebScoket Demo</title>
+</head>
+<body>
+    <button type="button">Send</button>
+    <ul>
+        <li>Hello!</li>
+    </ul>
+    <script>
+        function print(message) {
+            const el = document.querySelector('ul');
+            const item = document.createElement('li');
+            item.textContent = message;
+            el.appendChild(item);
+        }
+
+        const ws = new WebSocket(`ws://localhost:8000`);
+        ws.addEventListener('open', (event) => {
+            print('Connect!');
+        });
+        ws.addEventListener('close', (event) => {
+            print('Close!');
+        });
+        ws.addEventListener('message', (event) => {
+            const { data } = event;
+            print(data);
+        });
+
+        document.querySelector('button').addEventListener('click', () => {
+            ws.send(new Date());
+        });
+    </script>
+</body>
