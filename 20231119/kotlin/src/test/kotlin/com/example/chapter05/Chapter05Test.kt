@@ -36,10 +36,11 @@ fun <A> Stream<A>.drop(n: Int): Stream<A> = when (this) {
         else this.tail.drop(n - 1)
 }
 
-fun <A, B> Stream<A>.foldRight(z: B, f: (A, B) -> B): B = when (this) {
-    is Empty -> z
-    is Cons -> f(this.head(), this.tail.foldRight(z, f))
-}
+fun <A, B> Stream<A>.foldRight(z: () -> B, f: (A, () -> B) -> B): B =
+    when (this) {
+        is Empty -> z()
+        is Cons -> f(this.head()) { this.tail.foldRight(z, f) }
+    }
 
 //fun <A> Stream<A>.exists(p: (A) -> Boolean): Boolean = when (this) {
 //    is Empty -> false
@@ -47,7 +48,7 @@ fun <A, B> Stream<A>.foldRight(z: B, f: (A, B) -> B): B = when (this) {
 //}
 
 fun <A> Stream<A>.exists(p: (A) -> Boolean): Boolean =
-    this.foldRight(false) { a: A, b: Boolean -> p(a) || b }
+    this.foldRight({ false }) { a: A, b: () -> Boolean -> p(a) || b() }
 
 class Chapter05Test {
     @Test
@@ -74,7 +75,7 @@ class Chapter05Test {
     fun testFoldRight() {
         assertEquals(
             6,
-            Stream.of(1, 2, 3).foldRight(0) { cur, acc -> acc + cur }
+            Stream.of(1, 2, 3).foldRight({ 0 }) { cur, acc -> cur + acc() }
         )
     }
 }
