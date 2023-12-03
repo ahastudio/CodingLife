@@ -24,3 +24,8 @@ sealed class List<out A> : ListOf<A> {
 object Nil : List<Nothing>()
 
 data class Cons<out A>(val head: A, val tail: List<A>) : List<A>()
+
+fun <A, B> List<A>.foldRight(z: B, f: (A, B) -> B): B = when (this) {
+    is Nil -> z
+    is Cons -> f(this.head, this.tail.foldRight(z, f))
+}
