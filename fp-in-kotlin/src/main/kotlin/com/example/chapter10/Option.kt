@@ -14,3 +14,8 @@ fun <A> OptionOf<A>.fix() = this as Option<A>
 object None : Option<Nothing>()
 
 data class Some<out A>(val get: A) : Option<A>()
+
+fun <A, B> Option<A>.foldMap(m: Monoid<B>, f: (A) -> B): B = when (this) {
+    is None -> m.nil
+    is Some -> f(this.get)
+}

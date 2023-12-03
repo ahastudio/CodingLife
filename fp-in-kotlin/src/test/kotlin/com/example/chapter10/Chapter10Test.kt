@@ -88,6 +88,16 @@ class Chapter10Test {
     }
 
     @Test
+    fun testFoldMap() {
+        val m = stringConcat()
+
+        assertEquals(
+            "123",
+            List.of(1, 2, 3).foldMap(m) { it.toString() }
+        )
+    }
+
+    @Test
     fun testListFoldable() {
         assertEquals(
             6,
@@ -116,6 +126,14 @@ class Chapter10Test {
         )
 
         assertEquals(
+            Some(1),
+            ListFoldable.foldMap(
+                List.of(1, 2, 3),
+                optionMonoid()
+            ) { Some(it) }
+        )
+
+        assertEquals(
             6,
             ListFoldable.concatenate(List.of(1, 2, 3), intAddition())
         )
@@ -123,16 +141,34 @@ class Chapter10Test {
 
     @Test
     fun testOptionFoldable() {
-        val m = optionMonoid<Int>()
-
         assertEquals(
-            Some(1),
-            OptionFolderable.foldMap(Some(1), m) { Some(it) }
+            Some(3),
+            OptionFoldable.foldMap(Some(3), optionMonoid()) { Some(it) }
         )
 
         assertEquals(
             None,
-            OptionFolderable.foldMap(None, m) { x: Int -> Some(x) }
+            OptionFoldable.foldMap(None, optionMonoid()) { it }
+        )
+
+        assertEquals(
+            3,
+            OptionFoldable.foldMap(Some(3), intAddition()) { it }
+        )
+
+        assertEquals(
+            0,
+            OptionFoldable.foldMap(None, intAddition()) { it }
+        )
+
+        assertEquals(
+            3,
+            OptionFoldable.foldMap(Some(3), intMultiplication()) { it }
+        )
+
+        assertEquals(
+            1,
+            OptionFoldable.foldMap(None, intMultiplication()) { it }
         )
     }
 

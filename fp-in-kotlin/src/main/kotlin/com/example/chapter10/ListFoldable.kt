@@ -14,5 +14,11 @@ object ListFoldable : Foldable<ForList> {
         fa: Kind<ForList, A>,
         m: Monoid<B>,
         f: (A) -> B
-    ): B = fa.fix().foldRight(m.nil) { cur, acc -> m.combine(f(cur), acc) }
+    ): B = fa.fix().foldMap(m, f)
+
+//    override fun <A, B> foldMap(
+//        fa: Kind<ForList, A>,
+//        m: Monoid<B>,
+//        f: (A) -> B
+//    ): B = fa.fix().foldRight(m.nil) { cur, acc -> m.combine(f(cur), acc) }
 }

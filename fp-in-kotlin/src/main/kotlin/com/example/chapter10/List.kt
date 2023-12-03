@@ -25,6 +25,11 @@ object Nil : List<Nothing>()
 
 data class Cons<out A>(val head: A, val tail: List<A>) : List<A>()
 
+fun <A, B> List<A>.foldMap(m: Monoid<B>, f: (A) -> B): B = when (this) {
+    is Nil -> m.nil
+    is Cons -> m.combine(f(this.head), this.tail.foldMap(m, f))
+}
+
 fun <A, B> List<A>.foldRight(z: B, f: (A, B) -> B): B = when (this) {
     is Nil -> z
     is Cons -> f(this.head, this.tail.foldRight(z, f))
