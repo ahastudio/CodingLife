@@ -20,4 +20,18 @@ interface Foldable<F> {
 
     fun <A> concatenate(fa: Kind<F, A>, m: Monoid<A>): A =
         foldLeft(fa, m.nil, m::combine)
+
+    fun <A> toList(fa: Kind<F, A>): List<A> {
+        val m = object : Monoid<ListOf<A>> {
+            override fun combine(x: ListOf<A>, y: ListOf<A>): ListOf<A> =
+                when (val xs = x.fix()) {
+                    is Nil -> y
+                    is Cons -> Cons(xs.head, combine(xs.tail, y).fix())
+                }
+
+            override val nil: ListOf<A> = Nil
+        }
+
+        return foldMap(fa, m) { List.of(it) }.fix()
+    }
 }

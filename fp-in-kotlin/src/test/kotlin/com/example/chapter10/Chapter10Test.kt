@@ -173,12 +173,25 @@ class Chapter10Test {
     }
 
     @Test
+    fun testToList() {
+        assertEquals(
+            List.of(1, 2, 3),
+            ListFoldable.toList(List.of(1, 2, 3))
+        )
+
+        assertEquals(
+            List.of(3),
+            OptionFoldable.toList(Some(3))
+        )
+    }
+
+    @Test
     fun testMapMergeMonoid() {
         val m = mapMergeMonoid<String, Int>(intAddition())
 
         assertEquals(
-            mapOf("a" to 3),
-            m.combine(mapOf("a" to 1), mapOf("a" to 2))
+            mapOf("a" to 3, "b" to 10),
+            m.combine(mapOf("a" to 1), mapOf("a" to 2, "b" to 10))
         )
     }
 
