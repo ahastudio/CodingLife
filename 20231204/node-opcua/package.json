@@ -1,0 +1,20 @@
+{
+  "name": "opc-test",
+  "version": "1.0.0",
+  "description": "OPC-UA Client Demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "build": "pkg index.js -t node16-win -o build/opc-test",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  },
+  "dependencies": {
+    "node-opcua": "^2.118.0"
+  }
+}
