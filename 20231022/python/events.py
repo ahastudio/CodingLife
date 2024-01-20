@@ -7,18 +7,18 @@ class Row(TypedDict):
     w: float
 
 
-class Cycle(TypedDict):
+class Item(TypedDict):
     index: int
     timestamp: str
     width: int
     rows: list[Row]
 
 
-class SignalEvent(TypedDict):
-    motor_name: str
+class TestEvent(TypedDict):
+    name: str
     timestamp: str
-    number_of_cycles: int
-    cycle_width: int
-    sample_count: int
     validity: int
-    cycles: list[Cycle]
+    sample: int
+    width: int
+    count: int
+    items: list[Item]

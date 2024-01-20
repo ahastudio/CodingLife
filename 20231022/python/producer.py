@@ -3,11 +3,11 @@ import os
 
 from kafka import KafkaProducer
 
-from events import Cycle, Row, SignalEvent
+from events import Item, Row, TestEvent
 from schema import load_schema
 
 
-def load_cycles_csv() -> list[Cycle]:
+def load_items_csv() -> list[Item]:
     with open("items.csv", newline="") as f:
         reader = csv.DictReader(f)
 
@@ -15,7 +15,7 @@ def load_cycles_csv() -> list[Cycle]:
 
         for row in reader:
             if row["index"]:
-                item = Cycle(
+                item = Item(
                     index=int(row["index"]),
                     timestamp=row["timestamp"],
                     width=int(row["width"]),
@@ -36,38 +36,25 @@ def load_cycles_csv() -> list[Cycle]:
 
 
 def main():
-    topic = "test"
+    topic = "test-topic"
 
     bootstrap_server = os.environ.get("BOOTSTRAP_SERVER", "")
-    sasl_plain_username = os.environ.get("SASL_PLAIN_USERNAME", "")
-    sasl_plain_password = os.environ.get("SASL_PLAIN_PASSWORD", "")
-
-    sasl = {}
-
-    if sasl_plain_username:
-        sasl = {
-            "security_protocol": "SASL_PLAINTEXT",
-            "sasl_mechanism": "SCRAM-SHA-256",
-            "sasl_plain_username": sasl_plain_username,
-            "sasl_plain_password": sasl_plain_password,
-        }
-
     print("Bootstrap Server:", bootstrap_server)
 
-    producer = KafkaProducer(bootstrap_servers=[bootstrap_server], **sasl)
+    producer = KafkaProducer(bootstrap_servers=[bootstrap_server])
 
-    schema = load_schema("schema.avsc", SignalEvent)
+    schema = load_schema("schema.avsc", TestEvent)
 
-    cycles = load_cycles_csv()
+    items = load_items_csv()
 
-    event = SignalEvent(
-        motor_name="X-42",
+    event = TestEvent(
+        name="Deep Thought 42",
         timestamp="2023-09-14 17:07:38.996",
-        number_of_cycles=600,
-        cycle_width=16_666,
-        sample_count=128,
         validity=1,
-        cycles=cycles,
+        sample=128,
+        width=16_666,
+        count=600,
+        items=items,
     )
 
     message = schema.encode(event)

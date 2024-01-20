@@ -1,10 +1,10 @@
 {
-    "namespace": "com.onepredict.guardione.motor.rootech",
+    "namespace": "example.avro",
     "type": "record",
-    "name": "signal",
+    "name": "test",
     "fields": [
         {
-            "name": "motor_name",
+            "name": "name",
             "type": "string"
         },
         {
@@ -12,15 +12,15 @@
             "type": "string"
         },
         {
-            "name": "number_of_cycles",
+            "name": "count",
             "type": "int"
         },
         {
-            "name": "cycle_width",
+            "name": "width",
             "type": "int"
         },
         {
-            "name": "sample_count",
+            "name": "sample",
             "type": "int"
         },
         {
@@ -28,12 +28,12 @@
             "type": "int"
         },
         {
-            "name": "cycles",
+            "name": "items",
             "type": {
                 "type": "array",
                 "items": [
                     {
-                        "name": "cycle",
+                        "name": "item",
                         "type": "record",
                         "fields": [
                             {
