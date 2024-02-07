@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "test"
+version = "0.1.0"
+description = ""
+authors = ["Ashal aka JOKER <ahastudio@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.8.0"
+isort = "^5.13.2"
+black = "^24.1.1"
+pytest = "^8.0.0"
+pytest-watcher = "^0.4.1"
+pytest-benchmark = "^4.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+addopts = "--capture=no"
+
+[tool.pytest-watcher]
+now = true
