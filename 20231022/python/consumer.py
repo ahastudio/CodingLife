@@ -1,44 +1,36 @@
+import json
 import os
-from datetime import datetime
+import pprint
 
 from kafka import KafkaConsumer
 
-from events import TestEvent
+from events import CartEvent
 from schema import load_schema
+
+TOPIC = "test"
 
 
 def main():
-    topic = "test-topic"
-
     bootstrap_server = os.environ.get("BOOTSTRAP_SERVER", "")
-    print("Bootstrap Server:", bootstrap_server)
 
     consumer = KafkaConsumer(
-        topic,
+        TOPIC,
         bootstrap_servers=[bootstrap_server],
+        # 테스트를 위한 옵션: 처음부터 시작해서 지난 이벤트를 모두 받는다.
         auto_offset_reset="earliest",
     )
 
-    schema = load_schema("schema.avsc", TestEvent)
+    schema = load_schema("schema.avsc", CartEvent)
+
+    pp = pprint.PrettyPrinter()
 
     for message in consumer:
-        timestamp = datetime.fromtimestamp(message.timestamp / 1_000)
-        print(
-            f"Record - topic: {message.topic} / partition: {message.partition}"
-            f" / offset: {message.offset} / timestamp: {timestamp}"
-            f" / value length: {len(message.value)}"
-        )
-        print("-> ", message.value[:256])
-
-        if len(message.value) < 1_000_000:
-            continue
-
-        event = schema.decode(message.value)
-        for key in event.keys():
-            if key == "items":
-                continue
-            print(f"- {key}: {event[key]}")
-        print("- Items: ", len(event["items"]))
+        event: CartEvent = schema.decode(message.value)
+        print("-" * 80)
+        print("Timestamp:", event["timestamp"])
+        print("Event ID:", event["event_id"])
+        print("Event type:", event["event_type"])
+        pp.pprint(json.loads(event["event_body"]))
 
 
 if __name__ == "__main__":

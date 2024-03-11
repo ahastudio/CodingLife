@@ -1,83 +1,23 @@
 {
     "namespace": "example.avro",
     "type": "record",
-    "name": "test",
+    "name": "CartEvent",
     "fields": [
-        {
-            "name": "name",
-            "type": "string"
-        },
         {
             "name": "timestamp",
             "type": "string"
         },
         {
-            "name": "count",
-            "type": "int"
+            "name": "event_id",
+            "type": "string"
         },
         {
-            "name": "width",
-            "type": "int"
+            "name": "event_type",
+            "type": "string"
         },
         {
-            "name": "sample",
-            "type": "int"
-        },
-        {
-            "name": "validity",
-            "type": "int"
-        },
-        {
-            "name": "items",
-            "type": {
-                "type": "array",
-                "items": [
-                    {
-                        "name": "item",
-                        "type": "record",
-                        "fields": [
-                            {
-                                "name": "index",
-                                "type": "int"
-                            },
-                            {
-                                "name": "timestamp",
-                                "type": "string"
-                            },
-                            {
-                                "name": "width",
-                                "type": "int"
-                            },
-                            {
-                                "name": "rows",
-                                "type": {
-                                    "type": "array",
-                                    "items": [
-                                        {
-                                            "name": "row",
-                                            "type": "record",
-                                            "fields": [
-                                                {
-                                                    "name": "u",
-                                                    "type": "float"
-                                                },
-                                                {
-                                                    "name": "v",
-                                                    "type": "float"
-                                                },
-                                                {
-                                                    "name": "w",
-                                                    "type": "float"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    }
-                ]
-            }
+            "name": "event_body",
+            "type": "string"
         }
     ]
 }

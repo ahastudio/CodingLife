@@ -1,7 +1,7 @@
 import json
 from io import BytesIO
 from pathlib import Path
-from typing import Any, Generic, Type, TypedDict, TypeVar
+from typing import Generic, Type, TypeVar
 
 import fastavro.types
 from fastavro import parse_schema, schemaless_reader, schemaless_writer
