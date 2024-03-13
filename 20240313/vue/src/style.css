@@ -1,0 +1,44 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  color: #000;
+  font-size: 1.6rem;
+}
+
+a {
+  color: #000;
+  text-decoration: underline;
+}
+
+strong {
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+input,
+textarea,
+select,
+button {
+  font-size: 1em;
+}
+
+:lang(ko) {
+  h1, h2, h3, h4, h5, p {
+    word-break: keep-all;
+  }
+}
