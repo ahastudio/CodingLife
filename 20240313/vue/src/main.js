@@ -5,8 +5,8 @@ import App from './App.vue';
 
 import router from './router';
 
-import './reset.css';
-import './style.css';
+import './styles/reset.css';
+import './styles/global.css';
 
 const pinia = createPinia()
 
