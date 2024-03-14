@@ -1,6 +1,6 @@
 import { container } from 'tsyringe';
 
-import { screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 
 import { render } from '../../test-helpers';
 

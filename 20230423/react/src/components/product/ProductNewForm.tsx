@@ -74,7 +74,7 @@ export default function ProductNewForm({
           onChange={(value) => store.changeDescription(value)}
           multiline
         />
-        <Button type="submit" disabled={!valid} leftPad>
+        <Button type="submit" disabled={!valid} leftpad>
           등록
         </Button>
         {error && (

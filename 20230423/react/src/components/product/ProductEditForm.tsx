@@ -81,7 +81,7 @@ export default function ProductEditForm({
           checked={hidden}
           onChange={() => store.toggleHidden()}
         />
-        <Button type="submit" disabled={!valid} leftPad>
+        <Button type="submit" disabled={!valid} leftpad>
           변경
         </Button>
         {error && (

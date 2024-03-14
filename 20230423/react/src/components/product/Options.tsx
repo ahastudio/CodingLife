@@ -24,7 +24,7 @@ export default function Options({ options, store }: OptionsProps) {
             value={option.name}
             onChange={(value) => store.changeOptionName(index, value)}
           />
-          <Button onClick={() => store.removeOption(index)} leftPad>
+          <Button onClick={() => store.removeOption(index)} leftpad>
             옵션 삭제
           </Button>
           <OptionItems
@@ -35,7 +35,7 @@ export default function Options({ options, store }: OptionsProps) {
         </li>
       ))}
       <li>
-        <Button onClick={() => store.addOption()} leftPad>
+        <Button onClick={() => store.addOption()} leftpad>
           옵션 추가
         </Button>
       </li>

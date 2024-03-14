@@ -22,13 +22,13 @@ export default function Images({ images, store }: ImagesProps) {
             value={image.url}
             onChange={(value) => store.changeImageUrl(index, value)}
           />
-          <Button onClick={() => store.removeImage(index)} leftPad>
+          <Button onClick={() => store.removeImage(index)} leftpad>
             이미지 삭제
           </Button>
         </li>
       ))}
       <li>
-        <Button onClick={() => store.addImage()} leftPad>
+        <Button onClick={() => store.addImage()} leftpad>
           이미지 추가
         </Button>
       </li>

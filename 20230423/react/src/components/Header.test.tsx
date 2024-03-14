@@ -6,10 +6,12 @@ import Header from './Header';
 
 const accessToken = '';
 
-jest.mock('../hooks/useAccessToken', () => () => ({
-  get accessToken() {
-    return accessToken;
-  },
+vi.mock('../hooks/useAccessToken', () => ({
+  default: () => ({
+    get accessToken() {
+      return accessToken;
+    },
+  }),
 }));
 
 test('Header', () => {

@@ -1,8 +1,8 @@
 import LoginFormStore from './LoginFormStore';
 
-const login = jest.fn();
+const login = vi.fn();
 
-jest.mock('../services/ApiService', () => ({
+vi.mock('../services/ApiService', () => ({
   get apiService() {
     return {
       login,
@@ -16,7 +16,7 @@ describe('LoginFormStore', () => {
   let store: LoginFormStore;
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
 
     store = new LoginFormStore();
   });

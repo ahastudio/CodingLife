@@ -5,7 +5,7 @@ import { OrderSummary, ProductSummary } from '../types';
 
 import fixtures from '../../fixtures';
 
-const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3000/admin';
+const API_BASE_URL = import.meta.env.API_BASE_URL || 'http://localhost:3000/admin';
 
 const productSummaries: ProductSummary[] = fixtures.products
   .map((product) => ({

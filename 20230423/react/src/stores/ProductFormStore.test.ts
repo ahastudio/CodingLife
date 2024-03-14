@@ -2,10 +2,10 @@ import ProductFormStore from './ProductFormStore';
 
 import fixtures from '../../fixtures';
 
-const createProduct = jest.fn();
-const updateProduct = jest.fn();
+const createProduct = vi.fn();
+const updateProduct = vi.fn();
 
-jest.mock('../services/ApiService', () => ({
+vi.mock('../services/ApiService', () => ({
   get apiService() {
     return {
       createProduct,
@@ -20,7 +20,7 @@ describe('ProductFormStore', () => {
   let store: ProductFormStore;
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
 
     store = new ProductFormStore();
   });

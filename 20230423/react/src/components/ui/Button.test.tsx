@@ -4,7 +4,7 @@ import Button from './Button';
 
 describe('Button', () => {
   it('renders without crashing', () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
 
     render((
       <Button onClick={handleClick}>
