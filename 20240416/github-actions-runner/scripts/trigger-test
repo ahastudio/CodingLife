@@ -1,0 +1,5 @@
+#!/bin/sh
+
+curl -i -X POST -H "Content-Type: application/json" \
+  -d "{}" \
+  https://smee.io/test
