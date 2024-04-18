@@ -20,8 +20,12 @@ public class BackdoorControlInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        // 만약 에러를 내고 싶다면 여기서 예외를 던져도 됩니다.
+        if (active) {
+            return true;
+        }
 
-        return active;
+        response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+
+        return false;
     }
 }

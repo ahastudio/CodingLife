@@ -11,7 +11,7 @@ BACKDOOR=true ./gradlew bootRun
 cURL로 확인했을 때 “OK”란 응답이 나오면 잘 되고 있는 겁니다.
 
 ```bash
-curl localhost:8080/backdoor/setup-database
+curl -i localhost:8080/backdoor/setup-database
 ```
 
 ## Backdoor 비활성화
@@ -22,10 +22,10 @@ curl localhost:8080/backdoor/setup-database
 ./gradlew bootRun
 ```
 
-cURL로 확인했을 때 아무런 텍스트도 보이지 않는다면 잘 막힌 겁니다.
+cURL로 확인했을 때 404 Not Found 에러가 나온다면 잘 막힌 겁니다.
 
 ```bash
-curl localhost:8080/backdoor/setup-database
+curl -i localhost:8080/backdoor/setup-database
 ```
 
 ## IntelliJ IDEA에서 세팅
