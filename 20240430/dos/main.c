@@ -25,8 +25,8 @@ struct SPRITE_SET {
 
 const char SPRITE_CODE[] = "CSHSPRFILE";
 
-// byte far* screen = (byte far *)0xA0000000;
-byte far* screen = (byte far *)MK_FP(0xA000, 0x0000);
+// byte far* screen = (byte far*)0xA0000000;
+byte far* screen = (byte far*)MK_FP(0xA000, 0x0000);
 
 byte far* buffer = NULL;
 
@@ -276,6 +276,8 @@ int main() {
 
     set_palette(palette);
 
+    free(palette);
+
     init_page_buffer();
 
     struct SPRITE_SET far* sprite_set = load_sprite_set("ASSETS\\SPRITE.SPR");
@@ -284,7 +286,7 @@ int main() {
         return -1;
     }
 
-    for (word i = 0; i < 10000; i += 1) {
+    for (word i = 0; i < 100; i += 1) {
         int index = (i % 5) + ((i / 20) % 2) * 10;
 
         struct SPRITE far* sprite = &sprite_set->sprites[index];

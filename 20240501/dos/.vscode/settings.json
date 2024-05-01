@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "string.h": "c",
+    "graphic.h": "c",
+    "sprite.h": "c",
+    "palette.h": "c"
+  }
+}
