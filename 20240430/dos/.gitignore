@@ -1,0 +1,6 @@
+*.err
+*.o
+*.exe
+*.com
+
+/assets/
