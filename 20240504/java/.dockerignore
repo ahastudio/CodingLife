@@ -1,0 +1,19 @@
+# Docker
+Dockerfile
+.dockerignore
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Gradle
+.gradle
+gradle.properties
+gradlew.bat
+
+# IntelliJ IDEA
+.idea
+
+# Ignore temporary files
+/tmp/
