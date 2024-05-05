@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/runtime:8.0.3-bookworm-slim-amd64
+FROM mcr.microsoft.com/dotnet/runtime:8.0.3-jammy-amd64
 
 WORKDIR /u/actions-runner
 
