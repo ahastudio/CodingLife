@@ -12,6 +12,9 @@ Dockerfile
 gradle.properties
 gradlew.bat
 
+# SDKMAN!
+.sdkmanrc
+
 # IntelliJ IDEA
 .idea
 
