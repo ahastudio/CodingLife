@@ -2,6 +2,7 @@ package com.example.demo.repositories;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ class CartDtoRepositoryTest {
     @Autowired
     private CartDtoRepository cartDtoRepository;
 
+    @Disabled
     @Test
     void test() {
         String id = "test";

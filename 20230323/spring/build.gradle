@@ -21,7 +21,7 @@ dependencies {
 
     implementation 'io.hypersistence:tsid:1.1.0'
 
-    implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.78.1'
 
     implementation 'com.auth0:java-jwt:4.4.0'
 

@@ -43,13 +43,13 @@ class CartTest {
 
         assertThat(cart.lineItemsSize()).isEqualTo(1);
 
-        cart.addProduct(product, 1);
+        cart.addProduct(product, 2);
 
         assertThat(cart.lineItemsSize()).isEqualTo(1);
 
-        LineItem lineItem = cart.findLineItem(product.id()).get();
+        LineItem lineItem = cart.findLineItem(product.id()).orElseThrow();
 
-        cart.changeLineItemQuantity(lineItem.id(), 2);
+        assertThat(lineItem.quantity()).isEqualTo(3);
     }
 
     @Test
@@ -71,11 +71,11 @@ class CartTest {
 
         cart.addProduct(product, 1);
 
-        LineItem lineItem = cart.findLineItem(product.id()).get();
-
         cart.addProduct(product, -1);
 
-        cart.changeLineItemQuantity(lineItem.id(), 1);
+        LineItem lineItem = cart.findLineItem(product.id()).orElseThrow();
+
+        assertThat(lineItem.quantity()).isEqualTo(1);
     }
 
     @Test
@@ -85,7 +85,7 @@ class CartTest {
 
         cart.addProduct(product, 1);
 
-        LineItem lineItem = cart.findLineItem(product.id()).get();
+        LineItem lineItem = cart.findLineItem(product.id()).orElseThrow();
 
         cart.changeLineItemQuantity(lineItem.id(), 3);
 
@@ -107,7 +107,7 @@ class CartTest {
 
         cart.addProduct(product, 1);
 
-        LineItem lineItem = cart.findLineItem(product.id()).get();
+        LineItem lineItem = cart.findLineItem(product.id()).orElseThrow();
 
         cart.changeLineItemQuantity(lineItem.id(), 0);
 
