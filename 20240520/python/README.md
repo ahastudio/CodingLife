@@ -14,14 +14,14 @@ poetry install
 poetry run black .
 ```
 
-## Run server
-
-```bash
-poetry run python server.py
-```
-
 ## Run client
 
 ```bash
 poetry run python client.py
+```
+
+## Run server
+
+```bash
+poetry run python server.py
 ```

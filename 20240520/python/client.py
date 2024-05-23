@@ -1,5 +1,4 @@
 import socket
-import textwrap
 
 
 def main():
@@ -14,13 +13,9 @@ def main():
         print("Connected!")
 
         # https://developer.mozilla.org/ko/docs/Web/HTTP/Messages
-        message = textwrap.dedent(
-            f"""
-            GET / HTTP/1.1
-            Host: {host}
-
-            """
-        ).lstrip()
+        message = "GET / HTTP/1.1\n"
+        message += f"Host: {host}\n"
+        message += "\n"
 
         data = bytes(message, "utf-8")
         print("Message:", len(data))
