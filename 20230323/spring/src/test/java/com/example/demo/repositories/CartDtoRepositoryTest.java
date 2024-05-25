@@ -2,7 +2,6 @@ package com.example.demo.repositories;
 
 import java.util.List;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ class CartDtoRepositoryTest {
     @Autowired
     private CartDtoRepository cartDtoRepository;
 
-    @Disabled
     @Test
     void test() {
         String id = "test";
@@ -37,5 +35,15 @@ class CartDtoRepositoryTest {
                 "CartDto{id='test', lineItems=[LineItemDto[id=line-item-01");
 
         // cartDtoRepository.delete(cartDto);
+    }
+
+    @Test
+    void testWithTTL() {
+        String id = "temporary";
+
+        CartDto cartDto = new CartDto(id, List.of());
+        cartDto.setExpiration(3L);
+
+        cartDtoRepository.save(cartDto);
     }
 }

@@ -71,4 +71,11 @@ class WelcomeControllerTest extends ControllerTest {
                     .andExpect(status().isOk());
         }
     }
+
+    @Test
+    @DisplayName("GET /health")
+    void health() throws Exception {
+        mockMvc.perform(get("/health"))
+                .andExpect(status().isOk());
+    }
 }

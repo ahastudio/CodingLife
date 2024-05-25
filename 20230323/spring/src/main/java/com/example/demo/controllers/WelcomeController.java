@@ -22,4 +22,9 @@ public class WelcomeController {
     public String user() {
         return "Hello, world!";
     }
+
+    @GetMapping("/health")
+    public String health() {
+        return "Healthy\n";
+    }
 }

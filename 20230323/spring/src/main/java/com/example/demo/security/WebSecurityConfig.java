@@ -32,6 +32,7 @@ public class WebSecurityConfig {
                 authenticationFilter, BasicAuthenticationFilter.class);
 
         http.authorizeHttpRequests()
+                .requestMatchers(HttpMethod.GET, "/health").permitAll()
                 .requestMatchers(HttpMethod.POST, "/session").permitAll()
                 .requestMatchers(HttpMethod.POST, "/users").permitAll()
                 .requestMatchers(HttpMethod.GET, "/products").permitAll()
