@@ -57,7 +57,7 @@ public class Cart {
         Optional<LineItem> found = findLineItem(product.id());
 
         if (found.isPresent()) {
-            LineItem lineItem = found.get();
+            LineItem lineItem = found.orElseThrow();
             lineItem.increaseQuantity(quantity);
             return;
         }
@@ -68,7 +68,7 @@ public class Cart {
     }
 
     public void changeLineItemQuantity(LineItemId lineItemId, int quantity) {
-        LineItem lineItem = findLineItem(lineItemId).get();
+        LineItem lineItem = findLineItem(lineItemId).orElseThrow();
 
         if (quantity <= 0) {
             lineItems.remove(lineItem);

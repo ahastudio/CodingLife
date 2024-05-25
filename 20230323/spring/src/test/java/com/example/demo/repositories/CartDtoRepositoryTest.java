@@ -29,7 +29,7 @@ class CartDtoRepositoryTest {
 
         cartDtoRepository.save(cartDto);
 
-        CartDto found = cartDtoRepository.findById(id).get();
+        CartDto found = cartDtoRepository.findById(id).orElseThrow();
 
         assertThat(found.toString()).contains(
                 "CartDto{id='test', lineItems=[LineItemDto[id=line-item-01");
