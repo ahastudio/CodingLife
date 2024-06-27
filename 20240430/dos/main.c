@@ -108,7 +108,7 @@ void flip_page() {
 }
 
 void _ffread(void far* pointer, word size, FILE* fp) {
-	byte* buffer = (byte*)malloc(size);
+    byte* buffer = (byte*)malloc(size);
     fread(buffer, size, 1, fp);
     _fmemcpy(pointer, buffer, size);
     free(buffer);
@@ -192,7 +192,7 @@ void* load_file(char* name) {
 
     fseek(fp, 0, SEEK_SET);
 
-	byte* buffer = (byte*)malloc(size);
+    byte* buffer = (byte*)malloc(size);
     fread(buffer, size, 1, fp);
 
     return buffer;
