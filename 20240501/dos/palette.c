@@ -12,7 +12,7 @@ byte* load_palette(char* name) {
         return NULL;
     }
 
-	byte* buffer = (byte*)malloc(size);
+    byte* buffer = (byte*)malloc(size);
 
     fread(buffer, size, 1, fp);
 
