@@ -7,7 +7,7 @@
 const char SPRITE_CODE[] = "CSHSPRFILE";
 
 static void _ffread(void far* pointer, word size, FILE* fp) {
-	byte* buffer = (byte*)malloc(size);
+    byte* buffer = (byte*)malloc(size);
     fread(buffer, size, 1, fp);
     _fmemcpy(pointer, buffer, size);
     free(buffer);
