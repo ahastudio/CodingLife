@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>주소 검색</title>
+    <style>
+      #search-container {
+        display: none;
+        width: 500px;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div>
+        <input type="text" name="postcode" placeholder="우편번호" readonly>
+        <input type="button" onclick="searchAddress()" value="우편번호 찾기"><br>
+      </div>
+      <div id="search-container"></div>
+      <div>
+        <input type="text" name="address1" placeholder="주소" readonly>
+      </div>
+      <div>
+        <input type="text" name="address2" placeholder="상세주소">
+      </div>
+    </div>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+      function searchAddress() {
+        const element = document.getElementById('search-container');
+        element.style.display = 'block';
+        new daum.Postcode({
+          oncomplete: (data) => {
+            document.getElementsByName('postcode')[0].value = data.zonecode;
+            document.getElementsByName('address1').value = data.address;
+            element.style.display = 'none';
+          },
+          width: '100%',
+          height: '100%'
+        }).embed(element);
+      }
+    </script>
+  </body>
+</html>
