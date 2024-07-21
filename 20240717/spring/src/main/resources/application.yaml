@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: demo
+
+server:
+  port: 8080
+  servlet:
+    encoding:
+      force-response: true
