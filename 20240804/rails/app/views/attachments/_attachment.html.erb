@@ -1,0 +1,18 @@
+<div id="<%= dom_id attachment %>">
+  <p>
+    <strong>Original filename:</strong>
+    <%= attachment.original_filename %>
+  </p>
+  <p>
+    <strong>Content type:</strong>
+    <%= attachment.content_type %>
+  </p>
+  <p>
+    <strong>Size:</strong>
+    <%= number_with_delimiter attachment.size %>
+  </p>
+  <p>
+    <strong>Body:</strong>
+    <%= image_tag("data:#{attachment.content_type};base64, #{attachment.body}", width: '400') %>
+  </p>
+</div>

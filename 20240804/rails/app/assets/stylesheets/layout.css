@@ -1,0 +1,31 @@
+header {
+  a {
+    color: #555;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  nav {
+    ul, li {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      display: flex;
+      padding-block: 1rem;
+      list-style: none;
+
+      li {
+        margin-right: 1rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<%= form_with(model: attachment) do |form| %>
+  <% if attachment.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(attachment.errors.count, "error") %> prohibited this attachment from being saved:</h2>
+      <ul>
+        <% attachment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= form.label :uploaded_file %>
+    <%= form.file_field :uploaded_file %>
+  </p>
+  <div>
+    <%= form.submit 'Upload' %>
+  </div>
+<% end %>
