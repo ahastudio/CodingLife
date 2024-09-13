@@ -13,7 +13,7 @@ public class App {
 
     public static void main(String[] args) {
         ApplicationContext context =
-                new AnnotationConfigApplicationContext(App.class);
+            new AnnotationConfigApplicationContext(App.class);
 
         App app = context.getBean("myApp", App.class);
 
