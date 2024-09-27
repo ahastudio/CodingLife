@@ -19,7 +19,7 @@ java {
 }
 
 application {
-    mainClass = "com.example.App"
+    mainClass = "com.example.demo.App"
 }
 
 tasks.named<Test>("test") {

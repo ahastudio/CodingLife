@@ -1,9 +1,9 @@
-package com.example;
-
-import com.sun.net.httpserver.HttpExchange;
+package com.example.demo;
 
 import java.io.IOException;
 import java.io.OutputStream;
+
+import com.sun.net.httpserver.HttpExchange;
 
 public class MyResponse {
     private final HttpExchange exchange;

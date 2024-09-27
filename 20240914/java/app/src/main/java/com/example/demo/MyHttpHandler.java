@@ -1,9 +1,9 @@
-package com.example;
+package com.example.demo;
+
+import java.io.IOException;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-
-import java.io.IOException;
 
 public class MyHttpHandler implements HttpHandler {
     @Override

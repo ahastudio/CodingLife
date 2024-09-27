@@ -1,9 +1,9 @@
-package com.example;
-
-import com.sun.net.httpserver.HttpServer;
+package com.example.demo;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+
+import com.sun.net.httpserver.HttpServer;
 
 public class App {
     private static final String HOST = "localhost";
