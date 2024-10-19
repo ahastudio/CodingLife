@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title>Demo</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
+  <link rel="stylesheet" href="./css/style.css?ecb458f9c80cceaaed64513d53c03f30">
+</head>
+<body>
+  <div id="root" x-data="new Application()">
+    <div class="container">
+      <div>
+        Filter:
+        <input type="file" accept="image/*" @change="selectFilter" />
+      </div>
+    </div>
+    <div class="container">
+      <div class="filter-canvas">
+        <canvas x-ref="filterCanvas"></canvas>
+      </div>
+    </div>
+    <div class="container">
+      <div>
+        Image:
+        <input type="file" accept="image/*" @change="selectImage" />
+      </div>
+    </div>
+    <div class="container canvas-wrapper">
+      <div class="canvas">
+        <canvas x-ref="sourceCanvas"></canvas>
+      </div>
+      <div class="canvas">
+        <canvas x-ref="targetCanvas"></canvas>
+      </div>
+    </div>
+  </div>
+  <script type="module">
+    import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.169.0/three.module.min.js';
+    window.THREE = THREE;
+  </script>
+  <script src="./js/application.js?e8c51b8b87e5dbdc7f5ab9aa4feb7554"></script>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+</body>
+</html>

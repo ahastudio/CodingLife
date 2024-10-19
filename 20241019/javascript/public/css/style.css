@@ -1,0 +1,48 @@
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    color: #000;
+    background: #FFF;
+}
+
+#root {
+    margin: 1rem auto;
+    width: 90%;
+}
+
+.container {
+  margin-block: 1rem;
+}
+
+.filter-canvas {
+  zoom: .04;
+}
+
+.canvas-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  .canvas {
+    width: calc(50% - .5em);
+    /* aspect-ratio: 16 / 9; */
+    border: 5px solid #DDD;
+    background: #CCC;
+    overflow: auto;
+  }
+
+  canvas {
+    width: 100%;
+  }
+}
