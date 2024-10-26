@@ -1,0 +1,34 @@
+* {
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Noto Sans KR', 'Apple SD Gothic', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  background: #FFF;
+  color: #000;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: #333;
+
+  &:hover {
+    color: #555;
+  }
+}
+
+h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+}
