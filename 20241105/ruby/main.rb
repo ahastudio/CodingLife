@@ -31,7 +31,7 @@ while session = server.accept
   session.print "HTTP/1.1 200\r\n"
   session.print "Content-Disposition: attachment; filename=\"#{filename}\"\r\n"
   session.print "Content-Type: application/octet-stream\r\n"
-  session.print "Content-Length: #{content.size}\r\n"
+  session.print "Content-Length: #{content.bytes.size}\r\n"
   session.print "\r\n"
   session.print content
 
