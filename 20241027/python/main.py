@@ -3,11 +3,13 @@ from datetime import datetime, timedelta
 import requests
 from ics import Calendar
 
-CALENDAR_URL = (
-    "https://calendar.google.com/calendar/ical/"
-    "ko.south_korea%23holiday%40group.v.calendar.google.com"
-    "/public/basic.ics"
-)
+# CALENDAR_URL = (
+#     "https://calendar.google.com/calendar/ical/"
+#     "ko.south_korea%23holiday%40group.v.calendar.google.com"
+#     "/public/basic.ics"
+# )
+
+CALENDAR_URL = "https://holidays.hyunbin.page/basic.ics"
 
 
 def load_calendar():
