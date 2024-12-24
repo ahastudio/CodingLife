@@ -1,3 +1,6 @@
+.venv/
+__pycache__/
 .ruff_cache/
+
 .env
-items.csv
+*.csv

@@ -1,6 +1,6 @@
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 
 from kafka import KafkaProducer
 
@@ -19,7 +19,7 @@ def main():
 
     # cart_created 이벤트
 
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
     event_id = str(int(now.timestamp() * 10**6))
 
     event = CartEvent(
@@ -35,7 +35,7 @@ def main():
 
     # cart_product_added 이벤트
 
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
     event_id = str(int(now.timestamp() * 10**6))
 
     event = CartEvent(

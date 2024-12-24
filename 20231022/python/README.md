@@ -1,8 +1,8 @@
 # Kafka Demo
 
-- <https://github.com/python-poetry/poetry>
-- <https://github.com/volopivoshenko/poetry-plugin-dotenv>
+- <https://github.com/astral-sh/uv>
 - <https://github.com/dpkp/kafka-python>
+- <https://github.com/wbarnha/kafka-python-ng>
 - <https://github.com/fastavro/fastavro>
 - <https://fastavro.readthedocs.io/>
 
@@ -12,30 +12,26 @@
 cp .env.default .env
 ```
 
-## Poetry 환경 설정
+## uv 환경 설정
 
 ```bash
-poetry env use $(cat .python-version)
-
-poetry self add poetry-plugin-dotenv
-
-poetry install
+uv venv .venv
 ```
 
 ## 정적 분석
 
 ```bash
-poetry run bash -c "isort . && black . && ruff ."
+uv run bash -c "isort . && black . && ruff check ."
 ```
 
 ## 이벤트 구독
 
 ```bash
-poetry run python consumer.py
+npx env-cmd uv run python consumer.py
 ```
 
 ## 이벤트 발행
 
 ```bash
-poetry run python producer.py
+npx env-cmd uv run python producer.py
 ```
