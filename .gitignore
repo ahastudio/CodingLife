@@ -35,3 +35,6 @@ elm-stuff
 *.ipr
 *.iws
 *.iml
+
+# dotenv
+.env
