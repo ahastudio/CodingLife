@@ -1,0 +1,28 @@
+[project]
+name = "demo"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "openai>=1.61.1",
+    "python-dotenv>=1.0.1",
+    "pyyaml>=6.0.2",
+]
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "isort>=6.0.0",
+    "ruff>=0.9.4",
+]
+
+[tool.black]
+line-length = 79
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.ruff]
+line-length = 79
