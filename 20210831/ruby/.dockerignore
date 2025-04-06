@@ -1,0 +1,28 @@
+# Docker
+Dockerfile
+.dockerignore
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# EditorConfig
+.editorconfig
+
+# Visual Studio Code
+.vscode/
+
+# Ruby
+.ruby-version
+.bundle/
+
+# dotenv
+.env
+.env.example
+
+# Tarballs
+*.tar
+
+# README
+README.md

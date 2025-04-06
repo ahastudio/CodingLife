@@ -4,4 +4,18 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-gem 'sinatra'
+gem 'sinatra', require: 'sinatra/base'
+gem 'sinatra-cors'
+
+gem 'puma'
+gem 'rackup'
+
+gem 'rerun'
+
+gem 'ulid'
+
+gem 'graphql'
+
+group :development do
+  gem 'rubocop', require: false
+end
