@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import Postcode from "./Postcode";
+import Postcode from './Postcode';
 
 export default function Header() {
   const [visible, setVisible] = useState(false);

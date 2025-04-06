@@ -1,9 +1,9 @@
-import { FormEvent } from "react";
+import { FormEvent } from 'react';
 
-import TextField from "./TextField";
-import SubmitButton from "./SubmitButton";
+import TextField from './TextField';
+import SubmitButton from './SubmitButton';
 
-import { Dispatch } from "../types";
+import { Dispatch } from '../types';
 
 export default function CommentForm({ ticketId, dispatch }: {
   ticketId: number;

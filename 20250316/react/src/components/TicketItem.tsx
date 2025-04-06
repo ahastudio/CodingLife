@@ -1,9 +1,9 @@
-import { memo, useEffect } from "react";
+import { memo, useEffect } from 'react';
 
-import CommentList from "./CommentList";
-import CommentForm from "./CommentForm";
+import CommentList from './CommentList';
+import CommentForm from './CommentForm';
 
-import { Dispatch, Ticket } from "../types";
+import { Dispatch, Ticket } from '../types';
 
 function TicketItem({ ticket, dispatch }: {
   ticket: Ticket;
