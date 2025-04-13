@@ -1,0 +1,184 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  background: #fff;
+  color: #000;
+}
+
+a {
+  color: #444;
+}
+
+header,
+main {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  padding-block: 2rem;
+  line-height: 2rem;
+
+  h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+  }
+
+  ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    margin-left: 2rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+}
+
+.ticket-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin-block: 2rem;
+    padding: 2rem;
+    border: 1px solid #ccc;
+
+    .title {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      font-weight: 700;
+
+      a {
+        color: #000;
+        text-decoration: none;
+
+        &:hover {
+          color: #555;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .status,
+    .comments {
+      span {
+        margin-left: .4rem;
+        font-weight: 700;
+      }
+    }
+
+    .status {
+      float: left;
+
+      &::after {
+        margin-inline: .8rem;
+        content: "|";
+      }
+    }
+  }
+}
+
+.ticket-detail {
+  padding-inline: 2rem;
+  border: 1px solid #ccc;
+
+  .title {
+    padding-top: 2rem;
+    font-size: 2rem;
+    font-weight: 900;
+  }
+
+  .description {
+    margin-block: 1rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    background: #f2f2f2;
+  }
+
+  .status {
+    padding: 1rem 2rem;
+    border: 1px solid #ccc;
+    border-radius: .4rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #999;
+    }
+  }
+
+  .comment-list {
+    margin: 1rem 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      margin-block: 1rem;
+      padding: 1rem 2rem;
+      border: 1px solid #ccc;
+      border-radius: .4rem;
+    }
+  }
+}
+
+form {
+  margin-block: 2rem;
+
+  div {
+    margin-block: 1rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: .4rem;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: .8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: .4rem;
+  }
+
+  textarea {
+    height: 10rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: .4rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #999;
+    }
+  }
+}
