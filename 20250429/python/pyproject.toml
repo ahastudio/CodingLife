@@ -1,7 +1,7 @@
 [project]
-name = "python"
+name = "openai-api-demo"
 version = "0.1.0"
-description = "Add your description here"
+description = "OpenAI API Demo"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
