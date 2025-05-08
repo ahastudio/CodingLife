@@ -29,3 +29,17 @@ uvx ruff check --fix .
 ```bash
 uv run main.py
 ```
+
+## Build container
+
+```bash
+docker build --platform linux/amd64 -t slack-bot-demo .
+```
+
+## Run container
+
+```bash
+docker run -it --rm --name slack-bot-demo \
+  --env-file .env \
+  slack-bot-demo
+```
