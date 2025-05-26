@@ -1,0 +1,13 @@
+{
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": true,
+  "github.copilot.chat.codeGeneration.instructions": [
+    {
+      "file": "docs/copilot-chat-guide.md"
+    },
+    {
+      "file": "docs/git-commit-message-guide.md"
+    }
+  ]
+}

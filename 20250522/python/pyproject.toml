@@ -1,0 +1,19 @@
+[project]
+name = "gemini-sample"
+version = "0.1.0"
+description = "Gemini 2.5 Flash Sample"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "google-genai>=1.16.1",
+    "python-dotenv>=1.1.0",
+]
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint]
+select = ["I"]
