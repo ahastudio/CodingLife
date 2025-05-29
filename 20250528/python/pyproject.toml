@@ -1,0 +1,22 @@
+[project]
+name = "rag-demo"
+version = "0.1.0"
+description = "RAG Demo Application"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "llama-index>=0.12.37",
+    "llama-index-llms-gemini>=0.4.14",
+    "llama-index-llms-openai>=0.3.44",
+    "llama-index-vector-stores-postgres>=0.5.3",
+    "python-dotenv>=1.1.0",
+]
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint]
+select = ["I"]
