@@ -24,10 +24,10 @@ uvx ruff format
 uvx ruff check --fix .
 ```
 
-## Run script
+## Run server
 
 ```bash
-uv run main.py
+uv run uvicorn main:app --reload
 ```
 
 ## Build container
@@ -41,5 +41,6 @@ docker build --platform linux/amd64 -t rag-demo .
 ```bash
 docker run -it --rm --name rag-demo \
   --env-file .env \
+  -p 8000:8000 \
   rag-demo
 ```

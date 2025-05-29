@@ -8,7 +8,7 @@ from llama_index.core import (
 )
 from llama_index.core.node_parser import SentenceSplitter
 from llama_index.embeddings.openai import OpenAIEmbedding
-# from llama_index.llms.gemini import Gemini
+from llama_index.llms.gemini import Gemini
 from llama_index.llms.openai import OpenAI
 from llama_index.vector_stores.postgres import PGVectorStore
 
@@ -98,25 +98,23 @@ def load_documents():
 # -----------------------------------------------------------------------------
 
 
-class Application:
-    def run(self):
-        query_engine = vector_store_index.as_query_engine(llm=llm)
+def ask(question: str) -> str:
+    query_engine = vector_store_index.as_query_engine(llm=llm)
 
-        question = '질문입니다.'
+    print('🔍 Querying...')
 
-        print('Question:')
-        print(question.strip())
-        print('-' * 80)
+    start_time = perf_counter()
 
-        start_time = perf_counter()
+    response = query_engine.query(
+        question
+        + '\n\n'
+        + '답변은 한국어로, 1000자 이내로 해 주세요.'
+        + '답변이 여러 개로 나온다면 리스트로 정리해 주세요.'
+    )
 
-        response = query_engine.query(
-            f'{question}\n\n한국어로 답변해 주세요.\n'
-        )
-        print(response)
-        print('-' * 80)
+    end_time = perf_counter()
 
-        end_time = perf_counter()
+    elapsed_time = end_time - start_time
+    print(f'⌛️ Processing time: {elapsed_time:.6f} seconds')
 
-        elapsed_time = end_time - start_time
-        print(f'⌛️ Processing time: {elapsed_time:.6f} seconds')
+    return str(response)

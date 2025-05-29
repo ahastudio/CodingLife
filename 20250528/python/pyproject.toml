@@ -5,6 +5,7 @@ description = "RAG Demo Application"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "fastapi[standard]>=0.115.12",
     "llama-index>=0.12.37",
     "llama-index-llms-gemini>=0.4.14",
     "llama-index-llms-openai>=0.3.44",

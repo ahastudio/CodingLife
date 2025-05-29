@@ -2,7 +2,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-if __name__ == '__main__':
-    from src.application import Application
 
-    Application().run()
+def app():
+    from src.app import app
+
+    return app
