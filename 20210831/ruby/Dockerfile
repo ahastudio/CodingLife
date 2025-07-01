@@ -12,6 +12,8 @@ RUN bundle config set --local without 'development test' && \
 
 COPY . /app/
 
-ENV APP_ENV=development
+ENV RACK_ENV=production
 
-CMD ["ruby", "app.rb"]
+EXPOSE 4567
+
+CMD ["rackup", "-p", "4567"]

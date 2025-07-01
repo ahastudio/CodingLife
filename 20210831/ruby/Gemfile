@@ -16,6 +16,8 @@ gem 'ulid'
 
 gem 'graphql'
 
+gem 'faye-websocket'
+
 group :development do
   gem 'rubocop', require: false
 end

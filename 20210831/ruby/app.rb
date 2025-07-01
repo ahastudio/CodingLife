@@ -7,6 +7,8 @@ require_relative './models/ticket'
 
 require_relative './graphql/schema'
 
+require_relative './utils/pubsub'
+
 Ticket.all
 
 set :bind, '0.0.0.0'
@@ -120,6 +122,8 @@ post '/tickets/:ticket_id/comments' do
   data = JSON.parse(request.body.read)
 
   comment = ticket.add_comment(content: data['content'])
+
+  SimplePubSub.instance.broadcast('commentCreated', { id: comment.id })
 
   status 201
   comment.to_json

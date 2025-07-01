@@ -22,7 +22,7 @@ bundle install
 ## 서버 실행
 
 ```bash
-PORT=3000 rerun app.rb
+RACK_ENV=production rerun -- rackup -p 3000
 ```
 
 ## 컨테이너 이미지 빌드
