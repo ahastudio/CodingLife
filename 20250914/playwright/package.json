@@ -1,0 +1,25 @@
+{
+  "name": "screenshots",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx src/capture.ts",
+    "check": "tsc --noEmit",
+    "lint": "biome check --write",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "playwright": "^1.55.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.4",
+    "@types/node": "^24.3.3",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}
