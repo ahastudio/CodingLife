@@ -1,0 +1,18 @@
+{
+	"name": "orval-demo",
+	"version": "0.0.1",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"orval": "orval --config orval.config.ts",
+		"lint": "biome check --write"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "commonjs",
+	"devDependencies": {
+		"@biomejs/biome": "2.3.2",
+		"orval": "^7.16.0"
+	}
+}
