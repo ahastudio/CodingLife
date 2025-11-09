@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: 'rari-demo'
+    runtime: node
+    env: node
+    plan: free
+    buildCommand: '{{INSTALL_COMMAND}}'
+    startCommand: 'npm start'
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: RUST_LOG
+        value: info

@@ -1,0 +1,36 @@
+{
+  "name": "rari-demo",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Runtime Accelerated Rendering Infrastructure (Rari) application",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run typecheck && vite build",
+    "dev": "vite",
+    "start": "NODE_ENV=production rari start",
+    "deploy:railway": "rari deploy railway",
+    "deploy:render": "rari deploy render",
+    "clean": "rm -rf dist",
+    "lint": "biome check --write",
+    "typecheck": "tsgo"
+  },
+  "dependencies": {
+    "rari": "^0.4.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.4",
+    "@tailwindcss/vite": "^4.1.16",
+    "@types/node": "^24.9.2",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@typescript/native-preview": "7.0.0-dev.20250611.1",
+    "@vitejs/plugin-react-oxc": "^0.2.3",
+    "rolldown-vite": "^7.1.20",
+    "tailwindcss": "^4.1.16"
+  }
+}
