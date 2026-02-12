@@ -7,7 +7,7 @@ Outside-In TDD로 구현한다.
 
 ## Current Phase
 
-🔄 Phase 3: Implementation
+✅ Phase 4: Testing
 
 ## Phases
 
@@ -24,7 +24,7 @@ Outside-In TDD로 구현한다.
 - [x] 순수 함수 분리 설계 (helpers/calendar.ts)
 - [x] 계획 리뷰 및 승인
 
-### Phase 3: Implementation 🔄
+### Phase 3: Implementation ✅
 
 - [x] 프로젝트 초기 설정 (Vite + React + TypeScript + Tailwind + Vitest)
 - [x] Step 1: App 컴포넌트 (테스트 → 구현)
@@ -35,10 +35,10 @@ Outside-In TDD로 구현한다.
 - [x] 컴포넌트에서 순수 함수 연결
 - [x] Tailwind 스타일링
 
-### Phase 4: Testing ⏸️
+### Phase 4: Testing ✅
 
-- [ ] 전체 빌드 확인 (npm run build)
-- [ ] 전체 테스트 통과 확인 (npm test)
+- [x] 전체 빌드 확인 (npm run build)
+- [x] 전체 테스트 통과 확인 (npm test) — 18개 전부 통과
 - [ ] 수동 테스트: 오늘 날짜 강조 확인
 - [ ] 수동 테스트: 이전/다음 달 이동 (연도 경계 포함)
 - [ ] 수동 테스트: 오늘 버튼 복귀

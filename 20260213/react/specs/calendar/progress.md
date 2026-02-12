@@ -132,9 +132,14 @@
 
 - `src/components/Calendar.tsx` (하위 컴포넌트 사용)
 
-### Phase 4: Testing ⏸️
+### Phase 4: Testing ✅
 
-아직 시작 안 함
+**자동 테스트**:
+
+- `npm run build`: 빌드 성공 (tsc + vite build)
+- `npm test`: 18개 테스트 전부 통과 (App 1 + Calendar 8 + helpers 9)
+
+**수동 테스트**: 브라우저에서 `npm run dev` 실행 후 사용자가 직접 확인 필요
 
 ## Test Results
 
@@ -155,8 +160,8 @@
 
 | Question               | Answer                                         |
 | ---------------------- | ---------------------------------------------- |
-| 1. 현재 어느 단계인가? | Phase 3 진행 중. Step 3 완료                   |
-| 2. 다음에 할 일은?     | CalendarHeader/Grid 분리 → Phase 4 테스트      |
+| 1. 현재 어느 단계인가? | Phase 4 완료. 빌드/테스트 통과                 |
+| 2. 다음에 할 일은?     | 수동 테스트 (브라우저 확인)                     |
 | 3. 목표는?             | 월별 달력 표시 및 탐색 기능 구현               |
 | 4. 지금까지 배운 것?   | findings.md 참고                               |
-| 5. 완료한 작업은?      | README, spec, plan, tasks, progress 문서 완성  |
+| 5. 완료한 작업은?      | 전 Phase 완료. 컴포넌트 분리, 코드 품질 개선   |
