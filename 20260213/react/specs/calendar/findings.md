@@ -36,7 +36,9 @@
 ### 코드 참조
 
 - `src/App.tsx`: 루트 컴포넌트
-- `src/components/Calendar.tsx`: 달력 컴포넌트
+- `src/components/Calendar.tsx`: 달력 컴포넌트 (상태 관리 + 하위 컴포넌트 조합)
+- `src/components/CalendarHeader.tsx`: 연월 표시 + 이전/다음/오늘 버튼
+- `src/components/CalendarGrid.tsx`: 요일 헤더 + 날짜 셀 그리드
 - `src/helpers/calendar.ts`: 날짜 계산 순수 함수
 
 ## Technical Decisions
@@ -119,3 +121,16 @@ vite.config.ts에서 test 속성을 인식한다.
 
 **원칙**: 변수명, 함수명, 매개변수명 모두 의미가 자명해야 한다.
 이름만 보고 역할을 알 수 없다면 이름이 잘못된 것이다.
+
+### 컴포넌트 분리: 단일 책임 원칙 (2026-02-13)
+
+Calendar 컴포넌트를 CalendarHeader와 CalendarGrid로 분리했다.
+각 컴포넌트가 하나의 관심사만 담당하도록 설계한다.
+
+- **CalendarHeader**: 연월 표시와 탐색 버튼 (표시 + 상호작용)
+- **CalendarGrid**: 요일 헤더와 날짜 셀 (데이터 렌더링)
+- **Calendar**: 상태 관리와 하위 컴포넌트 조합 (조정자 역할)
+
+리팩토링 시 기존 테스트가 변경 없이 통과해야 한다.
+테스트가 구현 세부사항이 아닌 동작을 검증하고 있다면,
+내부 구조를 자유롭게 개선할 수 있다.

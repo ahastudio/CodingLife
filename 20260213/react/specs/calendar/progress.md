@@ -115,6 +115,23 @@
 - `src/helpers/calendar.test.ts` (이름 개선)
 - `specs/calendar/findings.md` (배운 점 추가)
 
+**Step 2a/2b: CalendarHeader + CalendarGrid 분리**:
+
+1. CalendarHeader 컴포넌트 추출: 연월 표시 + 이전/다음/오늘 버튼
+2. CalendarGrid 컴포넌트 추출: 요일 헤더 + 날짜 셀 그리드
+3. Calendar에서 두 하위 컴포넌트 조합
+4. 기존 18개 테스트 전부 통과 확인 (리팩토링이므로 동작 변경 없음)
+5. 빌드 성공 확인
+
+**새로 생성한 파일**:
+
+- `src/components/CalendarHeader.tsx`
+- `src/components/CalendarGrid.tsx`
+
+**수정 파일**:
+
+- `src/components/Calendar.tsx` (하위 컴포넌트 사용)
+
 ### Phase 4: Testing ⏸️
 
 아직 시작 안 함
