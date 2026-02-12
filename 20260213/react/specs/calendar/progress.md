@@ -68,6 +68,19 @@
 - `src/App.test.tsx` (새로 생성)
 - `src/App.tsx` (수정: today props, 연월 표시)
 
+**Step 2: Calendar 컴포넌트 TDD 완료**:
+
+1. Red: Calendar 테스트 8개 작성 (연월, 요일, 오늘 강조, 이전/다음/오늘 버튼, 연도 경계) → 실패
+2. Green: Calendar 컴포넌트 구현 (useState, 날짜 계산, 그리드 렌더링) → 8개 통과
+3. Refactoring: year/month 개별 상태를 단일 currentDate로 통합
+4. App에서 Calendar 연결 → 전체 9개 테스트 통과
+
+**생성/수정 파일**:
+
+- `src/components/Calendar.tsx` (새로 생성)
+- `src/components/Calendar.test.tsx` (새로 생성)
+- `src/App.tsx` (수정: Calendar 사용)
+
 ### Phase 4: Testing ⏸️
 
 아직 시작 안 함
@@ -90,8 +103,8 @@
 
 | Question               | Answer                                         |
 | ---------------------- | ---------------------------------------------- |
-| 1. 현재 어느 단계인가? | Phase 3 진행 중. Step 1 완료                   |
-| 2. 다음에 할 일은?     | Step 2: Calendar 컴포넌트 TDD                  |
+| 1. 현재 어느 단계인가? | Phase 3 진행 중. Step 2 완료                   |
+| 2. 다음에 할 일은?     | Step 3: 순수 함수 TDD → 연결 → 스타일링       |
 | 3. 목표는?             | 월별 달력 표시 및 탐색 기능 구현               |
 | 4. 지금까지 배운 것?   | findings.md 참고                               |
 | 5. 완료한 작업은?      | README, spec, plan, tasks, progress 문서 완성  |

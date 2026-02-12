@@ -1,10 +1,5 @@
-export default function App({ today = new Date() }: { today?: Date }) {
-  const year = today.getFullYear()
-  const month = today.getMonth() + 1
+import Calendar from './components/Calendar'
 
-  return (
-    <div>
-      <h1>{year}년 {month}월</h1>
-    </div>
-  )
+export default function App({ today = new Date() }: { today?: Date }) {
+  return <Calendar today={today} />
 }

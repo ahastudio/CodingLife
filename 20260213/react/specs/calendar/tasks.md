@@ -28,7 +28,7 @@ Outside-In TDD로 구현한다.
 
 - [x] 프로젝트 초기 설정 (Vite + React + TypeScript + Tailwind + Vitest)
 - [x] Step 1: App 컴포넌트 (테스트 → 구현)
-- [ ] Step 2: Calendar 컴포넌트 (테스트 → 구현)
+- [x] Step 2: Calendar 컴포넌트 (테스트 → 구현)
 - [ ] Step 2a: CalendarHeader 분리
 - [ ] Step 2b: CalendarGrid 분리
 - [ ] Step 3: 날짜 계산 순수 함수 (테스트 → 구현)
