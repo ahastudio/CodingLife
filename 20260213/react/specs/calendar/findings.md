@@ -4,13 +4,13 @@
 
 ## Requirements
 
-- [ ] FR-1: 오늘 날짜 기준 월별 달력을 그리드 형태로 표시
-- [ ] FR-2: 달력 위에 연도와 월 표시
-- [ ] FR-3: 오늘 날짜 강조 표시
-- [ ] FR-4: 일요일~토요일 요일 헤더 표시
-- [ ] FR-5: 연월 왼쪽에 이전 달 버튼
-- [ ] FR-6: 연월 오른쪽에 다음 달 버튼
-- [ ] FR-7: "오늘" 버튼으로 오늘이 포함된 월로 복귀
+- [x] FR-1: 오늘 날짜 기준 월별 달력을 그리드 형태로 표시
+- [x] FR-2: 달력 위에 연도와 월 표시
+- [x] FR-3: 오늘 날짜 강조 표시
+- [x] FR-4: 일요일~토요일 요일 헤더 표시
+- [x] FR-5: 연월 왼쪽에 이전 달 버튼
+- [x] FR-6: 연월 오른쪽에 다음 달 버튼
+- [x] FR-7: "오늘" 버튼으로 오늘이 포함된 월로 복귀
 
 ## Research Findings
 
@@ -35,7 +35,9 @@
 
 ### 코드 참조
 
-- 아직 구현 전이므로 해당 없음
+- `src/App.tsx`: 루트 컴포넌트
+- `src/components/Calendar.tsx`: 달력 컴포넌트
+- `src/helpers/calendar.ts`: 날짜 계산 순수 함수
 
 ## Technical Decisions
 
@@ -57,6 +59,16 @@
 **원인**: Vitest v4에서 타입 export 경로가 변경됨
 
 **해결**: `/// <reference types="vitest/config" />`로 변경
+
+**결과**: 빌드 성공
+
+### 2. 빌드 시 테스트 파일 타입 에러
+
+**문제**: `tsc -b` 실행 시 test 파일에서 describe/it/expect를 찾을 수 없음
+
+**원인**: tsconfig.app.json이 src 전체를 포함하여 test 파일도 컴파일 대상
+
+**해결**: tsconfig.app.json에서 `"exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]` 추가
 
 **결과**: 빌드 성공
 

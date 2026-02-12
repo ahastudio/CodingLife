@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { getCalendarDates, isSameDay, isSameMonth } from '../helpers/calendar'
+
 export default function Calendar({ today }: { today: Date }) {
   const [currentDate, setCurrentDate] = useState(
     () => new Date(today.getFullYear(), today.getMonth(), 1),
@@ -9,9 +11,7 @@ export default function Calendar({ today }: { today: Date }) {
   const month = currentDate.getMonth()
 
   const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토']
-
-  const firstDay = new Date(year, month, 1).getDay()
-  const daysInMonth = new Date(year, month + 1, 0).getDate()
+  const calendarDates = getCalendarDates(year, month)
 
   const handlePrev = () => {
     setCurrentDate(new Date(year, month - 1, 1))
@@ -25,52 +25,68 @@ export default function Calendar({ today }: { today: Date }) {
     setCurrentDate(new Date(today.getFullYear(), today.getMonth(), 1))
   }
 
-  const isToday = (day: number) =>
-    year === today.getFullYear() &&
-    month === today.getMonth() &&
-    day === today.getDate()
-
-  const dates: (number | null)[] = []
-  for (let i = 0; i < firstDay; i++) {
-    dates.push(null)
-  }
-  for (let d = 1; d <= daysInMonth; d++) {
-    dates.push(d)
+  const weeks: Date[][] = []
+  for (let i = 0; i < calendarDates.length; i += 7) {
+    weeks.push(calendarDates.slice(i, i + 7))
   }
 
   return (
-    <div>
-      <header>
-        <button aria-label="이전 달" onClick={handlePrev}>◀</button>
-        <h2>{year}년 {month + 1}월</h2>
-        <button aria-label="다음 달" onClick={handleNext}>▶</button>
-        <button onClick={handleToday}>오늘</button>
+    <div className="max-w-md mx-auto p-4">
+      <header className="flex items-center justify-between mb-4">
+        <button
+          aria-label="이전 달"
+          onClick={handlePrev}
+          className="px-3 py-1 rounded hover:bg-gray-200"
+        >
+          ◀
+        </button>
+        <h2 className="text-xl font-bold">{year}년 {month + 1}월</h2>
+        <button
+          aria-label="다음 달"
+          onClick={handleNext}
+          className="px-3 py-1 rounded hover:bg-gray-200"
+        >
+          ▶
+        </button>
+        <button
+          onClick={handleToday}
+          className="px-3 py-1 rounded bg-blue-500 text-white hover:bg-blue-600"
+        >
+          오늘
+        </button>
       </header>
-      <table>
+      <table className="w-full table-fixed">
         <thead>
           <tr>
             {daysOfWeek.map((day) => (
-              <th key={day}>{day}</th>
+              <th key={day} className="py-2 text-center text-sm text-gray-500">
+                {day}
+              </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {Array.from(
-            { length: Math.ceil(dates.length / 7) },
-            (_, weekIdx) => (
-              <tr key={weekIdx}>
-                {dates.slice(weekIdx * 7, weekIdx * 7 + 7).map((date, i) => (
+          {weeks.map((week, weekIndex) => (
+            <tr key={weekIndex}>
+              {week.map((date, i) => {
+                const isCurrentMonth = isSameMonth(date, year, month)
+                const isDateToday = isSameDay(date, today)
+                return (
                   <td
                     key={i}
                     role="cell"
-                    className={date !== null && isToday(date) ? 'today' : ''}
+                    className={[
+                      'py-2 text-center',
+                      isDateToday ? 'today bg-blue-500 text-white rounded-full font-bold' : '',
+                      !isCurrentMonth ? 'text-gray-300' : '',
+                    ].join(' ')}
                   >
-                    {date}
+                    {date.getDate()}
                   </td>
-                ))}
-              </tr>
-            ),
-          )}
+                )
+              })}
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

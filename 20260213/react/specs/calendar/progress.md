@@ -81,6 +81,22 @@
 - `src/components/Calendar.test.tsx` (새로 생성)
 - `src/App.tsx` (수정: Calendar 사용)
 
+**Step 3: 순수 함수 TDD + 연결 + 스타일링 완료**:
+
+1. Red: getCalendarDates, isSameDay, isSameMonth 테스트 9개 → 실패
+2. Green: helpers/calendar.ts 순수 함수 구현 → 9개 통과
+3. Calendar에서 순수 함수 사용하도록 리팩토링
+4. Tailwind CSS 스타일 적용 (레이아웃, 오늘 강조, 다른 달 흐리게)
+5. 빌드 시 test 파일 타입 에러 → tsconfig.app.json에서 exclude 처리
+6. 전체 18개 테스트 통과, 빌드 성공
+
+**생성/수정 파일**:
+
+- `src/helpers/calendar.ts` (새로 생성)
+- `src/helpers/calendar.test.ts` (새로 생성)
+- `src/components/Calendar.tsx` (수정: 순수 함수 사용 + Tailwind)
+- `tsconfig.app.json` (수정: test 파일 exclude)
+
 ### Phase 4: Testing ⏸️
 
 아직 시작 안 함
@@ -96,6 +112,7 @@
 | Timestamp | Error | Attempt | Resolution |
 | --------- | ----- | ------- | ---------- |
 | 2026-02-13 | TS2769: test not in UserConfigExport | 1 | `/// <reference types="vitest/config" />` 사용 |
+| 2026-02-13 | TS2593: Cannot find name 'describe' (빌드 시) | 1 | tsconfig.app.json에서 test 파일 exclude |
 
 ## 5-Question Reboot Check
 
@@ -103,8 +120,8 @@
 
 | Question               | Answer                                         |
 | ---------------------- | ---------------------------------------------- |
-| 1. 현재 어느 단계인가? | Phase 3 진행 중. Step 2 완료                   |
-| 2. 다음에 할 일은?     | Step 3: 순수 함수 TDD → 연결 → 스타일링       |
+| 1. 현재 어느 단계인가? | Phase 3 진행 중. Step 3 완료                   |
+| 2. 다음에 할 일은?     | CalendarHeader/Grid 분리 → Phase 4 테스트      |
 | 3. 목표는?             | 월별 달력 표시 및 탐색 기능 구현               |
 | 4. 지금까지 배운 것?   | findings.md 참고                               |
 | 5. 완료한 작업은?      | README, spec, plan, tasks, progress 문서 완성  |
