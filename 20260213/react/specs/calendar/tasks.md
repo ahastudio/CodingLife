@@ -7,7 +7,7 @@ Outside-In TDD로 구현한다.
 
 ## Current Phase
 
-✅ Phase 2: Planning & Structure
+🔄 Phase 3: Implementation
 
 ## Phases
 
@@ -24,10 +24,10 @@ Outside-In TDD로 구현한다.
 - [x] 순수 함수 분리 설계 (helpers/calendar.ts)
 - [x] 계획 리뷰 및 승인
 
-### Phase 3: Implementation ⏸️
+### Phase 3: Implementation 🔄
 
-- [ ] 프로젝트 초기 설정 (Vite + React + TypeScript + Tailwind + Vitest)
-- [ ] Step 1: App 컴포넌트 (테스트 → 구현)
+- [x] 프로젝트 초기 설정 (Vite + React + TypeScript + Tailwind + Vitest)
+- [x] Step 1: App 컴포넌트 (테스트 → 구현)
 - [ ] Step 2: Calendar 컴포넌트 (테스트 → 구현)
 - [ ] Step 2a: CalendarHeader 분리
 - [ ] Step 2b: CalendarGrid 분리
@@ -59,7 +59,7 @@ Outside-In TDD로 구현한다.
 
 | Error | Attempt | Resolution |
 | ----- | ------- | ---------- |
-| -     | -       | -          |
+| TS2769: test not in UserConfigExport | 1 | `/// <reference types="vitest/config" />` 사용 |
 
 ## Notes
 
