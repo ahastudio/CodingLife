@@ -1,4 +1,4 @@
-# Feature Specification: 월별 달력 표시 및 탐색 스펙
+# Feature Specification: 월별 달력 표시 및 탐색
 
 <!--
 제품 요구사항을 정의하는 문서입니다.
