@@ -1,66 +1,61 @@
-# Tasks: 기능명
-
-<!-- 기능의 한국어 이름을 제목에 포함합니다. -->
+# Tasks: 월별 달력 표시 및 탐색
 
 ## Goal
 
-<!-- 명확한 최종 목표를 작성합니다. -->
+오늘 날짜 기준 월별 달력을 표시하고, 이전/다음 달 이동 및 오늘 복귀 기능을
+Outside-In TDD로 구현한다.
 
 ## Current Phase
 
-<!-- 현재 진행 중인 단계를 표시합니다. 이모지: 🔄 진행 중, ✅ 완료, ⏸️ 대기 -->
-
-🔄 Phase 1: Requirements & Discovery
+✅ Phase 2: Planning & Structure
 
 ## Phases
 
-<!-- 각 단계의 작업을 체크박스로 관리합니다. -->
+### Phase 1: Requirements & Discovery ✅
 
-### Phase 1: Requirements & Discovery 🔄
+- [x] 요구사항 정의 (README.md)
+- [x] 스펙 문서 작성 (spec.md)
+- [x] 스펙 리뷰 및 승인
 
-- [ ] 요구사항 정의
-- [ ] 기존 코드 분석
-- [ ] 스펙 문서 작성 (spec.md)
-- [ ] 스펙 리뷰 및 승인
+### Phase 2: Planning & Structure ✅
 
-### Phase 2: Planning & Structure ⏸️
-
-- [ ] 구현 계획 작성 (plan.md)
-- [ ] 기존 코드 상세 분석
-- [ ] 관련 클래스/메서드 존재 여부 확인
+- [x] 구현 계획 작성 (plan.md)
+- [x] 컴포넌트 구조 설계 (App → Calendar → Header + Grid)
+- [x] 순수 함수 분리 설계 (helpers/calendar.ts)
+- [x] 계획 리뷰 및 승인
 
 ### Phase 3: Implementation ⏸️
 
-- [ ] UI Layer 구현
-- [ ] Application Layer 구현
-- [ ] Domain Layer 구현
-- [ ] Infrastructure Layer 구현 (필요시)
-- [ ] 단계별 컴파일 검증
+- [ ] 프로젝트 초기 설정 (Vite + React + TypeScript + Tailwind + Vitest)
+- [ ] Step 1: App 컴포넌트 (테스트 → 구현)
+- [ ] Step 2: Calendar 컴포넌트 (테스트 → 구현)
+- [ ] Step 2a: CalendarHeader 분리
+- [ ] Step 2b: CalendarGrid 분리
+- [ ] Step 3: 날짜 계산 순수 함수 (테스트 → 구현)
+- [ ] 컴포넌트에서 순수 함수 연결
+- [ ] Tailwind 스타일링
 
 ### Phase 4: Testing ⏸️
 
-- [ ] 전체 빌드 확인
-- [ ] 전체 테스트 통과 확인
-- [ ] 수동 테스트 (가능한 경우)
+- [ ] 전체 빌드 확인 (npm run build)
+- [ ] 전체 테스트 통과 확인 (npm test)
+- [ ] 수동 테스트: 오늘 날짜 강조 확인
+- [ ] 수동 테스트: 이전/다음 달 이동 (연도 경계 포함)
+- [ ] 수동 테스트: 오늘 버튼 복귀
 
 ## Key Questions
 
-<!-- 구현 전에 확인이 필요한 질문들을 기록합니다. -->
-
-1. 질문 1?
-2. 질문 2?
+해결 완료. findings.md 참고.
 
 ## Decisions Made
 
-<!-- 내린 결정과 그 이유를 기록합니다. -->
-
 | Decision | Rationale |
 | -------- | --------- |
-| 결정 1   | 이유 1    |
+| App → Calendar → Header + Grid 구조 | 관심사 분리. 각 컴포넌트가 단일 책임 |
+| helpers/calendar.ts 순수 함수 분리 | 컴포넌트와 로직 분리. 테스트 용이 |
+| today props 주입 | 테스트에서 날짜 고정 가능 |
 
 ## Errors Encountered
-
-<!-- 발생한 오류와 해결 방법을 기록합니다. Attempt는 시도 횟수(숫자)입니다. -->
 
 | Error | Attempt | Resolution |
 | ----- | ------- | ---------- |
@@ -68,8 +63,8 @@
 
 ## Notes
 
-<!-- 아래 3개 항목은 항상 포함합니다. 필요시 추가 항목을 덧붙입니다. -->
-
 - 진행할 때마다 Phase 상태를 업데이트하세요: ⏸️ 대기 → 🔄 진행 중 → ✅ 완료
 - 중요한 결정을 내리기 전에 이 계획을 다시 읽어보세요. (attention manipulation)
 - 모든 오류를 기록하세요. 삽질을 반복하는 걸 막을 수 있습니다.
+- Outside-In TDD: 반드시 Red → Green → Refactoring 순서를 지킨다.
+- tasks.md, progress.md, findings.md를 수시로 업데이트한다.
