@@ -65,8 +65,8 @@ describe('Calendar', () => {
 
   it('handles year boundary (January to December)', async () => {
     const user = userEvent.setup()
-    const jan = new Date(2026, 0, 15) // 2026-01-15
-    render(<Calendar today={jan} />)
+    const january = new Date(2026, 0, 15) // 2026-01-15
+    render(<Calendar today={january} />)
 
     await user.click(screen.getByRole('button', { name: '이전 달' }))
 

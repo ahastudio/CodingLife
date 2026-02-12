@@ -97,6 +97,24 @@
 - `src/components/Calendar.tsx` (수정: 순수 함수 사용 + Tailwind)
 - `tsconfig.app.json` (수정: test 파일 exclude)
 
+**코드 품질 개선: 명확한 이름 짓기**:
+
+1. 모든 소스 파일에서 약어를 전체 이름으로 변경
+2. 루프 변수 `i` → `dateIndex`, `startIndex`
+3. 매개변수 `a`, `b` → `dateA`, `dateB`
+4. 테스트 변수 `jan` → `january`
+5. 내부 변수 `startDay`/`endDay` → `firstDayOfWeek`/`lastDayOfWeek`
+6. 핸들러 `handlePrev`/`handleNext`/`handleToday` → `handlePrevMonth`/`handleNextMonth`/`handleGoToToday`
+7. 전체 18개 테스트 통과 확인
+
+**수정 파일**:
+
+- `src/components/Calendar.tsx` (이름 개선)
+- `src/components/Calendar.test.tsx` (이름 개선)
+- `src/helpers/calendar.ts` (이름 개선)
+- `src/helpers/calendar.test.ts` (이름 개선)
+- `specs/calendar/findings.md` (배운 점 추가)
+
 ### Phase 4: Testing ⏸️
 
 아직 시작 안 함

@@ -34,15 +34,15 @@ describe('getCalendarDates', () => {
 
 describe('isSameDay', () => {
   it('returns true for the same date', () => {
-    const a = new Date(2026, 1, 13)
-    const b = new Date(2026, 1, 13)
-    expect(isSameDay(a, b)).toBe(true)
+    const dateA = new Date(2026, 1, 13)
+    const dateB = new Date(2026, 1, 13)
+    expect(isSameDay(dateA, dateB)).toBe(true)
   })
 
   it('returns false for different dates', () => {
-    const a = new Date(2026, 1, 13)
-    const b = new Date(2026, 1, 14)
-    expect(isSameDay(a, b)).toBe(false)
+    const dateA = new Date(2026, 1, 13)
+    const dateB = new Date(2026, 1, 14)
+    expect(isSameDay(dateA, dateB)).toBe(false)
   })
 })
 

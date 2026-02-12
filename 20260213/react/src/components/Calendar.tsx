@@ -13,21 +13,21 @@ export default function Calendar({ today }: { today: Date }) {
   const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토']
   const calendarDates = getCalendarDates(year, month)
 
-  const handlePrev = () => {
+  const handlePrevMonth = () => {
     setCurrentDate(new Date(year, month - 1, 1))
   }
 
-  const handleNext = () => {
+  const handleNextMonth = () => {
     setCurrentDate(new Date(year, month + 1, 1))
   }
 
-  const handleToday = () => {
+  const handleGoToToday = () => {
     setCurrentDate(new Date(today.getFullYear(), today.getMonth(), 1))
   }
 
   const weeks: Date[][] = []
-  for (let i = 0; i < calendarDates.length; i += 7) {
-    weeks.push(calendarDates.slice(i, i + 7))
+  for (let startIndex = 0; startIndex < calendarDates.length; startIndex += 7) {
+    weeks.push(calendarDates.slice(startIndex, startIndex + 7))
   }
 
   return (
@@ -35,7 +35,7 @@ export default function Calendar({ today }: { today: Date }) {
       <header className="flex items-center justify-between mb-4">
         <button
           aria-label="이전 달"
-          onClick={handlePrev}
+          onClick={handlePrevMonth}
           className="px-3 py-1 rounded hover:bg-gray-200"
         >
           ◀
@@ -43,13 +43,13 @@ export default function Calendar({ today }: { today: Date }) {
         <h2 className="text-xl font-bold">{year}년 {month + 1}월</h2>
         <button
           aria-label="다음 달"
-          onClick={handleNext}
+          onClick={handleNextMonth}
           className="px-3 py-1 rounded hover:bg-gray-200"
         >
           ▶
         </button>
         <button
-          onClick={handleToday}
+          onClick={handleGoToToday}
           className="px-3 py-1 rounded bg-blue-500 text-white hover:bg-blue-600"
         >
           오늘
@@ -68,12 +68,12 @@ export default function Calendar({ today }: { today: Date }) {
         <tbody>
           {weeks.map((week, weekIndex) => (
             <tr key={weekIndex}>
-              {week.map((date, i) => {
+              {week.map((date, dateIndex) => {
                 const isCurrentMonth = isSameMonth(date, year, month)
                 const isDateToday = isSameDay(date, today)
                 return (
                   <td
-                    key={i}
+                    key={dateIndex}
                     role="cell"
                     className={[
                       'py-2 text-center',

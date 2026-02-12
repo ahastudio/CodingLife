@@ -61,6 +61,7 @@ Outside-In TDD로 구현한다.
 | ----- | ------- | ---------- |
 | TS2769: test not in UserConfigExport | 1 | `/// <reference types="vitest/config" />` 사용 |
 | TS2593: Cannot find name 'describe' (빌드 시) | 1 | tsconfig.app.json에서 test 파일 exclude |
+| @testing-library/user-event 미설치 | 1 | npm install --save-dev @testing-library/user-event |
 
 ## Notes
 

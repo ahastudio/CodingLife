@@ -101,3 +101,21 @@ Tailwind CSS v4는 @tailwindcss/vite 플러그인 방식으로 설정한다.
 index.css에 `@import "tailwindcss";`만 넣으면 된다.
 Vitest v4에서는 `/// <reference types="vitest/config" />`를 사용해야
 vite.config.ts에서 test 속성을 인식한다.
+
+### 코드 품질: 명확한 이름 짓기 (2026-02-13)
+
+약어를 사용하지 않고 항상 명확한 전체 이름을 사용한다.
+코드는 작성하는 시간보다 읽는 시간이 훨씬 길기 때문에,
+읽는 사람이 의미를 즉시 파악할 수 있어야 한다.
+
+**나쁜 예 → 좋은 예**:
+
+- `i` → `dateIndex`, `startIndex` (루프 변수도 의미를 담는다)
+- `a`, `b` → `dateA`, `dateB` (비교 대상이 무엇인지 드러낸다)
+- `jan` → `january` (약어 대신 전체 단어)
+- `weekIdx` → `weekIndex` (축약하지 않는다)
+- `startDay` → `firstDayOfWeek` (무엇의 시작인지 명확히)
+- `handlePrev` → `handlePrevMonth` (무엇을 이동하는지 명확히)
+
+**원칙**: 변수명, 함수명, 매개변수명 모두 의미가 자명해야 한다.
+이름만 보고 역할을 알 수 없다면 이름이 잘못된 것이다.

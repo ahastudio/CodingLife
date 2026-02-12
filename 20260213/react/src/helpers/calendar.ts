@@ -1,15 +1,15 @@
 export function getCalendarDates(year: number, month: number): Date[] {
   const firstDayOfMonth = new Date(year, month, 1)
-  const startDay = firstDayOfMonth.getDay()
-  const start = new Date(year, month, 1 - startDay)
+  const firstDayOfWeek = firstDayOfMonth.getDay()
+  const calendarStart = new Date(year, month, 1 - firstDayOfWeek)
 
   const lastDayOfMonth = new Date(year, month + 1, 0)
-  const endDay = lastDayOfMonth.getDay()
-  const end = new Date(year, month + 1, 6 - endDay)
+  const lastDayOfWeek = lastDayOfMonth.getDay()
+  const calendarEnd = new Date(year, month + 1, 6 - lastDayOfWeek)
 
   const dates: Date[] = []
-  const current = new Date(start)
-  while (current <= end) {
+  const current = new Date(calendarStart)
+  while (current <= calendarEnd) {
     dates.push(new Date(current))
     current.setDate(current.getDate() + 1)
   }
@@ -17,11 +17,11 @@ export function getCalendarDates(year: number, month: number): Date[] {
   return dates
 }
 
-export function isSameDay(a: Date, b: Date): boolean {
+export function isSameDay(dateA: Date, dateB: Date): boolean {
   return (
-    a.getFullYear() === b.getFullYear() &&
-    a.getMonth() === b.getMonth() &&
-    a.getDate() === b.getDate()
+    dateA.getFullYear() === dateB.getFullYear() &&
+    dateA.getMonth() === dateB.getMonth() &&
+    dateA.getDate() === dateB.getDate()
   )
 }
 
