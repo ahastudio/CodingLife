@@ -63,27 +63,6 @@ Outside-In TDD로 구현한다.
 | TS2593: Cannot find name 'describe' (빌드 시) | 1 | tsconfig.app.json에서 test 파일 exclude |
 | @testing-library/user-event 미설치 | 1 | npm install --save-dev @testing-library/user-event |
 
-## Test Results
-
-✅ **27 tests passed** (3 files) — vitest v4.0.18
-
-### 순수 함수 (helpers/calendar.ts)
-
-| 영역 | 검증 내용 | 테스트 수 |
-| ---- | --------- | :-------: |
-| getCalendarDates | 시작/끝 요일, 이전 달 패딩, 7의 배수 보장 | 5 |
-| isSameDay | 같은 날짜 / 다른 날짜 비교 | 2 |
-| isSameMonth | 같은 월 / 다른 월 비교 | 2 |
-
-### 컴포넌트 (Calendar, App)
-
-| 영역 | 검증 내용 | 테스트 수 |
-| ---- | --------- | :-------: |
-| 기본 렌더링 | 연/월 표시, 요일 헤더, 날짜 셀 | 3 |
-| 오늘 날짜 강조 | today 클래스 유일성, 시각 스타일(bg/color/bold), 이전 달 날짜 흐림 | 4 |
-| 월 이동 | 이전/다음 달 이동, 연도 경계(1↔12월), 연속 이동, 이동 후 날짜 갱신 | 6 |
-| 오늘 복귀 | 즉시 복귀, 다수 월 이동 후 복귀, 다른 연도에서 복귀, 강조 복원 확인 | 5 |
-
 ## Notes
 
 - 진행할 때마다 Phase 상태를 업데이트하세요: ⏸️ 대기 → 🔄 진행 중 → ✅ 완료
