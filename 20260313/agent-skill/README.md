@@ -1,10 +1,4 @@
-# MCP 실험
-
-## OpenChrome 예시
-
-```txt
-OpenChrome으로 유튜브에서 윤하 신곡 “염라” 찾아서 재생해줘.
-```
+# Agent Skill 실험
 
 ## paper-infographic — 논문 인포그래픽 생성
 
