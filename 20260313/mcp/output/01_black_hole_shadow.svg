@@ -1,0 +1,212 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <!-- 블랙홀 그라데이션 -->
+    <radialGradient id="blackHoleGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000000"/>
+      <stop offset="60%" stop-color="#0d0020"/>
+      <stop offset="100%" stop-color="#2a0040"/>
+    </radialGradient>
+    <!-- 광자 링 글로우 -->
+    <radialGradient id="photonRingGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="70%" stop-color="#ff6b35" stop-opacity="0.0"/>
+      <stop offset="85%" stop-color="#ffd700" stop-opacity="0.9"/>
+      <stop offset="92%" stop-color="#ff6b35" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <!-- 그림자 영역 그라데이션 -->
+    <radialGradient id="shadowGrad" cx="30%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#1a0030" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0a0a1a" stop-opacity="0"/>
+    </radialGradient>
+    <!-- 글로우 필터 -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="strongGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- 빛 경로 그라데이션 -->
+    <linearGradient id="lightPath1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="lightPath2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.1"/>
+    </linearGradient>
+    <!-- 배경 그라데이션 -->
+    <radialGradient id="bgGlow" cx="42%" cy="50%" r="40%">
+      <stop offset="0%" stop-color="#0d0025" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#0a0a1a" stop-opacity="1"/>
+    </radialGradient>
+    <!-- 마커 화살표 -->
+    <marker id="arrowCyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ff6b35"/>
+    </marker>
+    <marker id="arrowWhite" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="white"/>
+    </marker>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="1200" height="800" fill="#0a0a1a"/>
+  <rect width="1200" height="800" fill="url(#bgGlow)"/>
+
+  <!-- 별들 (흰/노랑 점) -->
+  <circle cx="45" cy="30" r="1.2" fill="white" opacity="0.9"/>
+  <circle cx="120" cy="75" r="0.8" fill="#ffd700" opacity="0.7"/>
+  <circle cx="200" cy="25" r="1.0" fill="white" opacity="0.8"/>
+  <circle cx="310" cy="60" r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="380" cy="15" r="0.7" fill="#ffd700" opacity="0.9"/>
+  <circle cx="460" cy="45" r="1.1" fill="white" opacity="0.7"/>
+  <circle cx="550" cy="20" r="0.9" fill="white" opacity="0.8"/>
+  <circle cx="650" cy="55" r="1.3" fill="#ffd700" opacity="0.6"/>
+  <circle cx="720" cy="10" r="0.8" fill="white" opacity="0.9"/>
+  <circle cx="820" cy="40" r="1.0" fill="white" opacity="0.7"/>
+  <circle cx="900" cy="25" r="1.4" fill="#ffd700" opacity="0.8"/>
+  <circle cx="980" cy="65" r="0.9" fill="white" opacity="0.6"/>
+  <circle cx="1060" cy="15" r="1.1" fill="white" opacity="0.9"/>
+  <circle cx="1140" cy="50" r="0.8" fill="#ffd700" opacity="0.7"/>
+  <circle cx="1180" cy="20" r="1.2" fill="white" opacity="0.8"/>
+  <circle cx="30" cy="150" r="1.0" fill="white" opacity="0.7"/>
+  <circle cx="100" cy="200" r="0.8" fill="white" opacity="0.6"/>
+  <circle cx="60" cy="300" r="1.3" fill="#ffd700" opacity="0.8"/>
+  <circle cx="140" cy="380" r="0.9" fill="white" opacity="0.7"/>
+  <circle cx="25" cy="450" r="1.1" fill="white" opacity="0.9"/>
+  <circle cx="90" cy="530" r="0.7" fill="#ffd700" opacity="0.6"/>
+  <circle cx="50" cy="620" r="1.0" fill="white" opacity="0.8"/>
+  <circle cx="130" cy="700" r="1.2" fill="white" opacity="0.7"/>
+  <circle cx="70" cy="760" r="0.8" fill="#ffd700" opacity="0.9"/>
+  <circle cx="1150" cy="150" r="1.1" fill="white" opacity="0.7"/>
+  <circle cx="1080" cy="250" r="0.9" fill="white" opacity="0.8"/>
+  <circle cx="1160" cy="350" r="1.3" fill="#ffd700" opacity="0.6"/>
+  <circle cx="1100" cy="450" r="0.8" fill="white" opacity="0.9"/>
+  <circle cx="1170" cy="550" r="1.0" fill="white" opacity="0.7"/>
+  <circle cx="1050" cy="650" r="1.2" fill="#ffd700" opacity="0.8"/>
+  <circle cx="1130" cy="720" r="0.9" fill="white" opacity="0.6"/>
+  <circle cx="750" cy="750" r="1.1" fill="white" opacity="0.7"/>
+  <circle cx="850" cy="780" r="0.8" fill="#ffd700" opacity="0.8"/>
+  <circle cx="950" cy="770" r="1.0" fill="white" opacity="0.6"/>
+  <circle cx="350" cy="780" r="1.2" fill="white" opacity="0.7"/>
+  <circle cx="250" cy="760" r="0.9" fill="#ffd700" opacity="0.9"/>
+
+  <!-- 제목 -->
+  <text x="600" y="55" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle" filter="url(#glow)">블랙홀 그림자 - 어떻게 만들어질까?</text>
+  <text x="600" y="85" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="16" fill="#00d4ff" text-anchor="middle" opacity="0.8">빛도 탈출하지 못하는 블랙홀 주변에서 생기는 신기한 현상</text>
+
+  <!-- ====== 그림자 영역 (블랙홀 왼쪽) ====== -->
+  <!-- 그림자 원뿔 형태 -->
+  <path d="M 430 400 L 150 290 L 150 510 Z" fill="#1a0030" opacity="0.5"/>
+  <path d="M 430 400 L 200 310 L 200 490 Z" fill="#2a0050" opacity="0.4"/>
+
+  <!-- 그림자 라벨 배경 -->
+  <rect x="120" y="370" width="130" height="36" rx="8" fill="#1a0030" opacity="0.8"/>
+  <text x="185" y="393" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="bold" fill="#8a2be2" text-anchor="middle">그림자 영역</text>
+
+  <!-- ====== 빛의 경로 (휘어지는 곡선 화살표) ====== -->
+  <!-- 위쪽에서 오는 빛 - 극단적으로 휘어짐 -->
+  <path d="M 900 150 C 780 160, 680 200, 620 260 C 560 320, 510 360, 490 380"
+        stroke="url(#lightPath1)" stroke-width="2.5" fill="none"
+        stroke-dasharray="8,4" marker-end="url(#arrowCyan)" opacity="0.85"/>
+
+  <!-- 아래쪽에서 오는 빛 - 극단적으로 휘어짐 -->
+  <path d="M 900 650 C 780 640, 680 600, 620 540 C 560 480, 510 440, 490 420"
+        stroke="url(#lightPath2)" stroke-width="2.5" fill="none"
+        stroke-dasharray="8,4" marker-end="url(#arrowCyan)" opacity="0.85"/>
+
+  <!-- 블랙홀을 완전히 돌아 탈출하는 빛 (포착된 빛) -->
+  <path d="M 820 200 C 720 220, 620 280, 570 340 C 530 380, 510 400, 530 430 C 550 460, 590 480, 660 490 C 740 500, 830 480, 880 440"
+        stroke="#ffd700" stroke-width="1.5" fill="none"
+        stroke-dasharray="5,5" opacity="0.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- 직선으로 지나가는 빛 (멀리서) -->
+  <path d="M 1050 160 L 750 160" stroke="#00d4ff" stroke-width="1.5" fill="none" opacity="0.4" stroke-dasharray="6,3" marker-end="url(#arrowCyan)"/>
+  <path d="M 1050 640 L 750 640" stroke="#00d4ff" stroke-width="1.5" fill="none" opacity="0.4" stroke-dasharray="6,3" marker-end="url(#arrowCyan)"/>
+
+  <!-- ====== 사건 지평선 (블랙홀 경계선) ====== -->
+  <!-- 외부 광자 구 -->
+  <circle cx="500" cy="400" r="175" fill="none" stroke="#8a2be2" stroke-width="1.5" stroke-dasharray="10,6" opacity="0.5"/>
+
+  <!-- 사건 지평선 글로우 링 -->
+  <circle cx="500" cy="400" r="130" fill="none" stroke="#8a2be2" stroke-width="3" opacity="0.4" filter="url(#softGlow)"/>
+  <circle cx="500" cy="400" r="130" fill="none" stroke="#8a2be2" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- ====== 광자 링 (오렌지/노랑 글로우) ====== -->
+  <circle cx="500" cy="400" r="155" fill="none" stroke="#ffd700" stroke-width="6" opacity="0.3" filter="url(#strongGlow)"/>
+  <circle cx="500" cy="400" r="155" fill="none" stroke="#ff6b35" stroke-width="12" opacity="0.15" filter="url(#softGlow)"/>
+  <circle cx="500" cy="400" r="155" fill="none" stroke="#ffd700" stroke-width="3" opacity="0.8" filter="url(#glow)"/>
+
+  <!-- 광자 링 밝은 호 (아인슈타인 링 느낌) -->
+  <path d="M 345 400 A 155 155 0 0 1 655 400" stroke="#ffd700" stroke-width="5" fill="none" opacity="0.7" filter="url(#glow)"/>
+  <path d="M 655 400 A 155 155 0 0 1 345 400" stroke="#ff6b35" stroke-width="3" fill="none" opacity="0.5" filter="url(#glow)"/>
+
+  <!-- ====== 블랙홀 본체 ====== -->
+  <circle cx="500" cy="400" r="125" fill="url(#blackHoleGrad)" filter="url(#glow)"/>
+  <!-- 블랙홀 가장자리 미묘한 보라빛 -->
+  <circle cx="500" cy="400" r="125" fill="none" stroke="#3d0060" stroke-width="8" opacity="0.6"/>
+
+  <!-- ====== 라벨들 ====== -->
+  <!-- 블랙홀 라벨 -->
+  <rect x="435" y="382" width="130" height="36" rx="8" fill="#000010" opacity="0.7"/>
+  <text x="500" y="405" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle">블랙홀</text>
+
+  <!-- 사건 지평선 라벨 -->
+  <line x1="500" y1="270" x2="500" y2="310" stroke="#8a2be2" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="390" y="240" width="220" height="36" rx="8" fill="#1a0030" opacity="0.85"/>
+  <text x="500" y="263" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="19" font-weight="bold" fill="#8a2be2" text-anchor="middle">사건 지평선</text>
+  <text x="500" y="235" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="13" fill="#8a2be2" text-anchor="middle" opacity="0.8">(이 경계 안으로 들어가면 탈출 불가!)</text>
+
+  <!-- 광자 링 라벨 -->
+  <line x1="655" y1="400" x2="760" y2="340" stroke="#ffd700" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="755" y="312" width="200" height="36" rx="8" fill="#1a1a00" opacity="0.85"/>
+  <text x="855" y="335" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="bold" fill="#ffd700" text-anchor="middle">광자 링 (빛 궤도)</text>
+
+  <!-- 빛의 경로 라벨 -->
+  <rect x="855" y="155" width="160" height="36" rx="8" fill="#001a2a" opacity="0.85"/>
+  <text x="935" y="178" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="bold" fill="#00d4ff" text-anchor="middle">빛의 경로</text>
+
+  <!-- 그림자 라벨 화살표 -->
+  <line x1="175" y1="388" x2="220" y2="388" stroke="#8a2be2" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowWhite)"/>
+
+  <!-- ====== 우리가 보는 것 패널 ====== -->
+  <rect x="870" y="460" width="290" height="200" rx="15" fill="#050510" stroke="#00d4ff" stroke-width="1.5" opacity="0.95"/>
+  <text x="1015" y="490" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="bold" fill="#00d4ff" text-anchor="middle">우리가 보는 것 👁</text>
+  <!-- 관측된 블랙홀 이미지 (작은 버전) -->
+  <circle cx="940" cy="565" r="45" fill="url(#blackHoleGrad)"/>
+  <circle cx="940" cy="565" r="58" fill="none" stroke="#ffd700" stroke-width="5" opacity="0.4" filter="url(#glow)"/>
+  <circle cx="940" cy="565" r="58" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.8"/>
+  <!-- 오른쪽이 더 밝은 비대칭 링 -->
+  <path d="M 895 565 A 45 45 0 0 0 985 565" stroke="#ff6b35" stroke-width="4" fill="none" opacity="0.9" filter="url(#glow)"/>
+  <text x="1070" y="545" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="14" fill="white" text-anchor="middle">밝은 링</text>
+  <text x="1070" y="565" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="14" fill="#ffd700" text-anchor="middle">(광자 링)</text>
+  <text x="1070" y="590" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="14" fill="white" text-anchor="middle">가운데</text>
+  <text x="1070" y="610" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="14" fill="#8a2be2" text-anchor="middle">어두운 원 =</text>
+  <text x="1070" y="630" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="14" fill="#8a2be2" text-anchor="middle">블랙홀 그림자</text>
+  <text x="1015" y="648" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="12" fill="#888" text-anchor="middle">실제 블랙홀보다 약 2.6배 크게 보임</text>
+
+  <!-- ====== 설명 박스 ====== -->
+  <rect x="230" y="660" width="650" height="110" rx="12" fill="#050520" stroke="#00d4ff" stroke-width="1" opacity="0.95"/>
+  <text x="555" y="688" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="17" font-weight="bold" fill="#ffd700" text-anchor="middle">왜 그림자가 생길까?</text>
+  <text x="555" y="710" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="14" fill="white" text-anchor="middle">블랙홀의 강한 중력이 주변 빛을 모두 끌어당겨 탈출하지 못하게 만들어요.</text>
+  <text x="555" y="730" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="14" fill="white" text-anchor="middle">빛이 없는 영역 = 우리 눈에는 검은 원으로 보여요.</text>
+  <text x="555" y="752" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="14" fill="#00d4ff" text-anchor="middle">이것이 바로 "블랙홀 그림자(Shadow)"예요!</text>
+</svg>

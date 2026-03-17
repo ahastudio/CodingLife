@@ -1,0 +1,14 @@
+# Environment variables
+.env
+
+# Claude Code
+.claude/settings.local.json
+
+# OpenChrome
+.openchrome/
+
+# Files
+files/
+
+# Generated output
+output/

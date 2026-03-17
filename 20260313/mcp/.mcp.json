@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "openchrome": {
+      "command": "npx",
+      "args": ["-y", "openchrome-mcp@latest", "serve"]
+    }
+  }
+}

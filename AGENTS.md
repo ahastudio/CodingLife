@@ -31,10 +31,6 @@
 - Assuming or guessing what is staged
 - Proceeding when verification returns empty results
 
-## Terminal Policy
-
-**NEVER** use `run_in_terminal` tool or suggest terminal commands.
-
 ## Korean Communication
 
 Respond in Korean unless instructed otherwise.
