@@ -1,0 +1,308 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <!-- 블랙홀 그라데이션들 -->
+    <radialGradient id="bhG1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000000"/>
+      <stop offset="55%" stop-color="#0d0020"/>
+      <stop offset="100%" stop-color="#2a0040"/>
+    </radialGradient>
+    <radialGradient id="bhG2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000000"/>
+      <stop offset="55%" stop-color="#150028"/>
+      <stop offset="100%" stop-color="#320050"/>
+    </radialGradient>
+    <radialGradient id="bhG3" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000000"/>
+      <stop offset="55%" stop-color="#001020"/>
+      <stop offset="100%" stop-color="#002040"/>
+    </radialGradient>
+    <radialGradient id="bhG4" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000000"/>
+      <stop offset="55%" stop-color="#001525"/>
+      <stop offset="100%" stop-color="#002545"/>
+    </radialGradient>
+    <!-- 광자 링 그라데이션들 -->
+    <radialGradient id="ring1" cx="50%" cy="50%" r="50%">
+      <stop offset="75%" stop-color="transparent"/>
+      <stop offset="88%" stop-color="#ffd700" stop-opacity="0.8"/>
+      <stop offset="95%" stop-color="#ff6b35" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <!-- 플라즈마 글로우 -->
+    <radialGradient id="plasma2" cx="50%" cy="50%" r="50%">
+      <stop offset="50%" stop-color="transparent"/>
+      <stop offset="75%" stop-color="#00d4ff" stop-opacity="0.15"/>
+      <stop offset="90%" stop-color="#0066ff" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <radialGradient id="plasma4" cx="50%" cy="50%" r="50%">
+      <stop offset="50%" stop-color="transparent"/>
+      <stop offset="72%" stop-color="#00d4ff" stop-opacity="0.2"/>
+      <stop offset="88%" stop-color="#0044ff" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <!-- 양자 보정 블랙홀 특수 그라데이션 (약간 다른 색) -->
+    <radialGradient id="quantumGlow3" cx="50%" cy="50%" r="50%">
+      <stop offset="70%" stop-color="transparent"/>
+      <stop offset="85%" stop-color="#8a2be2" stop-opacity="0.15"/>
+      <stop offset="95%" stop-color="#5500aa" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <radialGradient id="quantumGlow4" cx="50%" cy="50%" r="50%">
+      <stop offset="65%" stop-color="transparent"/>
+      <stop offset="80%" stop-color="#8a2be2" stop-opacity="0.15"/>
+      <stop offset="92%" stop-color="#00d4ff" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <!-- 글로우 필터들 -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="medGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="15" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="plasmaBlur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+    <!-- 마커 -->
+    <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ff6b35"/>
+    </marker>
+    <marker id="arrowLeft" markerWidth="10" markerHeight="7" refX="1" refY="3.5" orient="auto">
+      <polygon points="10 0, 0 3.5, 10 7" fill="#ff6b35"/>
+    </marker>
+    <marker id="arrowGold" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ffd700"/>
+    </marker>
+    <marker id="arrowGoldL" markerWidth="8" markerHeight="6" refX="1" refY="3" orient="auto">
+      <polygon points="8 0, 0 3, 8 6" fill="#ffd700"/>
+    </marker>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="1200" height="800" fill="#05050f"/>
+
+  <!-- 별들 -->
+  <circle cx="25" cy="20" r="1.1" fill="white" opacity="0.8"/>
+  <circle cx="80" cy="55" r="0.8" fill="#ffd700" opacity="0.7"/>
+  <circle cx="160" cy="28" r="1.2" fill="white" opacity="0.6"/>
+  <circle cx="240" cy="72" r="0.9" fill="white" opacity="0.9"/>
+  <circle cx="350" cy="18" r="0.7" fill="#ffd700" opacity="0.8"/>
+  <circle cx="480" cy="40" r="1.0" fill="white" opacity="0.7"/>
+  <circle cx="570" cy="22" r="1.3" fill="white" opacity="0.6"/>
+  <circle cx="680" cy="60" r="0.8" fill="#ffd700" opacity="0.9"/>
+  <circle cx="760" cy="15" r="1.0" fill="white" opacity="0.7"/>
+  <circle cx="860" cy="45" r="1.1" fill="white" opacity="0.8"/>
+  <circle cx="940" cy="22" r="0.9" fill="#ffd700" opacity="0.6"/>
+  <circle cx="1030" cy="55" r="1.2" fill="white" opacity="0.9"/>
+  <circle cx="1110" cy="18" r="0.8" fill="white" opacity="0.7"/>
+  <circle cx="1175" cy="42" r="1.0" fill="#ffd700" opacity="0.8"/>
+  <circle cx="35" cy="130" r="0.9" fill="white" opacity="0.7"/>
+  <circle cx="20" cy="260" r="1.1" fill="#ffd700" opacity="0.6"/>
+  <circle cx="45" cy="400" r="0.8" fill="white" opacity="0.8"/>
+  <circle cx="25" cy="550" r="1.0" fill="white" opacity="0.7"/>
+  <circle cx="50" cy="680" r="0.9" fill="#ffd700" opacity="0.9"/>
+  <circle cx="1165" cy="180" r="1.0" fill="white" opacity="0.8"/>
+  <circle cx="1180" cy="340" r="0.8" fill="#ffd700" opacity="0.7"/>
+  <circle cx="1155" cy="500" r="1.1" fill="white" opacity="0.6"/>
+  <circle cx="1170" cy="660" r="0.9" fill="white" opacity="0.8"/>
+  <circle cx="200" cy="760" r="1.0" fill="white" opacity="0.7"/>
+  <circle cx="400" cy="775" r="0.8" fill="#ffd700" opacity="0.8"/>
+  <circle cx="600" cy="765" r="1.2" fill="white" opacity="0.6"/>
+  <circle cx="800" cy="770" r="0.9" fill="white" opacity="0.9"/>
+  <circle cx="1000" cy="755" r="1.1" fill="#ffd700" opacity="0.7"/>
+  <circle cx="130" cy="740" r="0.8" fill="white" opacity="0.8"/>
+  <circle cx="1100" cy="740" r="1.0" fill="white" opacity="0.7"/>
+  <circle cx="500" cy="748" r="0.9" fill="#ffd700" opacity="0.6"/>
+
+  <!-- 제목 -->
+  <text x="600" y="46" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="30" font-weight="bold" fill="white" text-anchor="middle" filter="url(#glow)">4가지 블랙홀 그림자 크기 비교</text>
+  <text x="600" y="75" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="15" fill="#00d4ff" text-anchor="middle" opacity="0.85">일반 블랙홀 vs 양자 보정 블랙홀 | 플라즈마 유무에 따른 그림자 크기 변화</text>
+
+  <!-- ====================================================== -->
+  <!-- 상단 설명 배지들 -->
+  <!-- ====================================================== -->
+  <rect x="90" y="88" width="480" height="32" rx="10" fill="#1a0030" opacity="0.8" stroke="#8a2be2" stroke-width="1"/>
+  <text x="330" y="109" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="15" fill="#8a2be2" text-anchor="middle" font-weight="bold">일반 블랙홀 (General Relativity)</text>
+
+  <rect x="630" y="88" width="480" height="32" rx="10" fill="#001a20" opacity="0.8" stroke="#00d4ff" stroke-width="1"/>
+  <text x="870" y="109" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="15" fill="#00d4ff" text-anchor="middle" font-weight="bold">양자 보정 블랙홀 (Quantum Corrected)</text>
+
+  <!-- ====================================================== -->
+  <!-- 케이스 1: 일반 BH + 플라즈마 없음 (가장 큰, 왼쪽 위) -->
+  <!-- ====================================================== -->
+  <!-- 배경 패널 -->
+  <rect x="55" y="130" width="510" height="290" rx="15" fill="#0a0020" stroke="#8a2be2" stroke-width="1.5" opacity="0.9"/>
+  <!-- 번호 배지 -->
+  <circle cx="95" cy="165" r="18" fill="#8a2be2" opacity="0.9"/>
+  <text x="95" y="171" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">1</text>
+
+  <!-- "가장 큰" 배지 -->
+  <rect x="440" y="148" width="100" height="28" rx="8" fill="#ffd700" opacity="0.9"/>
+  <text x="490" y="167" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">가장 크다!</text>
+
+  <!-- 플라즈마 없음 배지 -->
+  <rect x="120" y="148" width="130" height="28" rx="8" fill="#1a0030" opacity="0.9" stroke="#8a2be2" stroke-width="1"/>
+  <text x="185" y="167" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="13" fill="#ffd700" text-anchor="middle">플라즈마 없음</text>
+
+  <!-- 블랙홀 (반지름 115) -->
+  <circle cx="280" cy="285" r="120" fill="none" stroke="#ffd700" stroke-width="5" opacity="0.2" filter="url(#softGlow)"/>
+  <circle cx="280" cy="285" r="120" fill="none" stroke="#ffd700" stroke-width="2.5" opacity="0.7" filter="url(#glow)"/>
+  <path d="M 162 285 A 118 118 0 0 0 398 285" stroke="#ff6b35" stroke-width="4" fill="none" opacity="0.8" filter="url(#glow)"/>
+  <circle cx="280" cy="285" r="100" fill="url(#bhG1)"/>
+  <circle cx="280" cy="285" r="100" fill="none" stroke="#3d0060" stroke-width="5" opacity="0.4"/>
+
+  <!-- 크기 표시 (양방향 화살표) -->
+  <line x1="160" y1="393" x2="400" y2="393" stroke="#ffd700" stroke-width="1.5" marker-end="url(#arrowGold)" marker-start="url(#arrowGoldL)"/>
+  <text x="280" y="408" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="13" fill="#ffd700" text-anchor="middle">반지름 ≈ 5.2 M</text>
+
+  <!-- ====================================================== -->
+  <!-- 케이스 2: 일반 BH + 플라즈마 있음 (두 번째, 왼쪽 아래) -->
+  <!-- ====================================================== -->
+  <rect x="55" y="435" width="510" height="270" rx="15" fill="#0a0020" stroke="#8a2be2" stroke-width="1.5" opacity="0.9"/>
+  <circle cx="95" cy="470" r="18" fill="#8a2be2" opacity="0.7"/>
+  <text x="95" y="476" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">2</text>
+
+  <rect x="120" y="453" width="130" height="28" rx="8" fill="#001a2a" opacity="0.9" stroke="#00d4ff" stroke-width="1"/>
+  <text x="185" y="472" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="13" fill="#00d4ff" text-anchor="middle">플라즈마 있음</text>
+
+  <!-- 플라즈마 글로우 -->
+  <circle cx="280" cy="565" r="155" fill="url(#plasma2)" filter="url(#plasmaBlur)" opacity="0.8"/>
+  <!-- 플라즈마 파티클들 -->
+  <circle cx="200" cy="520" r="2.0" fill="#00d4ff" opacity="0.6" filter="url(#glow)"/>
+  <circle cx="230" cy="500" r="1.5" fill="#0088ff" opacity="0.5" filter="url(#glow)"/>
+  <circle cx="170" cy="560" r="2.5" fill="#00d4ff" opacity="0.7" filter="url(#glow)"/>
+  <circle cx="185" cy="610" r="1.8" fill="#00ffaa" opacity="0.5" filter="url(#glow)"/>
+  <circle cx="360" cy="510" r="2.0" fill="#0088ff" opacity="0.6" filter="url(#glow)"/>
+  <circle cx="390" cy="530" r="1.5" fill="#00d4ff" opacity="0.5" filter="url(#glow)"/>
+  <circle cx="380" cy="610" r="2.5" fill="#00ffaa" opacity="0.7" filter="url(#glow)"/>
+  <circle cx="220" cy="640" r="1.8" fill="#00d4ff" opacity="0.5" filter="url(#glow)"/>
+  <circle cx="340" cy="645" r="2.0" fill="#0088ff" opacity="0.6" filter="url(#glow)"/>
+
+  <!-- 블랙홀 (더 작음, 반지름 100) -->
+  <circle cx="280" cy="565" r="105" fill="none" stroke="#ffd700" stroke-width="4" opacity="0.18" filter="url(#softGlow)"/>
+  <circle cx="280" cy="565" r="105" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.6" filter="url(#glow)"/>
+  <path d="M 177 565 A 103 103 0 0 0 383 565" stroke="#ff6b35" stroke-width="3.5" fill="none" opacity="0.7" filter="url(#glow)"/>
+  <circle cx="280" cy="565" r="88" fill="url(#bhG2)"/>
+  <circle cx="280" cy="565" r="88" fill="none" stroke="#3d0060" stroke-width="4" opacity="0.4"/>
+
+  <!-- 크기 표시 -->
+  <line x1="175" y1="665" x2="385" y2="665" stroke="#ffd700" stroke-width="1.5" marker-end="url(#arrowGold)" marker-start="url(#arrowGoldL)"/>
+  <text x="280" y="680" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="13" fill="#ffd700" text-anchor="middle">반지름 ≈ 4.6 M</text>
+
+  <!-- ====================================================== -->
+  <!-- 케이스 3: 양자 보정 BH + 플라즈마 없음 (오른쪽 위) -->
+  <!-- ====================================================== -->
+  <rect x="635" y="130" width="510" height="290" rx="15" fill="#0a0020" stroke="#00d4ff" stroke-width="1.5" opacity="0.9"/>
+  <circle cx="675" cy="165" r="18" fill="#00d4ff" opacity="0.8"/>
+  <text x="675" y="171" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">3</text>
+
+  <rect x="700" y="148" width="130" height="28" rx="8" fill="#1a0030" opacity="0.9" stroke="#8a2be2" stroke-width="1"/>
+  <text x="765" y="167" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="13" fill="#ffd700" text-anchor="middle">플라즈마 없음</text>
+
+  <!-- 양자 보정 특수 효과 (보라빛 양자 글로우) -->
+  <circle cx="860" cy="285" r="125" fill="url(#quantumGlow3)" filter="url(#plasmaBlur)" opacity="0.7"/>
+
+  <!-- 블랙홀 (반지름 108) -->
+  <circle cx="860" cy="285" r="112" fill="none" stroke="#ffd700" stroke-width="5" opacity="0.18" filter="url(#softGlow)"/>
+  <circle cx="860" cy="285" r="112" fill="none" stroke="#ffd700" stroke-width="2.2" opacity="0.65" filter="url(#glow)"/>
+  <path d="M 750 285 A 110 110 0 0 0 970 285" stroke="#ff6b35" stroke-width="3.5" fill="none" opacity="0.75" filter="url(#glow)"/>
+  <circle cx="860" cy="285" r="94" fill="url(#bhG3)"/>
+  <!-- 양자 보정 테두리 (보라 + 시안) -->
+  <circle cx="860" cy="285" r="94" fill="none" stroke="#8a2be2" stroke-width="3" opacity="0.35"/>
+  <circle cx="860" cy="285" r="94" fill="none" stroke="#00d4ff" stroke-width="1" opacity="0.3" stroke-dasharray="15,10"/>
+
+  <!-- 양자 보정 라벨 -->
+  <rect x="790" y="143" width="180" height="28" rx="7" fill="#050520" opacity="0.9" stroke="#8a2be2" stroke-width="1"/>
+  <text x="880" y="162" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="12" fill="#8a2be2" text-anchor="middle">★ 양자 효과 적용</text>
+
+  <!-- 크기 표시 -->
+  <line x1="748" y1="393" x2="972" y2="393" stroke="#ffd700" stroke-width="1.5" marker-end="url(#arrowGold)" marker-start="url(#arrowGoldL)"/>
+  <text x="860" y="408" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="13" fill="#ffd700" text-anchor="middle">반지름 ≈ 4.8 M</text>
+
+  <!-- ====================================================== -->
+  <!-- 케이스 4: 양자 보정 BH + 플라즈마 있음 (가장 작은, 오른쪽 아래) -->
+  <!-- ====================================================== -->
+  <rect x="635" y="435" width="510" height="270" rx="15" fill="#0a0020" stroke="#00d4ff" stroke-width="1.5" opacity="0.9"/>
+  <circle cx="675" cy="470" r="18" fill="#00d4ff" opacity="0.6"/>
+  <text x="675" y="476" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">4</text>
+
+  <rect x="700" y="453" width="130" height="28" rx="8" fill="#001a2a" opacity="0.9" stroke="#00d4ff" stroke-width="1"/>
+  <text x="765" y="472" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="13" fill="#00d4ff" text-anchor="middle">플라즈마 있음</text>
+
+  <!-- "가장 작은" 배지 -->
+  <rect x="1010" y="453" width="110" height="28" rx="8" fill="#00d4ff" opacity="0.85"/>
+  <text x="1065" y="472" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="13" font-weight="bold" fill="#000" text-anchor="middle">가장 작다!</text>
+
+  <!-- 플라즈마 + 양자 복합 글로우 -->
+  <circle cx="860" cy="565" r="145" fill="url(#plasma4)" filter="url(#plasmaBlur)" opacity="0.8"/>
+  <circle cx="860" cy="565" r="125" fill="url(#quantumGlow4)" filter="url(#plasmaBlur)" opacity="0.5"/>
+
+  <!-- 플라즈마 파티클들 (케이스4) -->
+  <circle cx="770" cy="520" r="2.0" fill="#00d4ff" opacity="0.7" filter="url(#glow)"/>
+  <circle cx="750" cy="555" r="2.5" fill="#0088ff" opacity="0.5" filter="url(#glow)"/>
+  <circle cx="765" cy="600" r="1.8" fill="#00ffaa" opacity="0.6" filter="url(#glow)"/>
+  <circle cx="950" cy="515" r="2.0" fill="#00d4ff" opacity="0.7" filter="url(#glow)"/>
+  <circle cx="968" cy="555" r="2.5" fill="#0088ff" opacity="0.5" filter="url(#glow)"/>
+  <circle cx="955" cy="600" r="1.8" fill="#00ffaa" opacity="0.6" filter="url(#glow)"/>
+  <circle cx="820" cy="495" r="1.5" fill="#8a2be2" opacity="0.6" filter="url(#glow)"/>
+  <circle cx="900" cy="490" r="1.5" fill="#8a2be2" opacity="0.5" filter="url(#glow)"/>
+  <circle cx="810" cy="640" r="2.0" fill="#8a2be2" opacity="0.6" filter="url(#glow)"/>
+  <circle cx="910" cy="645" r="1.5" fill="#8a2be2" opacity="0.5" filter="url(#glow)"/>
+
+  <!-- 블랙홀 (가장 작음, 반지름 95) -->
+  <circle cx="860" cy="565" r="98" fill="none" stroke="#ffd700" stroke-width="4" opacity="0.15" filter="url(#softGlow)"/>
+  <circle cx="860" cy="565" r="98" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.55" filter="url(#glow)"/>
+  <path d="M 764 565 A 96 96 0 0 0 956 565" stroke="#ff6b35" stroke-width="3" fill="none" opacity="0.65" filter="url(#glow)"/>
+  <circle cx="860" cy="565" r="82" fill="url(#bhG4)"/>
+  <circle cx="860" cy="565" r="82" fill="none" stroke="#8a2be2" stroke-width="3" opacity="0.3"/>
+  <circle cx="860" cy="565" r="82" fill="none" stroke="#00d4ff" stroke-width="1" opacity="0.25" stroke-dasharray="12,8"/>
+
+  <!-- 크기 표시 -->
+  <line x1="762" y1="665" x2="958" y2="665" stroke="#ffd700" stroke-width="1.5" marker-end="url(#arrowGold)" marker-start="url(#arrowGoldL)"/>
+  <text x="860" y="680" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="13" fill="#ffd700" text-anchor="middle">반지름 ≈ 4.3 M</text>
+
+  <!-- ====================================================== -->
+  <!-- 가운데 세로 구분선 -->
+  <!-- ====================================================== -->
+  <line x1="598" y1="130" x2="598" y2="700" stroke="#333355" stroke-width="1.5" stroke-dasharray="8,4"/>
+
+  <!-- ====================================================== -->
+  <!-- 크기 비교 직관적 도식 (하단 가운데) -->
+  <!-- ====================================================== -->
+  <rect x="390" y="715" width="420" height="65" rx="12" fill="#050520" stroke="#ffd700" stroke-width="1" opacity="0.95"/>
+  <text x="600" y="736" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="14" font-weight="bold" fill="#ffd700" text-anchor="middle">크기 순서 (크다 → 작다)</text>
+  <!-- 원 비교 -->
+  <circle cx="450" cy="758" r="13" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.9"/>
+  <circle cx="490" cy="758" r="11" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.7"/>
+  <circle cx="525" cy="758" r="9" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.5"/>
+  <circle cx="555" cy="758" r="7.5" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.4"/>
+  <text x="450" cy="758" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="11" fill="#8a2be2" text-anchor="middle" dominant-baseline="middle">1</text>
+  <text x="490" cy="758" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="11" fill="#8a2be2" text-anchor="middle" dominant-baseline="middle">2</text>
+  <text x="525" cy="758" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="11" fill="#00d4ff" text-anchor="middle" dominant-baseline="middle">3</text>
+  <text x="555" cy="758" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="11" fill="#00d4ff" text-anchor="middle" dominant-baseline="middle">4</text>
+  <text x="600" y="758" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="11" fill="white" text-anchor="start" dominant-baseline="middle">  ①②③④</text>
+  <text x="650" y="775" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="12" fill="#888" text-anchor="middle">플라즈마·양자 보정이 클수록 그림자 작아짐</text>
+
+  <!-- ====================================================== -->
+  <!-- 범례 / 설명 박스 (왼쪽) -->
+  <!-- ====================================================== -->
+  <rect x="55" y="720" width="320" height="65" rx="10" fill="#050520" stroke="#8a2be2" stroke-width="1" opacity="0.95"/>
+  <text x="215" y="742" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="13" font-weight="bold" fill="#8a2be2" text-anchor="middle">양자 보정이란?</text>
+  <text x="215" y="760" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="12" fill="white" text-anchor="middle">일반 상대성 이론에 양자 역학 효과를</text>
+  <text x="215" y="776" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="12" fill="white" text-anchor="middle">추가한 블랙홀 모델 (더 정밀한 계산)</text>
+
+  <!-- ====================================================== -->
+  <!-- 범례 / 설명 박스 (오른쪽) -->
+  <!-- ====================================================== -->
+  <rect x="825" y="720" width="320" height="65" rx="10" fill="#050520" stroke="#00d4ff" stroke-width="1" opacity="0.95"/>
+  <text x="985" y="742" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="13" font-weight="bold" fill="#00d4ff" text-anchor="middle">핵심 결론</text>
+  <text x="985" y="760" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="12" fill="white" text-anchor="middle">두 효과(플라즈마 + 양자 보정)가</text>
+  <text x="985" y="776" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="12" fill="#00d4ff" text-anchor="middle">함께 작용할 때 그림자가 가장 작아진다</text>
+</svg>
