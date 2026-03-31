@@ -50,7 +50,9 @@ Based on:
 3. Summary: max 50 characters
 4. Body: wrap at 72 characters, one sentence per line
 5. No bullet points in body - use full sentences
-6. Write in English (Korean translation optional)
+6. Write commit message in English only
+7. Show Korean translation to user first, then commit in English
+8. Wrap code names (commands, paths, etc.) in backticks
 
 ### Character Count Reference
 
@@ -78,9 +80,8 @@ Each paragraph focuses on a distinct part of the commit.
 
 ---
 
-(Optional) Translate the English summary and body above into Korean.
-The Korean translation is for reference only and can be omitted before
-commit.
+Show the Korean translation to the user first for review.
+Then use the English version for the actual commit.
 ```
 
 ### Example
@@ -95,16 +96,4 @@ The endpoint returns HTTP 200 when healthy and 503 when unhealthy.
 Update the documentation to describe the new endpoint and its usage.
 Include examples for common monitoring scenarios and integration patterns.
 Add troubleshooting section for potential configuration issues.
-
----
-
-헬스 체크 API 추가 및 문서 업데이트
-
-서비스 상태 모니터링을 위한 새로운 헬스 체크 API 엔드포인트를 구현합니다.
-이를 통해 외부 시스템이 우리 서비스의 작동 상태를 확인할 수 있습니다.
-엔드포인트는 정상일 때 HTTP 200을, 비정상일 때 503을 반환합니다.
-
-새 엔드포인트와 사용법을 설명하는 문서를 업데이트합니다.
-일반적인 모니터링 시나리오 및 통합 패턴에 대한 예제를 포함합니다.
-잠재적 구성 문제에 대한 문제 해결 섹션을 추가합니다.
 ```
