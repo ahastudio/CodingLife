@@ -2,7 +2,7 @@
 
 ## paper-infographic — 논문 인포그래픽 생성
 
-논문 요약 마크다운을 읽고 Gemini로 교육용 인포그래픽 PNG를 생성하는 CLI 도구.
+논문 요약 마크다운을 읽고 Gemini로 교육용 인포그래픽 PNG를 생성하는 스킬.
 
 ### 준비
 
@@ -16,25 +16,14 @@ cp .env.example .env
 
 ### 사용법
 
-```bash
-node scripts/paper-infographic.js <input.md> [옵션]
+```text
+/paper-infographic files/my-paper.md
 ```
 
-| 옵션                  | 설명           | 기본값                       |
-| --------------------- | -------------- | ---------------------------- |
-| `--output, -o <path>` | 출력 PNG 경로  | `output/<입력파일명>.png`    |
-| `--model, -m <id>`    | Gemini 모델 ID | `gemini-3-pro-image-preview` |
-| `--help, -h`          | 도움말 출력    |                              |
+생성된 이미지는 `output/` 디렉토리에 저장된다.
 
-### 예시
+출력 경로나 모델을 바꾸고 싶으면 자연어로 요청하면 된다.
 
-```bash
-# 기본 실행 (output/ 폴더에 자동 저장)
-node scripts/paper-infographic.js files/my-paper.md
-
-# 출력 경로 지정
-node scripts/paper-infographic.js files/my-paper.md --output output/my-infographic.png
-
-# 모델 변경
-node scripts/paper-infographic.js files/my-paper.md --model gemini-2.5-flash-image
-```
+- "files/my-paper.md 인포그래픽으로 만들어줘"
+- "출력 파일은 output/my-infographic.png로 해줘"
+- "gemini-2.5-flash-image 모델로 바꿔서 해줘"

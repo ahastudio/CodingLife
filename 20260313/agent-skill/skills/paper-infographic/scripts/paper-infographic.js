@@ -3,7 +3,7 @@
  * paper-infographic.js — 논문 요약 마크다운을 인포그래픽 PNG로 변환하는 범용 CLI 도구
  *
  * 사용법:
- *   node scripts/paper-infographic.js <input.md> [options]
+ *   node paper-infographic.js <input.md> [options]
  *
  * 옵션:
  *   --output <path>   출력 PNG 경로 (기본값: output/<입력파일명>.png)
@@ -18,10 +18,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { fileURLToPath } from "node:url";
 
-const scriptDir = path.dirname(fileURLToPath(import.meta.url));
-const rootDir = path.resolve(scriptDir, "..");
+const cwd = process.cwd();
 const DEFAULT_MODEL = "gemini-3-pro-image-preview";
 
 // --- .env 로더 ---
@@ -70,7 +68,7 @@ function parseArgs(argv) {
 function printHelp() {
   console.log(`
 사용법:
-  node scripts/paper-infographic.js <input.md> [옵션]
+  node paper-infographic.js <input.md> [옵션]
 
 옵션:
   --output, -o <path>   출력 PNG 경로
@@ -84,9 +82,9 @@ function printHelp() {
   GEMINI_MODEL          기본 모델 ID (선택)
 
 예시:
-  node scripts/paper-infographic.js files/my-paper.md
-  node scripts/paper-infographic.js files/my-paper.md --output output/my-infographic.png
-  node scripts/paper-infographic.js files/my-paper.md --model gemini-2.5-flash-image
+  node paper-infographic.js files/my-paper.md
+  node paper-infographic.js files/my-paper.md --output output/my-infographic.png
+  node paper-infographic.js files/my-paper.md --model gemini-2.5-flash-image
 `.trim());
 }
 
@@ -94,7 +92,7 @@ function resolveOutputPath(inputPath, outputOpt) {
   if (outputOpt) return path.resolve(outputOpt);
 
   const base = path.basename(inputPath, path.extname(inputPath));
-  return path.join(rootDir, "output", `${base}.png`);
+  return path.join(cwd, "output", `${base}.png`);
 }
 
 // --- 프롬프트 빌더 ---
@@ -174,7 +172,7 @@ async function generateImage(prompt, apiKey, model) {
 // --- 진입점 ---
 
 async function main() {
-  loadDotEnv(path.join(rootDir, ".env"));
+  loadDotEnv(path.join(cwd, ".env"));
 
   const opts = parseArgs(process.argv);
 
