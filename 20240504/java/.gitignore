@@ -6,3 +6,6 @@ build
 
 # Ignore temporary files
 /tmp/
+
+# Ignore IDE build output directory
+bin
